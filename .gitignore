@@ -24,7 +24,8 @@ App_Browsers/
 */App_Data/courier/
 */App_Data/preview/
 */App_Data/TEMP/
-
+*/App_Data/NuGetBackup/
+*/App_Data/Logs/
 */App_Data/umbraco.config
 [Cc]ached/
 ClientDependency/
