@@ -268,13 +268,8 @@
   <ItemGroup>
     <Content Include="App_Plugins\Data\BackOffice\DataTree\edit.controller.js" />
     <Content Include="App_Plugins\Data\BackOffice\DataTree\edit.html" />
-    <Content Include="App_Plugins\MarkDownEditor\lib\Markdown.Converter.js" />
-    <Content Include="App_Plugins\MarkDownEditor\lib\Markdown.Editor.Icons.png" />
-    <Content Include="App_Plugins\MarkDownEditor\lib\Markdown.Editor.js" />
-    <Content Include="App_Plugins\MarkDownEditor\lib\Markdown.Sanitizer.js" />
-    <Content Include="App_Plugins\MarkDownEditor\lib\markdown.css" />
-    <Content Include="App_Plugins\MarkDownEditor\markdowneditor.controller.js" />
-    <Content Include="App_Plugins\MarkDownEditor\markdowneditor.html" />
+    <Content Include="App_Plugins\SingleRelatedLink\singlerelatedlink.controller.js" />
+    <Content Include="App_Plugins\SingleRelatedLink\singlerelatedlink.html" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="umbraco\Actions\delete.aspx" />
@@ -2941,7 +2936,10 @@
     <Content Include="config\404handlers.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Plugins\MarkDownEditor\package.manifest" />
+    <Content Include="App_Plugins\SingleRelatedLink\package.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\HomePage.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

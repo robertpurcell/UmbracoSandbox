@@ -21,6 +21,7 @@ __MACOSX/
 .bin/
 .Bin/
 App_Browsers/
+*/App_Data/cache/
 */App_Data/courier/
 */App_Data/preview/
 */App_Data/TEMP/
