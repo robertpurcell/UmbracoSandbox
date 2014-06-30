@@ -11,8 +11,7 @@
                 view: "~/App_Plugins/SingleRelatedLink/singlerelatedlink.html"
             }
         }
-    ]
-    ,
+    ],
     //array of files we want to inject into the application on app_start
     javascript: [
         '~/App_Plugins/SingleRelatedLink/singlerelatedlink.controller.js'

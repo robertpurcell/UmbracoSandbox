@@ -1,0 +1,30 @@
+﻿{
+	propertyEditors: [
+		{
+  			alias: "My.GoogleMaps",
+ 			name: "Google maps",
+  			editor:	{
+          			view: "~/App_Plugins/GoogleMaps/googlemaps.html"
+         	},
+			prevalues: {
+				fields: [
+					{
+						label: "Default Location",
+						description: "Enter the long and lat coordinates of the default location.",
+						key: "defaultLocation",
+						view: "textstring"
+					},
+					{
+						label: "Default Zoom",
+						description: "Enter a default zoom value",
+						key: "defaultZoom",
+						view: "number"
+					}
+				]
+			}
+		}
+	],
+	javascript:	[
+ 		"~/App_Plugins/GoogleMaps/googlemaps.controller.js"
+	]
+}
