@@ -212,8 +212,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\UmbracoCms.Core.7.1.4\lib\UrlRewritingNet.UrlRewriter.dll</HintPath>
     </Reference>
-    <Reference Include="Zone.UmbracoMapper">
-      <HintPath>..\packages\UmbracoMapper.1.4.2\lib\Zone.UmbracoMapper.dll</HintPath>
+    <Reference Include="Zone.UmbracoMapper, Version=1.4.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoMapper.1.4.5\lib\Zone.UmbracoMapper.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

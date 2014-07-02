@@ -257,8 +257,9 @@
     <Reference Include="WebActivatorEx">
       <HintPath>..\packages\WebActivatorEx.2.0.5\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
-    <Reference Include="Zone.UmbracoMapper">
-      <HintPath>..\packages\UmbracoMapper.1.4.2\lib\Zone.UmbracoMapper.dll</HintPath>
+    <Reference Include="Zone.UmbracoMapper, Version=1.4.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\UmbracoMapper.1.4.5\lib\Zone.UmbracoMapper.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
