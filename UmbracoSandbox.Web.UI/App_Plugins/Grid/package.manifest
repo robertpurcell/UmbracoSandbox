@@ -1,0 +1,14 @@
+﻿{
+	propertyEditors: [
+		{
+  			alias: "My.Grid",
+ 			name: "Grid",
+  			editor:	{
+          			view: "~/umbraco/Views/propertyeditors/grid/grid.html"
+         	}
+		}
+	],
+	javascript:	[
+ 		"~/umbraco/Js/umbraco.controllers.js"
+	]
+}
