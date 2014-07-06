@@ -1,11 +1,7 @@
 ﻿<div ng-controller="My.GoogleMapsController" class="umb-editor umb-googlemaps">
     <div class="row-fluid">
-        <input class="umb-editor umb-textstring textstring" type="text" ng-model="search" placeholder="Enter a postcode" />
-        <button type="button" class="btn btn-default" ng-click>Search</button>
-    </div>
-    <div class="row-fluid">
-        <input class="umb-editor umb-textstring textstring" type="text" ng-model="coords" placeholder="Longitude, Latitude" readonly />
-        <button type="button" class="btn btn-default" ng-click="clear()">Clear</button>
+        <input id="pac-input" class="umb-editor umb-textstring textstring" type="text" ng-model="location" placeholder="Search for a location">
+        <button id="pac-button" type="button" class="btn btn-default" ng-click="clear()">Clear</button>
     </div>
     <div class="" style="height: 400px;" id="{{model.alias}}_map"></div>
 </div>

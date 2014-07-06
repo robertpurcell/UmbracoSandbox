@@ -26,5 +26,8 @@
 	],
 	javascript:	[
  		"~/App_Plugins/GoogleMaps/googlemaps.controller.js"
+	],
+	css: [
+ 		"~/App_Plugins/GoogleMaps/googlemaps.css"
 	]
 }

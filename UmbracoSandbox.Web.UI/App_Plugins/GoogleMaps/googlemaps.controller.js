@@ -3,118 +3,149 @@
 
         assetsService.loadJs('http://www.google.com/jsapi')
             .then(function () {
-                google.load("maps", "3",
+                google.load('maps', '3',
                             {
                                 callback: initMap,
-                                other_params: "sensor=false"
+                                other_params: 'libraries=places&sensor=false'
                             });
             });
 
         var map;
         var geocoder;
-        var markersArray = [];
+        var markers = [];
 
+        // Initialise map when Google maps is available
         function initMap() {
-            // Google maps is available and all components are ready to use.
 
             var latLng;
             if ($scope.model.value === '') {
-                var valueArray = $scope.model.config.defaultLocation.split(',');
-                latLng = new google.maps.LatLng(valueArray[0], valueArray[1]);
+                var coordArray = $scope.model.config.defaultLocation.split(',');
+                latLng = new google.maps.LatLng(coordArray[0], coordArray[1]);
             } else {
-                var valueArray = $scope.model.value.split(',');
-                latLng = new google.maps.LatLng(valueArray[0], valueArray[1]);
+                var valueArray = $scope.model.value.split('|');
+                var coordArray = valueArray[0].split(',');
+                latLng = new google.maps.LatLng(coordArray[0], coordArray[1]);
+                if (valueArray.length > 1)
+                {
+                    $scope.location = valueArray[1];
+                }
             }
 
+            // Create the map
             var mapDiv = document.getElementById($scope.model.alias + '_map');
             var mapOptions = {
                 zoom: parseInt($scope.model.config.defaultZoom, 10),
                 center: latLng,
+                mapTypeControl: false,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             geocoder = new google.maps.Geocoder();
             map = new google.maps.Map(mapDiv, mapOptions);
 
-            if ($scope.model.value != '')
-            {
+            if ($scope.model.value != '') {
                 placeMarker(latLng);
             }
 
-            // add a click event handler to the map object
-            google.maps.event.addListener(map, "click", function (event) {
-                // place a marker
+            // Add the controls
+            var input = document.getElementById('pac-input');
+            var clear = document.getElementById('pac-button');
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(clear);
+            var searchBox = new google.maps.places.SearchBox(input);
+
+            // Places search event handler
+            google.maps.event.addListener(searchBox, 'places_changed', function () {
+                var places = searchBox.getPlaces();
+                if (places.length == 0) {
+                    return;
+                }
+
+                latLng = places[0].geometry.location;
+                var address = places[0].formatted_address;
+                placeMarker(latLng);
+                console.log(places[0]);
+                notificationsService.success('Location', address);
+                $scope.model.value = latLng.lat() + ',' + latLng.lng() + '|' + address;
+                $scope.location = address;
+            });
+
+            // Click event handler
+            google.maps.event.addListener(map, 'click', function (event) {
                 placeMarker(event.latLng);
                 codeLatLng(event.latLng, geocoder);
             });
 
-            var center = map.getCenter();
-            google.maps.event.trigger(map, "resize");
-            map.setCenter(center);
+            // Idle event handler
+            google.maps.event.addListenerOnce(map, 'idle', function () {
+                var center = map.getCenter();
+                google.maps.event.trigger(map, 'resize');
+                map.setCenter(center);
+            });
 
+            // Tab event handler
             $('a[data-toggle="tab"]').on('shown', function (e) {
                 var center = map.getCenter();
-                google.maps.event.trigger(map, "resize");
+                google.maps.event.trigger(map, 'resize');
                 map.setCenter(center);
             });
         }
 
-        function placeMarker(location) {
-            // first remove all markers if there are any
+        // Add marker to map
+        function placeMarker(latLng) {
             deleteOverlays();
             var marker = new google.maps.Marker({
-                position: location,
+                position: latLng,
+                title: latLng.formatted_address,
                 map: map,
                 draggable: true
             });
 
-            var newLat = marker.getPosition().lat();
-            var newLng = marker.getPosition().lng();
-            $scope.coords = newLat + ", " + newLng;
-            $scope.model.value = newLat + "," + newLng;
-
-            // add marker in markers array
-            markersArray.push(marker);
-            map.setCenter(location);
-            google.maps.event.addListener(marker, "dragend", function (e) {
+            markers.push(marker);
+            map.setCenter(latLng);
+            google.maps.event.addListener(marker, 'dragend', function (e) {
                 placeMarker(marker.getPosition());
                 codeLatLng(marker.getPosition(), geocoder);
             });
         }
 
-        // Deletes all markers in the array by removing references to them
+        // Deletes all markers in the array
         function deleteOverlays() {
-            if (markersArray) {
-                for (i in markersArray) {
-                    markersArray[i].setMap(null);
+            if (markers) {
+                for (i in markers) {
+                    markers[i].setMap(null);
                 }
-                markersArray.length = 0;
+
+                markers.length = 0;
             }
         }
 
+        // Get location data from coordinates
         function codeLatLng(latLng, geocoder) {
             geocoder.geocode({ 'latLng': latLng },
                 function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
-                        var location = results[0].formatted_address;
+                        var address = results[0].formatted_address;
+                        console.log(results[0]);
                         $rootScope.$apply(function () {
-                            notificationsService.success("Location", location);
+                            notificationsService.success('Location', address);
+                            $scope.model.value = latLng.lat() + ',' + latLng.lng() + '|' + address;
+                            $scope.location = address;
                         });
                     } else {
-                        notificationsService.error("Invalid location!");
+                        notificationsService.error('Invalid location!');
                     }
                 });
         }
 
-        // Here we declare a special method which will be called whenever the value has changed from the server
-        // this is instead of doing a watch on the model.value = faster
+        // Update map when value changes on the server
         $scope.model.onValueChanged = function (newVal, oldVal) {
-            // Update the display val again if it has changed from the server
             initMap();
         };
 
+        // Clear the map and 
         $scope.clear = function () {
             deleteOverlays();
-            $scope.coords = '';
+            $scope.location = '';
             $scope.model.value = '';
         };
     });
