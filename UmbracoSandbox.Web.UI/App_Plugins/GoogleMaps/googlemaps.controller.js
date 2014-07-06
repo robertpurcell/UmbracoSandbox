@@ -63,7 +63,6 @@
                 latLng = places[0].geometry.location;
                 var address = places[0].formatted_address;
                 placeMarker(latLng);
-                console.log(places[0]);
                 notificationsService.success('Location', address);
                 $scope.model.value = latLng.lat() + ',' + latLng.lng() + '|' + address;
                 $scope.location = address;
@@ -125,7 +124,6 @@
                 function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
                         var address = results[0].formatted_address;
-                        console.log(results[0]);
                         $rootScope.$apply(function () {
                             notificationsService.success('Location', address);
                             $scope.model.value = latLng.lat() + ',' + latLng.lng() + '|' + address;
