@@ -8,7 +8,7 @@
     using Umbraco.Web.Mvc;
     using Umbraco.Web.Trees;
 
-    [Tree("data", "dataTree", "Data", iconClosed: "icon-doc")]
+    [Tree("data", "datatree", "Data", iconClosed: "icon-doc")]
     [PluginController("Data")]
     public class DataTreeController : TreeController
     {
@@ -19,7 +19,7 @@
             {
                 var tree = new TreeNodeCollection
                 {
-                    CreateTreeNode("1", id, queryStrings, "Donations", "icon-coin-pound", false)
+                    CreateTreeNode("1", id, queryStrings, "Donations", "icon-donate", false)
                 };
 
                 return tree;
