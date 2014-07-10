@@ -220,11 +220,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BackOffice\DataApiController.cs" />
     <Compile Include="Controllers\BackOffice\DataApplication.cs" />
     <Compile Include="Controllers\BackOffice\DataTreeController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Infrastructure\Mapping\MappingExtensions.cs" />
     <Compile Include="Infrastructure\Mapping\MediaMapper.cs" />
+    <Compile Include="Models\BackOffice\OnlineDonation.cs" />
     <Compile Include="Models\Base\BasePageViewModel.cs" />
     <Compile Include="Models\Media\ImageModel.cs" />
     <Compile Include="Models\Media\MediaFileModel.cs" />

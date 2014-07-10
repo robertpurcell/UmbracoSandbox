@@ -1,5 +1,6 @@
 ﻿{
 	javascript: [
-	    '~/App_Plugins/Data/BackOffice/DataTree/edit.controller.js'
+	    '~/App_Plugins/Data/BackOffice/DataTree/edit.controller.js',
+		'~/App_Plugins/Data/data.resource.js'
 	]
 }
