@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("My.SingleRelatedLinkController",
+﻿angular.module("umbraco").controller("Zone.SingleRelatedLinkController",
         function ($rootScope, $scope, dialogService) {
 
             if (!$scope.model.value) {

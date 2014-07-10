@@ -3,7 +3,7 @@
     propertyEditors: [      
         {
             /*this must be a unique alias*/ 
-            alias: "My.SingleRelatedLink",
+            alias: "Zone.SingleRelatedLink",
             /*the name*/
             name: "Single Related Link",
             /*the html file we will load for the editor*/

@@ -269,8 +269,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\Data\BackOffice\DataTree\datadashboard.html" />
     <Content Include="App_Plugins\Data\BackOffice\DataTree\edit.controller.js" />
     <Content Include="App_Plugins\Data\BackOffice\DataTree\edit.html" />
+    <Content Include="App_Plugins\Data\data.resource.js" />
     <Content Include="App_Plugins\GoogleMaps\googlemaps.controller.js" />
     <Content Include="App_Plugins\GoogleMaps\googlemaps.css" />
     <Content Include="App_Plugins\GoogleMaps\googlemaps.html" />

@@ -1,7 +1,7 @@
 ﻿{
 	propertyEditors: [
 		{
-  			alias: "My.Grid",
+  			alias: "Zone.Grid",
  			name: "Grid",
   			editor:	{
           			view: "~/umbraco/Views/propertyeditors/grid/grid.html"

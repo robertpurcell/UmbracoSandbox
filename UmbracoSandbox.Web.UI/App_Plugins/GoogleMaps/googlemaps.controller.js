@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("My.GoogleMapsController",
+﻿angular.module("umbraco").controller("Zone.GoogleMapsController",
     function ($rootScope, $scope, notificationsService, dialogService, assetsService, $log, $timeout) {
 
         assetsService.loadJs('http://www.google.com/jsapi')

@@ -1,7 +1,7 @@
 ﻿{
 	propertyEditors: [
 		{
-  			alias: "My.GoogleMaps",
+  			alias: "Zone.GoogleMaps",
  			name: "Google maps",
   			editor:	{
           			view: "~/App_Plugins/GoogleMaps/googlemaps.html"
