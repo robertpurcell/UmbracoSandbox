@@ -10,7 +10,7 @@
 				fields: [
 					{
 						label: "Default Location",
-						description: "Enter the long and lat coordinates of the default location.",
+						description: "Enter the lat and long coordinates of the default location.",
 						key: "defaultLocation",
 						view: "textstring"
 					},

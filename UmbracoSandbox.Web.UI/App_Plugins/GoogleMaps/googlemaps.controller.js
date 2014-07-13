@@ -18,40 +18,38 @@
         function initMap() {
 
             var latLng;
+            var zoom;
             if ($scope.model.value === '') {
                 var coordArray = $scope.model.config.defaultLocation.split(',');
                 latLng = new google.maps.LatLng(coordArray[0], coordArray[1]);
+                zoom = $scope.model.config.defaultZoom;
             } else {
-                var valueArray = $scope.model.value.split('|');
-                var coordArray = valueArray[0].split(',');
-                latLng = new google.maps.LatLng(coordArray[0], coordArray[1]);
-                if (valueArray.length > 1)
-                {
-                    $scope.location = valueArray[1];
-                }
+                latLng = new google.maps.LatLng($scope.model.value.lat, $scope.model.value.lng);
+                zoom = $scope.model.value.zoom;
+                $scope.address = $scope.model.value.address;
             }
 
             // Create the map
             var mapDiv = document.getElementById($scope.model.alias + '_map');
             var mapOptions = {
-                zoom: parseInt($scope.model.config.defaultZoom, 10),
+                zoom: parseInt(zoom, 10),
                 center: latLng,
                 mapTypeControl: false,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
-            geocoder = new google.maps.Geocoder();
             map = new google.maps.Map(mapDiv, mapOptions);
-
-            if ($scope.model.value != '') {
-                placeMarker(latLng);
+            geocoder = new google.maps.Geocoder();
+            if ($scope.model.value !== '') {
+                placeMarker(latLng, $scope.model.value.name);
             }
 
             // Add the controls
             var input = document.getElementById('pac-input');
             var clear = document.getElementById('pac-button');
+            var searchBox = new google.maps.places.SearchBox(input);
             map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
             map.controls[google.maps.ControlPosition.TOP_LEFT].push(clear);
-            var searchBox = new google.maps.places.SearchBox(input);
+            searchBox.bindTo('bounds', map);
 
             // Places search event handler
             google.maps.event.addListener(searchBox, 'places_changed', function () {
@@ -60,17 +58,28 @@
                     return;
                 }
 
-                latLng = places[0].geometry.location;
-                var address = places[0].formatted_address;
-                placeMarker(latLng);
+                var place = places[0];
+                var address = place.formatted_address;
+                latLng = place.geometry.location;
+                placeMarker(latLng, place.name);
                 notificationsService.success('Location', address);
-                $scope.model.value = latLng.lat() + ',' + latLng.lng() + '|' + address;
-                $scope.location = address;
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                }
+                $scope.address = address;
+                $scope.model.value = {
+                    lat: latLng.lat(),
+                    lng: latLng.lng(),
+                    name: place.name,
+                    address: address,
+                    zoom: map.getZoom()
+                };
+
+                markers[0].title = place.name;
             });
 
             // Click event handler
             google.maps.event.addListener(map, 'click', function (event) {
-                placeMarker(event.latLng);
                 codeLatLng(event.latLng, geocoder);
             });
 
@@ -87,22 +96,31 @@
                 google.maps.event.trigger(map, 'resize');
                 map.setCenter(center);
             });
+
+            // Zoom event handler
+            google.maps.event.addListener(map, 'zoom_changed', function () {
+                google.maps.event.addListenerOnce(map, 'bounds_changed', function (e) {
+                    if ($scope.model.value !== '') {
+                        $scope.model.value.zoom = map.getZoom();
+                    }
+                });
+            });
         }
 
         // Add marker to map
-        function placeMarker(latLng) {
+        function placeMarker(latLng, name) {
             deleteOverlays();
             var marker = new google.maps.Marker({
                 position: latLng,
-                title: latLng.formatted_address,
+                title: name,
                 map: map,
                 draggable: true
             });
-
             markers.push(marker);
             map.setCenter(latLng);
+
+            // Drag event handler
             google.maps.event.addListener(marker, 'dragend', function (e) {
-                placeMarker(marker.getPosition());
                 codeLatLng(marker.getPosition(), geocoder);
             });
         }
@@ -124,13 +142,28 @@
                 function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
                         var address = results[0].formatted_address;
+                        var name = '';
+                        if (results[0].address_components) {
+                            name = [
+                              (results[0].address_components[0] && results[0].address_components[0].short_name || ''),
+                              (results[0].address_components[1] && results[0].address_components[1].short_name || '')
+                            ].join(' ');
+                        }
+
+                        placeMarker(latLng, name);
                         $rootScope.$apply(function () {
                             notificationsService.success('Location', address);
-                            $scope.model.value = latLng.lat() + ',' + latLng.lng() + '|' + address;
-                            $scope.location = address;
+                            $scope.address = address;
+                            $scope.model.value = {
+                                lat: latLng.lat(),
+                                lng: latLng.lng(),
+                                name: name,
+                                address: address,
+                                zoom: map.getZoom()
+                            };
                         });
                     } else {
-                        notificationsService.error('Invalid location!');
+                        notificationsService.error('Invalid location');
                     }
                 });
         }
@@ -140,10 +173,10 @@
             initMap();
         };
 
-        // Clear the map and 
+        // Clear the map
         $scope.clear = function () {
             deleteOverlays();
-            $scope.location = '';
+            $scope.address = '';
             $scope.model.value = '';
         };
     });

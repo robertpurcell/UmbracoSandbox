@@ -1,7 +1,5 @@
 ﻿<div ng-controller="Zone.GoogleMapsController" class="umb-editor umb-googlemaps">
-    <div class="row-fluid">
-        <input id="pac-input" class="umb-editor umb-textstring textstring" type="text" ng-model="location" placeholder="Search for a location">
-        <button id="pac-button" type="button" class="btn btn-default" ng-click="clear()">Clear</button>
-    </div>
+    <input id="pac-input" class="map-controls" type="text" ng-model="address" placeholder="Search for a location">
+    <button id="pac-button" type="button" class="btn btn-default" ng-click="clear()">Clear</button>
     <div class="" style="height: 400px;" id="{{model.alias}}_map"></div>
 </div>
