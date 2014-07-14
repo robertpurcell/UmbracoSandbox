@@ -228,7 +228,7 @@
     <Compile Include="Infrastructure\Mapping\GoogleMapMapper.cs" />
     <Compile Include="Infrastructure\Mapping\MappingExtensions.cs" />
     <Compile Include="Infrastructure\Mapping\MediaMapper.cs" />
-    <Compile Include="Infrastructure\PropertyEditorValueConverters\GoogleMapPropertyEditorValueConverter.cs" />
+    <Compile Include="Infrastructure\PropertyValueConverters\GoogleMapPropertyValueConverter.cs" />
     <Compile Include="Models\BackOffice\OnlineDonation.cs" />
     <Compile Include="Models\Base\BasePageViewModel.cs" />
     <Compile Include="Models\Content\HomePageViewModel.cs" />

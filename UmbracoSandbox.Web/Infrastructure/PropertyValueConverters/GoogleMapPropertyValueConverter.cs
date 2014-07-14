@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Web.Infrastructure.PropertyEditorValueConverters
+﻿namespace UmbracoSandbox.Web.Infrastructure.PropertyValueConverters
 {
     using System;
     using Newtonsoft.Json;
@@ -6,7 +6,7 @@
     using Umbraco.Core.PropertyEditors;
     using UmbracoSandbox.Web.Models;
 
-    public class GoogleMapPropertyEditorValueConverter : PropertyValueConverterBase
+    public class GoogleMapPropertyValueConverter : PropertyValueConverterBase
     {
         public override bool IsConverter(PublishedPropertyType propertyType)
         {

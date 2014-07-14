@@ -1,12 +1,15 @@
 ﻿namespace UmbracoSandbox.Web.Infrastructure.Mapping
 {
-    using UmbracoSandbox.Web.Models;
+    using System.Collections.Generic;
     using Umbraco.Core.Models;
     using Umbraco.Web;
+    using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
     public class MediaMapper
     {
+        public static string[] crops = { "Hero", "Teaser", "Page" };
+
         public static object GetMediaFile(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyName, bool recursive)
         {
             var mediaModel = contentToMapFrom.GetMedia(propertyName, recursive);
@@ -14,7 +17,7 @@
             {
                 return null;
             }
-
+            
             var mediaFile = new MediaFileModel();
             MapMediaFileProperties(mediaFile, mediaModel, mapper.AssetsRootUrl);
 
@@ -53,6 +56,13 @@
             image.Width = mediaModel.GetPropertyValue<int>("umbracoWidth");
             image.Height = mediaModel.GetPropertyValue<int>("umbracoHeight");
             image.AltText = mediaModel.GetPropertyValue<string>("altText") ?? mediaModel.Name;
+            var cropUrls = new Dictionary<string, string>();
+            for (var i = 0; i < crops.Length; i++ )
+            {
+                cropUrls.Add(crops[i], mediaModel.GetCropUrl(crops[i]));
+            }
+
+            image.CropUrls = cropUrls;
         }
     }
 }
