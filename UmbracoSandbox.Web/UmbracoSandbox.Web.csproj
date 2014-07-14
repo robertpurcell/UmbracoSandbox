@@ -234,6 +234,7 @@
     <Compile Include="Models\Content\HomePageViewModel.cs" />
     <Compile Include="Models\Media\ImageModel.cs" />
     <Compile Include="Models\Media\MediaFileModel.cs" />
+    <Compile Include="Models\Misc\GoogleMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

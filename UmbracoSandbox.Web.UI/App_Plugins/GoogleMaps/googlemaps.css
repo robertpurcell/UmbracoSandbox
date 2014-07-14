@@ -1,4 +1,10 @@
-﻿#pac-button {
+﻿#map-canvas {
+  height: 400px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#pac-button {
   margin-top: 16px;
   margin-left: 5px;
   height: 32px;

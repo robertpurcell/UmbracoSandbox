@@ -21,16 +21,24 @@
             var zoom;
             if ($scope.model.value === '') {
                 var coordArray = $scope.model.config.defaultLocation.split(',');
-                latLng = new google.maps.LatLng(coordArray[0], coordArray[1]);
+                if (coordArray.length > 1) {
+                    latLng = new google.maps.LatLng(coordArray[0], coordArray[1]);
+                } else {
+                    latLng = new google.maps.LatLng(51.5286416, -0.1015987);
+                }
+
                 zoom = $scope.model.config.defaultZoom;
+                if (zoom === '') {
+                    zoom = '12';
+                }
             } else {
                 latLng = new google.maps.LatLng($scope.model.value.lat, $scope.model.value.lng);
                 zoom = $scope.model.value.zoom;
-                $scope.address = $scope.model.value.address;
+                $scope.location = $scope.model.value.location;
             }
 
             // Create the map
-            var mapDiv = document.getElementById($scope.model.alias + '_map');
+            var mapDiv = document.getElementById('map-canvas');
             var mapOptions = {
                 zoom: parseInt(zoom, 10),
                 center: latLng,
@@ -49,7 +57,6 @@
             var searchBox = new google.maps.places.SearchBox(input);
             map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
             map.controls[google.maps.ControlPosition.TOP_LEFT].push(clear);
-            searchBox.bindTo('bounds', map);
 
             // Places search event handler
             google.maps.event.addListener(searchBox, 'places_changed', function () {
@@ -59,23 +66,21 @@
                 }
 
                 var place = places[0];
-                var address = place.formatted_address;
+                var location = input.value;
                 latLng = place.geometry.location;
                 placeMarker(latLng, place.name);
-                notificationsService.success('Location', address);
+                notificationsService.success('Location', location);
                 if (place.geometry.viewport) {
                     map.fitBounds(place.geometry.viewport);
                 }
-                $scope.address = address;
+
                 $scope.model.value = {
                     lat: latLng.lat(),
                     lng: latLng.lng(),
                     name: place.name,
-                    address: address,
+                    location: location,
                     zoom: map.getZoom()
                 };
-
-                markers[0].title = place.name;
             });
 
             // Click event handler
@@ -141,7 +146,7 @@
             geocoder.geocode({ 'latLng': latLng },
                 function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
-                        var address = results[0].formatted_address;
+                        var location = results[0].formatted_address;
                         var name = '';
                         if (results[0].address_components) {
                             name = [
@@ -152,13 +157,13 @@
 
                         placeMarker(latLng, name);
                         $rootScope.$apply(function () {
-                            notificationsService.success('Location', address);
-                            $scope.address = address;
+                            notificationsService.success('Location', location);
+                            $scope.location = location;
                             $scope.model.value = {
                                 lat: latLng.lat(),
                                 lng: latLng.lng(),
                                 name: name,
-                                address: address,
+                                location: location,
                                 zoom: map.getZoom()
                             };
                         });
@@ -176,7 +181,7 @@
         // Clear the map
         $scope.clear = function () {
             deleteOverlays();
-            $scope.address = '';
+            $scope.location = '';
             $scope.model.value = '';
         };
     });

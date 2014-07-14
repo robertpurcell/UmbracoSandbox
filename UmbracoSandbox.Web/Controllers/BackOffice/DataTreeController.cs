@@ -14,7 +14,7 @@
     {
         protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection queryStrings)
         {
-            //check if we're rendering the root node's children
+            // Render the root node's children
             if (id == Constants.System.Root.ToInvariantString())
             {
                 var tree = new TreeNodeCollection
@@ -24,7 +24,7 @@
 
                 return tree;
             }
-            //this tree doesn't suport rendering more than 1 level
+            // This tree doesn't suport rendering more than 1 level
             throw new NotSupportedException();
         }
 

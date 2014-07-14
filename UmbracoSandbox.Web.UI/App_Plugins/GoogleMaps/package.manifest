@@ -1,7 +1,6 @@
 ﻿{
 	propertyEditors: [
 		{
-			id: "fc1cfcf5-31ae-46cc-9116-9978196d955d",
   			alias: "Zone.GoogleMaps",
  			name: "Google maps",
   			editor:	{

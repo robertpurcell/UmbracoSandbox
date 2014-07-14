@@ -1,27 +1,36 @@
 ﻿namespace UmbracoSandbox.Web.Infrastructure.PropertyEditorValueConverters
 {
     using System;
-    using Umbraco.Core;
+    using Newtonsoft.Json;
+    using Umbraco.Core.Models.PublishedContent;
     using Umbraco.Core.PropertyEditors;
-    using Umbraco.Web;
- 
-    public class GoogleMapPropertyEditorValueConverter : IPropertyEditorValueConverter
+    using UmbracoSandbox.Web.Models;
+
+    public class GoogleMapPropertyEditorValueConverter : PropertyValueConverterBase
     {
-        public bool IsConverterFor(Guid propertyEditorId, string docTypeAlias, string propertyTypeAlias)
+        public override bool IsConverter(PublishedPropertyType propertyType)
         {
-            return Guid.Parse("4023e540-92f5-11dd-ad8b-0800200c9a66").Equals(propertyEditorId);
+            return "Zone.GoogleMaps".Equals(propertyType.PropertyEditorAlias);
         }
- 
-        public Attempt<object> ConvertPropertyValue(object value)
+
+        public override object ConvertDataToSource(PublishedPropertyType propertyType, object source, bool preview)
         {
-            if (UmbracoContext.Current != null &&
-                value != null &&
-                value.ToString() != string.Empty)
+            if (source == null || string.IsNullOrWhiteSpace(source.ToString()))
             {
-                return new Attempt<object>(true, value.ToString().Split(','));
+                return null;
             }
-             
-            return Attempt<object>.False;
+
+            var sourceString = source.ToString();
+            try
+            {
+                var obj = JsonConvert.DeserializeObject<GoogleMap>(sourceString);
+
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }
 }

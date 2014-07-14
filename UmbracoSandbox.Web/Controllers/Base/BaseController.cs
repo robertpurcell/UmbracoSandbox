@@ -84,7 +84,8 @@
         private void AddCustomMappings()
         {
             Mapper.AddCustomMapping(typeof(MediaFileModel).FullName, MediaMapper.GetMediaFile)
-                .AddCustomMapping(typeof(ImageModel).FullName, MediaMapper.GetImage);
+                .AddCustomMapping(typeof(ImageModel).FullName, MediaMapper.GetImage)
+                .AddCustomMapping(typeof(GoogleMap).FullName, GoogleMapMapper.GetGoogleMap);
         }
 
         /// <summary>
