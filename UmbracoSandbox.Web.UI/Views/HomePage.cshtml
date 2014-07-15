@@ -3,12 +3,20 @@
     Layout = "Shared/_Layout.cshtml";
 }
 
-@*<img src="@Model.HeroImage.CropUrls["Hero"]" />
-<img src="@Model.HeroImage.CropUrls["Page"]" />
-<img src="@Model.HeroImage.CropUrls["Teaser"]" />*@
+<h3>Original</h3>
+<img src="@Model.HeroImage.Url" />
 
-<p>Latitude: @Model.GoogleMap.Lat</p>
+<h3>Hero</h3>
+<img src="@Model.HeroImage.CropUrls["Hero"]" />
+
+<h3>Page</h3>
+<img src="@Model.HeroImage.CropUrls["Page"]" />
+
+<h3>Teaser</h3>
+<img src="@Model.HeroImage.CropUrls["Teaser"]" />
+
+@*<p>Latitude: @Model.GoogleMap.Lat</p>
 <p>Logitude: @Model.GoogleMap.Lng</p>
 <p>Name: @Model.GoogleMap.Name</p>
 <p>Location: @Model.GoogleMap.Location</p>
-<p>Zoom: @Model.GoogleMap.Zoom</p>
+<p>Zoom: @Model.GoogleMap.Zoom</p>*@

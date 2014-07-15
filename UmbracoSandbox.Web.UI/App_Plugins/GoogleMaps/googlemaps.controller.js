@@ -90,6 +90,15 @@
                 codeLatLng(event.latLng, geocoder);
             });
 
+            // Zoom event handler
+            google.maps.event.addListener(map, 'zoom_changed', function () {
+                google.maps.event.addListenerOnce(map, 'bounds_changed', function (e) {
+                    if ($scope.model.value !== '') {
+                        $scope.model.value.zoom = map.getZoom();
+                    }
+                });
+            });
+
             // Idle event handler
             google.maps.event.addListenerOnce(map, 'idle', function () {
                 var center = map.getCenter();
@@ -102,15 +111,6 @@
                 var center = map.getCenter();
                 google.maps.event.trigger(map, 'resize');
                 map.setCenter(center);
-            });
-
-            // Zoom event handler
-            google.maps.event.addListener(map, 'zoom_changed', function () {
-                google.maps.event.addListenerOnce(map, 'bounds_changed', function (e) {
-                    if ($scope.model.value !== '') {
-                        $scope.model.value.zoom = map.getZoom();
-                    }
-                });
             });
         }
 
