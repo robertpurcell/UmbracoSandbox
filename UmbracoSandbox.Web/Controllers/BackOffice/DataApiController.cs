@@ -11,39 +11,30 @@
     [PluginController("Data")]
     public class DataApiController : UmbracoAuthorizedJsonController
     {
+        public string[] Names = { "Bobby Charlton", "Sylvester Stallone", "Maggie Thatcher", "Trevor McDonald",
+                                    "Cameron Diaz", "Samuel L Jackson", "Andy Peters", "Tom Jones", "Andrew Lloyd Webber",
+                                    "William Shatner", "Phil Collins", "Kanye West", "Sting & the Police", "Boris Becker",
+                                    "Tina Turner", "John Fashanu", "Madonna", "Chris Eubank"
+                                };
+
         public IEnumerable<OnlineDonation> GetAll()
         {
             var allData = new List<OnlineDonation>();
-
-            var donation = new OnlineDonation
+            var r = new Random();
+            for (var i = 0; i < 100; i++)
             {
-                Id = 1,
-                Name = "Rob Purcell",
-                Date = DateTime.Now,
-                Amount = "£100"
-            };
+                var donation = new OnlineDonation
+                {
+                    Id = i,
+                    Name = Names[i % Names.Count()],
+                    Date = DateTime.Now.AddSeconds(-r.Next(0, 31536000)),
+                    Amount = "£" + r.Next(0, 500)
+                };
 
-            var donation2 = new OnlineDonation
-            {
-                Id = 16,
-                Name = "Maggie Thatcher",
-                Date = DateTime.Now,
-                Amount = "£6"
-            };
-
-            for (var i = 0; i < 40; i++)
-            {
-                donation.Id = i + 1;
                 allData.Add(donation);
             }
 
-            for (var i = 0; i < 60; i++)
-            {
-                donation2.Id = i + 16;
-                allData.Add(donation2);
-            }
-
-            return allData;
+            return allData.OrderByDescending(x => x.Date);
         }
     }
 }

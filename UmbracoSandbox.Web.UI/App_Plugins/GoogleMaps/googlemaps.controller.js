@@ -19,6 +19,8 @@
 
             var latLng;
             var zoom;
+
+            // Check if a value is set.  If not then use the default settings
             if ($scope.model.value === '') {
                 var coordArray = $scope.model.config.defaultLocation.split(',');
                 if (coordArray.length > 1) {
@@ -29,7 +31,7 @@
 
                 zoom = $scope.model.config.defaultZoom;
                 if (zoom === '') {
-                    zoom = '12';
+                    zoom = '10';
                 }
             } else {
                 latLng = new google.maps.LatLng($scope.model.value.lat, $scope.model.value.lng);

@@ -41,7 +41,7 @@
                         </tfoot>
                         <tbody>
                             <tr ng-repeat="donation in pagedItems[currentPage]">
-                                <td>{{donation.Date | date:'MM/dd/yyyy @ HH:mm:ss'}}</td>
+                                <td>{{donation.Date | date:'dd/MM/yyyy @ HH:mm:ss'}}</td>
                                 <td>{{donation.Name}}</td>
                                 <td>{{donation.Amount}}</td>
                             </tr>
