@@ -10,6 +10,6 @@
 
         public int Height { get; set; }
 
-        public Dictionary<string,string> CropUrls { get; set; }
+        public Dictionary<string, string> CropUrls { get; set; }
     }
 }

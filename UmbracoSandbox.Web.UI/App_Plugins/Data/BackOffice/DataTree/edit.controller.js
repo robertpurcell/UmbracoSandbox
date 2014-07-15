@@ -2,7 +2,7 @@
     .controller("Data.DataTree.EditController", function ($scope, dataResource) {
         dataResource.getAll().then(function (response) {
             $scope.currentPage = 0;
-            $scope.itemsPerPage = 15;
+            $scope.itemsPerPage = 10;
             $scope.gap = 10;
             $scope.gapBeforeAndAfter = Math.floor($scope.gap / 2);
             $scope.data = response.data;
@@ -26,7 +26,7 @@
             };
 
             $scope.range = function (currentPage) {
-                var ret = [];
+                var pages = [];
                 var start;
                 var end;
 
@@ -47,15 +47,15 @@
                 } else if (currentPage + $scope.gapBeforeAndAfter >= $scope.pagedItems.length) {
                     end = $scope.pagedItems.length;
                 } else {
-                    end = currentPage + $scope.gapBeforeAndAfter + 1;
+                    end = currentPage + $scope.gapBeforeAndAfter;
                 }
 
                 for (var i = start; i < end; i++) {
 
-                    ret.push(i);
+                    pages.push(i);
                 }
 
-                return ret;
+                return pages;
             };
 
             $scope.prevPage = function () {
@@ -77,3 +77,14 @@
             $scope.init();
         });
     });
+
+angular.module('umbraco')
+    .filter('myCurrency', ['$filter', function ($filter) {
+        return function (input) {
+            input = parseFloat(input);
+            if (input % 1 === 0) {
+                input = input.toFixed(0);
+            }
+            return '£' + input;
+        };
+    }]);

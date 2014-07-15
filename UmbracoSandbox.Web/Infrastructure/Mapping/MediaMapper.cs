@@ -8,7 +8,7 @@
 
     public class MediaMapper
     {
-        public static string[] crops = { "Hero", "Teaser", "Page" };
+        private static string[] crops = { "Hero", "Teaser", "Page" };
 
         public static object GetMediaFile(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyName, bool recursive)
         {
@@ -57,7 +57,7 @@
             image.Height = mediaModel.GetPropertyValue<int>("umbracoHeight");
             image.AltText = mediaModel.GetPropertyValue<string>("altText") ?? mediaModel.Name;
             var cropUrls = new Dictionary<string, string>();
-            for (var i = 0; i < crops.Length; i++ )
+            for (var i = 0; i < crops.Length; i++)
             {
                 cropUrls.Add(crops[i], mediaModel.GetCropUrl(crops[i]));
             }

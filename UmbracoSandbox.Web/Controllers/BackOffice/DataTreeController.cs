@@ -12,18 +12,19 @@
     [PluginController("Data")]
     public class DataTreeController : TreeController
     {
-        protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection queryStrings)
+        protected override TreeNodeCollection GetTreeNodes(string parentId, FormDataCollection queryStrings)
         {
             // Render the root node's children
-            if (id == Constants.System.Root.ToInvariantString())
+            if (parentId == Constants.System.Root.ToInvariantString())
             {
                 var tree = new TreeNodeCollection
                 {
-                    CreateTreeNode("1", id, queryStrings, "Donations", "icon-donate", false)
+                    CreateTreeNode("1", parentId, queryStrings, "Donations", "icon-donate", false)
                 };
 
                 return tree;
             }
+
             // This tree doesn't suport rendering more than 1 level
             throw new NotSupportedException();
         }
@@ -32,6 +33,7 @@
         {
             var menu = new MenuItemCollection();
             menu.DefaultMenuAlias = ActionNew.Instance.Alias;
+            menu.Items.Add<ActionNew>("Custom Action");
 
             return menu;
         }

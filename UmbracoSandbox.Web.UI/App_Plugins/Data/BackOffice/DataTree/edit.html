@@ -18,34 +18,34 @@
                                 <td>Amount</td>
                             </tr>
                         </thead>
+                        <tbody>
+                            <tr ng-repeat="donation in pagedItems[currentPage]">
+                                <td>{{donation.Date | date:'dd/MM/yyyy @ HH:mm:ss'}}</td>
+                                <td>{{donation.Name}}</td>
+                                <td>{{donation.Amount | myCurrency}}</td>
+                            </tr>
+                        </tbody>
                         <tfoot>
                             <tr>
                                 <td colspan="6">
                                     <div class="pagination pull-right">
                                         <ul>
                                             <li ng-class="{disabled: currentPage == 0}">
-                                                <a href ng-click="prevPage()">« Prev</a>
+                                                <a href="" ng-click="prevPage()">« Prev</a>
                                             </li>
                                             <li ng-repeat="n in range(currentPage) "
                                                 ng-class="{active: n == currentPage}"
                                                 ng-click="setPage()">
-                                                <a href ng-bind="n + 1">1</a>
+                                                <a href="" ng-bind="n + 1">1</a>
                                             </li>
                                             <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
-                                                <a href ng-click="nextPage()">Next »</a>
+                                                <a href="" ng-click="nextPage()">Next »</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
                         </tfoot>
-                        <tbody>
-                            <tr ng-repeat="donation in pagedItems[currentPage]">
-                                <td>{{donation.Date | date:'dd/MM/yyyy @ HH:mm:ss'}}</td>
-                                <td>{{donation.Name}}</td>
-                                <td>{{donation.Amount}}</td>
-                            </tr>
-                        </tbody>
                     </table>
                 </div>
             </umb-tab>

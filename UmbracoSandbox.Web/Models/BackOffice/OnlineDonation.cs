@@ -10,6 +10,6 @@
 
         public string Name { get; set; }
 
-        public string Amount { get; set; }
+        public decimal Amount { get; set; }
     }
 }

@@ -4,5 +4,7 @@
     using umbraco.interfaces;
 
     [Application("data", "Data", "icon-bar-chart", 15)]
-    public class DataApplication : IApplication { }
+    public class DataApplication : IApplication
+    {
+    }
 }
