@@ -40,7 +40,7 @@
             }
 
             // Create the map
-            var mapDiv = document.getElementById('map-canvas');
+            var mapDiv = document.getElementById($scope.model.alias + '_map');
             var mapOptions = {
                 zoom: parseInt(zoom, 10),
                 center: latLng,
