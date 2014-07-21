@@ -4,7 +4,7 @@
   			alias: "Zone.GoogleMaps",
  			name: "Google maps",
   			editor:	{
-          			view: "~/App_Plugins/GoogleMaps/googlemaps.html"
+          			view: "~/App_Plugins/Zone.GoogleMaps/googlemaps.html"
          	},
 			prevalues: {
 				fields: [
@@ -25,9 +25,9 @@
 		}
 	],
 	javascript:	[
- 		"~/App_Plugins/GoogleMaps/googlemaps.controller.js"
+ 		"~/App_Plugins/Zone.GoogleMaps/googlemaps.controller.js"
 	],
 	css: [
- 		"~/App_Plugins/GoogleMaps/googlemaps.css"
+ 		"~/App_Plugins/Zone.GoogleMaps/googlemaps.css"
 	]
 }

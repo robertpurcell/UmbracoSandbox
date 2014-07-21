@@ -15,6 +15,7 @@
     using Umbraco.Web.Mvc;
     using UmbracoSandbox.Web.Infrastructure.Mapping;
     using UmbracoSandbox.Web.Models;
+    using Zone.GoogleMaps;
     using Zone.UmbracoMapper;
 
     public abstract class BaseController : SurfaceController, IRenderMvcController

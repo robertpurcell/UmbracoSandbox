@@ -1,10 +1,10 @@
-﻿namespace UmbracoSandbox.Web.Infrastructure.PropertyValueConverters
+﻿namespace Zone.GoogleMaps
 {
     using System;
     using Newtonsoft.Json;
+    using Umbraco.Core.Models;
     using Umbraco.Core.Models.PublishedContent;
     using Umbraco.Core.PropertyEditors;
-    using UmbracoSandbox.Web.Models;
 
     public class GoogleMapPropertyValueConverter : PropertyValueConverterBase
     {

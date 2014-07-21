@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{964CB3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmbracoSandbox.Web.UI", "UmbracoSandbox.Web.UI\UmbracoSandbox.Web.UI.csproj", "{E9CF9877-8526-4287-99C6-F7A61A12B845}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zone.GoogleMaps", "Zone.GoogleMaps\Zone.GoogleMaps.csproj", "{96C21E0F-D438-4A15-9265-EE32662E4159}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JustGivingService", "JustGivingService\JustGivingService.csproj", "{EC2FF520-4192-4A8B-BDCB-D01FE1426046}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +32,14 @@ Global
 		{E9CF9877-8526-4287-99C6-F7A61A12B845}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9CF9877-8526-4287-99C6-F7A61A12B845}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9CF9877-8526-4287-99C6-F7A61A12B845}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96C21E0F-D438-4A15-9265-EE32662E4159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96C21E0F-D438-4A15-9265-EE32662E4159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96C21E0F-D438-4A15-9265-EE32662E4159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96C21E0F-D438-4A15-9265-EE32662E4159}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC2FF520-4192-4A8B-BDCB-D01FE1426046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC2FF520-4192-4A8B-BDCB-D01FE1426046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC2FF520-4192-4A8B-BDCB-D01FE1426046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC2FF520-4192-4A8B-BDCB-D01FE1426046}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

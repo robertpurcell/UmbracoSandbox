@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Web.Models
+﻿namespace Zone.GoogleMaps
 {
     public class GoogleMap
     {

@@ -2,7 +2,7 @@
 {
     using Umbraco.Core.Models;
     using Umbraco.Web;
-    using UmbracoSandbox.Web.Models;
+    using Zone.GoogleMaps;
     using Zone.UmbracoMapper;
 
     public class GoogleMapMapper

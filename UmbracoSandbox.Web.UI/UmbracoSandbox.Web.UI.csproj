@@ -274,9 +274,9 @@
     <Content Include="App_Plugins\Data\BackOffice\DataTree\edit.controller.js" />
     <Content Include="App_Plugins\Data\BackOffice\DataTree\edit.html" />
     <Content Include="App_Plugins\Data\data.resource.js" />
-    <Content Include="App_Plugins\GoogleMaps\googlemaps.controller.js" />
-    <Content Include="App_Plugins\GoogleMaps\googlemaps.css" />
-    <Content Include="App_Plugins\GoogleMaps\googlemaps.html" />
+    <Content Include="App_Plugins\Zone.GoogleMaps\googlemaps.controller.js" />
+    <Content Include="App_Plugins\Zone.GoogleMaps\googlemaps.css" />
+    <Content Include="App_Plugins\Zone.GoogleMaps\googlemaps.html" />
     <Content Include="App_Plugins\SingleRelatedLink\singlerelatedlink.controller.js" />
     <Content Include="App_Plugins\SingleRelatedLink\singlerelatedlink.html" />
     <Content Include="default.aspx" />
@@ -2950,7 +2950,7 @@
     <Content Include="Views\HomePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Plugins\GoogleMaps\package.manifest" />
+    <Content Include="App_Plugins\Zone.GoogleMaps\package.manifest" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Plugins\Grid\package.manifest" />
