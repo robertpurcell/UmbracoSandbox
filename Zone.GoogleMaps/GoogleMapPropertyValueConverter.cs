@@ -2,7 +2,7 @@
 {
     using System;
     using Newtonsoft.Json;
-    using Umbraco.Core.Models;
+    using Umbraco.Core.Logging;
     using Umbraco.Core.Models.PublishedContent;
     using Umbraco.Core.PropertyEditors;
 
@@ -29,6 +29,7 @@
             }
             catch (Exception ex)
             {
+                LogHelper.Error<GoogleMapPropertyValueConverter>("Error converting GoogleMap property value  " + ex.StackTrace, ex);
                 return null;
             }
         }

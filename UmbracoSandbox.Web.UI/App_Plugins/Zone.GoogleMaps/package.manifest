@@ -2,9 +2,10 @@
 	propertyEditors: [
 		{
   			alias: "Zone.GoogleMaps",
- 			name: "Google maps",
+ 			name: "Google Maps",
   			editor:	{
-          			view: "~/App_Plugins/Zone.GoogleMaps/googlemaps.html"
+          			view: "~/App_Plugins/Zone.GoogleMaps/googlemaps.html",
+					valueType: "JSON"
          	},
 			prevalues: {
 				fields: [

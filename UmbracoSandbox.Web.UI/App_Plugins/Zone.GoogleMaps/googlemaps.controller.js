@@ -36,7 +36,7 @@
             } else {
                 latLng = new google.maps.LatLng($scope.model.value.lat, $scope.model.value.lng);
                 zoom = $scope.model.value.zoom;
-                $scope.location = $scope.model.value.location;
+                $scope.address = $scope.model.value.address;
             }
 
             // Create the map
@@ -68,10 +68,10 @@
                 }
 
                 var place = places[0];
-                var location = input.value;
+                var address = input.value;
                 latLng = place.geometry.location;
                 placeMarker(latLng, place.name);
-                notificationsService.success('Location', location);
+                notificationsService.success('Location', address);
                 if (place.geometry.viewport) {
                     map.fitBounds(place.geometry.viewport);
                 }
@@ -80,7 +80,8 @@
                     lat: latLng.lat(),
                     lng: latLng.lng(),
                     name: place.name,
-                    location: location,
+                    address: address,
+                    addresscomponents: place.address_components,
                     zoom: map.getZoom()
                 };
             });
@@ -148,8 +149,9 @@
             geocoder.geocode({ 'latLng': latLng },
                 function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
-                        var location = results[0].formatted_address;
+                        var address = results[0].formatted_address;
                         var name = '';
+                        var addresscomponents = results[0].address_components;
                         if (results[0].address_components) {
                             name = [
                               (results[0].address_components[0] && results[0].address_components[0].short_name || ''),
@@ -159,13 +161,14 @@
 
                         placeMarker(latLng, name);
                         $rootScope.$apply(function () {
-                            notificationsService.success('Location', location);
-                            $scope.location = location;
+                            notificationsService.success('Location', address);
+                            $scope.address = address;
                             $scope.model.value = {
                                 lat: latLng.lat(),
                                 lng: latLng.lng(),
                                 name: name,
-                                location: location,
+                                address: address,
+                                addresscomponents: addresscomponents,
                                 zoom: map.getZoom()
                             };
                         });
@@ -183,7 +186,7 @@
         // Clear the map
         $scope.clear = function () {
             deleteOverlays();
-            $scope.location = '';
+            $scope.address = '';
             $scope.model.value = '';
         };
     });

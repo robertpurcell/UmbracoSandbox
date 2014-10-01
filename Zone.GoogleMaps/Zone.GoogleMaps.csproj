@@ -215,6 +215,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressComponent.cs" />
     <Compile Include="GoogleMap.cs" />
     <Compile Include="GoogleMapPropertyValueConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

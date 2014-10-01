@@ -18,5 +18,17 @@
 <p>Latitude: @Model.GoogleMap.Lat</p>
 <p>Logitude: @Model.GoogleMap.Lng</p>
 <p>Name: @Model.GoogleMap.Name</p>
-<p>Location: @Model.GoogleMap.Location</p>
+<p>Location: @Model.GoogleMap.Address</p>
+<div>
+    <p>Address Components:</p>
+    @foreach (var comp in Model.GoogleMap.AddressComponents)
+    {
+        <p>Short name: @comp.ShortName</p>
+        <p>Long name: @comp.LongName</p>
+        foreach (var type in comp.Types)
+        {
+            <p>Type: @type</p>
+        }
+    }
+</div>
 <p>Zoom: @Model.GoogleMap.Zoom</p>
