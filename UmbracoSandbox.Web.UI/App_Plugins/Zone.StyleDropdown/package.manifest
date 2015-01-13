@@ -1,0 +1,15 @@
+﻿{
+	propertyEditors: [
+		{
+  			alias: "Zone.StyleDropdown",
+ 			name: "Style Dropdown",
+			isParameterEditor: true,
+  			editor:	{
+          			view: "~/App_Plugins/Zone.StyleDropdown/styledropdown.html"
+         	}
+		}
+	],
+    javascript: [
+        "~/App_Plugins/Zone.StyleDropdown/styledropdown.controller.js"
+    ]
+}

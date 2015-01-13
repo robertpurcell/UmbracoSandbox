@@ -1,0 +1,16 @@
+﻿{
+	propertyEditors: [
+		{
+  			alias: "Zone.LinkPicker",
+ 			name: "Link Picker",
+			isParameterEditor: true,
+  			editor:	{
+          			view: "~/App_Plugins/Zone.LinkPicker/linkpicker.html",
+					valueType: "JSON"
+         	},
+		}
+	],
+    javascript: [
+        "~/App_Plugins/Zone.LinkPicker/linkpicker.controller.js"
+    ]
+}

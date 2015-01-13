@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DFE25524-CF94-43B9-BB0F-A677B256F70D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Boilerplate</RootNamespace>
+    <AssemblyName>Boilerplate</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\.jshintrc" />
+    <Content Include="Content\bower.json" />
+    <Content Include="Content\favicon.ico" />
+    <Content Include="Content\Gruntfile.js" />
+    <Content Include="Content\humans.txt" />
+    <Content Include="Content\package.json" />
+    <Content Include="Content\scripts\app.js" />
+    <Content Include="Content\scripts\base.js" />
+    <Content Include="Content\scripts\app\example.js" />
+    <Content Include="Content\scripts\plugins\example-jquery-plugin.js" />
+    <Content Include="Content\scripts\plugins\example.js" />
+    <Content Include="Content\styles\css\global.css" />
+    <Content Include="Content\styles\scss\global.scss" />
+    <Content Include="Content\styles\scss\_base.scss" />
+    <Content Include="Content\styles\scss\generic\_buttons.scss" />
+    <Content Include="Content\styles\scss\generic\_forms.scss" />
+    <Content Include="Content\styles\scss\generic\_images.scss" />
+    <Content Include="Content\styles\scss\generic\_layout.scss" />
+    <Content Include="Content\styles\scss\generic\_lists.scss" />
+    <Content Include="Content\styles\scss\generic\_typography.scss" />
+    <Content Include="Content\styles\scss\interactions\_animations.scss" />
+    <Content Include="Content\styles\scss\interactions\_transitions.scss" />
+    <Content Include="Content\styles\scss\templates\_footer.scss" />
+    <Content Include="Content\styles\scss\templates\_header.scss" />
+    <Content Include="Content\styles\scss\utilities\_mixins.scss" />
+    <Content Include="Content\styles\scss\utilities\_placeholders.scss" />
+    <Content Include="Content\styles\scss\utilities\_semantic-fluid-grid.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\README.md" />
+    <Content Include="Content\fonts\README.md" />
+    <Content Include="Content\images\README.md" />
+    <Content Include="Content\src\README.md" />
+    <Content Include="Content\src\scripts\base.js" />
+    <Content Include="Content\src\scripts\config.js" />
+    <Content Include="Content\src\scripts\modernizr.js" />
+    <Content Include="Content\src\scripts\README.md" />
+    <Content Include="Content\src\scripts\libs\jquery-1.11.0.js" />
+    <Content Include="Content\src\scripts\libs\jquery.js" />
+    <Content Include="Content\src\scripts\libs\require.js" />
+    <Content Include="Content\src\scripts\modules\debug.js" />
+    <Content Include="Content\src\scripts\modules\example-module.js" />
+    <Content Include="Content\src\scripts\plugins\example-jquery-plugin.js" />
+    <Content Include="Content\src\scripts\plugins\example-plugin.js" />
+    <Content Include="Content\src\styles\README.md" />
+    <Content Include="Content\src\styles\scss\global-print.scss" />
+    <Content Include="Content\src\styles\scss\global.scss" />
+    <Content Include="Content\src\styles\scss\README.md" />
+    <Content Include="Content\src\styles\scss\_base.scss" />
+    <Content Include="Content\src\styles\scss\generic\_buttons.scss" />
+    <Content Include="Content\src\styles\scss\generic\_forms.scss" />
+    <Content Include="Content\src\styles\scss\generic\_images.scss" />
+    <Content Include="Content\src\styles\scss\generic\_lists.scss" />
+    <Content Include="Content\src\styles\scss\generic\_typography.scss" />
+    <Content Include="Content\src\styles\scss\interactions\_animations.scss" />
+    <Content Include="Content\src\styles\scss\interactions\_transitions.scss" />
+    <Content Include="Content\src\styles\scss\templates\_footer.scss" />
+    <Content Include="Content\src\styles\scss\templates\_header.scss" />
+    <Content Include="Content\src\styles\scss\templates\_layout.scss" />
+    <Content Include="Content\src\styles\scss\utilities\_maps.scss" />
+    <Content Include="Content\src\styles\scss\utilities\_mixins.scss" />
+    <Content Include="Content\src\styles\scss\utilities\_placeholders.scss" />
+    <Content Include="Content\src\styles\scss\utilities\_semantic-fluid-grid.scss" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
