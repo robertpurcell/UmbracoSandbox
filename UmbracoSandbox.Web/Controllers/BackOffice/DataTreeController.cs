@@ -8,13 +8,12 @@
     using Umbraco.Web.Mvc;
     using Umbraco.Web.Trees;
 
-    [Tree("data", "datatree", "Data", iconClosed: "icon-doc")]
+    [Tree("data", "datatree", "Data")]
     [PluginController("Data")]
     public class DataTreeController : TreeController
     {
         protected override TreeNodeCollection GetTreeNodes(string parentId, FormDataCollection queryStrings)
         {
-            // Render the root node's children
             if (parentId == Constants.System.Root.ToInvariantString())
             {
                 var tree = new TreeNodeCollection
@@ -25,7 +24,6 @@
                 return tree;
             }
 
-            // This tree doesn't suport rendering more than 1 level
             throw new NotSupportedException();
         }
 

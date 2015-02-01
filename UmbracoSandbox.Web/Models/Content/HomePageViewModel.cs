@@ -10,5 +10,7 @@
         public ImageModel HeroImage { get; set; }
 
         public GoogleMap GoogleMap { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 }
