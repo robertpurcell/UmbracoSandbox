@@ -21,7 +21,7 @@
         {
             var vm = new HomePageViewModel();
             Mapper.Map(CurrentPage, vm, recursiveProperties: GetRecursiveProperties());
-            vm.ImageUrl = GravatarHelper.GravatarHelper.CreateGravatarUrl("rpurcell@thisiszone.com", 80, "", null, false, false);
+            vm.ImageUrl = GravatarHelper.GravatarHelper.CreateGravatarUrl("rpurcell@thisiszone.com", 80, string.Empty, null, false, false);
 
             return CurrentTemplate(vm);
         }

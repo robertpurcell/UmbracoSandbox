@@ -4,8 +4,8 @@
 }
 
 <img src="@Model.ImageUrl" />
-
-@Model.BodyText
+	
+@Html.GetFirstParagraph(Model.BodyText)
 
 <p>Latitude: @Model.GoogleMap.Lat</p>
 <p>Logitude: @Model.GoogleMap.Lng</p>
