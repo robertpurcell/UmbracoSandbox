@@ -3,7 +3,9 @@
     Layout = "Shared/_Layout.cshtml";
 }
 
-@Model.BodyText
+<img src="@Model.ImageUrl" />
+	
+@Html.GetFirstParagraph(Model.BodyText)
 
 <p>Latitude: @Model.GoogleMap.Lat</p>
 <p>Logitude: @Model.GoogleMap.Lng</p>
