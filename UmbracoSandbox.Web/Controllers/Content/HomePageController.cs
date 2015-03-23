@@ -6,10 +6,14 @@
 
     public class HomePageController : BaseController
     {
+        #region Constructor
+
         public HomePageController(IUmbracoMapper mapper)
             : base(mapper)
         {
         }
+
+        #endregion
 
         #region Action methods
 

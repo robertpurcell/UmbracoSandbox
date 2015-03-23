@@ -9,10 +9,12 @@
  <!--<![endif]-->
     <head>
         @* HEAD *@
+        <title>@Model.MetaTitle</title>
         @RenderSection("head", required: false)
     </head>
     <body>
         @* BODY *@
         @RenderBody()
+
     </body>
 </html>

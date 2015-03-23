@@ -21,21 +21,5 @@
 
             return null;
         }
-
-        public static string GetFirstParagraph(this HtmlHelper helper, IHtmlString input)
-        {
-            if (input != null && input.ToString() != string.Empty)
-            {
-                var htmlDoc = new HtmlDocument();
-                htmlDoc.LoadHtml(input.ToString());
-                var p = htmlDoc.DocumentNode.SelectSingleNode("//p");
-                if (p != null)
-                {
-                    return p.InnerText;
-                }
-            }
-
-            return null;
-        }
     }
 }

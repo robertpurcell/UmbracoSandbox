@@ -2,13 +2,3 @@
 @{
     Layout = "Shared/_Layout.cshtml";
 }
-
-<img src="@Model.ImageUrl" />
-	
-@Html.GetFirstParagraph(Model.BodyText)
-
-<p>Latitude: @Model.GoogleMap.Lat</p>
-<p>Logitude: @Model.GoogleMap.Lng</p>
-<p>Name: @Model.GoogleMap.Name</p>
-<p>Location: @Model.GoogleMap.Address</p>
-<p>Zoom: @Model.GoogleMap.Zoom</p>
