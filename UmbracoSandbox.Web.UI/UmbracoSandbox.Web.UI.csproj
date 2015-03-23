@@ -3268,9 +3268,6 @@
     <Content Include="config\umbracoSettings.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Partials\Banner.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -3329,6 +3326,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="config\404handlers.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MacroPartials\InsertMp3.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ContentPage.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -28,6 +28,7 @@ App_Browsers/
 */App_Data/NuGetBackup/
 */App_Data/Logs/
 */App_Data/umbraco.config
+*/App_Data/umbraco.licensing.log.txt
 */App_Plugins/dummy.txt
 [Cc]ached/
 ClientDependency/
