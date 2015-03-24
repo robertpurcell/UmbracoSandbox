@@ -5,6 +5,8 @@
 
     public class HomePageViewModel : BasePageViewModel
     {
+        public string Title { get; set; }
+
         public IHtmlString BodyText { get; set; }
 
         public ImageModel HeroImage { get; set; }

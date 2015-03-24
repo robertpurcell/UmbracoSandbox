@@ -2,3 +2,32 @@
 @{
     Layout = "Shared/_Layout.cshtml";
 }
+
+<article>
+    <section>
+        <div class="container">
+            <header>
+                <h1>@Model.Title</h1>
+            </header>
+            @Model.BodyText
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Get started</h2>
+                <p>Why haven't you got started?</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Keep going</h2>
+                <p>This is the bit where you keep going</p>
+            </div>
+            <div class="col-md-4">
+                <h2>This is the end</h2>
+                <p>Beautiful friend</p>
+            </div>
+            <div class="col-md-4">
+                <h2>Or is it?</h2>
+                <p>No actually this is the end</p>
+            </div>
+        </div>
+    </section>
+</article>

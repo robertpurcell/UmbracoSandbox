@@ -4,11 +4,19 @@
 
     public abstract class BasePageViewModel : BaseNodeViewModel
     {
+        #region Fields
+
         private string _metaTitle;
+
+        #endregion
+
+        #region Constructor
 
         public BasePageViewModel()
         {
         }
+
+        #endregion
 
         #region Properties
 
