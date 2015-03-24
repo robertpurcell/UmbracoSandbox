@@ -284,9 +284,9 @@
     <Reference Include="Zone.Library.FrontEnd.Markup">
       <HintPath>..\packages\Zone.Library.FrontEnd.Markup.1.0.7\lib\net45\Zone.Library.FrontEnd.Markup.dll</HintPath>
     </Reference>
-    <Reference Include="Zone.UmbracoMapper, Version=1.4.14.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Zone.UmbracoMapper, Version=1.4.16.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\UmbracoMapper.1.4.15\lib\Zone.UmbracoMapper.dll</HintPath>
+      <HintPath>..\packages\UmbracoMapper.1.4.16\lib\Zone.UmbracoMapper.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
