@@ -229,6 +229,7 @@
     <Compile Include="Controllers\BackOffice\DataTreeController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\Content\HomePageController.cs" />
+    <Compile Include="Controllers\Navigation\NavigationController.cs" />
     <Compile Include="Infrastructure\Helpers\HtmlExtensions.cs" />
     <Compile Include="Infrastructure\Mapping\GoogleMapMapper.cs" />
     <Compile Include="Infrastructure\Mapping\MappingExtensions.cs" />
@@ -237,19 +238,23 @@
     <Compile Include="Models\Base\BasePageViewModel.cs" />
     <Compile Include="Models\Content\HomePageViewModel.cs" />
     <Compile Include="Models\Interfaces\IMetadata.cs" />
+    <Compile Include="Models\Interfaces\INavigation.cs" />
+    <Compile Include="Models\Interfaces\IMenuItem.cs" />
     <Compile Include="Models\Media\ImageModel.cs" />
     <Compile Include="Models\Media\MediaFileModel.cs" />
+    <Compile Include="Models\Navigation\MenuItemModel.cs" />
+    <Compile Include="Models\Navigation\NavigationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zone.GoogleMaps\Zone.GoogleMaps.csproj">
       <Project>{96c21e0f-d438-4a15-9265-ee32662e4159}</Project>
       <Name>Zone.GoogleMaps</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

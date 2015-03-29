@@ -29,7 +29,7 @@
             }
             catch (Exception ex)
             {
-                LogHelper.Error<GoogleMapPropertyValueConverter>("Error converting GoogleMap property value  " + ex.StackTrace, ex);
+                LogHelper.Error<GoogleMapPropertyValueConverter>("Error converting GoogleMap property value:  " + ex.StackTrace, ex);
                 return null;
             }
         }
