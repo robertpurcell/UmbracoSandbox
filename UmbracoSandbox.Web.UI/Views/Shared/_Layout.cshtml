@@ -9,7 +9,10 @@
  <!--<![endif]-->
     <head>
         @* HEAD *@
-        <title>@Model.MetaTitle</title>
+        <title>@Model.MetaTitle@Model.MetaTitleSuffix</title>
+        @Html.Partial("_Metadata")
+
+        @*Colour hex: 246C60*@
         <script src="@Url.Content("~/Scripts/jquery-1.9.1.js")"></script>
         <script src="@Url.Content("~/Scripts/bootstrap.js")"></script>
         <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />

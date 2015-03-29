@@ -23,9 +23,8 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult HomePage()
         {
-            var vm = new HomePageViewModel();
-            Mapper.Map(CurrentPage, vm, recursiveProperties: GetRecursiveProperties());
-            vm.ImageUrl = GravatarHelper.GravatarHelper.CreateGravatarUrl("rpurcell@thisiszone.com", 80, string.Empty, null, false, false);
+            var vm = GetPageModel<HomePageViewModel>();
+            Mapper.Map(CurrentPage, vm);
 
             return CurrentTemplate(vm);
         }

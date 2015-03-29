@@ -1,12 +1,16 @@
 ﻿namespace UmbracoSandbox.Web.Models
 {
+    using UmbracoSandbox.Web.Models.Interfaces;
     using Zone.UmbracoMapper;
 
-    public abstract class BasePageViewModel : BaseNodeViewModel
+    public abstract class BasePageViewModel : BaseNodeViewModel, IMetadata
     {
         #region Fields
 
         private string _metaTitle;
+        private string _metaTitleSuffix;
+        private string _socialTitle;
+        private string _socialDescription;
 
         #endregion
 
@@ -20,16 +24,36 @@
 
         #region Properties
 
+        #region Metadata
+
         public string MetaTitle
         {
             get
             {
-                return string.IsNullOrEmpty(_metaTitle) ? Name : _metaTitle;
+                return string.IsNullOrEmpty(_metaTitle)
+                    ? Name
+                    : _metaTitle;
             }
 
             set
             {
                 _metaTitle = value;
+            }
+        }
+
+        [PropertyMapping(MapRecursively = true)]
+        public string MetaTitleSuffix
+        {
+            get
+            {
+                return string.IsNullOrEmpty(_metaTitleSuffix)
+                    ? null
+                    : string.Format(" | {0}", _metaTitleSuffix);
+            }
+
+            set
+            {
+                _metaTitleSuffix = value;
             }
         }
 
@@ -39,31 +63,62 @@
 
         public string CanonicalUrl { get; set; }
 
-        public string FacebookUrl { get; set; }
+        public string AbsoluteUrl { get; set; }
 
-        public string LinkedInText { get; set; }
-
-        public string LinkedInUrl { get; set; }
-
-        public string TwitterText { get; set; }
-
-        public string TwitterUrl { get; set; }
-
-        public string OGSiteName { get; set; }
-
-        public string OGTitle { get; set; }
-
-        public string OGDescription { get; set; }
-
-        public ImageModel OGImage { get; set; }
-
-        public string OGImageUrl
+        public string SocialUrl
         {
             get
             {
-                return OGImage != null ? OGImage.Url : string.Empty;
+                return CanonicalUrl ?? AbsoluteUrl;
             }
         }
+
+        [PropertyMapping(MapRecursively = true)]
+        public string SocialSiteName { get; set; }
+
+        public string SocialTitle
+        {
+            get
+            {
+                return string.IsNullOrEmpty(_socialTitle)
+                    ? MetaTitle
+                    : _socialTitle;
+            }
+
+            set
+            {
+                _socialTitle = value;
+            }
+        }
+
+        public string SocialDescription
+        {
+            get
+            {
+                return string.IsNullOrEmpty(_socialDescription)
+                    ? MetaDescription
+                    : _socialDescription;
+            }
+
+            set
+            {
+                _socialDescription = value;
+            }
+        }
+
+        public ImageModel SocialImage { get; set; }
+
+        public string SocialImageUrl
+        {
+            get
+            {
+                return SocialImage != null
+                    ? SocialImage.Url
+                    : string.Empty;
+            }
+        }
+
+        #endregion
 
         #endregion
     }

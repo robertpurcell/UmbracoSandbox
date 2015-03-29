@@ -20,7 +20,13 @@
 
     public abstract class BaseController : SurfaceController, IRenderMvcController
     {
+        #region Fields
+
         private static ILog _log;
+        private IPublishedContent _root;
+        private IPublishedContent _data;
+
+        #endregion
 
         #region Constructor
 
@@ -36,6 +42,32 @@
         #region Properties
 
         protected IUmbracoMapper Mapper { get; private set; }
+
+        protected IPublishedContent Root
+        {
+            get
+            {
+                return _root ?? Umbraco.TypedContentAtRoot().First();
+            }
+
+            set
+            {
+                _root = value;
+            }
+        }
+
+        protected IPublishedContent Data
+        {
+            get
+            {
+                return _data ?? Umbraco.TypedContentAtRoot().SingleOrDefault(x => x.DocumentTypeAlias == "DataFolder");
+            }
+
+            set
+            {
+                _data = value;
+            }
+        }
 
         public static ILog Log
         {
@@ -90,222 +122,36 @@
         }
 
         /// <summary>
-        /// Gets a list of properties that should be treated recursively when mapping (i.e. the site-wide settings
-        /// stored on the home page node)
+        /// Gets the model for the page
         /// </summary>
-        /// <returns>Array of properties</returns>
-        protected virtual string[] GetRecursiveProperties()
-        {
-            return new string[] { "oGSiteName", "linkedInText", "twitterText", "linkedInUrl", "twitterUrl" };
-        }
-
-        /// <summary>
-        /// Helper to get related (picked) content for a given content item and property alias
-        /// </summary>
-        /// <param name="content">Instance of IPublishedContent</param>
-        /// <param name="propertyAlias">Property alias to get the picked node Ids from</param>
-        /// <returns>List of IPublishedContent</returns>
-        /// <remarks>Utilises the 'Umbraco Core Property Editor Converters' package</remarks>
-        protected IEnumerable<IPublishedContent> GetRelatedContent(IPublishedContent content, string propertyAlias)
-        {
-            return content.GetPropertyValue<IEnumerable<IPublishedContent>>(propertyAlias);
-        }
-
-        /// <summary>
-        /// Get method for string property values
-        /// </summary>
-        /// <param name="content">IPublishedContent page</param>
-        /// <param name="get">String of the property</param>
-        /// <returns>Property value as string</returns>
-        protected string Get(IPublishedContent content, string get)
-        {
-            return content.GetProperty(get) != null && content.GetProperty(get).Value != null ? content.GetProperty(get).Value.ToString() : string.Empty;
-        }
-
-        /// <summary>
-        /// Recursive Get method for string property values
-        /// </summary>
-        /// <param name="content">IPublishedContent page</param>
-        /// <param name="get">String of the property name</param>
-        /// <param name="recursive">Boolean stating whether to look for the property recursively</param>
-        /// <returns>Property value as string</returns>
-        protected string Get(IPublishedContent content, string get, bool recursive)
-        {
-            return content.GetPropertyValue<string>(get, recursive, string.Empty);
-        }
-
-        /// <summary>
-        /// Get method for integer property values
-        /// </summary>
-        /// <param name="content">IPublishedContent page</param>
-        /// <param name="get">String of the property</param>
-        /// <returns>Property value as integer or zero</returns>
-        protected int GetIdValueOrZero(IPublishedContent content, string get)
-        {
-            return content.GetProperty(get) == null || content.GetProperty(get).Value.ToString() == string.Empty
-                        ? 0
-                        : int.Parse(content.GetProperty(get).Value.ToString());
-        }
-
-        /// <summary>
-        /// Recursive Get method for integer property values
-        /// </summary>
-        /// <param name="content">IPublishedContent page</param>
-        /// <param name="get">String of the property</param>
-        /// <param name="recursive">Boolean stating whether to look for the property recursively</param>
-        /// <returns>Property value as integer or zero</returns>
-        protected int GetIdValueOrZero(IPublishedContent content, string get, bool recursive)
-        {
-            return content.GetPropertyValue<int>(get, recursive, 0);
-        }
-
-        /// <summary>
-        /// Get method for boolean property values
-        /// </summary>
-        /// <param name="content">IPublishedContent page</param>
-        /// <param name="get">String of the property</param>
-        /// <returns>Property value as boolean</returns>
-        protected bool GetBool(IPublishedContent content, string get)
-        {
-            return content.GetProperty(get) != null ? content.GetPropertyValue<bool>(get) ? true : false : false;
-        }
-
-        /// <summary>
-        /// Get method for boolean property values
-        /// </summary>
-        /// <param name="content">IPublishedContent page</param>
-        /// <param name="get">String of the property</param>
-        /// <param name="recursive">Boolean stating whether to look for the property recursively</param>
-        /// <returns>Property value as boolean</returns>
-        protected bool GetBool(IPublishedContent content, string get, bool recursive)
-        {
-            return content.GetProperty(get) != null ? content.GetPropertyValue<bool>(get, recursive, false) : false;
-        }
-
-        /// <summary>
-        /// Get method for related links
-        /// </summary>
-        /// <param name="content">IPublishedContent page</param>
-        /// <param name="get">String of the property</param>
-        /// <param name="recursive">Boolean stating whether to look for the property recursively</param>
-        /// <returns>IEnumerable of related link objects</returns>
-        protected IEnumerable<RelatedLink> GetRelatedLinks(IPublishedContent content, string get, bool recursive = false)
-        {
-            var json = Get(content, get, recursive);
-            IEnumerable<RelatedLink> items;
-            if (!string.IsNullOrEmpty(json))
-            {
-                items = JsonConvert.DeserializeObject<List<RelatedLink>>(json);
-
-                return items;
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Gets a list of IPublishedContent from multi-node tree picker property
-        /// </summary>
-        /// <param name="content">IPublishedContent page</param>
-        /// <param name="get">String of the property name</param>
-        /// <returns>IEnumerable of IPublishedContent objects</returns>
-        protected IEnumerable<IPublishedContent> GetMntpItemsByCsv(IPublishedContent content, string get)
-        {
-            var csv = Get(content, get);
-            IEnumerable<IPublishedContent> items;
-            if (!string.IsNullOrEmpty(csv))
-            {
-                IEnumerable<int> mntpCsv = csv
-                   .Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries)
-                   .Select(x => int.Parse(x));
-
-                items = new UmbracoHelper(UmbracoContext.Current)
-                    .TypedContent(mntpCsv)
-                    .Where(x => x != null);
-                return items;
-            }
-
-            return Enumerable.Empty<IPublishedContent>();
-        }
-
-        /// <summary>
-        /// Gets content stored in data types in XML format on the current page as XML
-        /// </summary>
-        /// <param name="propertyAlias">Property alias to look up </param>
-        /// <returns>XML value</returns>
-        protected XElement GetXmlContent(string propertyAlias)
-        {
-            // Get the raw value.  As we have 'Umbraco Core Property Editor Converters' installed by default we'll get the
-            // converted version.  But in this case we want the XML.
-            XElement result = null;
-            if (CurrentPage.GetProperty(propertyAlias) != null)
-            {
-                var rawValue = CurrentPage.GetProperty(propertyAlias).Value.ToString();
-
-                // Convert to XML
-                var sr = new StringReader(rawValue);
-                result = XElement.Load(sr);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Gets the model and sets a value for the CanonicalUrl property
-        /// </summary>
-        /// <typeparam name="T">Type</typeparam>
-        /// <returns>Model</returns>
-        protected T GetModel<T>()
+        /// <typeparam name="T">The page type</typeparam>
+        /// <returns>The page model</returns>
+        protected virtual T GetPageModel<T>()
             where T : BasePageViewModel, new()
         {
             var model = new T
             {
-                CanonicalUrl = Request.Url == null || Request.Url.AbsolutePath == CurrentPage.Url ? null : CurrentPage.Url,
+                CanonicalUrl = Request.Url == null || Request.Url.AbsolutePath == CurrentPage.Url ? null : CurrentPage.UrlAbsolute(),
+                AbsoluteUrl = CurrentPage.UrlAbsolute()
             };
+
+            Mapper.Map(CurrentPage, model);
+
             return model;
         }
 
-        #endregion
-
-        #region Querying helpers
-
         /// <summary>
-        /// Gets the Umbraco root node (home page)
+        /// Gets the model of the given type
         /// </summary>
-        /// <returns>Instance of IPublishedContent</returns>
-        protected IPublishedContent GetRootNode()
+        /// <typeparam name="T">The model type</typeparam>
+        /// <returns>The model</returns>
+        protected virtual T GetModel<T>()
+            where T : BaseNodeViewModel, new()
         {
-            return Umbraco.TypedContentAtRoot().First();
-        }
+            var model = new T();
+            Mapper.Map(CurrentPage, model);
 
-        /// <summary>
-        /// Gets the Umbraco root data node (data page)
-        /// </summary>
-        /// <returns>Instance of IPublishedContent</returns>
-        protected IPublishedContent GetRootDataNode()
-        {
-            return Umbraco.TypedContentAtRoot().First(x => x.DocumentTypeAlias == "DataFolder");
-        }
-
-        public class RelatedLink
-        {
-            public string Caption { get; set; }
-
-            public string Link { get; set; }
-
-            public bool NewWindow { get; set; }
-
-            public bool Edit { get; set; }
-
-            public bool IsInternal { get; set; }
-
-            public int Internal { get; set; }
-
-            public string InternalName { get; set; }
-
-            public string Type { get; set; }
-
-            public string Title { get; set; }
+            return model;
         }
 
         #endregion
