@@ -1,0 +1,16 @@
+﻿@inherits UmbracoViewPage<INavigation>
+
+@if (Model.Items.IsAndAny())
+{
+    <nav>
+        <ul class="nav navbar-nav">
+            @foreach (var item in Model.Items)
+            {
+                <li>
+                    <a href="@item.Url" @Html.Attribute("class", item.IsCurrentPageOrAncestor ? "active" : null)
+                        @Html.Attribute("target", item.Target ?? null)>@item.Name</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}

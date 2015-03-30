@@ -4,11 +4,11 @@
     using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
-    public class HomePageController : BaseController
+    public class ContentPageController : BaseController
     {
         #region Constructor
 
-        public HomePageController(IUmbracoMapper mapper) : base(mapper)
+        public ContentPageController(IUmbracoMapper mapper) : base(mapper)
         {
         }
 
@@ -20,9 +20,9 @@
         /// Populates the page view model and returns to the appropriate template
         /// </summary>
         /// <returns>ViewResult containing populated view model</returns>
-        public ActionResult HomePage()
+        public ActionResult ContentPage()
         {
-            var vm = GetPageModel<HomePageViewModel>();
+            var vm = GetPageModel<ContentPageViewModel>();
             Mapper.Map(CurrentPage, vm);
 
             return CurrentTemplate(vm);

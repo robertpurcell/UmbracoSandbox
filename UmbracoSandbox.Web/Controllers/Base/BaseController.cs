@@ -1,14 +1,9 @@
 ﻿namespace UmbracoSandbox.Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Reflection;
     using System.Web.Mvc;
-    using System.Xml.Linq;
     using log4net;
-    using Newtonsoft.Json;
     using Umbraco.Core.Models;
     using Umbraco.Web;
     using Umbraco.Web.Models;
@@ -47,25 +42,12 @@
         {
             get
             {
-                return _root ?? Umbraco.TypedContentAtRoot().First();
+                return _root ?? Umbraco.TypedContentAtRoot().FirstOrDefault();
             }
 
             set
             {
                 _root = value;
-            }
-        }
-
-        protected IPublishedContent Data
-        {
-            get
-            {
-                return _data ?? Umbraco.TypedContentAtRoot().SingleOrDefault(x => x.DocumentTypeAlias == "DataFolder");
-            }
-
-            set
-            {
-                _data = value;
             }
         }
 
@@ -126,8 +108,7 @@
         /// </summary>
         /// <typeparam name="T">The page type</typeparam>
         /// <returns>The page model</returns>
-        protected virtual T GetPageModel<T>()
-            where T : BasePageViewModel, new()
+        protected virtual T GetPageModel<T>() where T : BasePageViewModel, new()
         {
             var model = new T
             {
@@ -145,8 +126,7 @@
         /// </summary>
         /// <typeparam name="T">The model type</typeparam>
         /// <returns>The model</returns>
-        protected virtual T GetModel<T>()
-            where T : BaseNodeViewModel, new()
+        protected virtual T GetModel<T>() where T : BaseNodeViewModel, new()
         {
             var model = new T();
             Mapper.Map(CurrentPage, model);

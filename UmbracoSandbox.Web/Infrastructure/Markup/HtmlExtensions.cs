@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Web.Infrastructure.Helpers
+﻿namespace UmbracoSandbox.Web.Infrastructure.Markup
 {
     using System.Linq;
     using System.Web;

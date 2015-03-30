@@ -28,12 +28,9 @@
         [ChildActionOnly]
         public PartialViewResult MainNavigation()
         {
-            var items = GetMenuItems(Root, 0, 3).ToList();
-            var root = MapItem(Root);
-            items.Insert(0, root);
             var vm = new NavigationModel
             {
-                Items = items
+                Items = GetMenuItems(Root, 0, 3)
             };
 
             return PartialView("_MainNavigation", vm);

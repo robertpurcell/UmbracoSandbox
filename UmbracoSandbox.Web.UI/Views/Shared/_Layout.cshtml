@@ -19,6 +19,11 @@
         @RenderSection("head", required: false)
     </head>
     <body>
+        <header>
+            <div class="container">
+                @Html.Action("MainNavigation", "Navigation")
+            </div>
+        </header>
         @* BODY *@
         @RenderBody()
     </body>
