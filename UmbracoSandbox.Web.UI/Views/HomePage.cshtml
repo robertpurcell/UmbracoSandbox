@@ -3,8 +3,16 @@
     Layout = "Shared/_Layout.cshtml";
 }
 
+@if (Model.HeroImage != null)
+{
+    <div class="hero-unit" @Html.BackgroundImage(Model.HeroImage.Crops[ImageCrops.Hero])>
+        <div class="container">
+            <h1>@Model.Title</h1>
+        </div>
+    </div>
+}
+
 <div class="container">
-    <h1>@Model.Title</h1>
     @Model.BodyText
     <div class="row">
         <div class="col-xs-4">

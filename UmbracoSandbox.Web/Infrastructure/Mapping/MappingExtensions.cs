@@ -68,19 +68,5 @@
 
             return Enumerable.Empty<IPublishedContent>();
         }
-
-        /// <summary>
-        /// Gets a media property as IPublishedContent
-        /// </summary>
-        /// <param name="item">The page</param>
-        /// <param name="get">String of the property name</param>
-        /// <param name="recursive">Boolean stating whether to look for the property recursively</param>
-        /// <returns>IPublishedContent or null</returns>
-        public static IPublishedContent GetMedia(this IPublishedContent item, string get, bool recursive = false)
-        {
-            var media = new UmbracoHelper(UmbracoContext.Current).TypedMedia(item.Get(get, recursive));
-
-            return media;
-        }
     }
 }

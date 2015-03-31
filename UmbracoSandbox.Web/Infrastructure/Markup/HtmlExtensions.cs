@@ -21,5 +21,12 @@
 
             return null;
         }
+
+        public static IHtmlString BackgroundImage(this HtmlHelper helper, string imageUrl)
+        {
+            return !string.IsNullOrEmpty(imageUrl)
+                ? new HtmlString(string.Format("style=\"background-image:url({0}); background-repeat: no-repeat;\"", imageUrl))
+                : null;
+        }
     }
 }

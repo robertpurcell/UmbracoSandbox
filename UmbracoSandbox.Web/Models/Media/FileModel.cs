@@ -2,7 +2,7 @@
 {
     using Zone.UmbracoMapper;
 
-    public class MediaFileModel : BaseNodeViewModel
+    public class FileModel : BaseNodeViewModel
     {
         public int Size { get; set; }
 
