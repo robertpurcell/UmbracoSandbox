@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Archetype">
+      <HintPath>..\packages\Archetype.1.7.2\lib\net40\Archetype.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
@@ -218,9 +221,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\UmbracoCms.Core.7.2.4\lib\UrlRewritingNet.UrlRewriter.dll</HintPath>
     </Reference>
-    <Reference Include="Zone.UmbracoMapper, Version=1.4.16.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Zone.UmbracoMapper, Version=1.4.17.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\UmbracoMapper.1.4.16\lib\Zone.UmbracoMapper.dll</HintPath>
+      <HintPath>..\packages\UmbracoMapper.1.4.17\lib\Zone.UmbracoMapper.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -233,11 +236,12 @@
     <Compile Include="Controllers\Navigation\NavigationController.cs" />
     <Compile Include="Helpers\EnumerableHelper.cs" />
     <Compile Include="Infrastructure\Config\ImageCrops.cs" />
+    <Compile Include="Infrastructure\Mapping\ArchetypeMapper.cs" />
     <Compile Include="Infrastructure\Markup\HtmlExtensions.cs" />
     <Compile Include="Infrastructure\Mapping\GoogleMapMapper.cs" />
-    <Compile Include="Infrastructure\Mapping\MappingExtensions.cs" />
     <Compile Include="Infrastructure\Mapping\MediaMapper.cs" />
     <Compile Include="Models\BackOffice\OnlineDonation.cs" />
+    <Compile Include="Models\Base\BaseItemModel.cs" />
     <Compile Include="Models\Base\BasePageViewModel.cs" />
     <Compile Include="Models\Content\ContentPageViewModel.cs" />
     <Compile Include="Models\Content\HomePageViewModel.cs" />
