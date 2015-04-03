@@ -1,37 +1,14 @@
 ﻿namespace UmbracoSandbox.Web.Models
 {
-    using UmbracoSandbox.Web.Helpers;
-
-    public abstract class BaseItemModel
+    public abstract class BaseModuleModel
     {
         #region Fields
 
         private string _alias;
 
-        private string _title;
-
         #endregion
 
-        public int Id { get; set; }
-
-        public string DocumentTypeAlias { get; set; }
-
-        public string Name { get; set; }
-
-        public string Title
-        {
-            get
-            {
-                return string.IsNullOrEmpty(_title)
-                    ? Name
-                    : _title;
-            }
-
-            set
-            {
-                _title = value;
-            }
-        }
+        #region Properties
 
         public string Alias
         {
@@ -55,5 +32,7 @@
                 return string.Format("_{0}", Alias);
             }
         }
+
+        #endregion
     }
 }

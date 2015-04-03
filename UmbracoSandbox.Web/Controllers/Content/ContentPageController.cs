@@ -8,7 +8,8 @@
     {
         #region Constructor
 
-        public ContentPageController(IUmbracoMapper mapper) : base(mapper)
+        public ContentPageController(IUmbracoMapper mapper)
+            : base(mapper)
         {
         }
 

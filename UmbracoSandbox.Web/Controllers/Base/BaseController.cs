@@ -8,10 +8,11 @@
     using Umbraco.Web;
     using Umbraco.Web.Models;
     using Umbraco.Web.Mvc;
-    using UmbracoSandbox.Web.Infrastructure.Mapping;
     using UmbracoSandbox.Web.Models;
+    using UmbracoSandbox.Web.Infrastructure.Mapping;
     using Zone.GoogleMaps;
     using Zone.UmbracoMapper;
+    using System.Collections.Generic;
 
     public abstract class BaseController : SurfaceController, IRenderMvcController
     {
@@ -19,7 +20,6 @@
 
         private static ILog _log;
         private IPublishedContent _root;
-        private IPublishedContent _data;
 
         #endregion
 
@@ -100,7 +100,8 @@
         {
             Mapper.AddCustomMapping(typeof(FileModel).FullName, MediaMapper.GetFile)
                 .AddCustomMapping(typeof(ImageModel).FullName, MediaMapper.GetImage)
-                .AddCustomMapping(typeof(GoogleMap).FullName, GoogleMapMapper.GetGoogleMap);
+                .AddCustomMapping(typeof(GoogleMap).FullName, GoogleMapMapper.GetGoogleMap)
+                .AddCustomMapping(typeof(IEnumerable<ModuleModel>).FullName, ArchetypeMapper.GetCollection<ModuleModel>);
         }
 
         /// <summary>

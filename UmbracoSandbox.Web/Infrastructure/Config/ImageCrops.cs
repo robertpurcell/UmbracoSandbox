@@ -1,7 +1,5 @@
 ﻿namespace UmbracoSandbox.Web.Infrastructure.Config
 {
-    using System.Collections.Generic;
-
     public static class ImageCrops
     {
         #region Crop names

@@ -7,7 +7,7 @@
             @foreach (var item in Model.Items)
             {
                 <li>
-                    <a href="@item.Url" @Html.Attribute("target", item.Target ?? null)>@item.Title</a>
+                    <a href="@item.Url" @Html.Attribute("target", item.Target ?? null)>@item.Name</a>
                 </li>
             }
         </ul>

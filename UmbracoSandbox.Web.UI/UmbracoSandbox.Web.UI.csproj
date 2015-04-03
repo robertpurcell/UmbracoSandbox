@@ -3128,7 +3128,8 @@
     <Content Include="Views\Shared\_Metadata.cshtml" />
     <Content Include="Views\Shared\_FooterNavigation.cshtml" />
     <Content Include="Views\Shared\_MainNavigation.cshtml" />
-    <Content Include="Views\Shared\_TopNavigation.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\ListingPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Plugins\UmbracoForms\Data\prevaluesources\" />

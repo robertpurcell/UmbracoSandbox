@@ -1,7 +1,7 @@
 ﻿namespace UmbracoSandbox.Web.Models
 {
+    using System.Collections.Generic;
     using System.Web;
-    using Zone.GoogleMaps;
 
     public class HomePageViewModel : BasePageViewModel
     {
@@ -11,8 +11,6 @@
 
         public ImageModel HeroImage { get; set; }
 
-        public GoogleMap GoogleMap { get; set; }
-
-        public string ImageUrl { get; set; }
+        public IEnumerable<ModuleModel> Modules { get; set; }
     }
 }

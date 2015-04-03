@@ -1,14 +1,14 @@
-﻿namespace UmbracoSandbox.Web.Controllers
+﻿namespace UmbracoSandbox.Web.Controllers.Content
 {
     using System.Web.Mvc;
     using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
-    public class HomePageController : BaseController
+    public class ListingPageController : BaseController
     {
         #region Constructor
 
-        public HomePageController(IUmbracoMapper mapper)
+        public ListingPageController(IUmbracoMapper mapper)
             : base(mapper)
         {
         }
@@ -21,9 +21,9 @@
         /// Populates the page view model and returns to the appropriate template
         /// </summary>
         /// <returns>ViewResult containing populated view model</returns>
-        public ActionResult HomePage()
+        public ActionResult ListingPage()
         {
-            var vm = GetPageModel<HomePageViewModel>();
+            var vm = GetPageModel<ListingPageViewModel>();
             Mapper.Map(CurrentPage, vm);
 
             return CurrentTemplate(vm);

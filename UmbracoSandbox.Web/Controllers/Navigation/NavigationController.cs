@@ -3,10 +3,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Models;
     using RJP.MultiUrlPicker.Models;
     using Umbraco.Core.Models;
     using Umbraco.Web;
+    using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
     public class NavigationController : BaseController

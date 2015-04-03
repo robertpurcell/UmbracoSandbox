@@ -14,18 +14,21 @@
 
 <div class="container">
     @Model.BodyText
-    <div class="row">
-        <div class="col-xs-4">
-            <h2>Get started</h2>
-            <p>Why haven't you got started?</p>
+    @if (Model.Modules.IsAndAny())
+    {
+        <div class="row">
+            @foreach (var module in Model.Modules)
+            {
+                <div class="col-xs-@(12/Model.Modules.Count())">
+                    <h2>@module.Title</h2>
+                    <p>@module.Summary</p>
+                    @if (module.Image != null)
+                    {
+                        @Html.DisplayImage(module.Image, ImageCrops.Teaser)
+                    }
+                </div>
+            }
         </div>
-        <div class="col-xs-4">
-            <h2>Keep going</h2>
-            <p>This is the bit where you keep going</p>
-        </div>
-        <div class="col-xs-4">
-            <h2>This is the end</h2>
-            <p>Beautiful friend</p>
-        </div>
-    </div>
+    }
+
 </div>

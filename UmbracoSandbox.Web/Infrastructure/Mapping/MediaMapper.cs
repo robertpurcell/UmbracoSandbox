@@ -10,6 +10,16 @@
 
     public class MediaMapper
     {
+        #region Methods
+
+        /// <summary>
+        /// Maps a file model
+        /// </summary>
+        /// <param name="mapper">Umbraco mapper</param>
+        /// <param name="contentToMapFrom">Content to map from</param>
+        /// <param name="propertyAlias">Property alias</param>
+        /// <param name="recursive">Recursive</param>
+        /// <returns>File model</returns>
         public static object GetFile(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyAlias, bool recursive)
         {
             var mediaModel = contentToMapFrom.GetPropertyValue<IPublishedContent>(propertyAlias, recursive);
@@ -24,6 +34,14 @@
             return mediaFile;
         }
 
+        /// <summary>
+        /// Maps a list of file models
+        /// </summary>
+        /// <param name="mapper">Umbraco mapper</param>
+        /// <param name="contentToMapFrom">Content to map from</param>
+        /// <param name="propertyAlias">Property alias</param>
+        /// <param name="recursive">Recursive</param>
+        /// <returns>List of file models</returns>
         public static object GetFiles(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyAlias, bool recursive)
         {
             var mediaModels = contentToMapFrom.GetPropertyValue<IEnumerable<IPublishedContent>>(propertyAlias, recursive);
@@ -43,6 +61,12 @@
             return mediaFiles;
         }
 
+        /// <summary>
+        /// Maps the image model from the media node
+        /// </summary>
+        /// <param name="mapper">Umbraco mapper</param>
+        /// <param name="mediaModel">Media model</param>
+        /// <returns>Image model</returns>
         public static object GetImage(IUmbracoMapper mapper, IPublishedContent mediaModel)
         {
             if (mediaModel == null)
@@ -57,6 +81,14 @@
             return image;
         }
 
+        /// <summary>
+        /// Maps the image model by property alias
+        /// </summary>
+        /// <param name="mapper">Umbraco mapper</param>
+        /// <param name="contentToMapFrom">Content to map from</param>
+        /// <param name="propertyAlias">Property alias</param>
+        /// <param name="recursive">Recursive</param>
+        /// <returns>Image model</returns>
         public static object GetImage(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyAlias, bool recursive)
         {
             var mediaModel = contentToMapFrom.GetPropertyValue<IPublishedContent>(propertyAlias, recursive);
@@ -72,39 +104,61 @@
             return image;
         }
 
-        private static void MapFileProperties(IUmbracoMapper mapper, FileModel mediaFile, IPublishedContent mediaModel)
+        #endregion
+
+        #region Helpers
+
+        /// <summary>
+        /// Maps the file properties
+        /// </summary>
+        /// <param name="mapper">Umbraco mapper</param>
+        /// <param name="mediaFile">Media file</param>
+        /// <param name="mediaNode">Media node</param>
+        private static void MapFileProperties(IUmbracoMapper mapper, FileModel mediaFile, IPublishedContent mediaNode)
         {
-            mediaFile.Id = mediaModel.Id;
-            mediaFile.Name = mediaModel.Name;
-            if (mediaModel.HasProperty("umbracoFile"))
+            mediaFile.Id = mediaNode.Id;
+            mediaFile.Name = mediaNode.Name;
+            if (mediaNode.HasProperty("umbracoFile"))
             {
-                mediaFile.Url = mediaModel.Url;
-                mediaFile.DocumentTypeAlias = mediaModel.DocumentTypeAlias;
-                mediaFile.DomainWithUrl = mapper.AssetsRootUrl + mediaModel.Url;
-                mediaFile.Size = mediaModel.GetPropertyValue<int>("umbracoBytes");
-                mediaFile.FileExtension = mediaModel.GetPropertyValue<string>("umbracoExtension");
+                mediaFile.Url = mediaNode.Url;
+                mediaFile.DocumentTypeAlias = mediaNode.DocumentTypeAlias;
+                mediaFile.DomainWithUrl = mapper.AssetsRootUrl + mediaNode.Url;
+                mediaFile.Size = mediaNode.GetPropertyValue<int>("umbracoBytes");
+                mediaFile.FileExtension = mediaNode.GetPropertyValue<string>("umbracoExtension");
             }
         }
 
-        private static void MapImageProperties(ImageModel image, IPublishedContent mediaModel)
+        /// <summary>
+        /// Maps the file properties
+        /// </summary>
+        /// <param name="imageModel">Image model</param>
+        /// <param name="mediaNode">Media node</param>
+        private static void MapImageProperties(ImageModel imageModel, IPublishedContent mediaNode)
         {
-            image.Width = mediaModel.GetPropertyValue<int>("umbracoWidth");
-            image.Height = mediaModel.GetPropertyValue<int>("umbracoHeight");
-            image.AltText = mediaModel.GetPropertyValue<string>("altText") ?? mediaModel.Name;
-            MapImageCrops(image, mediaModel);
+            imageModel.Width = mediaNode.GetPropertyValue<int>("umbracoWidth");
+            imageModel.Height = mediaNode.GetPropertyValue<int>("umbracoHeight");
+            imageModel.AltText = mediaNode.GetPropertyValue<string>("altText") ?? mediaNode.Name;
+            MapImageCrops(imageModel, mediaNode);
         }
 
-        private static void MapImageCrops(ImageModel image, IPublishedContent mediaModel)
+        /// <summary>
+        /// Map image crops model
+        /// </summary>
+        /// <param name="imageModel">Image model</param>
+        /// <param name="mediaNode">Media node</param>
+        private static void MapImageCrops(ImageModel imageModel, IPublishedContent mediaNode)
         {
             try
             {
-                var imageCrops = JsonConvert.DeserializeObject<ImageCropperModel>(mediaModel.GetPropertyValue<string>("umbracoFile"));
-                image.Crops = imageCrops.Crops.ToDictionary(x => x.Alias, x => mediaModel.GetCropUrl(x.Alias));
+                var imageCrops = JsonConvert.DeserializeObject<ImageCropperModel>(mediaNode.GetPropertyValue<string>("umbracoFile"));
+                imageModel.Crops = imageCrops.Crops.ToDictionary(x => x.Alias, x => mediaNode.GetCropUrl(x.Alias));
             }
             catch
             {
-                image.Crops = null;
+                imageModel.Crops = null;
             }
         }
+
+        #endregion
     }
 }
