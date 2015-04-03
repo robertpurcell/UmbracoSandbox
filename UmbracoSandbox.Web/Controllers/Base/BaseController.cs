@@ -1,5 +1,6 @@
 ﻿namespace UmbracoSandbox.Web.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
     using System.Web.Mvc;
@@ -8,11 +9,10 @@
     using Umbraco.Web;
     using Umbraco.Web.Models;
     using Umbraco.Web.Mvc;
-    using UmbracoSandbox.Web.Models;
     using UmbracoSandbox.Web.Infrastructure.Mapping;
+    using UmbracoSandbox.Web.Models;
     using Zone.GoogleMaps;
     using Zone.UmbracoMapper;
-    using System.Collections.Generic;
 
     public abstract class BaseController : SurfaceController, IRenderMvcController
     {
