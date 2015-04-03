@@ -131,6 +131,7 @@
       <HintPath>..\packages\UmbracoCms.Core.7.2.4\lib\SQLCE4Umbraco.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -231,7 +232,7 @@
     <Compile Include="Controllers\BackOffice\DataApplication.cs" />
     <Compile Include="Controllers\BackOffice\DataTreeController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
-    <Compile Include="Controllers\Content\ContentPageController.cs" />
+    <Compile Include="Controllers\Content\ContactPageController.cs" />
     <Compile Include="Controllers\Content\HomePageController.cs" />
     <Compile Include="Controllers\Content\ListingPageController.cs" />
     <Compile Include="Controllers\Modules\Module.cs" />
@@ -247,12 +248,14 @@
     <Compile Include="Models\BackOffice\OnlineDonation.cs" />
     <Compile Include="Models\Base\BaseModuleModel.cs" />
     <Compile Include="Models\Base\BasePageViewModel.cs" />
-    <Compile Include="Models\Content\ContentPageViewModel.cs" />
+    <Compile Include="Models\Content\ContactPageViewModel.cs" />
     <Compile Include="Models\Content\HomePageViewModel.cs" />
     <Compile Include="Models\Content\ListingPageViewModel.cs" />
+    <Compile Include="Models\Interfaces\IHomeTitle.cs" />
     <Compile Include="Models\Interfaces\IMetadata.cs" />
     <Compile Include="Models\Interfaces\INavigation.cs" />
     <Compile Include="Models\Interfaces\IMenuItem.cs" />
+    <Compile Include="Models\Interfaces\ITitle.cs" />
     <Compile Include="Models\Media\ImageCropperModel.cs" />
     <Compile Include="Models\Media\ImageModel.cs" />
     <Compile Include="Models\Media\FileModel.cs" />

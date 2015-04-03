@@ -3,10 +3,11 @@
     using UmbracoSandbox.Web.Models.Interfaces;
     using Zone.UmbracoMapper;
 
-    public abstract class BasePageViewModel : BaseNodeViewModel, IMetadata
+    public abstract class BasePageViewModel : BaseNodeViewModel, IMetadata, ITitle
     {
         #region Fields
 
+        private string _title;
         private string _metaTitle;
         private string _metaTitleSuffix;
         private string _socialTitle;
@@ -119,6 +120,21 @@
         }
 
         #endregion
+
+        public string Title
+        {
+            get
+            {
+                return string.IsNullOrEmpty(_title)
+                    ? Name
+                    : _title;
+            }
+
+            set
+            {
+                _title = value;
+            }
+        }
 
         #endregion
     }

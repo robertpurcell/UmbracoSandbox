@@ -4,6 +4,5 @@
 
     public class ListingPageViewModel : BasePageViewModel
     {
-        public string Title { get; set; }
     }
 }

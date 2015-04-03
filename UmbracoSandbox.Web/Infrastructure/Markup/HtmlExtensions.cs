@@ -30,19 +30,6 @@
             return null;
         }
 
-        /// <summary>
-        /// Applies dynamic background image styling
-        /// </summary>
-        /// <param name="helper">Html helper</param>
-        /// <param name="imageUrl">Image URL</param>
-        /// <returns>Style attribute</returns>
-        public static IHtmlString BackgroundImage(this HtmlHelper helper, string imageUrl)
-        {
-            return !string.IsNullOrEmpty(imageUrl)
-                ? new HtmlString(string.Format("style=\"background-image:url({0}); background-repeat: no-repeat;\"", imageUrl))
-                : null;
-        }
-
         #endregion
     }
 }

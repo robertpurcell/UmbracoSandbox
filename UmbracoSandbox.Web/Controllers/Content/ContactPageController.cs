@@ -4,11 +4,11 @@
     using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
-    public class ContentPageController : BaseController
+    public class ContactPageController : BaseController
     {
         #region Constructor
 
-        public ContentPageController(IUmbracoMapper mapper)
+        public ContactPageController(IUmbracoMapper mapper)
             : base(mapper)
         {
         }
@@ -21,9 +21,9 @@
         /// Populates the page view model and returns to the appropriate template
         /// </summary>
         /// <returns>ViewResult containing populated view model</returns>
-        public ActionResult ContentPage()
+        public ActionResult ContactPage()
         {
-            var vm = GetPageModel<ContentPageViewModel>();
+            var vm = GetPageModel<ContactPageViewModel>();
             Mapper.Map(CurrentPage, vm);
 
             return CurrentTemplate(vm);

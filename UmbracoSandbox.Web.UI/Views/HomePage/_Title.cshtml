@@ -1,0 +1,5 @@
+﻿@model IHeroTitle
+
+<div class="hero-unit" @Html.DisplayBackgroundImage(Model.HeroImage, ImageCrops.Hero)>
+    @Html.Partial("~/Views/Shared/_Title.cshtml")
+</div>

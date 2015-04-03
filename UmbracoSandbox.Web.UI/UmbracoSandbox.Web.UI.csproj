@@ -3130,6 +3130,9 @@
     <Content Include="Views\Shared\_MainNavigation.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\ListingPage.cshtml" />
+    <Content Include="Views\ContactPage.cshtml" />
+    <Content Include="Views\Shared\_Title.cshtml" />
+    <Content Include="Views\HomePage\_Title.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Plugins\UmbracoForms\Data\prevaluesources\" />
@@ -3381,9 +3384,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\MacroPartials\InsertMp3.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ContentPage.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

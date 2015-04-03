@@ -8,11 +8,23 @@
 
     public class GoogleMapPropertyValueConverter : PropertyValueConverterBase
     {
+        /// <summary>
+        /// Checks whether or not the property is of the correct type
+        /// </summary>
+        /// <param name="propertyType">Property type</param>
+        /// <returns>True if correct</returns>
         public override bool IsConverter(PublishedPropertyType propertyType)
         {
             return "Zone.GoogleMaps".Equals(propertyType.PropertyEditorAlias);
         }
 
+        /// <summary>
+        /// Converts property source value to Google Map object
+        /// </summary>
+        /// <param name="propertyType">Property type</param>
+        /// <param name="source">Source object</param>
+        /// <param name="preview">Is preview</param>
+        /// <returns>Converted object</returns>
         public override object ConvertDataToSource(PublishedPropertyType propertyType, object source, bool preview)
         {
             if (source == null || string.IsNullOrWhiteSpace(source.ToString()))
@@ -30,6 +42,7 @@
             catch (Exception ex)
             {
                 LogHelper.Error<GoogleMapPropertyValueConverter>("Error converting GoogleMap property value:  " + ex.StackTrace, ex);
+
                 return null;
             }
         }
