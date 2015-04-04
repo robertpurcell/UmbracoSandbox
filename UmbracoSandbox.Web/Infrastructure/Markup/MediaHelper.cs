@@ -8,6 +8,13 @@
     {
         #region Images
 
+        /// <summary>
+        /// Helper method for displaying an image
+        /// </summary>
+        /// <param name="helper">Html helper</param>
+        /// <param name="image">Image model</param>
+        /// <param name="cropAlias">Crop alias</param>
+        /// <returns>Picture tag as Html string</returns>
         public static IHtmlString DisplayImage(this HtmlHelper helper, ImageModel image, string cropAlias)
         {
             if (image == null || image.Crops == null || cropAlias == null || !image.Crops.ContainsKey(cropAlias))
@@ -27,10 +34,11 @@
         }
 
         /// <summary>
-        /// Applies dynamic background image styling
+        /// Helper method for applying background image styling
         /// </summary>
         /// <param name="helper">Html helper</param>
-        /// <param name="imageUrl">Image URL</param>
+        /// <param name="image">Image model</param>
+        /// <param name="cropAlias">Crop alias</param>
         /// <returns>Style attribute</returns>
         public static IHtmlString DisplayBackgroundImage(this HtmlHelper helper, ImageModel image, string cropAlias)
         {

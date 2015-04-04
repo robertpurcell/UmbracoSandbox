@@ -8,6 +8,8 @@ namespace UmbracoSandbox.Web.UI.App_Start
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
+    using UmbracoSandbox.Service.EmailService;
+    using UmbracoSandbox.Web.Helpers;
     using Zone.UmbracoMapper;
 
     public static class NinjectWebCommon 
@@ -61,6 +63,8 @@ namespace UmbracoSandbox.Web.UI.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IUmbracoMapper>().To<UmbracoMapper>();
+            kernel.Bind<IEmailService>().To<EmailService>()
+                .WithConstructorArgument("fromAddress", ConfigHelper.GetSettingAsString("app.emailAddress"));
         }        
     }
 }

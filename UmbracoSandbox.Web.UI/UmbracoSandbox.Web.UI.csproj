@@ -3158,6 +3158,10 @@
       <Project>{921a1f05-8991-4837-aece-9dcaa9da6b31}</Project>
       <Name>UmbracoSandbox.Forms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UmbracoSandbox.Service\UmbracoSandbox.Service.csproj">
+      <Project>{0a004da3-898f-4b8f-81f6-a37856f8c24c}</Project>
+      <Name>UmbracoSandbox.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UmbracoSandbox.Web\UmbracoSandbox.Web.csproj">
       <Project>{00b3ad26-4f16-4f81-8247-022cac038f0a}</Project>
       <Name>UmbracoSandbox.Web</Name>

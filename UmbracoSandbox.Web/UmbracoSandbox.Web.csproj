@@ -132,6 +132,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -237,6 +238,7 @@
     <Compile Include="Controllers\Content\ListingPageController.cs" />
     <Compile Include="Controllers\Modules\Module.cs" />
     <Compile Include="Controllers\Navigation\NavigationController.cs" />
+    <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Helpers\EnumerableHelper.cs" />
     <Compile Include="Infrastructure\Config\ImageCrops.cs" />
     <Compile Include="Infrastructure\Config\ModelAliases.cs" />
@@ -268,6 +270,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UmbracoSandbox.Service\UmbracoSandbox.Service.csproj">
+      <Project>{0a004da3-898f-4b8f-81f6-a37856f8c24c}</Project>
+      <Name>UmbracoSandbox.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zone.GoogleMaps\Zone.GoogleMaps.csproj">
       <Project>{96c21e0f-d438-4a15-9265-ee32662e4159}</Project>
       <Name>Zone.GoogleMaps</Name>
