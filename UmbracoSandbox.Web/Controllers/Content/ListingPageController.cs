@@ -24,7 +24,6 @@
         public ActionResult ListingPage()
         {
             var vm = GetPageModel<ListingPageViewModel>();
-            Mapper.Map(CurrentPage, vm);
 
             return CurrentTemplate(vm);
         }

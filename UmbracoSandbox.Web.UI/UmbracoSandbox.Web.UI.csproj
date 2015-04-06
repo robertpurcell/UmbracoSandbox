@@ -3133,6 +3133,8 @@
     <Content Include="Views\ContactPage.cshtml" />
     <Content Include="Views\Shared\_Title.cshtml" />
     <Content Include="Views\HomePage\_Title.cshtml" />
+    <Content Include="Views\BlogPost.cshtml" />
+    <Content Include="Views\BlogPost\_Title.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Plugins\UmbracoForms\Data\prevaluesources\" />

@@ -34,7 +34,6 @@
         public ActionResult ContactPage()
         {
             var vm = GetPageModel<ContactPageViewModel>();
-            Mapper.Map(CurrentPage, vm);
 
             return CurrentTemplate(vm);
         }

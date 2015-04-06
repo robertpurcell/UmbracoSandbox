@@ -1,14 +1,15 @@
-﻿namespace UmbracoSandbox.Web.Controllers
+﻿namespace UmbracoSandbox.Web.Controllers.Content
 {
     using System.Web.Mvc;
+    using GravatarHelper;
     using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
-    public class HomePageController : BaseController
+    public class BlogPostController : BaseController
     {
         #region Constructor
 
-        public HomePageController(IUmbracoMapper mapper)
+        public BlogPostController(IUmbracoMapper mapper)
             : base(mapper)
         {
         }
@@ -21,9 +22,10 @@
         /// Populates the page view model and returns to the appropriate template
         /// </summary>
         /// <returns>ViewResult containing populated view model</returns>
-        public ActionResult HomePage()
+        public ActionResult BlogPost()
         {
-            var vm = GetPageModel<HomePageViewModel>();
+            var vm = GetPageModel<BlogPostViewModel>();
+            vm.ImageUrl = GravatarHelper.CreateGravatarUrl("rpurcell@thisiszone.com", 200, string.Empty, null, null, null);
 
             return CurrentTemplate(vm);
         }

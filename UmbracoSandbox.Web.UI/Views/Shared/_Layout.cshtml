@@ -8,21 +8,26 @@
 <html class="no-js" lang="en">
  <!--<![endif]-->
     <head>
-        @* HEAD *@
+        @* METADATA *@
         <title>@Model.MetaTitle@Model.MetaTitleSuffix</title>
         @Html.Partial("_Metadata")
 
-        @*Colour hex: 246C60*@
+        @* JAVASCRIPT *@
         <script src="@Url.Content("~/Scripts/jquery-1.9.1.js")"></script>
         <script src="@Url.Content("~/Scripts/bootstrap.js")"></script>
+
+        @* CSS - Colour hex: 246C60 *@
         <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
         <link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+
+        @* HEAD *@
         @RenderSection("head", required: false)
     </head>
     <body>
-        <div class="container navbar-main">
-            @Html.Action("MainNavigation", "Navigation")
-        </div>
+        @* NAVIGATION *@
+        @Html.Action("MainNavigation", "Navigation")
+
+        @* TITLE *@
         @Html.Partial("_Title")
 
         @* BODY *@

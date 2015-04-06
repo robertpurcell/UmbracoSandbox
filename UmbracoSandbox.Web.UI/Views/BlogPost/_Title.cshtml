@@ -1,0 +1,17 @@
+﻿@model IBlogTitle
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8">
+            <h1>@Model.Title</h1>
+            <p class="text-muted">@DateHelper.FormatDate(Model.Date) by @Model.Author</p>
+            <div class="lead text-muted">
+                @Model.Standfirst
+            </div>
+        </div>
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <div class="circle-image col-xs-4" @Html.DisplayBackgroundImage(Model.ImageUrl)></div>
+        }
+    </div>
+</div>

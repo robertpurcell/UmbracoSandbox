@@ -12,6 +12,7 @@ html {
 }
 body {
   margin: 0;
+  height: 100%;
 }
 article,
 aside,
@@ -1296,6 +1297,7 @@ p {
   margin: 0 0 10px;
 }
 .lead {
+  font-family: 'Roboto Slab', serif;
   margin-bottom: 20px;
   font-size: 16px;
   font-weight: 300;
@@ -6588,3 +6590,20 @@ button.close {
   height: 500px;
 }
 /*# sourceMappingURL=bootstrap.css.map */
+.footer {
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #f5f5f5;
+}
+.container p {
+  margin: 15px 0;
+}
+.circle-image{
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    display:block;
+    background-position-y:25%;
+    float: right;
+}
