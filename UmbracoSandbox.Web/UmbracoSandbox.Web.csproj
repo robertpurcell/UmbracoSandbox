@@ -237,7 +237,8 @@
     <Compile Include="Controllers\Content\ContactPageController.cs" />
     <Compile Include="Controllers\Content\HomePageController.cs" />
     <Compile Include="Controllers\Content\ListingPageController.cs" />
-    <Compile Include="Controllers\Modules\Module.cs" />
+    <Compile Include="Models\Modules\BlogPostModuleModel.cs" />
+    <Compile Include="Models\Modules\ModuleModel.cs" />
     <Compile Include="Controllers\Navigation\NavigationController.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Helpers\DateHelper.cs" />

@@ -284,9 +284,6 @@
     <Reference Include="WebActivatorEx">
       <HintPath>..\packages\WebActivatorEx.2.0.5\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
-    <Reference Include="Zone.Library.FrontEnd.Markup">
-      <HintPath>..\packages\Zone.Library.FrontEnd.Markup.1.0.7\lib\net45\Zone.Library.FrontEnd.Markup.dll</HintPath>
-    </Reference>
     <Reference Include="Zone.UmbracoMapper, Version=1.4.17.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\UmbracoMapper.1.4.17\lib\Zone.UmbracoMapper.dll</HintPath>
@@ -444,12 +441,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\wysiwyg.css" />
     <Content Include="default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Gruntfile.js" />
-    <Content Include="humans.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -463,16 +459,6 @@
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\npm.js" />
-    <Content Include="src\scripts\base.js" />
-    <Content Include="src\scripts\config.js" />
-    <Content Include="src\scripts\libs\jquery-1.11.0.js" />
-    <Content Include="src\scripts\libs\jquery.js" />
-    <Content Include="src\scripts\libs\require.js" />
-    <Content Include="src\scripts\modernizr.js" />
-    <Content Include="src\scripts\modules\debug.js" />
-    <Content Include="src\scripts\modules\example-module.js" />
-    <Content Include="src\scripts\plugins\example-jquery-plugin.js" />
-    <Content Include="src\scripts\plugins\example-plugin.js" />
     <Content Include="umbraco\Actions\delete.aspx" />
     <Content Include="umbraco\Actions\editContent.aspx" />
     <Content Include="umbraco\Actions\preview.aspx" />
@@ -3202,81 +3188,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Plugins\RJP.MultiUrlPicker\package.manifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\utilities\_semantic-fluid-grid.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\utilities\_placeholders.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\utilities\_mixins.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\utilities\_maps.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\templates\_layout.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\templates\_header.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\templates\_footer.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\interactions\_transitions.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\interactions\_animations.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\global-print.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\global.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\generic\_typography.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\generic\_lists.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\generic\_images.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\generic\_forms.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\generic\_buttons.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\scss\_base.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\styles\README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\scripts\README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="images\README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\MacroPartials\InsertScript.cshtml" />

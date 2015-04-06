@@ -1,7 +1,9 @@
 ﻿namespace UmbracoSandbox.Web.Controllers.Content
 {
+    using System.Collections.Generic;
     using System.Web.Mvc;
     using UmbracoSandbox.Web.Models;
+    using UmbracoSandbox.Web.Models.Modules;
     using Zone.UmbracoMapper;
 
     public class ListingPageController : BaseController
@@ -24,6 +26,9 @@
         public ActionResult ListingPage()
         {
             var vm = GetPageModel<ListingPageViewModel>();
+            var items = new List<BlogPostModuleModel>();
+            Mapper.MapCollection<BlogPostModuleModel>(CurrentPage.Children, items);
+            vm.Children = items;
 
             return CurrentTemplate(vm);
         }
