@@ -5,6 +5,15 @@
 
     public class ListingPageViewModel : BasePageViewModel
     {
-        public IEnumerable<BlogPostModuleModel> Children { get; set; }
+        #region Constructor
+
+        public ListingPageViewModel()
+        {
+            Items = new List<BlogPostModuleModel>();
+        }
+
+        #endregion
+
+        public IList<BlogPostModuleModel> Items { get; set; }
     }
 }

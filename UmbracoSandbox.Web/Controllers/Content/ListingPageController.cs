@@ -26,9 +26,7 @@
         public ActionResult ListingPage()
         {
             var vm = GetPageModel<ListingPageViewModel>();
-            var items = new List<BlogPostModuleModel>();
-            Mapper.MapCollection<BlogPostModuleModel>(CurrentPage.Children, items);
-            vm.Children = items;
+            Mapper.MapCollection<BlogPostModuleModel>(CurrentPage.Children, vm.Items);
 
             return CurrentTemplate(vm);
         }

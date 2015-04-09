@@ -30,6 +30,18 @@
             return null;
         }
 
+        /// <summary>
+        /// Outputs Html attribute
+        /// </summary>
+        /// <param name="helper">Html helper</param>
+        /// <param name="name">Attribute name</param>
+        /// <param name="value">Attribute value</param>
+        /// <returns>Html attribute</returns>
+        public static IHtmlString Attribute(this HtmlHelper helper, string name, string value)
+        {
+            return new MvcHtmlString(string.IsNullOrEmpty(value) ? null : string.Format(@" {0}=""{1}""", name, value));
+        }
+
         #endregion
     }
 }

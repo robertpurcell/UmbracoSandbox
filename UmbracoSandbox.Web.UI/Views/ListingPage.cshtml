@@ -2,3 +2,16 @@
 @{
     Layout = "Shared/_Layout.cshtml";
 }
+
+<div class="container">
+    <div>
+        @if (Model.Items.IsAndAny())
+        {
+            foreach (var item in Model.Items)
+            {
+                @Html.Partial("_BlogPostModuleModel", item)
+            }
+        }
+    </div>
+    <div class="text-center"><a href="#" id="loadmore" class="btn btn-primary">Older Posts...</a></div>
+</div>

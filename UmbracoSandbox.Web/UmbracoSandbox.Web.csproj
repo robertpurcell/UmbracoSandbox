@@ -123,8 +123,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Our.Umbraco.CoreValueConverters.2.1.5\lib\net45\Our.Umbraco.PropertyEditorConverters.dll</HintPath>
     </Reference>
-    <Reference Include="RJP.MultiUrlPicker">
-      <HintPath>..\packages\RJP.UmbracoMultiUrlPicker.1.2.0\lib\net45\RJP.MultiUrlPicker.dll</HintPath>
+    <Reference Include="RJP.MultiUrlPicker, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RJP.UmbracoMultiUrlPicker.1.3.1\lib\net45\RJP.MultiUrlPicker.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="SQLCE4Umbraco, Version=1.0.5557.19142, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -237,6 +238,9 @@
     <Compile Include="Controllers\Content\ContactPageController.cs" />
     <Compile Include="Controllers\Content\HomePageController.cs" />
     <Compile Include="Controllers\Content\ListingPageController.cs" />
+    <Compile Include="Infrastructure\Events\AppEvents.cs" />
+    <Compile Include="Infrastructure\Events\NotificationHandler.cs" />
+    <Compile Include="Infrastructure\Mapping\ModuleMapper.cs" />
     <Compile Include="Models\Modules\BlogPostModuleModel.cs" />
     <Compile Include="Models\Modules\ModuleModel.cs" />
     <Compile Include="Controllers\Navigation\NavigationController.cs" />
