@@ -115,7 +115,7 @@
         {
             var model = new T
             {
-                CanonicalUrl = Request.Url == null || Request.Url.AbsolutePath == CurrentPage.Url ? null : CurrentPage.UrlAbsolute(),
+                CanonicalUrl = Request.Url == null || string.Equals(Request.Url.AbsolutePath, CurrentPage.Url) ? null : CurrentPage.UrlAbsolute(),
                 AbsoluteUrl = CurrentPage.UrlAbsolute()
             };
 

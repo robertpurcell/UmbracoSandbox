@@ -4,10 +4,10 @@
 
     public class FileModel : BaseNodeViewModel
     {
+        [PropertyMapping(SourceProperty = "umbracoBytes")]
         public int Size { get; set; }
 
-        public string FileExtension { get; set; }
-
-        public string DomainWithUrl { get; set; }
+        [PropertyMapping(SourceProperty = "umbracoExtension")]
+        public string Extension { get; set; }
     }
 }

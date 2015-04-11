@@ -22,16 +22,16 @@
         /// <returns>File model</returns>
         public static object GetFile(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyAlias, bool recursive)
         {
-            var mediaModel = contentToMapFrom.GetPropertyValue<IPublishedContent>(propertyAlias, recursive);
-            if (mediaModel == null)
+            var media = contentToMapFrom.GetPropertyValue<IPublishedContent>(propertyAlias, recursive);
+            if (media == null)
             {
                 return null;
             }
 
-            var mediaFile = new FileModel();
-            MapFileProperties(mapper, mediaFile, mediaModel);
+            var file = new FileModel();
+            mapper.Map(media, file);
 
-            return mediaFile;
+            return file;
         }
 
         /// <summary>
@@ -44,21 +44,21 @@
         /// <returns>List of file models</returns>
         public static object GetFiles(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyAlias, bool recursive)
         {
-            var mediaModels = contentToMapFrom.GetPropertyValue<IEnumerable<IPublishedContent>>(propertyAlias, recursive);
-            if (mediaModels == null)
+            var mediaList = contentToMapFrom.GetPropertyValue<IEnumerable<IPublishedContent>>(propertyAlias, recursive);
+            if (mediaList == null)
             {
                 return null;
             }
 
-            var mediaFiles = new List<FileModel>();
-            foreach (var mediaModel in mediaModels)
+            var files = new List<FileModel>();
+            foreach (var media in mediaList)
             {
-                var mediaFile = new FileModel();
-                MapFileProperties(mapper, mediaFile, mediaModel);
-                mediaFiles.Add(mediaFile);
+                var file = new FileModel();
+                mapper.Map(media, file);
+                files.Add(file);
             }
 
-            return mediaFiles;
+            return files;
         }
 
         /// <summary>
@@ -67,16 +67,16 @@
         /// <param name="mapper">Umbraco mapper</param>
         /// <param name="mediaModel">Media model</param>
         /// <returns>Image model</returns>
-        public static object GetImage(IUmbracoMapper mapper, IPublishedContent mediaModel)
+        public static object GetImage(IUmbracoMapper mapper, IPublishedContent media)
         {
-            if (mediaModel == null)
+            if (media == null)
             {
                 return null;
             }
 
             var image = new ImageModel();
-            MapFileProperties(mapper, image, mediaModel);
-            MapImageProperties(image, mediaModel);
+            mapper.Map(media, image);
+            MapImageCrops(media, image);
 
             return image;
         }
@@ -92,16 +92,8 @@
         public static object GetImage(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyAlias, bool recursive)
         {
             var mediaModel = contentToMapFrom.GetPropertyValue<IPublishedContent>(propertyAlias, recursive);
-            if (mediaModel == null)
-            {
-                return null;
-            }
 
-            var image = new ImageModel();
-            MapFileProperties(mapper, image, mediaModel);
-            MapImageProperties(image, mediaModel);
-
-            return image;
+            return GetImage(mapper, mediaModel);
         }
 
         #endregion
@@ -109,53 +101,20 @@
         #region Helpers
 
         /// <summary>
-        /// Maps the file properties
-        /// </summary>
-        /// <param name="mapper">Umbraco mapper</param>
-        /// <param name="mediaFile">Media file</param>
-        /// <param name="mediaNode">Media node</param>
-        private static void MapFileProperties(IUmbracoMapper mapper, FileModel mediaFile, IPublishedContent mediaNode)
-        {
-            mediaFile.Id = mediaNode.Id;
-            mediaFile.Name = mediaNode.Name;
-            if (mediaNode.HasProperty("umbracoFile"))
-            {
-                mediaFile.Url = mediaNode.Url;
-                mediaFile.DocumentTypeAlias = mediaNode.DocumentTypeAlias;
-                mediaFile.DomainWithUrl = mapper.AssetsRootUrl + mediaNode.Url;
-                mediaFile.Size = mediaNode.GetPropertyValue<int>("umbracoBytes");
-                mediaFile.FileExtension = mediaNode.GetPropertyValue<string>("umbracoExtension");
-            }
-        }
-
-        /// <summary>
-        /// Maps the file properties
-        /// </summary>
-        /// <param name="imageModel">Image model</param>
-        /// <param name="mediaNode">Media node</param>
-        private static void MapImageProperties(ImageModel imageModel, IPublishedContent mediaNode)
-        {
-            imageModel.Width = mediaNode.GetPropertyValue<int>("umbracoWidth");
-            imageModel.Height = mediaNode.GetPropertyValue<int>("umbracoHeight");
-            imageModel.AltText = mediaNode.GetPropertyValue<string>("altText") ?? mediaNode.Name;
-            MapImageCrops(imageModel, mediaNode);
-        }
-
-        /// <summary>
         /// Map image crops model
         /// </summary>
         /// <param name="imageModel">Image model</param>
         /// <param name="mediaNode">Media node</param>
-        private static void MapImageCrops(ImageModel imageModel, IPublishedContent mediaNode)
+        private static void MapImageCrops(IPublishedContent media, ImageModel image)
         {
             try
             {
-                var imageCrops = JsonConvert.DeserializeObject<ImageCropperModel>(mediaNode.GetPropertyValue<string>("umbracoFile"));
-                imageModel.Crops = imageCrops.Crops.ToDictionary(x => x.Alias, x => mediaNode.GetCropUrl(x.Alias));
+                var imageCrops = JsonConvert.DeserializeObject<ImageCropperModel>(media.GetPropertyValue<string>("umbracoFile"));
+                image.Crops = imageCrops.Crops.ToDictionary(x => x.Alias, x => media.GetCropUrl(x.Alias));
             }
             catch
             {
-                imageModel.Crops = null;
+                image.Crops = null;
             }
         }
 
