@@ -21,7 +21,7 @@
                         try
                         {
                             var data = response.Content;
-                            var content = ((ObjectContent)(data)).Value as ContentItemDisplay;
+                            var content = ((ObjectContent)data).Value as ContentItemDisplay;
 
                             // Perform any checking (if needed) to ensure you have the right request
                             // For us the cancellation of publish  was only on one content type so we could narrow that down here 

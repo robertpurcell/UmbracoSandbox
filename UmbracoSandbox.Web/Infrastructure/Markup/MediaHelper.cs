@@ -47,10 +47,7 @@
                 return null;
             }
 
-            var imageUrl = image.Crops[cropAlias];
-            return !string.IsNullOrEmpty(imageUrl)
-                ? new HtmlString(string.Format("style=\"background-image:url({0}); background-repeat: no-repeat;\"", imageUrl))
-                : null;
+            return helper.DisplayBackgroundImage(image.Crops[cropAlias]);
         }
 
         /// <summary>

@@ -65,7 +65,7 @@
         /// Maps the image model from the media node
         /// </summary>
         /// <param name="mapper">Umbraco mapper</param>
-        /// <param name="mediaModel">Media model</param>
+        /// <param name="media">Media node</param>
         /// <returns>Image model</returns>
         public static object GetImage(IUmbracoMapper mapper, IPublishedContent media)
         {
@@ -103,8 +103,8 @@
         /// <summary>
         /// Map image crops model
         /// </summary>
-        /// <param name="imageModel">Image model</param>
-        /// <param name="mediaNode">Media node</param>
+        /// <param name="media">Media node</param>
+        /// <param name="image">Image model</param>
         private static void MapImageCrops(IPublishedContent media, ImageModel image)
         {
             try
