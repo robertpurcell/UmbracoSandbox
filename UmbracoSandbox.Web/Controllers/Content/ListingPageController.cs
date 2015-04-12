@@ -1,6 +1,5 @@
 ﻿namespace UmbracoSandbox.Web.Controllers.Content
 {
-    using System.Collections.Generic;
     using System.Web.Mvc;
     using UmbracoSandbox.Web.Models;
     using UmbracoSandbox.Web.Models.Modules;

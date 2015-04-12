@@ -14,6 +14,10 @@
 
         #endregion
 
+        #region Properties
+
         public IList<BlogPostModuleModel> Items { get; set; }
+
+        #endregion
     }
 }

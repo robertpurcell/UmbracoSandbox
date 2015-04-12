@@ -1,6 +1,5 @@
 ﻿namespace UmbracoSandbox.Web.Infrastructure.Mapping
 {
-    using System.Collections.Generic;
     using System.Linq;
     using Newtonsoft.Json;
     using Umbraco.Core.Models;
@@ -8,7 +7,7 @@
     using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
-    public class MediaMapper
+    public class MediaMapper : BaseMapper
     {
         #region Methods
 
@@ -23,42 +22,8 @@
         public static object GetFile(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyAlias, bool recursive)
         {
             var media = contentToMapFrom.GetPropertyValue<IPublishedContent>(propertyAlias, recursive);
-            if (media == null)
-            {
-                return null;
-            }
 
-            var file = new FileModel();
-            mapper.Map(media, file);
-
-            return file;
-        }
-
-        /// <summary>
-        /// Maps a list of file models
-        /// </summary>
-        /// <param name="mapper">Umbraco mapper</param>
-        /// <param name="contentToMapFrom">Content to map from</param>
-        /// <param name="propertyAlias">Property alias</param>
-        /// <param name="recursive">Recursive</param>
-        /// <returns>List of file models</returns>
-        public static object GetFiles(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyAlias, bool recursive)
-        {
-            var mediaList = contentToMapFrom.GetPropertyValue<IEnumerable<IPublishedContent>>(propertyAlias, recursive);
-            if (mediaList == null)
-            {
-                return null;
-            }
-
-            var files = new List<FileModel>();
-            foreach (var media in mediaList)
-            {
-                var file = new FileModel();
-                mapper.Map(media, file);
-                files.Add(file);
-            }
-
-            return files;
+            return GetModel<FileModel>(mapper, media);
         }
 
         /// <summary>
@@ -74,8 +39,7 @@
                 return null;
             }
 
-            var image = new ImageModel();
-            mapper.Map(media, image);
+            var image = GetModel<ImageModel>(mapper, media);
             MapImageCrops(media, image);
 
             return image;
@@ -91,9 +55,9 @@
         /// <returns>Image model</returns>
         public static object GetImage(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyAlias, bool recursive)
         {
-            var mediaModel = contentToMapFrom.GetPropertyValue<IPublishedContent>(propertyAlias, recursive);
+            var media = contentToMapFrom.GetPropertyValue<IPublishedContent>(propertyAlias, recursive);
 
-            return GetImage(mapper, mediaModel);
+            return GetImage(mapper, media);
         }
 
         #endregion

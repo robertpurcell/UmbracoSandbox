@@ -12,11 +12,11 @@
         public static IEnumerable<T> GetCollection<T>(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyAlias, bool recursive)
             where T : BaseModuleModel, new()
         {
-            var content = contentToMapFrom.GetPropertyValue<IEnumerable<IPublishedContent>>(propertyAlias, recursive);
-            if (content.IsAndAny())
+            var contentList = contentToMapFrom.GetPropertyValue<IEnumerable<IPublishedContent>>(propertyAlias, recursive);
+            if (contentList.IsAndAny())
             {
                 var model = new List<T>();
-                mapper.MapCollection((IEnumerable<IPublishedContent>)content, model);
+                mapper.MapCollection(contentList, model);
 
                 return model;
             }

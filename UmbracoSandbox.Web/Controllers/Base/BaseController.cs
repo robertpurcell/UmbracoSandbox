@@ -124,19 +124,6 @@
             return model;
         }
 
-        /// <summary>
-        /// Gets the model of the given type
-        /// </summary>
-        /// <typeparam name="T">The model type</typeparam>
-        /// <returns>The model</returns>
-        protected virtual T GetModel<T>() where T : BaseNodeViewModel, new()
-        {
-            var model = new T();
-            Mapper.Map(CurrentPage, model);
-
-            return model;
-        }
-
         #endregion
     }
 }

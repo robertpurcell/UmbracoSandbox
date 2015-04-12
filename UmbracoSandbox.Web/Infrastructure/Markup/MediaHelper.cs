@@ -6,7 +6,7 @@
 
     public static class MediaHelper
     {
-        #region Images
+        #region Media helpers
 
         /// <summary>
         /// Helper method for displaying an image
