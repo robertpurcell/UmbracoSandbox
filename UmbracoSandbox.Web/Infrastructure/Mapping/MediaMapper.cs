@@ -1,7 +1,9 @@
 ﻿namespace UmbracoSandbox.Web.Infrastructure.Mapping
 {
+    using System;
     using System.Linq;
     using Newtonsoft.Json;
+    using Umbraco.Core.Logging;
     using Umbraco.Core.Models;
     using Umbraco.Web;
     using UmbracoSandbox.Web.Models;
@@ -34,11 +36,6 @@
         /// <returns>Image model</returns>
         public static object GetImage(IUmbracoMapper mapper, IPublishedContent media)
         {
-            if (media == null)
-            {
-                return null;
-            }
-
             var image = GetModel<ImageModel>(mapper, media);
             MapImageCrops(media, image);
 
@@ -71,14 +68,17 @@
         /// <param name="image">Image model</param>
         private static void MapImageCrops(IPublishedContent media, ImageModel image)
         {
-            try
+            if (media != null)
             {
-                var imageCrops = JsonConvert.DeserializeObject<ImageCropperModel>(media.GetPropertyValue<string>("umbracoFile"));
-                image.Crops = imageCrops.Crops.ToDictionary(x => x.Alias, x => media.GetCropUrl(x.Alias));
-            }
-            catch
-            {
-                image.Crops = null;
+                try
+                {
+                    var imageCrops = JsonConvert.DeserializeObject<ImageCropperModel>(media.GetPropertyValue<string>("umbracoFile"));
+                    image.Crops = imageCrops.Crops.ToDictionary(x => x.Alias, x => media.GetCropUrl(x.Alias));
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.Error<MediaMapper>("Error getting image crops: " + ex.InnerException, ex);
+                }
             }
         }
 

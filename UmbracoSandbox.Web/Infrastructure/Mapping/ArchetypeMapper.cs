@@ -258,7 +258,7 @@
             }
             catch (Exception ex)
             {
-                LogHelper.Error<ArchetypeMapper>("Error getting data for model  " + ex.StackTrace, ex);
+                LogHelper.Error<ArchetypeMapper>("Error getting data for model: " + ex.InnerException, ex);
             }
 
             return null;

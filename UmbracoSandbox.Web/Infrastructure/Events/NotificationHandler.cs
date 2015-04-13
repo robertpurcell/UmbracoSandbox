@@ -22,29 +22,20 @@
                         {
                             var data = response.Content;
                             var content = ((ObjectContent)data).Value as ContentItemDisplay;
-
-                            // Perform any checking (if needed) to ensure you have the right request
-                            // For us the cancellation of publish  was only on one content type so we could narrow that down here 
-                            if (content.ContentTypeAlias.Equals("HomePage"))
+                            if (content.Notifications.Count > 0)
                             {
-                                if (content.Notifications.Count > 0)
+                                foreach (var notification in content.Notifications)
                                 {
-                                    foreach (var notification in content.Notifications)
+                                    if (notification.Header.Equals("Content published"))
                                     {
-                                        if (notification.Header.Equals("Content published"))
-                                        {
-                                            // Change the default notification to our custom message
-                                            notification.Header = "[Custom Header Message]";
-                                            notification.Message = "[Custom Message]";
-                                            notification.NotificationType = SpeechBubbleIcon.Warning;
-                                        }
+                                        notification.Message = "Thanks for publishing!";
                                     }
                                 }
                             }
                         }
                         catch (Exception ex)
                         {
-                            LogHelper.Error<NotificationHandler>("Error changing custom publishing cancelled message.", ex);
+                            LogHelper.Error<NotificationHandler>("Error changing custom publishing cancelled message: " + ex.InnerException, ex);
                         }
 
                         return response;

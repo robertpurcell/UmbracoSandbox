@@ -1,6 +1,7 @@
 ﻿angular.module("umbraco")
-    .controller("Data.DataTree.EditController", function ($scope, dataResource) {
+    .controller("Data.DataTree.EditController", function ($scope, dataResource, navigationService) {
         dataResource.getAll().then(function (response) {
+            //navigationService.syncTree({ tree: 'dataTree', path: ["-1"], forceReload: true });
             $scope.currentPage = 0;
             $scope.itemsPerPage = 10;
             $scope.gap = 10;
