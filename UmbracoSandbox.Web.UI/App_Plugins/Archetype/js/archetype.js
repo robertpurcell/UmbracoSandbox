@@ -299,6 +299,8 @@ angular.module("umbraco").controller("Imulus.ArchetypeController", function ($sc
                 $scope.model.value.toString = stringify;
             }
         }
+        // reset submit watcher counter on save
+        $scope.activeSubmitWatcher = 0;
     });
 
     //helper to count what is visible
@@ -397,6 +399,19 @@ angular.module("umbraco").controller("Imulus.ArchetypeController", function ($sc
     if($scope.model.config.customCssPath)
     {
         assetsService.loadCss($scope.model.config.customCssPath);
+    }
+
+    // submit watcher handling:
+    // because some property editors use the "formSubmitting" event to set/clean up their model.value,
+    // we need to monitor the "formSubmitting" event from a custom property and broadcast our own event
+    // to forcefully update the appropriate model.value's
+    $scope.activeSubmitWatcher = 0;
+    $scope.submitWatcherOnLoad = function () {
+        $scope.activeSubmitWatcher++;
+        return $scope.activeSubmitWatcher;
+    }
+    $scope.submitWatcherOnSubmit = function () {
+        $scope.$broadcast("archetypeFormSubmitting");
     }
 });
 
@@ -783,7 +798,7 @@ angular.module("umbraco.directives").directive('archetypeProperty', function ($c
             });
         });
 
-        scope.$on("formSubmitting", function (ev, args) {
+        scope.$on("archetypeFormSubmitting", function (ev, args) {
             // validate all fieldset properties
             _.each(scope.fieldset.properties, function (property) {
                 validateProperty(scope.fieldset, property);
@@ -798,6 +813,7 @@ angular.module("umbraco.directives").directive('archetypeProperty', function ($c
             var validationKey = "validation-f" + scope.fieldsetIndex;
             ngModelCtrl.$setValidity(validationKey, scope.fieldset.isValid);
         });
+
 
         // called when the value of any property in a fieldset changes
         function propertyValueChanged(fieldset, property) {
@@ -855,6 +871,14 @@ angular.module("umbraco.directives").directive('archetypeProperty', function ($c
         return _.unique(propertyAliasParts).reverse().join("-");
     };
 
+    var getFieldset = function(scope) {
+        return scope.archetypeRenderModel.fieldsets[scope.fieldsetIndex];
+    }
+
+    var getFieldsetProperty = function (scope) {
+        return getFieldset(scope).properties[scope.renderModelPropertyIndex];
+    }
+
     function loadView(view, config, defaultValue, alias, propertyAlias, scope, element, ngModelCtrl, propertyValueChanged) {
         if (view)
         {
@@ -871,14 +895,15 @@ angular.module("umbraco.directives").directive('archetypeProperty', function ($c
                     scope.model.config = {};
 
                     //ini the property value after test to make sure a prop exists in the renderModel
-                    var renderModelPropertyIndex = getPropertyIndexByAlias(scope.archetypeRenderModel.fieldsets[scope.fieldsetIndex].properties, alias);
+                    scope.renderModelPropertyIndex = getPropertyIndexByAlias(getFieldset(scope).properties, alias);
 
-                    if (!renderModelPropertyIndex)
+                    if (!scope.renderModelPropertyIndex)
                     {
-                        scope.archetypeRenderModel.fieldsets[scope.fieldsetIndex].properties.push(JSON.parse('{"alias": "' + alias + '", "value": "' + defaultValue + '"}'));
-                        renderModelPropertyIndex = getPropertyIndexByAlias(scope.archetypeRenderModel.fieldsets[scope.fieldsetIndex].properties, alias);
+                        getFieldset(scope).properties.push(JSON.parse('{"alias": "' + alias + '", "value": "' + defaultValue + '"}'));
+                        scope.renderModelPropertyIndex = getPropertyIndexByAlias(getFieldset(scope).properties, alias);
                     }
-                    scope.model.value = scope.archetypeRenderModel.fieldsets[scope.fieldsetIndex].properties[renderModelPropertyIndex].value;
+                    scope.renderModel = {};
+                    scope.model.value = getFieldsetProperty(scope).value;
 
                     //set the config from the prevalues
                     scope.model.config = config;
@@ -905,10 +930,21 @@ angular.module("umbraco.directives").directive('archetypeProperty', function ($c
 
                     //watch for changes since there is no two-way binding with the local model.value
                     scope.$watch('model.value', function (newValue, oldValue) {
-                        scope.archetypeRenderModel.fieldsets[scope.fieldsetIndex].properties[renderModelPropertyIndex].value = newValue;
+                        getFieldsetProperty(scope).value = newValue;
 
                         // notify the linker that the property value changed
-                        propertyValueChanged(scope.archetypeRenderModel.fieldsets[scope.fieldsetIndex], scope.archetypeRenderModel.fieldsets[scope.fieldsetIndex].properties[renderModelPropertyIndex]);
+                        propertyValueChanged(getFieldset(scope), getFieldsetProperty(scope));
+                    });
+
+                    scope.$on('archetypeFormSubmitting', function (ev, args) {
+                        // did the value change (if it did, it most likely did so during the "formSubmitting" event)
+                        var currentValue = getFieldsetProperty(scope).value;
+                        if (currentValue != scope.model.value) {
+                            getFieldsetProperty(scope).value = scope.model.value;
+
+                            // notify the linker that the property value changed
+                            propertyValueChanged(getFieldset(scope), getFieldsetProperty(scope));
+                        }
                     });
 
                     element.html(data).show();
@@ -939,6 +975,31 @@ angular.module("umbraco.directives").directive('archetypeProperty', function ($c
             archetypeRenderModel: '=',
             umbracoPropertyAlias: '=',
             umbracoForm: '='
+        }
+    }
+});
+
+angular.module("umbraco.directives").directive('archetypeSubmitWatcher', function ($rootScope) {
+    var linker = function (scope, element, attrs, ngModelCtrl) {
+        // call the load callback on scope to obtain the ID of this submit watcher
+        var id = scope.loadCallback();
+        scope.$on("formSubmitting", function (ev, args) {
+            // on the "formSubmitting" event, call the submit callback on scope to notify the Archetype controller to do it's magic
+            if (id == scope.activeSubmitWatcher) {
+                scope.submitCallback();
+            }
+        });
+    }
+
+    return {
+        restrict: "E",
+        replace: true,
+        link: linker,
+        template: "",
+        scope: {
+            loadCallback: '=',
+            submitCallback: '=',
+            activeSubmitWatcher: '='
         }
     }
 });
