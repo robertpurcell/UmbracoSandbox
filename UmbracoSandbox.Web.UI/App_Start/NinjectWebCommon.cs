@@ -64,7 +64,8 @@ namespace UmbracoSandbox.Web.UI.App_Start
         {
             kernel.Bind<IUmbracoMapper>().To<UmbracoMapper>();
             kernel.Bind<IEmailService>().To<EmailService>()
-                .WithConstructorArgument("fromAddress", ConfigHelper.GetSettingAsString("app.emailAddress"));
+                .WithConstructorArgument("emailAddress", ConfigHelper.GetSettingAsString("app.emailAddress"))
+                .WithConstructorArgument("displayName", ConfigHelper.GetSettingAsString("app.displayName"));
         }        
     }
 }

@@ -6,6 +6,7 @@
     using RJP.MultiUrlPicker.Models;
     using Umbraco.Core.Models;
     using Umbraco.Web;
+    using UmbracoSandbox.Service.EmailService;
     using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
@@ -13,7 +14,8 @@
     {
         #region Constructor
 
-        public NavigationController(IUmbracoMapper mapper) : base(mapper)
+        public NavigationController(IUmbracoMapper mapper, IEmailService mailer)
+            : base(mapper, mailer)
         {
         }
 

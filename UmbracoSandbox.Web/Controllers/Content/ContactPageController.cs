@@ -9,18 +9,11 @@
 
     public class ContactPageController : BaseController
     {
-        #region Fields
-
-        private readonly IEmailService _emailService;
-
-        #endregion
-
         #region Constructor
 
-        public ContactPageController(IUmbracoMapper mapper, IEmailService emailService)
-            : base(mapper)
+        public ContactPageController(IUmbracoMapper mapper, IEmailService mailer)
+            : base(mapper, mailer)
         {
-            _emailService = emailService;
         }
 
         #endregion
@@ -57,7 +50,7 @@
                     Body = vm.Message,
                     IsBodyHtml = false
                 };
-                _emailService.Send(email);
+                Mailer.Send(email);
 
                 return RedirectToCurrentUmbracoPage();
             }

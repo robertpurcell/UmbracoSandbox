@@ -1,6 +1,7 @@
-﻿namespace UmbracoSandbox.Web.Controllers.Content
+﻿namespace UmbracoSandbox.Web.Controllers
 {
     using System.Web.Mvc;
+    using UmbracoSandbox.Service.EmailService;
     using UmbracoSandbox.Web.Models;
     using UmbracoSandbox.Web.Models.Modules;
     using Zone.UmbracoMapper;
@@ -9,8 +10,8 @@
     {
         #region Constructor
 
-        public ListingPageController(IUmbracoMapper mapper)
-            : base(mapper)
+        public ListingPageController(IUmbracoMapper mapper, IEmailService mailer)
+            : base(mapper, mailer)
         {
         }
 

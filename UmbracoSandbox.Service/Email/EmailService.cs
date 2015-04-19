@@ -9,15 +9,17 @@
     {
         #region Fields
 
-        private readonly string _fromAddress;
+        private readonly string _emailAddress;
+        private readonly string _displayName;
 
         #endregion
 
         #region Constructor
 
-        public EmailService(string fromAddress)
+        public EmailService(string emailAddress, string displayName)
         {
-            _fromAddress = fromAddress;
+            _emailAddress = emailAddress;
+            _displayName = displayName;
         }
 
         #endregion
@@ -31,8 +33,8 @@
         public void Send(EmailDetail emailDetail)
         {
             var context = HttpContext.Current;
-            var from = string.IsNullOrEmpty(emailDetail.From) ? _fromAddress : emailDetail.From;
-            var displayName = string.IsNullOrEmpty(emailDetail.From) ? null : emailDetail.DisplayName;
+            var from = string.IsNullOrEmpty(emailDetail.From) ? _emailAddress : emailDetail.From;
+            var displayName = string.IsNullOrEmpty(emailDetail.From) ? _displayName : emailDetail.DisplayName;
             var body = context != null
                 ? RelativeToAbsoluteUrls(emailDetail.Body, "http://" + context.Request.ServerVariables["HTTP_HOST"])
                 : emailDetail.Body;
@@ -49,6 +51,10 @@
                 {
                     mail.To.Add(new MailAddress(to));
                 }
+            }
+            else
+            {
+                mail.To.Add(new MailAddress(_emailAddress));
             }
 
             if (emailDetail.Bcc != null && emailDetail.Bcc.Count != 0)

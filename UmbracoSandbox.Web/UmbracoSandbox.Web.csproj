@@ -248,6 +248,9 @@
     <Compile Include="Controllers\Content\ContactPageController.cs" />
     <Compile Include="Controllers\Content\HomePageController.cs" />
     <Compile Include="Controllers\Content\ListingPageController.cs" />
+    <Compile Include="Infrastructure\ActionFilters\ExportModelStateToSessionAttribute.cs" />
+    <Compile Include="Infrastructure\ActionFilters\ImportModelStateFromSessionAttribute.cs" />
+    <Compile Include="Infrastructure\Config\SessionVariables.cs" />
     <Compile Include="Infrastructure\Events\AppEvents.cs" />
     <Compile Include="Infrastructure\Events\NotificationHandler.cs" />
     <Compile Include="Infrastructure\Mapping\BaseMapper.cs" />

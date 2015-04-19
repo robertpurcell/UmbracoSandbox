@@ -9,6 +9,7 @@
     using Umbraco.Web;
     using Umbraco.Web.Models;
     using Umbraco.Web.Mvc;
+    using UmbracoSandbox.Service.EmailService;
     using UmbracoSandbox.Web.Infrastructure.Mapping;
     using UmbracoSandbox.Web.Models;
     using UmbracoSandbox.Web.Models.Modules;
@@ -26,9 +27,10 @@
 
         #region Constructor
 
-        protected BaseController(IUmbracoMapper mapper)
+        protected BaseController(IUmbracoMapper mapper, IEmailService mailer)
         {
             Mapper = mapper;
+            Mailer = mailer;
             Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
             AddCustomMappings();
         }
@@ -38,6 +40,8 @@
         #region Properties
 
         protected IUmbracoMapper Mapper { get; private set; }
+
+        protected IEmailService Mailer { get; private set; }
 
         protected IPublishedContent Root
         {
@@ -99,7 +103,8 @@
         /// </summary>
         private void AddCustomMappings()
         {
-            Mapper.AddCustomMapping(typeof(FileModel).FullName, MediaMapper.GetFile)
+            Mapper
+                .AddCustomMapping(typeof(FileModel).FullName, MediaMapper.GetFile)
                 .AddCustomMapping(typeof(ImageModel).FullName, MediaMapper.GetImage)
                 .AddCustomMapping(typeof(GoogleMap).FullName, GoogleMapMapper.GetGoogleMap)
                 .AddCustomMapping(typeof(IEnumerable<ModuleModel>).FullName, ArchetypeMapper.GetCollection<ModuleModel>)

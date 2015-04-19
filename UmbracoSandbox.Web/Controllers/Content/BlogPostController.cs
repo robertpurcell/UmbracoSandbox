@@ -1,7 +1,8 @@
-﻿namespace UmbracoSandbox.Web.Controllers.Content
+﻿namespace UmbracoSandbox.Web.Controllers
 {
     using System.Web.Mvc;
     using GravatarHelper;
+    using UmbracoSandbox.Service.EmailService;
     using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
@@ -9,8 +10,8 @@
     {
         #region Constructor
 
-        public BlogPostController(IUmbracoMapper mapper)
-            : base(mapper)
+        public BlogPostController(IUmbracoMapper mapper, IEmailService mailer)
+            : base(mapper, mailer)
         {
         }
 
