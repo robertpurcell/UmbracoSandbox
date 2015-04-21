@@ -5,8 +5,10 @@
 
 <div class="container">
     @Model.BodyText
-    @if (Model.Modules.IsAndAny())
-    {
+</div>
+@if (Model.Modules.IsAndAny())
+{
+    <div class="container">
         <div class="row">
             @foreach (var module in Model.Modules)
             {
@@ -20,5 +22,5 @@
                 </div>
             }
         </div>
-    }
-</div>
+    </div>
+}
