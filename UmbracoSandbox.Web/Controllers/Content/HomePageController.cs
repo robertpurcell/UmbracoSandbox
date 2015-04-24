@@ -3,6 +3,7 @@
     using System.Web.Mvc;
     using UmbracoSandbox.Service.EmailService;
     using UmbracoSandbox.Web.Models;
+    using Umbraco.Web;
     using Zone.UmbracoMapper;
 
     public class HomePageController : BaseController
@@ -25,7 +26,7 @@
         public ActionResult HomePage()
         {
             var vm = GetPageModel<HomePageViewModel>();
-
+            vm.CurrentPage = CurrentPage;
             return CurrentTemplate(vm);
         }
 

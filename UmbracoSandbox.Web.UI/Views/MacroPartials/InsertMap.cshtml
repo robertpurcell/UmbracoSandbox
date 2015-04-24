@@ -1,0 +1,9 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{
+    var src = Model.MacroParameters["src"].ToString();
+}
+
+@if (!string.IsNullOrEmpty(src))
+{
+    <iframe height="450" frameborder="0" style="border:0" src="@src"></iframe>
+}

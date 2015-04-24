@@ -1,5 +1,6 @@
 ﻿namespace UmbracoSandbox.Web.Models
 {
+    using Umbraco.Core.Models;
     using UmbracoSandbox.Web.Models.Interfaces;
     using Zone.UmbracoMapper;
 
@@ -137,5 +138,7 @@
         }
 
         #endregion
+
+        public IPublishedContent CurrentPage { get; set; }
     }
 }

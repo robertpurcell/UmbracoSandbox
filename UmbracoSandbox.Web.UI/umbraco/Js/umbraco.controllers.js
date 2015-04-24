@@ -2288,7 +2288,7 @@ function ContentEditController($scope, $rootScope, $routeParams, $q, $timeout, $
             if (content.parentId && content.parentId != -1) {
                 entityResource.getAncestors(content.id, "document")
                .then(function (anc) {
-                   $scope.ancestors = anc.reverse();
+                   $scope.ancestors = anc;
                });
             }
         }
@@ -3493,7 +3493,7 @@ function mediaEditController($scope, $routeParams, appState, mediaResource, enti
                     //We fetch all ancestors of the node to generate the footer breadcrump navigation
                     entityResource.getAncestors($routeParams.id, "media")
                         .then(function (anc) {
-                            $scope.ancestors = anc.reverse();
+                            $scope.ancestors = anc;
                         });
                 }
 
@@ -4722,8 +4722,10 @@ function contentPickerController($scope, dialogService, entityResource, editorSt
                 return d.id == id;
             });
            
-            entity.icon = iconHelper.convertFromLegacyIcon(entity.icon);
-            $scope.renderModel.push({ name: entity.name, id: entity.id, icon: entity.icon });
+            if(entity) {
+                entity.icon = iconHelper.convertFromLegacyIcon(entity.icon);
+                $scope.renderModel.push({ name: entity.name, id: entity.id, icon: entity.icon });
+            }
            
         });
 

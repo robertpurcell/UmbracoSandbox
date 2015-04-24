@@ -36,10 +36,6 @@
     <key alias="translate">Translate</key>
     <key alias="update">Update</key>
     <key alias="defaultValue">Default value</key>
-    <key alias="exportContourForm">Export form</key>
-    <key alias="importContourForm">Import form</key>
-    <key alias="archiveContourForm">Archive form</key>
-    <key alias="unarchiveContourForm">Unarchive form</key>
   </area>
   <area alias="assignDomain">
     <key alias="permissionDenied">Permission denied.</key>
@@ -849,10 +845,12 @@ To manage your website, simply open the Umbraco back office and start adding con
     <key alias="quickGuide">Quick Guide to Umbraco template tags</key>
     <key alias="template">Template</key>
   </area>
+
   <area alias="grid">
     <key alias="insertControl">Insert control</key>
     <key alias="addRows">Add rows to your layout</key>
     <key alias="addElement"><![CDATA[To start, click the <i class="icon icon-add blue"></i> below and add your first element]]></key>
+
     <key alias="clickToEmbed">Click to embed</key>
     <key alias="clickToInsertImage">Click to insert image</key>
     <key alias="placeholderImageCaption">Image caption...</key>
@@ -862,20 +860,28 @@ To manage your website, simply open the Umbraco back office and start adding con
     <key alias="gridLayoutsDetail">Layouts are the overall work area for the grid editor, usually you only need one or two different layouts</key>
     <key alias="addGridLayout">Add grid layout</key>
     <key alias="addGridLayoutDetail">Adjust the layout by setting column widths and adding additional sections</key>
+    
     <key alias="rowConfigurations">Row configurations</key>
     <key alias="rowConfigurationsDetail">Rows are predefined cells arranged horizontally</key>
     <key alias="addRowConfiguration">Add row configuration</key>
     <key alias="addRowConfigurationDetail">Adjust the row by setting cell widths and adding additional cells</key>
+
     <key alias="columns">Columns</key>
     <key alias="columnsDetails">Total combined number of columns in the grid layout</key>
+    
     <key alias="settings">Settings</key>
     <key alias="settingsDetails">Configure what settings editors can change</key>
+
+
     <key alias="styles">Styles</key>
     <key alias="stylesDetails">Configure what styling editors can change</key>
+
     <key alias="settingDialogDetails">Settings will only save if the entered json configuration is valid</key>
+
     <key alias="allowAllEditors">Allow all editors</key>
     <key alias="allowAllRowConfigurations">Allow all row configurations</key>
   </area>
+
   <area alias="templateEditor">
     <key alias="alternativeField">Alternative field</key>
     <key alias="alternativeText">Alternative Text</key>
@@ -1005,7 +1011,7 @@ To manage your website, simply open the Umbraco back office and start adding con
     <key alias="editors">Editor</key>
     <key alias="excerptField">Excerpt field</key>
     <key alias="language">Language</key>
-    <key alias="loginname">Login</key>
+    <key alias="loginname">Username</key>
     <key alias="mediastartnode">Start Node in Media Library</key>
     <key alias="modules">Sections</key>
     <key alias="noConsole">Disable Umbraco Access</key>
@@ -1024,7 +1030,7 @@ To manage your website, simply open the Umbraco back office and start adding con
     <key alias="permissionSelectPages">Select pages to modify their permissions</key>
     <key alias="searchAllChildren">Search all children</key>
     <key alias="startnode">Start Node in Content</key>
-    <key alias="username">Username</key>
+    <key alias="username">Name</key>
     <key alias="userPermissions">User permissions</key>
     <key alias="usertype">User type</key>
     <key alias="userTypes">User types</key>
