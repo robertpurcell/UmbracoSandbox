@@ -23,6 +23,13 @@
         </div>
         <div class="row">
             <div class="form-group col-xs-4">
+                @Html.LabelFor(m => m.Subject)
+                @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Subject)
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-4">
                 @Html.LabelFor(m => m.Message)
                 @Html.TextAreaFor(m => m.Message, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Message)

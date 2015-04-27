@@ -1,9 +1,7 @@
 ﻿namespace UmbracoSandbox.Web.Controllers
 {
-    using System.Collections.Generic;
     using System.Web.Mvc;
     using UmbracoSandbox.Service.EmailService;
-    using UmbracoSandbox.Web.Helpers;
     using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
@@ -44,9 +42,9 @@
             {
                 var email = new EmailDetail
                 {
-                    To = new List<string>() { ConfigHelper.GetSettingAsString("app.emailAddress") },
                     From = vm.Email,
                     DisplayName = vm.FullName,
+                    Subject = vm.Subject,
                     Body = vm.Message,
                     IsBodyHtml = false
                 };
