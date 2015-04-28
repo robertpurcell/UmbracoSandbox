@@ -30,9 +30,8 @@
         [ChildActionOnly]
         public PartialViewResult MainNavigation()
         {
-            var vm = new MainNavigationModel
+            var vm = new NavigationModel
             {
-                Home = MapItem(Root),
                 Items = GetMenuItems(Root, 0, 3)
             };
 
