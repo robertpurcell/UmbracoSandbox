@@ -123,8 +123,13 @@
         /// <param name="text">Input text</param>
         /// <param name="absoluteUrl">Base absolute URLs</param>
         /// <returns>Amended string</returns>
-        private string RelativeToAbsoluteUrls(string text, string absoluteUrl)
+        private string RelativeToAbsoluteUrls(string text = "", string absoluteUrl = "")
         {
+            if (string.IsNullOrEmpty(text))
+            {
+                return string.Empty;
+            }
+
             var baseUri = new Uri(absoluteUrl);
             var pattern = @"(?<name>src|href)=""(?<value>/[^""]*)""";
             var matchEvaluator = new MatchEvaluator(

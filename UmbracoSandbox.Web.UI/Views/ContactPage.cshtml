@@ -4,33 +4,34 @@
 }
 
 <div class="container">
-    @using (Html.BeginUmbracoForm<ContactPageController>("SendEmail", FormMethod.Post))
+    <div id="result"></div>
+    @using (Ajax.BeginForm("AjaxSendEmail", "ContactPage", new AjaxOptions { UpdateTargetId = "result" }))
     {
         @Html.AntiForgeryToken()
         <div class="row">
             <div class="form-group col-xs-4">
-                @Html.LabelFor(m => m.FullName)
+                @Html.LabelFor(m => m.FullName, new { @class = "control-label" })
                 @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.FullName)
             </div>
         </div>
         <div class="row">
             <div class="form-group col-xs-4">
-                @Html.LabelFor(m => m.Email)
+                @Html.LabelFor(m => m.Email, new { @class = "control-label" })
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Email)
             </div>
         </div>
         <div class="row">
             <div class="form-group col-xs-4">
-                @Html.LabelFor(m => m.Subject)
+                @Html.LabelFor(m => m.Subject, new { @class = "control-label" })
                 @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Subject)
             </div>
         </div>
         <div class="row">
             <div class="form-group col-xs-4">
-                @Html.LabelFor(m => m.Message)
+                @Html.LabelFor(m => m.Message, new { @class = "control-label" })
                 @Html.TextAreaFor(m => m.Message, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Message)
             </div>

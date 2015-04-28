@@ -2867,6 +2867,7 @@ select[multiple].form-group-lg .form-control {
 .has-error .checkbox,
 .has-error .radio-inline,
 .has-error .checkbox-inline,
+.has-error .field-validation-error,
 .has-error.radio label,
 .has-error.checkbox label,
 .has-error.radio-inline label,

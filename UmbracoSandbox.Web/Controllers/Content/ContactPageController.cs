@@ -36,7 +36,7 @@
         /// <returns>Success message</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SendEmail(ContactPageViewModel vm)
+        public ActionResult AjaxSendEmail(ContactPageViewModel vm)
         {
             if (ModelState.IsValid)
             {
@@ -50,7 +50,7 @@
                 };
                 Mailer.Send(email);
 
-                return RedirectToCurrentUmbracoPage();
+                return Content("<div class=\"alert alert-success\" role=\"alert\"><strong>Thanks!</strong> I'll aim to reply to your message within 24 hours.</div>", "text/html");
             }
 
             return CurrentUmbracoPage();
