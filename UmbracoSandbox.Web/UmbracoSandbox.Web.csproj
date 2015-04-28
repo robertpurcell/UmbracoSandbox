@@ -255,6 +255,7 @@
     <Compile Include="Infrastructure\Events\NotificationHandler.cs" />
     <Compile Include="Infrastructure\Mapping\BaseMapper.cs" />
     <Compile Include="Infrastructure\Mapping\ModuleMapper.cs" />
+    <Compile Include="Models\Interfaces\IMainNavigation.cs" />
     <Compile Include="Models\Modules\BlogPostModuleModel.cs" />
     <Compile Include="Models\Modules\ModuleModel.cs" />
     <Compile Include="Controllers\Navigation\NavigationController.cs" />
@@ -285,6 +286,7 @@
     <Compile Include="Models\Media\ImageModel.cs" />
     <Compile Include="Models\Media\FileModel.cs" />
     <Compile Include="Models\Navigation\MenuItemModel.cs" />
+    <Compile Include="Models\Navigation\MainNavigationModel.cs" />
     <Compile Include="Models\Navigation\NavigationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

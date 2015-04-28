@@ -30,8 +30,9 @@
         [ChildActionOnly]
         public PartialViewResult MainNavigation()
         {
-            var vm = new NavigationModel
+            var vm = new MainNavigationModel
             {
+                Home = MapItem(Root),
                 Items = GetMenuItems(Root, 0, 3)
             };
 
@@ -64,7 +65,7 @@
         private IEnumerable<MenuItemModel> GetMenuItems(IPublishedContent parent, int currentLevel, int maxLevel)
         {
             return parent.Children
-                .Where(x => !x.GetPropertyValue<bool>("umbracoNaviHide") && (x.TemplateId != 0))
+                .Where(x => !x.GetPropertyValue<bool>("umbracoNaviHide") && x.TemplateId != 0)
                 .Select(x =>
                     {
                         var item = MapItem(x);
