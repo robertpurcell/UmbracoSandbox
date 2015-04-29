@@ -5,11 +5,11 @@
     using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
-    public class HomePageController : BaseController
+    public class HomeController : BaseController
     {
         #region Constructor
 
-        public HomePageController(IUmbracoMapper mapper, IEmailService mailer)
+        public HomeController(IUmbracoMapper mapper, IEmailService mailer)
             : base(mapper, mailer)
         {
         }
@@ -22,9 +22,9 @@
         /// Populates the page view model and returns to the appropriate template
         /// </summary>
         /// <returns>ViewResult containing populated view model</returns>
-        public ActionResult HomePage()
+        public ActionResult Home()
         {
-            var vm = GetPageModel<HomePageViewModel>();
+            var vm = GetPageModel<HomeViewModel>();
 
             return CurrentTemplate(vm);
         }

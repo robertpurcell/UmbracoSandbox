@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web;
 
-    public class ContactPageViewModel : BasePageViewModel
+    public class ContactViewModel : BasePageViewModel
     {
         public IHtmlString BodyText { get; set; }
 

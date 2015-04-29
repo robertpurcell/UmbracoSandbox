@@ -4,7 +4,7 @@
     using System.Web;
     using UmbracoSandbox.Web.Models.Interfaces;
 
-    public class HomePageViewModel : BasePageViewModel, IHeroTitle
+    public class HomeViewModel : BasePageViewModel, IHeroTitle
     {
         public ImageModel HeroImage { get; set; }
 

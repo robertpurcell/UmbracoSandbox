@@ -50,6 +50,17 @@
             return PartialView("_FooterNavigation", vm);
         }
 
+        /// <summary>
+        /// Applies the Home action
+        /// </summary>
+        /// <returns>Redirect to Home page</returns>
+        public ActionResult Home()
+        {
+            var url = Root == null ? string.Empty : Root.Url;
+
+            return Redirect(url);
+        }
+
         #endregion
 
         #region Helpers

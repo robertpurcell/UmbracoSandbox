@@ -3,11 +3,11 @@
     using System.Collections.Generic;
     using UmbracoSandbox.Web.Models.Modules;
 
-    public class ListingPageViewModel : BasePageViewModel
+    public class ListingViewModel : BasePageViewModel
     {
         #region Constructor
 
-        public ListingPageViewModel()
+        public ListingViewModel()
         {
             Items = new List<BlogPostModuleModel>();
         }

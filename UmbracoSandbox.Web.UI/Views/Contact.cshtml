@@ -1,36 +1,39 @@
-﻿@model ContactPageViewModel
+﻿@model ContactViewModel
 @{
     Layout = "Shared/_Layout.cshtml";
 }
 
 <div class="container">
+    @Model.BodyText
+</div>
+<div class="container">
     <div id="result"></div>
-    @using (Ajax.BeginForm("AjaxSendEmail", "ContactPage", new AjaxOptions { UpdateTargetId = "result" }))
+    @using (Ajax.BeginForm("AjaxSendEmail", "Contact", new AjaxOptions { UpdateTargetId = "result" }, new { id = "contact-form" }))
     {
         @Html.AntiForgeryToken()
         <div class="row">
-            <div class="form-group col-xs-4">
-                @Html.LabelFor(m => m.FullName, new { @class = "control-label" })
+            <div class="form-group col-sm-6 ">
+                @Html.RequiredLabelFor(m => m.FullName, new { @class = "control-label" })
                 @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.FullName)
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-xs-4">
-                @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+            <div class="form-group col-sm-6">
+                @Html.RequiredLabelFor(m => m.Email, new { @class = "control-label" })
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Email)
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-xs-4">
+            <div class="form-group col-sm-6">
                 @Html.LabelFor(m => m.Subject, new { @class = "control-label" })
                 @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Subject)
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-xs-4">
+            <div class="form-group col-sm-6">
                 @Html.LabelFor(m => m.Message, new { @class = "control-label" })
                 @Html.TextAreaFor(m => m.Message, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Message)

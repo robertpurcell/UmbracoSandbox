@@ -94,17 +94,6 @@
             return CurrentTemplate(model);
         }
 
-        /// <summary>
-        /// Applies the Home action
-        /// </summary>
-        /// <returns>Redirect to Home page</returns>
-        public virtual ActionResult Home()
-        {
-            var url = Root == null ? "/" : Root.Url;
-
-            return Redirect(url);
-        }
-
         #endregion
 
         #region Mapping helpers
