@@ -3146,10 +3146,8 @@
     <Content Include="Views\Shared\_FooterNavigation.cshtml" />
     <Content Include="Views\Shared\_MainNavigation.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\ListingPage.cshtml" />
-    <Content Include="Views\ContactPage.cshtml" />
     <Content Include="Views\Shared\_Title.cshtml" />
-    <Content Include="Views\HomePage\_Title.cshtml" />
+    <Content Include="Views\Home\_Title.cshtml" />
     <Content Include="Views\BlogPost.cshtml" />
     <Content Include="Views\BlogPost\_Title.cshtml" />
     <Content Include="Views\Shared\_BlogPostModuleModel.cshtml" />
@@ -3162,6 +3160,11 @@
     <Content Include="Views\Partials\Grid\Editors\Base.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap3.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap2.cshtml" />
+    <Content Include="Views\Article.cshtml" />
+    <Content Include="Views\Contact.cshtml" />
+    <Content Include="Views\Home.cshtml" />
+    <Content Include="Views\Listing.cshtml" />
+    <Content Include="Views\Shared\_BodyText.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Plugins\UmbracoForms\Data\prevaluesources\" />
@@ -3207,9 +3210,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="config\Dashboard.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\HomePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Plugins\Zone.GoogleMaps\package.manifest" />

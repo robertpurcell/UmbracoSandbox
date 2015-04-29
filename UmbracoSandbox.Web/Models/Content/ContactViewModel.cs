@@ -1,12 +1,9 @@
 ﻿namespace UmbracoSandbox.Web.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using System.Web;
 
-    public class ContactPageViewModel : BasePageViewModel
+    public class ContactViewModel : BasePageViewModel
     {
-        public IHtmlString BodyText { get; set; }
-
         [Required(ErrorMessage = "Please enter your name.")]
         [Display(Name = "Name")]
         [StringLength(254, ErrorMessage = "Your name must be fewer than 254 characters in length.")]

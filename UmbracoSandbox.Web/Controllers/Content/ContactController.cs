@@ -5,11 +5,11 @@
     using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
-    public class ContactPageController : BaseController
+    public class ContactController : BaseController
     {
         #region Constructor
 
-        public ContactPageController(IUmbracoMapper mapper, IEmailService mailer)
+        public ContactController(IUmbracoMapper mapper, IEmailService mailer)
             : base(mapper, mailer)
         {
         }
@@ -22,9 +22,9 @@
         /// Populates the page view model and returns to the appropriate template
         /// </summary>
         /// <returns>ViewResult containing populated view model</returns>
-        public ActionResult ContactPage()
+        public ActionResult Contact()
         {
-            var vm = GetPageModel<ContactPageViewModel>();
+            var vm = GetPageModel<ContactViewModel>();
 
             return CurrentTemplate(vm);
         }
@@ -36,7 +36,7 @@
         /// <returns>Success message</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AjaxSendEmail(ContactPageViewModel vm)
+        public ActionResult AjaxSendEmail(ContactViewModel vm)
         {
             if (ModelState.IsValid)
             {

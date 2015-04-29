@@ -1,10 +1,11 @@
 ﻿namespace UmbracoSandbox.Web.Models
 {
+    using System.Web;
     using Umbraco.Core.Models;
     using UmbracoSandbox.Web.Models.Interfaces;
     using Zone.UmbracoMapper;
 
-    public abstract class BasePageViewModel : BaseNodeViewModel, IMetadata, ITitle
+    public abstract class BasePageViewModel : BaseNodeViewModel, IBodyText, IMetadata, ITitle
     {
         #region Fields
 
@@ -137,8 +138,8 @@
             }
         }
 
-        #endregion
+        public IHtmlString BodyText { get; set; }
 
-        public IPublishedContent CurrentPage { get; set; }
+        #endregion
     }
 }

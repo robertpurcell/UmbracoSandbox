@@ -2591,6 +2591,7 @@ fieldset[disabled] .form-control {
 }
 textarea.form-control {
   height: auto;
+  min-height: 200px;
 }
 input[type="search"] {
   -webkit-appearance: none;
@@ -6605,6 +6606,8 @@ button.close {
     width:200px;
     height:200px;
     border-radius:50%;
+    border: 3px solid #FFF;
+    box-shadow: 0 0 2px #888;
     display:block;
     background-position-y:25%;
 }

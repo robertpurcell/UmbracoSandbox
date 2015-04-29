@@ -13,7 +13,5 @@
         public string ImageUrl { get; set; }
 
         public IHtmlString Standfirst { get; set; }
-
-        public IHtmlString BodyText { get; set; }
     }
 }
