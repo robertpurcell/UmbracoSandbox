@@ -3164,6 +3164,7 @@
     <Content Include="Views\Contact.cshtml" />
     <Content Include="Views\Home.cshtml" />
     <Content Include="Views\Listing.cshtml" />
+    <Content Include="Views\Shared\_BodyText.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Plugins\UmbracoForms\Data\prevaluesources\" />

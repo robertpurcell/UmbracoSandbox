@@ -4,9 +4,6 @@
 }
 
 <div class="container">
-    @Model.BodyText
-</div>
-<div class="container">
     <div id="result"></div>
     @using (Ajax.BeginForm("AjaxSendEmail", "Contact", new AjaxOptions { UpdateTargetId = "result" }, new { id = "contact-form" }))
     {
@@ -27,14 +24,14 @@
         </div>
         <div class="row">
             <div class="form-group col-sm-6">
-                @Html.LabelFor(m => m.Subject, new { @class = "control-label" })
+                @Html.RequiredLabelFor(m => m.Subject, new { @class = "control-label" })
                 @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Subject)
             </div>
         </div>
         <div class="row">
             <div class="form-group col-sm-6">
-                @Html.LabelFor(m => m.Message, new { @class = "control-label" })
+                @Html.RequiredLabelFor(m => m.Message, new { @class = "control-label" })
                 @Html.TextAreaFor(m => m.Message, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Message)
             </div>
