@@ -7,6 +7,7 @@
     using Umbraco.Core.Models;
     using Umbraco.Web;
     using UmbracoSandbox.Service.EmailService;
+    using UmbracoSandbox.Web.Helpers;
     using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
@@ -98,7 +99,7 @@
         {
             var items = new List<MenuItemModel>();
             var links = page.GetPropertyValue<MultiUrls>(alias);
-            if (links.Any())
+            if (links.IsAndAny())
             {
                 foreach (var link in links)
                 {

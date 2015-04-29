@@ -1,7 +1,6 @@
 ﻿namespace UmbracoSandbox.Web.Models
 {
     using System.Web;
-    using Umbraco.Core.Models;
     using UmbracoSandbox.Web.Models.Interfaces;
     using Zone.UmbracoMapper;
 

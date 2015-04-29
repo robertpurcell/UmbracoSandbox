@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using Umbraco.Core.Logging;
     using Umbraco.Web.Models.ContentEditing;
-    using Umbraco.Web.UI;
 
     public class NotificationHandler : DelegatingHandler
     {

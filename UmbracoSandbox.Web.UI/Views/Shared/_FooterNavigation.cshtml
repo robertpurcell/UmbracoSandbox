@@ -1,15 +1,22 @@
 ﻿@model INavigation
 
-@if (Model.Items.IsAndAny())
-{
-    <nav class="footer">
-        <ul>
-            @foreach (var item in Model.Items)
-            {
+<footer class="footer">
+    <div class="container">
+        <nav>
+            <ul class="nav nav-pills nav-justified">
                 <li>
-                    <a href="@item.Url" @Html.Attribute("target", item.Target ?? null)>@item.Name</a>
+                    <a href="@Url.Action("Home", "Navigation")">Copyright &copy @DateTime.Now.Year Robert Purcell.</a>
                 </li>
-            }
-        </ul>
-    </nav>
-}
+                @if (Model.Items.IsAndAny())
+                {
+                    foreach (var item in Model.Items)
+                    {
+                        <li>
+                            <a href="@item.Url" @Html.Attribute("target", item.Target ?? null)>@item.Name</a>
+                        </li>
+                    }
+                }
+            </ul>
+        </nav>
+    </div>
+</footer>
