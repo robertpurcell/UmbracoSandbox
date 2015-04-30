@@ -1,0 +1,10 @@
+﻿@model ModuleModel
+
+<div class="col-sm-6 col-md-4">
+    <h2>@Model.Title</h2>
+    <p>@Model.Summary</p>
+    @if (Model.Image != null)
+    {
+        @Html.DisplayImage(Model.Image, ImageCrops.Teaser)
+    }
+</div>

@@ -9,7 +9,7 @@
         {
             foreach (var item in Model.Items)
             {
-                @Html.Partial("_BlogPostModuleModel", item)
+                @Html.Partial(item.PartialName, item)
             }
         }
     </div>

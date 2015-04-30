@@ -9,14 +9,7 @@
         <div class="row">
             @foreach (var module in Model.Modules)
             {
-                <div class="col-xs-@(12/Model.Modules.Count())">
-                    <h2>@module.Title</h2>
-                    <p>@module.Summary</p>
-                    @if (module.Image != null)
-                    {
-                        @Html.DisplayImage(module.Image, ImageCrops.Teaser)
-                    }
-                </div>
+                @Html.Partial(module.PartialName, module)
             }
         </div>
     </div>
