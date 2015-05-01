@@ -249,6 +249,11 @@
     <Compile Include="Controllers\Content\ContactController.cs" />
     <Compile Include="Controllers\Content\HomeController.cs" />
     <Compile Include="Controllers\Content\ListingController.cs" />
+    <Compile Include="Handlers\BaseHandler.cs" />
+    <Compile Include="Handlers\IPageHandler.cs" />
+    <Compile Include="Handlers\INavigationHandler.cs" />
+    <Compile Include="Handlers\NavigationHandler.cs" />
+    <Compile Include="Handlers\PageHandler.cs" />
     <Compile Include="Infrastructure\ActionFilters\ExportModelStateToSessionAttribute.cs" />
     <Compile Include="Infrastructure\ActionFilters\ImportModelStateFromSessionAttribute.cs" />
     <Compile Include="Infrastructure\Config\SessionVariables.cs" />
@@ -260,7 +265,6 @@
     <Compile Include="Models\Interfaces\IBodyText.cs" />
     <Compile Include="Models\Modules\BlogPostModuleModel.cs" />
     <Compile Include="Models\Modules\ModuleModel.cs" />
-    <Compile Include="Controllers\Navigation\NavigationController.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\EnumerableHelper.cs" />

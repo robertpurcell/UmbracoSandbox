@@ -29,7 +29,7 @@
     </head>
     <body>
         @* NAVIGATION *@
-        @Html.Action("MainNavigation", "Navigation")
+        @Html.Partial("_MainNavigation", Model.MainNavigation)
 
         @* TITLE *@
         @Html.Partial("_Title")
@@ -41,6 +41,6 @@
         @RenderBody()
 
         @* FOOTER *@
-        @Html.Action("FooterNavigation", "Navigation")
+        @Html.Partial("_FooterNavigation", Model.FooterNavigation)
     </body>
 </html>

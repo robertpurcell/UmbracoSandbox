@@ -1,7 +1,7 @@
 ﻿namespace UmbracoSandbox.Web.Controllers
 {
     using System.Web.Mvc;
-    using UmbracoSandbox.Service.EmailService;
+    using UmbracoSandbox.Web.Handlers;
     using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
@@ -9,8 +9,8 @@
     {
         #region Constructor
 
-        public ArticleController(IUmbracoMapper mapper, IEmailService mailer)
-            : base(mapper, mailer)
+        public ArticleController(IUmbracoMapper mapper, IPageHandler handler)
+            : base(mapper, handler)
         {
         }
 
@@ -24,7 +24,7 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult Article()
         {
-            var vm = GetPageModel<ArticleViewModel>();
+            var vm = Handler.GetPageModel<ArticleViewModel>(CurrentPage);
 
             return CurrentTemplate(vm);
         }

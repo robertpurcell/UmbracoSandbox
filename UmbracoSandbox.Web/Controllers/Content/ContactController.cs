@@ -2,6 +2,7 @@
 {
     using System.Web.Mvc;
     using UmbracoSandbox.Service.EmailService;
+    using UmbracoSandbox.Web.Handlers;
     using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
@@ -9,10 +10,17 @@
     {
         #region Constructor
 
-        public ContactController(IUmbracoMapper mapper, IEmailService mailer)
-            : base(mapper, mailer)
+        public ContactController(IUmbracoMapper mapper, IPageHandler handler, IEmailService mailer)
+            : base(mapper, handler)
         {
+            Mailer = mailer;
         }
+
+        #endregion
+
+        #region Properties
+
+        protected IEmailService Mailer { get; private set; }
 
         #endregion
 
@@ -24,7 +32,7 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult Contact()
         {
-            var vm = GetPageModel<ContactViewModel>();
+            var vm = Handler.GetPageModel<ContactViewModel>(CurrentPage);
 
             return CurrentTemplate(vm);
         }

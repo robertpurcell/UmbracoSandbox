@@ -1,65 +1,52 @@
-﻿namespace UmbracoSandbox.Web.Controllers
+﻿namespace UmbracoSandbox.Web.Handlers
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
     using RJP.MultiUrlPicker.Models;
     using Umbraco.Core.Models;
     using Umbraco.Web;
-    using UmbracoSandbox.Service.EmailService;
     using UmbracoSandbox.Web.Helpers;
     using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
-    public class NavigationController : BaseController
+    public class NavigationHandler : BaseHandler, INavigationHandler
     {
         #region Constructor
 
-        public NavigationController(IUmbracoMapper mapper, IEmailService mailer)
-            : base(mapper, mailer)
+        public NavigationHandler(IUmbracoMapper mapper)
+            : base(mapper)
         {
         }
 
         #endregion
 
+        #region Properties
+
+        private IPublishedContent CurrentPage { get; set; }
+
+        private IPublishedContent Root { get; set; }
+
+        #endregion
+
         #region Action methods
 
-        /// <summary>
-        /// Render the main navigation
-        /// </summary>
-        /// <returns>Partial view result</returns>
-        [ChildActionOnly]
-        public PartialViewResult MainNavigation()
+        public NavigationModel GetMainNavigation(IPublishedContent currentPage)
         {
-            var vm = new NavigationModel
+            CurrentPage = currentPage;
+            Root = currentPage.AncestorOrSelf(1);
+
+            return new NavigationModel
             {
                 Items = GetMenuItems(Root, 0, 3)
             };
-
-            return PartialView("_MainNavigation", vm);
         }
 
-        /// <summary>
-        /// Render the footer navigation
-        /// </summary>
-        /// <returns>Partial view result</returns>
-        [ChildActionOnly]
-        public PartialViewResult FooterNavigation()
+        public NavigationModel GetFooterNavigation(IPublishedContent currentPage)
         {
-            var vm = GetNavigationModel(Root, "footerNavigation");
-
-            return PartialView("_FooterNavigation", vm);
-        }
-
-        /// <summary>
-        /// Applies the Home action
-        /// </summary>
-        /// <returns>Redirect to Home page</returns>
-        public ActionResult Home()
-        {
-            var url = Root == null ? string.Empty : Root.Url;
-
-            return Redirect(url);
+            return new NavigationModel
+            {
+                Items = GetMenuItems(currentPage, "footerNavigation")
+            };
         }
 
         #endregion
@@ -95,10 +82,10 @@
         /// <param name="page">Page containing the property</param>
         /// <param name="alias">Property alias</param>
         /// <returns>Navigation model</returns>
-        private NavigationModel GetNavigationModel(IPublishedContent page, string alias)
+        private IEnumerable<MenuItemModel> GetMenuItems(IPublishedContent page, string alias)
         {
             var items = new List<MenuItemModel>();
-            var links = page.GetPropertyValue<MultiUrls>(alias);
+            var links = page.GetPropertyValue<MultiUrls>(alias, true);
             if (links.IsAndAny())
             {
                 foreach (var link in links)
@@ -112,10 +99,7 @@
                 }
             }
 
-            return new NavigationModel
-            {
-                Items = items
-            };
+            return items;
         }
 
         /// <summary>

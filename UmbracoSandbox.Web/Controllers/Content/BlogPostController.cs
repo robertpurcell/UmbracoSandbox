@@ -2,7 +2,7 @@
 {
     using System.Web.Mvc;
     using GravatarHelper;
-    using UmbracoSandbox.Service.EmailService;
+    using UmbracoSandbox.Web.Handlers;
     using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
@@ -10,8 +10,8 @@
     {
         #region Constructor
 
-        public BlogPostController(IUmbracoMapper mapper, IEmailService mailer)
-            : base(mapper, mailer)
+        public BlogPostController(IUmbracoMapper mapper, IPageHandler handler)
+            : base(mapper, handler)
         {
         }
 
@@ -25,7 +25,7 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult BlogPost()
         {
-            var vm = GetPageModel<BlogPostViewModel>();
+            var vm = Handler.GetPageModel<BlogPostViewModel>(CurrentPage);
             vm.ImageUrl = GravatarHelper.CreateGravatarUrl("rpurcell@thisiszone.com", 200, string.Empty, null, null, null);
 
             return CurrentTemplate(vm);

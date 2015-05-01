@@ -9,6 +9,7 @@ namespace UmbracoSandbox.Web.UI.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using UmbracoSandbox.Service.EmailService;
+    using UmbracoSandbox.Web.Handlers;
     using UmbracoSandbox.Web.Helpers;
     using Zone.UmbracoMapper;
 
@@ -62,7 +63,9 @@ namespace UmbracoSandbox.Web.UI.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IPageHandler>().To<PageHandler>();
             kernel.Bind<IUmbracoMapper>().To<UmbracoMapper>();
+            kernel.Bind<INavigationHandler>().To<NavigationHandler>();
             kernel.Bind<IEmailService>().To<EmailService>()
                 .WithConstructorArgument("emailAddress", ConfigHelper.GetSettingAsString("app.emailAddress"))
                 .WithConstructorArgument("displayName", ConfigHelper.GetSettingAsString("app.displayName"));
