@@ -2,8 +2,12 @@
 {
     public static class SessionVariables
     {
+        #region Session variables
+
         public const string ModelState = "ModelState";
 
         public const string TempData = "TempData";
+
+        #endregion
     }
 }

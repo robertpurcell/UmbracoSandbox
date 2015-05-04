@@ -4,23 +4,24 @@
     using UmbracoSandbox.Service.EmailService;
     using UmbracoSandbox.Web.Handlers;
     using UmbracoSandbox.Web.Models;
-    using Zone.UmbracoMapper;
+    using UmbracoSandbox.Web.Models.Forms;
 
     public class ContactController : BaseController
     {
-        #region Constructor
+        #region Fields
 
-        public ContactController(IUmbracoMapper mapper, IPageHandler handler, IEmailService mailer)
-            : base(mapper, handler)
-        {
-            Mailer = mailer;
-        }
+        private readonly IPageHandler _handler;
+        private readonly IEmailService _mailer;
 
         #endregion
 
-        #region Properties
+        #region Constructor
 
-        protected IEmailService Mailer { get; private set; }
+        public ContactController(IPageHandler handler, IEmailService mailer)
+        {
+            _handler = handler;
+            _mailer = mailer;
+        }
 
         #endregion
 
@@ -32,7 +33,7 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult Contact()
         {
-            var vm = Handler.GetPageModel<ContactViewModel>(CurrentPage);
+            var vm = _handler.GetPageModel<ContactViewModel>(CurrentPage);
 
             return CurrentTemplate(vm);
         }
@@ -44,8 +45,9 @@
         /// <returns>Success message</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AjaxSendEmail(ContactViewModel vm)
+        public ActionResult AjaxSendEmail(ContactForm vm)
         {
+            ModelState.AddModelError(string.Empty, "No way");
             if (ModelState.IsValid)
             {
                 var email = new EmailDetail
@@ -56,12 +58,12 @@
                     Body = vm.Message,
                     IsBodyHtml = false
                 };
-                Mailer.Send(email);
+                _mailer.Send(email);
 
                 return Content("<div class=\"alert alert-success\" role=\"alert\"><strong>Thanks!</strong> I'll aim to reply to your message within 24 hours.</div>", "text/html");
             }
 
-            return CurrentUmbracoPage();
+            return PartialView("_ContactForm", vm);
         }
 
         #endregion

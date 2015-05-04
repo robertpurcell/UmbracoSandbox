@@ -1,6 +1,5 @@
 ﻿namespace UmbracoSandbox.Web.Handlers
 {
-    using System.Collections.Generic;
     using Umbraco.Core.Models;
     using UmbracoSandbox.Web.Models;
 

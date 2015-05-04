@@ -4,7 +4,7 @@
     using UmbracoSandbox.Web.Handlers;
     using UmbracoSandbox.Web.Models;
 
-    public class ArticleController : BaseController
+    public class ErrorController : BaseController
     {
         #region Fields
 
@@ -14,7 +14,7 @@
 
         #region Constructor
 
-        public ArticleController(IPageHandler handler)
+        public ErrorController(IPageHandler handler)
         {
             _handler = handler;
         }
@@ -27,9 +27,9 @@
         /// Populates the page view model and returns to the appropriate template
         /// </summary>
         /// <returns>ViewResult containing populated view model</returns>
-        public ActionResult Article()
+        public ActionResult Error()
         {
-            var vm = _handler.GetPageModel<ArticleViewModel>(CurrentPage);
+            var vm = _handler.GetPageModel<ErrorViewModel>(CurrentPage);
 
             return CurrentTemplate(vm);
         }

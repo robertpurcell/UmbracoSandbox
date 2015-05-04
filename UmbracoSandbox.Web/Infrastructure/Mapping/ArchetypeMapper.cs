@@ -11,6 +11,7 @@
     using UmbracoSandbox.Web.Helpers;
     using UmbracoSandbox.Web.Infrastructure.Config;
     using UmbracoSandbox.Web.Models;
+    using UmbracoSandbox.Web.Models.Modules;
     using Zone.UmbracoMapper;
 
     public class ArchetypeMapper
@@ -74,14 +75,13 @@
         public static IEnumerable<T> GetCollectionFromValue<T>(IUmbracoMapper mapper, object value)
             where T : BaseModuleModel, new()
         {
-            var result = new List<T>();
             if (value != null)
             {
-                var collection = (List<BaseModuleModel>)value;
-                result = TryConvert<T>(collection);
+                var collection = (IEnumerable<BaseModuleModel>)value;
+                return TryConvert<T>(collection);
             }
 
-            return result;
+            return null;
         }
 
         /// <summary>
@@ -210,10 +210,9 @@
         /// <typeparam name="T">The type</typeparam>
         /// <param name="collection">The base model collection</param>
         /// <returns>The more specific model collection</returns>
-        private static List<T> TryConvert<T>(IEnumerable<BaseModuleModel> collection)
+        private static IEnumerable<T> TryConvert<T>(IEnumerable<BaseModuleModel> collection)
             where T : BaseModuleModel, new()
         {
-            var result = new List<T>();
             if (collection != null)
             {
                 var type = typeof(T).FullName;
@@ -221,12 +220,10 @@
                 {
                     if (item.GetType().FullName == type)
                     {
-                        result.Add((T)item);
+                        yield return (T)item;
                     }
                 }
             }
-
-            return result;
         }
 
         /// <summary>

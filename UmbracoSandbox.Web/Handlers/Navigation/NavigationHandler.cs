@@ -11,6 +11,14 @@
 
     public class NavigationHandler : BaseHandler, INavigationHandler
     {
+        #region Fields
+
+        private IPublishedContent _currentPage;
+
+        private IPublishedContent _root;
+
+        #endregion
+
         #region Constructor
 
         public NavigationHandler(IUmbracoMapper mapper)
@@ -20,24 +28,16 @@
 
         #endregion
 
-        #region Properties
-
-        private IPublishedContent CurrentPage { get; set; }
-
-        private IPublishedContent Root { get; set; }
-
-        #endregion
-
         #region Action methods
 
         public NavigationModel GetMainNavigation(IPublishedContent currentPage)
         {
-            CurrentPage = currentPage;
-            Root = currentPage.AncestorOrSelf(1);
+            _currentPage = currentPage;
+            _root = currentPage.AncestorOrSelf(1);
 
             return new NavigationModel
             {
-                Items = GetMenuItems(Root, 0, 3)
+                Items = GetMenuItems(_root, 0, 3)
             };
         }
 
@@ -84,22 +84,19 @@
         /// <returns>Navigation model</returns>
         private IEnumerable<MenuItemModel> GetMenuItems(IPublishedContent page, string alias)
         {
-            var items = new List<MenuItemModel>();
             var links = page.GetPropertyValue<MultiUrls>(alias, true);
             if (links.IsAndAny())
             {
                 foreach (var link in links)
                 {
-                    items.Add(new MenuItemModel
+                    yield return new MenuItemModel
                     {
                         Name = link.Name,
                         Url = link.Url,
                         Target = link.Target
-                    });
+                    };
                 }
             }
-
-            return items;
         }
 
         /// <summary>
@@ -111,10 +108,10 @@
         {
             var item = new MenuItemModel
             {
-                IsCurrentPage = CurrentPage.Id.Equals(page.Id),
-                IsCurrentPageOrAncestor = CurrentPage.Id.Equals(page.Id)
+                IsCurrentPage = _currentPage.Id.Equals(page.Id),
+                IsCurrentPageOrAncestor = _currentPage.Id.Equals(page.Id)
                     ? true
-                    : CurrentPage.Path.Split(',').Where(i => !i.Equals(Root.Id.ToString())).Contains(page.Id.ToString())
+                    : _currentPage.Path.Split(',').Where(i => !i.Equals(_root.Id.ToString())).Contains(page.Id.ToString())
             };
             Mapper.Map(page, item);
 

@@ -2,17 +2,21 @@
 {
     using System.Web.Mvc;
     using UmbracoSandbox.Web.Handlers;
-    using UmbracoSandbox.Web.Models;
     using UmbracoSandbox.Web.Models.Modules;
-    using Zone.UmbracoMapper;
 
     public class ListingController : BaseController
     {
+        #region Fields
+
+        private readonly IListingPageHandler _handler;
+
+        #endregion
+
         #region Constructor
 
-        public ListingController(IUmbracoMapper mapper, IPageHandler handler)
-            : base(mapper, handler)
+        public ListingController(IListingPageHandler handler)
         {
+            _handler = handler;
         }
 
         #endregion
@@ -25,8 +29,7 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult Listing()
         {
-            var vm = Handler.GetPageModel<ListingViewModel>(CurrentPage);
-            Mapper.MapCollection<BlogPostModuleModel>(CurrentPage.Children, vm.Items);
+            var vm = _handler.GetListingPageModel<BlogPostModuleModel>(CurrentPage);
 
             return CurrentTemplate(vm);
         }

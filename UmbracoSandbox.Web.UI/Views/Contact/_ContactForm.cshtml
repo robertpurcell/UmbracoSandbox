@@ -1,0 +1,37 @@
+﻿@model ContactForm
+
+<div id="result"></div>
+@using (Ajax.BeginForm("AjaxSendEmail", "Contact", new AjaxOptions { UpdateTargetId = "form-container" }, new { id = "contact-form" }))
+{
+    @Html.ValidationSummary()
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="form-group col-sm-6 ">
+            @Html.RequiredLabelFor(m => m.FullName, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.FullName)
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            @Html.RequiredLabelFor(m => m.Email, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            @Html.RequiredLabelFor(m => m.Subject, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Subject)
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            @Html.RequiredLabelFor(m => m.Message, new { @class = "control-label" })
+            @Html.TextAreaFor(m => m.Message, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Message)
+        </div>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Send email" />
+}

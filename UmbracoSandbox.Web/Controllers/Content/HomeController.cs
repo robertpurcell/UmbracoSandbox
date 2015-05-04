@@ -3,15 +3,20 @@
     using System.Web.Mvc;
     using UmbracoSandbox.Web.Handlers;
     using UmbracoSandbox.Web.Models;
-    using Zone.UmbracoMapper;
 
     public class HomeController : BaseController
     {
+        #region Fields
+
+        private readonly IPageHandler _handler;
+
+        #endregion
+
         #region Constructor
 
-        public HomeController(IUmbracoMapper mapper, IPageHandler handler)
-            : base(mapper, handler)
+        public HomeController(IPageHandler handler)
         {
+            _handler = handler;
         }
 
         #endregion
@@ -24,7 +29,7 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult Home()
         {
-            var vm = Handler.GetPageModel<HomeViewModel>(CurrentPage);
+            var vm = _handler.GetPageModel<HomeViewModel>(CurrentPage);
 
             return CurrentTemplate(vm);
         }

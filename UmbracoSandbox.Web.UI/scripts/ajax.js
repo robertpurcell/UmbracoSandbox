@@ -7,7 +7,7 @@
                 type: this.method,
                 data: $(this).serialize(),
                 success: function (result) {
-                    $('#result').html(result);
+                    $('#form-container').html(result);
                     thisForm[0].reset();
                 }
             });
