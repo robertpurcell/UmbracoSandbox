@@ -146,6 +146,7 @@
 }
 .archetypeEditor .archetypeAddButton:hover {
   text-decoration: none;
+  cursor: pointer;
 }
 .archetypeEditor .archetypeAddButton:hover .archetypeAddButtonText {
   text-decoration: underline;
