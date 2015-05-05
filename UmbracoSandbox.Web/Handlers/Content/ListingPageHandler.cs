@@ -1,7 +1,9 @@
 ﻿namespace UmbracoSandbox.Web.Handlers
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Umbraco.Core.Models;
+    using Umbraco.Web;
     using UmbracoSandbox.Web.Models;
     using Zone.UmbracoMapper;
 
@@ -27,7 +29,7 @@
         public ListingViewModel GetListingPageModel<T>(IPublishedContent currentPage) where T : BaseModuleModel, new()
         {
             var model = GetPageModel<ListingViewModel>(currentPage);
-            Mapper.MapCollection<T>(currentPage.Children, model.Items as IList<T>);
+            Mapper.MapCollection<T>(currentPage.Children.Where(x => x.ShowToVisitor()), model.Items as IList<T>);
 
             return model;
         }
