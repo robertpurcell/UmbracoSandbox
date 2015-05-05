@@ -15,12 +15,11 @@
                     <a href="/" class="navbar-brand">Home</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
+                    <ul class="nav nav-pills navbar-nav">
                         @foreach (var item in Model.Items)
                         {
-                            <li>
-                                <a href="@item.Url" @Html.Attribute("class", item.IsCurrentPageOrAncestor ? "active" : null)
-                                   @Html.Attribute("target", item.Target ?? null)>@item.Name</a>
+                            <li @Html.Attribute("class", item.IsCurrentPageOrAncestor ? "active" : null)>
+                                <a href="@item.Url" @Html.Attribute("target", item.Target ?? null)>@item.Name</a>
                             </li>
                         }
                     </ul>

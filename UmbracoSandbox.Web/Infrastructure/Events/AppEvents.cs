@@ -20,7 +20,7 @@
         public void OnApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            ContentService.Publishing += UmbracoEvents.Publishing;
+            ContentService.Published += UmbracoEvents.Published;
         }
     }
 }
