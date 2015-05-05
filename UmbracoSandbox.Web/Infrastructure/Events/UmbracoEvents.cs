@@ -1,10 +1,8 @@
 ﻿namespace UmbracoSandbox.Web.Infrastructure.Events
 {
-    using System.Linq;
     using Umbraco.Core.Events;
     using Umbraco.Core.Models;
     using Umbraco.Core.Publishing;
-    using Umbraco.Core.Services;
     using Umbraco.Web;
     using UmbracoSandbox.Service.PublishingService;
     using UmbracoSandbox.Web.Helpers;
