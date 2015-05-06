@@ -1,7 +1,7 @@
 ﻿namespace UmbracoSandbox.Web.Controllers.Content
 {
     using System.Web.Mvc;
-    using UmbracoSandbox.Service.EmailService;
+    using UmbracoSandbox.Service.Email;
     using UmbracoSandbox.Web.Handlers.Content;
     using UmbracoSandbox.Web.Models.Content;
     using UmbracoSandbox.Web.Models.Forms;

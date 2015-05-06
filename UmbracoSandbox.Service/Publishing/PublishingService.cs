@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Service.PublishingService
+﻿namespace UmbracoSandbox.Service.Publishing
 {
     using System;
     using System.IO;
@@ -57,17 +57,26 @@
         private async Task<bool> PublishPage(string url, string filename)
         {
             var fullUrl = string.Format("http://{0}{1}", _errorPagePublishingHostName, url);
-            var builder = new UriBuilder(fullUrl);
-            builder.Query = "force-http-status=200";
+            var builder = new UriBuilder(fullUrl)
+            {
+                Query = "force-http-status=200"
+            };
             var request = (HttpWebRequest)WebRequest.Create(builder.ToString());
             try
             {
                 using (var response = await request.GetResponseAsync())
-                using (var reader = new StreamReader(response.GetResponseStream()))
                 {
-                    var content = reader.ReadToEnd();
-                    var path = Path.Combine(HttpRuntime.AppDomainAppPath, filename);
-                    System.IO.File.WriteAllText(path, content);
+                    if (response == null)
+                    {
+                        return false;
+                    }
+
+                    using (var reader = new StreamReader(response.GetResponseStream()))
+                    {
+                        var content = reader.ReadToEnd();
+                        var path = Path.Combine(HttpRuntime.AppDomainAppPath, filename);
+                        File.WriteAllText(path, content);
+                    }
                 }
 
                 return true;

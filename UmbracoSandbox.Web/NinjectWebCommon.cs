@@ -8,9 +8,8 @@ namespace UmbracoSandbox.Web
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
-    using UmbracoSandbox.Service.EmailService;
-    using UmbracoSandbox.Service.PublishingService;
-    using UmbracoSandbox.Web.Handlers;
+    using UmbracoSandbox.Service.Email;
+    using UmbracoSandbox.Service.Publishing;
     using UmbracoSandbox.Web.Handlers.Content;
     using UmbracoSandbox.Web.Handlers.Navigation;
     using UmbracoSandbox.Web.Helpers;

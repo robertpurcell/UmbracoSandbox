@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Service.EmailService
+﻿namespace UmbracoSandbox.Service.Email
 {
     using System.Collections.Generic;
 

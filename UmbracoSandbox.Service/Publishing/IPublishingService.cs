@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Service.PublishingService
+﻿namespace UmbracoSandbox.Service.Publishing
 {
     public interface IPublishingService
     {

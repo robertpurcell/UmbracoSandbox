@@ -1,4 +1,4 @@
-﻿namespace ProstateCancerUK.Contour.Workflows
+﻿namespace UmbracoSandbox.Forms.FieldPreValueSourceTypes
 {
     using System;
     using System.Collections.Generic;
@@ -12,9 +12,9 @@
     {
         public GetIdsAndValuesFromTextFile()
         {
-            this.Id = new Guid("ddb4b99f-8874-4eea-9ba1-305a35cd6993");
-            this.Name = "Get Ids and values from textfile";
-            this.Description = "Upload textfile that contains the prevalues (Id and value separated by tab, prevalues seperated by linebreak)";
+            Id = new Guid("ddb4b99f-8874-4eea-9ba1-305a35cd6993");
+            Name = "Get Ids and values from textfile";
+            Description = "Upload textfile that contains the prevalues (Id and value separated by tab, prevalues seperated by linebreak)";
         }
 
         [Setting("TextFile",
@@ -27,26 +27,30 @@
             var result = new List<PreValue>();
             try
             {
-                int sort = 0;
+                var sort = 0;
                 var tr = new StreamReader(HttpContext.Current.Server.MapPath(TextFile));
                 var values = tr.ReadToEnd().Split('\n');
-                foreach (string value in values)
+                foreach (var value in values)
                 {
-                    if (!string.IsNullOrEmpty(value.Trim()))
+                    if (string.IsNullOrEmpty(value.Trim()))
                     {
-                        var parts = value.Split('\t');
-                        var pv = new PreValue();
-                        pv.Id = parts[0];
-                        pv.Value = parts[1];
-                        pv.SortOrder = sort;
-                        result.Add(pv);
-                        sort++;
+                        continue;
                     }
+
+                    var parts = value.Split('\t');
+                    var pv = new PreValue
+                    {
+                        Id = parts[0],
+                        Value = parts[1],
+                        SortOrder = sort
+                    };
+                    result.Add(pv);
+                    sort++;
                 }
             }
             catch (Exception ex)
             {
-                LogHelper.Error<GetIdsAndValuesFromTextFile>("Get Ids and values from textfile provider: " + ex.ToString(), ex);
+                LogHelper.Error<GetIdsAndValuesFromTextFile>("Get Ids and values from textfile provider: " + ex, ex);
             }
 
             return result;

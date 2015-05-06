@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Service.EmailService
+﻿namespace UmbracoSandbox.Service.Email
 {
     using System;
     using System.Net.Mail;
@@ -9,6 +9,7 @@
     {
         #region Fields
 
+        private const string UrlPattern = @"(?<name>src|href)=""(?<value>/[^""]*)""";
         private readonly string _emailAddress;
         private readonly string _displayName;
 
@@ -123,7 +124,7 @@
         /// <param name="text">Input text</param>
         /// <param name="absoluteUrl">Base absolute URLs</param>
         /// <returns>Amended string</returns>
-        private string RelativeToAbsoluteUrls(string text = "", string absoluteUrl = "")
+        private static string RelativeToAbsoluteUrls(string text = "", string absoluteUrl = "")
         {
             if (string.IsNullOrEmpty(text))
             {
@@ -131,21 +132,20 @@
             }
 
             var baseUri = new Uri(absoluteUrl);
-            var pattern = @"(?<name>src|href)=""(?<value>/[^""]*)""";
             var matchEvaluator = new MatchEvaluator(
-                    match =>
+                match =>
+                {
+                    var value = match.Groups["value"].Value;
+                    Uri uri;
+                    if (!Uri.TryCreate(baseUri, value, out uri))
                     {
-                        var value = match.Groups["value"].Value;
-                        Uri uri;
-                        if (Uri.TryCreate(baseUri, value, out uri))
-                        {
-                            var name = match.Groups["name"].Value;
-                            return string.Format("{0}=\"{1}\"", name, uri.AbsoluteUri);
-                        }
-
                         return null;
-                    });
-            var adjustedHtml = Regex.Replace(text, pattern, matchEvaluator);
+                    }
+
+                    var name = match.Groups["name"].Value;
+                    return string.Format("{0}=\"{1}\"", name, uri.AbsoluteUri);
+                });
+            var adjustedHtml = Regex.Replace(text, UrlPattern, matchEvaluator);
 
             return adjustedHtml;
         }

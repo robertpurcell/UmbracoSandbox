@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Service.EmailService
+﻿namespace UmbracoSandbox.Service.Email
 {
     public interface IEmailService
     {

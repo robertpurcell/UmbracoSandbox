@@ -4,7 +4,7 @@
     using Umbraco.Core.Models;
     using Umbraco.Core.Publishing;
     using Umbraco.Web;
-    using UmbracoSandbox.Service.PublishingService;
+    using UmbracoSandbox.Service.Publishing;
     using UmbracoSandbox.Web.Helpers;
     using UmbracoSandbox.Web.Infrastructure.Config;
 
