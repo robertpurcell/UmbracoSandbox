@@ -66,12 +66,13 @@
             {
                 using (var response = await request.GetResponseAsync())
                 {
-                    if (response == null)
+                    var stream = response.GetResponseStream();
+                    if (stream == null)
                     {
                         return false;
                     }
 
-                    using (var reader = new StreamReader(response.GetResponseStream()))
+                    using (var reader = new StreamReader(stream))
                     {
                         var content = reader.ReadToEnd();
                         var path = Path.Combine(HttpRuntime.AppDomainAppPath, filename);

@@ -32,21 +32,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JustGiving.Api.Data.Sdk, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\justgiving-sdk.1.6.7\lib\Net35\JustGiving.Api.Data.Sdk.dll</HintPath>
+    <Reference Include="JustGiving.Api.Data.Sdk, Version=1.6.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\justgiving-sdk.1.6.11\lib\Net35\JustGiving.Api.Data.Sdk.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="JustGiving.Api.Sdk, Version=1.6.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\justgiving-sdk.1.6.7\lib\Net35\JustGiving.Api.Sdk.dll</HintPath>
+    <Reference Include="JustGiving.Api.Sdk, Version=1.6.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\justgiving-sdk.1.6.11\lib\Net35\JustGiving.Api.Sdk.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Http, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\justgiving-sdk.1.6.7\lib\Net35\Microsoft.Http.dll</HintPath>
+      <HintPath>..\packages\justgiving-sdk.1.6.11\lib\Net35\Microsoft.Http.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Http.Extensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\justgiving-sdk.1.6.7\lib\Net35\Microsoft.Http.Extensions.dll</HintPath>
+      <HintPath>..\packages\justgiving-sdk.1.6.11\lib\Net35\Microsoft.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

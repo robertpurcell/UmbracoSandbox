@@ -12,7 +12,7 @@
     {
         #region Fields
 
-        private string[] names =
+        private readonly string[] _names =
         {
             "Bobby Charlton", "Sylvester Stallone", "Maggie Thatcher", "Trevor McDonald",
             "Cameron Diaz", "Samuel L Jackson", "Andy Peters", "Tom Jones", "Andrew Lloyd Webber",
@@ -33,7 +33,7 @@
                 var donation = new OnlineDonation
                 {
                     Id = i,
-                    Name = names[i % names.Count()],
+                    Name = _names[i % _names.Count()],
                     Date = DateTime.Now.AddSeconds(-r.Next(0, 31536000)),
                     Amount = r.Next(0, 500)
                 };
