@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Web.Models
+﻿namespace UmbracoSandbox.Web.Models.Navigation
 {
     using System.Collections.Generic;
     using UmbracoSandbox.Web.Models.Interfaces;

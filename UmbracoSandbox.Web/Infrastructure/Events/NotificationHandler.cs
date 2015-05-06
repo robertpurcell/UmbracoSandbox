@@ -21,7 +21,7 @@
                         {
                             var data = response.Content;
                             var content = ((ObjectContent)data).Value as ContentItemDisplay;
-                            if (content.Notifications.Count > 0)
+                            if (content != null && content.Notifications.Count > 0)
                             {
                                 foreach (var notification in content.Notifications)
                                 {
@@ -38,7 +38,7 @@
                         }
 
                         return response;
-                    });
+                    }, cancellationToken);
             }
 
             return base.SendAsync(request, cancellationToken);

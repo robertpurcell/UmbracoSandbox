@@ -9,27 +9,27 @@
 
         public static int GetSettingAsInteger(string settingName)
         {
-            return GetSettingAsType<int>(settingName, obj => Convert.ToInt32(obj));
+            return GetSettingAsType(settingName, Convert.ToInt32);
         }
 
         public static string GetSettingAsString(string settingName)
         {
-            return GetSettingAsType<string>(settingName, obj => Convert.ToString(obj));
+            return GetSettingAsType(settingName, Convert.ToString);
         }
 
         public static bool GetSettingAsBoolean(string settingName)
         {
-            return GetSettingAsType<bool>(settingName, obj => Convert.ToBoolean(obj));
+            return GetSettingAsType(settingName, Convert.ToBoolean);
         }
 
         public static DateTime GetSettingAsDateTime(string settingName)
         {
-            return GetSettingAsType<DateTime>(settingName, obj => DateTime.Parse(obj as string));
+            return GetSettingAsType(settingName, obj => DateTime.Parse(obj as string));
         }
 
         public static decimal GetSettingAsDecimal(string settingName)
         {
-            return GetSettingAsType<decimal>(settingName, obj => Convert.ToDecimal(obj));
+            return GetSettingAsType(settingName, Convert.ToDecimal);
         }
 
         #endregion

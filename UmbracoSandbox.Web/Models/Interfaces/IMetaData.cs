@@ -1,5 +1,7 @@
 ﻿namespace UmbracoSandbox.Web.Models.Interfaces
 {
+    using UmbracoSandbox.Web.Models.Media;
+
     public interface IMetadata
     {
         string MetaTitle { get; }

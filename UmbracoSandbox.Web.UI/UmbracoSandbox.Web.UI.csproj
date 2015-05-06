@@ -458,6 +458,8 @@
     <Content Include="App_Plugins\Zone.LinkPicker\linkpicker.html" />
     <Content Include="App_Plugins\Zone.StyleDropdown\styledropdown.controller.js" />
     <Content Include="App_Plugins\Zone.StyleDropdown\styledropdown.html" />
+    <Content Include="App_Plugins\Zone.TimePicker\timepicker.controller.js" />
+    <Content Include="App_Plugins\Zone.TimePicker\timepicker.html" />
     <Content Include="config\grid.editors.config.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -491,6 +493,7 @@
     <Content Include="Scripts\ajax.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="App_Plugins\Zone.TimePicker\package.manifest" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />

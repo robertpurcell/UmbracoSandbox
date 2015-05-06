@@ -1,5 +1,6 @@
-﻿namespace UmbracoSandbox.Web.Models
+﻿namespace UmbracoSandbox.Web.Models.Content
 {
+    using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Forms;
 
     public class ContactViewModel : BasePageViewModel
@@ -13,6 +14,10 @@
 
         #endregion
 
+        #region Properties
+
         public ContactForm Form { get; set; }
+
+        #endregion
     }
 }

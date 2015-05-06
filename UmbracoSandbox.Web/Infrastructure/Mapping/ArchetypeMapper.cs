@@ -10,7 +10,7 @@
     using Umbraco.Web;
     using UmbracoSandbox.Web.Helpers;
     using UmbracoSandbox.Web.Infrastructure.Config;
-    using UmbracoSandbox.Web.Models;
+    using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Modules;
     using Zone.UmbracoMapper;
 
@@ -75,13 +75,13 @@
         public static IEnumerable<T> GetCollectionFromValue<T>(IUmbracoMapper mapper, object value)
             where T : BaseModuleModel, new()
         {
-            if (value != null)
+            if (value == null)
             {
-                var collection = (IEnumerable<BaseModuleModel>)value;
-                return TryConvert<T>(collection);
+                return null;
             }
 
-            return null;
+            var collection = (IEnumerable<BaseModuleModel>)value;
+            return TryConvert<T>(collection);
         }
 
         /// <summary>
@@ -213,15 +213,17 @@
         private static IEnumerable<T> TryConvert<T>(IEnumerable<BaseModuleModel> collection)
             where T : BaseModuleModel, new()
         {
-            if (collection != null)
+            if (collection == null)
             {
-                var type = typeof(T).FullName;
-                foreach (var item in collection.ToList())
+                yield break;
+            }
+
+            var type = typeof(T).FullName;
+            foreach (var item in collection.ToList())
+            {
+                if (item.GetType().FullName == type)
                 {
-                    if (item.GetType().FullName == type)
-                    {
-                        yield return (T)item;
-                    }
+                    yield return (T)item;
                 }
             }
         }
@@ -244,12 +246,14 @@
                     ? dictionary[contentAlias] as IEnumerable<IPublishedContent>
                     : null;
                 mapper.Map(dictionary, result);
-                if (contentToMapFrom != null)
+                if (contentToMapFrom == null)
                 {
-                    var contentResult = new T();
-                    mapper.Map(contentToMapFrom.SingleOrDefault(), contentResult);
-                    result = CopyValues<T>(result, contentResult);
+                    return result;
                 }
+
+                var contentResult = new T();
+                mapper.Map(contentToMapFrom.SingleOrDefault(), contentResult);
+                result = CopyValues<T>(result, contentResult);
 
                 return result;
             }

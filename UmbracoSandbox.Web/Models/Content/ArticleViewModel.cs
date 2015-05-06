@@ -1,5 +1,7 @@
-﻿namespace UmbracoSandbox.Web.Models
+﻿namespace UmbracoSandbox.Web.Models.Content
 {
+    using UmbracoSandbox.Web.Models.Base;
+
     public class ArticleViewModel : BasePageViewModel
     {
     }

@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Web.Models
+﻿namespace UmbracoSandbox.Web.Models.Media
 {
     using System.Collections.Generic;
 

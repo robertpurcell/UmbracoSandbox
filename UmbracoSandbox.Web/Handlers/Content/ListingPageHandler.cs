@@ -1,10 +1,12 @@
-﻿namespace UmbracoSandbox.Web.Handlers
+﻿namespace UmbracoSandbox.Web.Handlers.Content
 {
     using System.Collections.Generic;
     using System.Linq;
     using Umbraco.Core.Models;
     using Umbraco.Web;
-    using UmbracoSandbox.Web.Models;
+    using UmbracoSandbox.Web.Handlers.Navigation;
+    using UmbracoSandbox.Web.Models.Base;
+    using UmbracoSandbox.Web.Models.Content;
     using Zone.UmbracoMapper;
 
     public class ListingPageHandler : PageHandler, IListingPageHandler

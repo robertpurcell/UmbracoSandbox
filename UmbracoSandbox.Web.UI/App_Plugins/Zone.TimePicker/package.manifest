@@ -1,0 +1,14 @@
+﻿{
+	propertyEditors: [
+		{
+  			alias: "Zone.TimePicker",
+ 			name: "Time Picker",
+  			editor:	{
+          			view: "~/App_Plugins/Zone.TimePicker/timepicker.html"
+         	}
+		}
+	],
+    javascript: [
+        "~/App_Plugins/Zone.TimePicker/timepicker.controller.js"
+    ]
+}

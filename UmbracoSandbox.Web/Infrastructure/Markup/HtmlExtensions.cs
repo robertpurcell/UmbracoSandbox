@@ -21,17 +21,15 @@
         /// <returns>Validated output</returns>
         public static IHtmlString ValidateHtml(this HtmlHelper helper, string input)
         {
-            if (!string.IsNullOrEmpty(input))
+            if (string.IsNullOrEmpty(input))
             {
-                var htmlDoc = new HtmlDocument();
-                htmlDoc.LoadHtml(input);
-                if (htmlDoc.ParseErrors.Count() == 0)
-                {
-                    return new MvcHtmlString(input);
-                }
+                return null;
             }
 
-            return null;
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(input);
+
+            return !htmlDoc.ParseErrors.Any() ? new MvcHtmlString(input) : null;
         }
 
         /// <summary>

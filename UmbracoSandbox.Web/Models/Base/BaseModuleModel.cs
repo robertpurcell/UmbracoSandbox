@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Web.Models
+﻿namespace UmbracoSandbox.Web.Models.Base
 {
     public abstract class BaseModuleModel
     {
@@ -15,7 +15,7 @@
             get
             {
                 return string.IsNullOrEmpty(_alias)
-                    ? this.GetType().Name
+                    ? GetType().Name
                     : _alias;
             }
 

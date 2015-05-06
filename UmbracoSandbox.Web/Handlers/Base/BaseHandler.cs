@@ -1,10 +1,10 @@
-﻿namespace UmbracoSandbox.Web.Handlers
+﻿namespace UmbracoSandbox.Web.Handlers.Base
 {
     using System.Collections.Generic;
     using System.Reflection;
     using log4net;
     using UmbracoSandbox.Web.Infrastructure.Mapping;
-    using UmbracoSandbox.Web.Models;
+    using UmbracoSandbox.Web.Models.Media;
     using UmbracoSandbox.Web.Models.Modules;
     using Zone.GoogleMaps;
     using Zone.UmbracoMapper;
@@ -13,7 +13,7 @@
     {
         #region Constructor
 
-        public BaseHandler(IUmbracoMapper mapper)
+        protected BaseHandler(IUmbracoMapper mapper)
         {
             Mapper = mapper;
             Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);

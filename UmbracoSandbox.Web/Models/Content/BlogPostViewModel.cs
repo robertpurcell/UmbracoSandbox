@@ -1,7 +1,8 @@
-﻿namespace UmbracoSandbox.Web.Models
+﻿namespace UmbracoSandbox.Web.Models.Content
 {
     using System;
     using System.Web;
+    using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Interfaces;
 
     public class BlogPostViewModel : BasePageViewModel, IBlogTitle

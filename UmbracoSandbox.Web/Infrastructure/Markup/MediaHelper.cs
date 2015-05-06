@@ -2,7 +2,7 @@
 {
     using System.Web;
     using System.Web.Mvc;
-    using UmbracoSandbox.Web.Models;
+    using UmbracoSandbox.Web.Models.Media;
 
     public static class MediaHelper
     {

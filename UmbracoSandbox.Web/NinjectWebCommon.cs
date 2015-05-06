@@ -11,6 +11,8 @@ namespace UmbracoSandbox.Web
     using UmbracoSandbox.Service.EmailService;
     using UmbracoSandbox.Service.PublishingService;
     using UmbracoSandbox.Web.Handlers;
+    using UmbracoSandbox.Web.Handlers.Content;
+    using UmbracoSandbox.Web.Handlers.Navigation;
     using UmbracoSandbox.Web.Helpers;
     using Zone.UmbracoMapper;
 

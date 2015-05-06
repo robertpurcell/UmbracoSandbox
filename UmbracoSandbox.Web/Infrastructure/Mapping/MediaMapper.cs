@@ -6,7 +6,7 @@
     using Umbraco.Core.Logging;
     using Umbraco.Core.Models;
     using Umbraco.Web;
-    using UmbracoSandbox.Web.Models;
+    using UmbracoSandbox.Web.Models.Media;
     using Zone.UmbracoMapper;
 
     public class MediaMapper : BaseMapper

@@ -1,8 +1,10 @@
-﻿namespace UmbracoSandbox.Web.Handlers
+﻿namespace UmbracoSandbox.Web.Handlers.Content
 {
     using Umbraco.Core.Models;
     using Umbraco.Web;
-    using UmbracoSandbox.Web.Models;
+    using UmbracoSandbox.Web.Handlers.Base;
+    using UmbracoSandbox.Web.Handlers.Navigation;
+    using UmbracoSandbox.Web.Models.Base;
     using Zone.UmbracoMapper;
 
     public class PageHandler : BaseHandler, IPageHandler

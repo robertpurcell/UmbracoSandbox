@@ -1,7 +1,7 @@
-﻿namespace UmbracoSandbox.Web.Handlers
+﻿namespace UmbracoSandbox.Web.Handlers.Navigation
 {
     using Umbraco.Core.Models;
-    using UmbracoSandbox.Web.Models;
+    using UmbracoSandbox.Web.Models.Navigation;
 
     public interface INavigationHandler
     {

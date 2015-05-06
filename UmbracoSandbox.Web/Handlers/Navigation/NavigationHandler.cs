@@ -1,12 +1,13 @@
-﻿namespace UmbracoSandbox.Web.Handlers
+﻿namespace UmbracoSandbox.Web.Handlers.Navigation
 {
     using System.Collections.Generic;
     using System.Linq;
     using RJP.MultiUrlPicker.Models;
     using Umbraco.Core.Models;
     using Umbraco.Web;
+    using UmbracoSandbox.Web.Handlers.Base;
     using UmbracoSandbox.Web.Helpers;
-    using UmbracoSandbox.Web.Models;
+    using UmbracoSandbox.Web.Models.Navigation;
     using Zone.UmbracoMapper;
 
     public class NavigationHandler : BaseHandler, INavigationHandler

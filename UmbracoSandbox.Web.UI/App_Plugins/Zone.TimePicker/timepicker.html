@@ -1,0 +1,13 @@
+﻿<div class="umb-editor umb-datepicker" ng-controller="Zone.TimePickerController">
+    <div class="input-append date timepicker" style="position: relative;" id="timepicker{{model.alias}}">
+        <input name="timepicker" data-format="{{model.config.format}}" type="text"
+               ng-model="model.value"
+               ng-required="model.validation.mandatory"
+               val-server="value" />
+        <span class="add-on">
+            <i data-time-icon="icon-time"></i>
+        </span>
+    </div>
+    <span class="help-inline" val-msg-for="timepicker" val-toggle-msg="required">Required</span>
+    <span class="help-inline" val-msg-for="timepicker" val-toggle-msg="valServer">{{propertyForm.timepicker.errorMsg}}</span>
+</div>

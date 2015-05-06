@@ -30,8 +30,6 @@
                         }
 
                         break;
-                    default:
-                        break;
                 }
             }
         }

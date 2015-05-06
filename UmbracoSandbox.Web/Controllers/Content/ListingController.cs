@@ -1,7 +1,7 @@
-﻿namespace UmbracoSandbox.Web.Controllers
+﻿namespace UmbracoSandbox.Web.Controllers.Content
 {
     using System.Web.Mvc;
-    using UmbracoSandbox.Web.Handlers;
+    using UmbracoSandbox.Web.Handlers.Content;
     using UmbracoSandbox.Web.Models.Modules;
 
     public class ListingController : BaseController
