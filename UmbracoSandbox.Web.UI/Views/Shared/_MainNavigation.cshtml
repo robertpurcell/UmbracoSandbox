@@ -19,7 +19,7 @@
                         @foreach (var item in Model.Items)
                         {
                             <li @Html.Attribute("class", item.IsCurrentPageOrAncestor ? "active" : null)>
-                                <a href="@item.Url" @Html.Attribute("target", item.Target ?? null)>@item.Name</a>
+                                <a href="@item.Url" @Html.Attribute("target", item.Target)>@item.Name</a>
                             </li>
                         }
                     </ul>
