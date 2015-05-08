@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-sm-8">
             <h1>@Model.Title</h1>
-            <p class="text-muted">@DateHelper.FormatDate(Model.Date) by @Model.Author</p>
+            <p class="text-muted">@Html.DisplayFor(m => m.Date) by @Model.Author</p>
             <div class="lead text-muted">
                 @Model.Standfirst
             </div>

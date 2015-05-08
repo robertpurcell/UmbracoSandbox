@@ -304,7 +304,6 @@
     <Compile Include="Models\Modules\BlogPostModuleModel.cs" />
     <Compile Include="Models\Modules\ModuleModel.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
-    <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\EnumerableHelper.cs" />
     <Compile Include="Infrastructure\Config\ImageCrops.cs" />
     <Compile Include="Infrastructure\Config\ModelAliases.cs" />
