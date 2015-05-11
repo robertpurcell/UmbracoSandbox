@@ -2,6 +2,7 @@
 {
     using System.Web.Mvc;
     using GravatarHelper;
+    using UmbracoSandbox.Web.Controllers.Base;
     using UmbracoSandbox.Web.Handlers.Content;
     using UmbracoSandbox.Web.Models.Content;
 

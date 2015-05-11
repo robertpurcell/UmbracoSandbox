@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Web.Controllers
+﻿namespace UmbracoSandbox.Web.Controllers.Base
 {
     using System.Reflection;
     using System.Web.Mvc;

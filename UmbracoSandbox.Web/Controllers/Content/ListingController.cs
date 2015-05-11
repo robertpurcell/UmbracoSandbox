@@ -1,6 +1,7 @@
 ﻿namespace UmbracoSandbox.Web.Controllers.Content
 {
     using System.Web.Mvc;
+    using UmbracoSandbox.Web.Controllers.Base;
     using UmbracoSandbox.Web.Handlers.Content;
     using UmbracoSandbox.Web.Models.Modules;
 
