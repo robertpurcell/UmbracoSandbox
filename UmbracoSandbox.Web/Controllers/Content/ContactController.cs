@@ -48,7 +48,6 @@
         [ValidateAntiForgeryToken]
         public ActionResult AjaxSendEmail(ContactForm vm)
         {
-            ModelState.AddModelError(string.Empty, "No way");
             if (ModelState.IsValid)
             {
                 var email = new EmailDetail

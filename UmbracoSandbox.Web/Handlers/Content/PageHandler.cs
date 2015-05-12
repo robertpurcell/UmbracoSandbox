@@ -9,19 +9,19 @@
 
     public class PageHandler : BaseHandler, IPageHandler
     {
+        #region Fields
+
+        private readonly INavigationHandler _navigationHandler;
+
+        #endregion
+
         #region Constructor
 
         public PageHandler(IUmbracoMapper mapper, INavigationHandler navigationHandler)
             : base(mapper)
         {
-            NavigationHandler = navigationHandler;
+            _navigationHandler = navigationHandler;
         }
-
-        #endregion
-
-        #region Properties
-
-        protected INavigationHandler NavigationHandler { get; private set; }
 
         #endregion
 
@@ -38,8 +38,8 @@
             var model = new T
             {
                 AbsoluteUrl = currentPage.UrlAbsolute(),
-                MainNavigation = NavigationHandler.GetMainNavigation(currentPage),
-                FooterNavigation = NavigationHandler.GetFooterNavigation(currentPage)
+                MainNavigation = _navigationHandler.GetMainNavigation(currentPage),
+                FooterNavigation = _navigationHandler.GetFooterNavigation(currentPage)
             };
             Mapper.Map(currentPage, model);
 

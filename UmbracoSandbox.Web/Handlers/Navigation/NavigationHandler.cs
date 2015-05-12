@@ -15,7 +15,6 @@
         #region Fields
 
         private IPublishedContent _currentPage;
-
         private IPublishedContent _root;
 
         #endregion
@@ -83,20 +82,22 @@
         /// <param name="page">Page containing the property</param>
         /// <param name="alias">Property alias</param>
         /// <returns>Navigation model</returns>
-        private IEnumerable<MenuItemModel> GetMenuItems(IPublishedContent page, string alias)
+        private static IEnumerable<MenuItemModel> GetMenuItems(IPublishedContent page, string alias)
         {
             var links = page.GetPropertyValue<MultiUrls>(alias, true);
-            if (links.IsAndAny())
+            if (!links.IsAndAny())
             {
-                foreach (var link in links)
+                yield break;
+            }
+
+            foreach (var link in links)
+            {
+                yield return new MenuItemModel
                 {
-                    yield return new MenuItemModel
-                    {
-                        Name = link.Name,
-                        Url = link.Url,
-                        Target = link.Target
-                    };
-                }
+                    Name = link.Name,
+                    Url = link.Url,
+                    Target = link.Target
+                };
             }
         }
 
@@ -111,8 +112,7 @@
             {
                 IsCurrentPage = _currentPage.Id.Equals(page.Id),
                 IsCurrentPageOrAncestor = _currentPage.Id.Equals(page.Id)
-                    ? true
-                    : _currentPage.Path.Split(',').Where(i => !i.Equals(_root.Id.ToString())).Contains(page.Id.ToString())
+                    || _currentPage.Path.Split(',').Where(i => !i.Equals(_root.Id.ToString())).Contains(page.Id.ToString())
             };
             Mapper.Map(page, item);
 

@@ -1,6 +1,5 @@
 ﻿namespace UmbracoSandbox.Service.Publishing
 {
-    using System;
     using System.IO;
     using System.Net;
     using System.Threading.Tasks;
@@ -54,19 +53,21 @@
 
         #region Helpers
 
+        /// <summary>
+        /// Read the HTML from the page at the given URL and save it to an HTML file
+        /// </summary>
+        /// <param name="url">The URL of the page</param>
+        /// <param name="filename">The name of the destination file</param>
+        /// <returns></returns>
         private async Task<bool> PublishPage(string url, string filename)
         {
             var fullUrl = string.Format("http://{0}{1}", _errorPagePublishingHostName, url);
-            var builder = new UriBuilder(fullUrl)
-            {
-                Query = "force-http-status=200"
-            };
-            var request = (HttpWebRequest)WebRequest.Create(builder.ToString());
+            var request = (HttpWebRequest)WebRequest.Create(fullUrl);
             try
             {
                 using (var response = await request.GetResponseAsync())
+                using (var stream = response.GetResponseStream())
                 {
-                    var stream = response.GetResponseStream();
                     if (stream == null)
                     {
                         return false;

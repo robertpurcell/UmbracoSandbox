@@ -4,8 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Text;
     using System.Web;
     using System.Web.Mvc;
+    using System.Web.Mvc.Html;
     using System.Web.Routing;
     using HtmlAgilityPack;
 
@@ -84,6 +86,34 @@
             tag.SetInnerText(labelText);
 
             return MvcHtmlString.Create(tag.ToString(TagRenderMode.Normal));
+        }
+
+        /// <summary>
+        /// Radio button list for
+        /// </summary>
+        /// <typeparam name="TModel">Model type</typeparam>
+        /// <typeparam name="TProperty">Property type</typeparam>
+        /// <param name="helper">Html helper</param>
+        /// <param name="expression">An expression that identifies the property to display</param>
+        /// <param name="selectListItems">The select list items</param>
+        /// <returns>An HTML string containing radio button inputs and their associated label elements</returns>
+        public static IHtmlString RadioButtonListFor<TModel, TProperty>(this HtmlHelper<TModel> helper, Expression<Func<TModel, TProperty>> expression, IEnumerable<SelectListItem> selectListItems)
+        {
+            if (selectListItems == null)
+            {
+                return MvcHtmlString.Empty;
+            }
+
+            var metadata = ModelMetadata.FromLambdaExpression(expression, helper.ViewData);
+            var sb = new StringBuilder();
+            foreach (var item in selectListItems)
+            {
+                var id = string.Format("{0}_{1}", metadata.PropertyName, item.Value);
+                var radio = helper.RadioButtonFor(expression, item.Value, new { id }).ToHtmlString();
+                sb.AppendFormat(@"<label for=""{0}"">{1}</label> {2}", id, HttpUtility.HtmlEncode(item.Text), radio);
+            }
+
+            return MvcHtmlString.Create(sb.ToString());
         }
 
         #endregion

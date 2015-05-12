@@ -1,0 +1,75 @@
+﻿@model RegistrationForm
+
+<div id="result"></div>
+@using (Html.BeginUmbracoForm<RegistrationController>("Register", new { id = "contact-form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-sm-6 ">
+            @Html.ValidationSummary()
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6 ">
+            @Html.RequiredLabelFor(m => m.TextBox, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.TextBox, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.TextBox)
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            @Html.RequiredLabelFor(m => m.Email, new {@class = "control-label"})
+            @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            @Html.RequiredLabelFor(m => m.Password, new {@class = "control-label"})
+            @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            @Html.LabelFor(m => m.SelectedDay, new { @class = "control-label" })
+            @Html.DropDownListFor(m => m.SelectedDay, Model.Days, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            @Html.LabelFor(m => m.SelectedMonth, new {@class = "control-label"})
+            @foreach (var month in Model.Months)
+            {
+                <div class="radio">
+                    <label>
+                        @Html.RadioButtonFor(m => m.SelectedMonth, month.Value, new {id = "month-" + month.Value})@month.Text
+                    </label>
+                </div>
+            }
+        </div>
+    </div>
+    @*<div class="row">
+        <div class="form-group col-sm-6">
+            @Html.LabelFor(m => m.SelectedMonth, new { @class = "control-label" })
+            @foreach (var year in Model.Years)
+            {
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(m => m.SelectedMonth, month.Value, new { id = "month-" + month.Value })@month.Text
+                    </label>
+                </div>
+            }
+        </div>
+    </div>*@
+    <div class="row">
+        <div class="form-group col-sm-6">
+            <div class="checkbox">
+                <label>
+                    @Html.CheckBoxFor(m => m.CheckBox)@Html.DisplayNameFor(m => m.CheckBox)
+                </label>
+            </div>
+        </div>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Send email" />
+}

@@ -28,6 +28,7 @@
                                     if (notification.Header.Equals("Content published"))
                                     {
                                         notification.Message = "Thanks for publishing!";
+                                        notification.NotificationType = Umbraco.Web.UI.SpeechBubbleIcon.Error;
                                     }
                                 }
                             }
