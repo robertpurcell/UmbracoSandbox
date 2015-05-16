@@ -33,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Archetype, Version=1.7.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Archetype.1.7.4\lib\net40\Archetype.dll</HintPath>
+    <Reference Include="Archetype, Version=1.7.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Archetype.1.7.5\lib\net40\Archetype.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="AutoMapper">
