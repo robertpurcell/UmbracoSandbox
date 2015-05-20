@@ -45,12 +45,11 @@
                 Value = i.ToString(),
                 Text = name
             }).ToArray();
-            //var years = Enumerable.Range(DateTime.Now.Year, -10).Select((name, i) => new SelectListItem
-            //{
-            //    Value = name.ToString(),
-            //    Text = name.ToString()
-            //});
-            //vm.Form.Years = new MultiSelectList(years, "Value", "Key");
+            vm.Form.Years = Enumerable.Range(DateTime.Now.Year, 10).Select((name, i) => new SelectListItem
+            {
+                Value = name.ToString(),
+                Text = name.ToString()
+            }).ToArray();
 
             return CurrentTemplate(vm);
         }

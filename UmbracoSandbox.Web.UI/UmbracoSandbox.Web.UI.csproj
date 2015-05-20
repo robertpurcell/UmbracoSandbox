@@ -3204,6 +3204,8 @@
     <Content Include="umbraco\lib\jquery\jquery.min.map" />
     <Content Include="umbraco\lib\underscore\underscore-min.map" />
     <Content Include="umbraco\Translation\translationTasks.dtd" />
+    <Content Include="Views\Login.cshtml" />
+    <Content Include="Views\Login\_LoginForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Plugins\UmbracoForms\Data\prevaluesources\" />

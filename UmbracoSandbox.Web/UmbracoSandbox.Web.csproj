@@ -275,6 +275,7 @@
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\Content\ArticleController.cs" />
     <Compile Include="Controllers\Content\BlogPostController.cs" />
+    <Compile Include="Controllers\Content\LoginController.cs" />
     <Compile Include="Controllers\Content\RegistrationController.cs" />
     <Compile Include="Controllers\Content\ContactController.cs" />
     <Compile Include="Controllers\Content\HomeController.cs" />
@@ -301,8 +302,10 @@
     <Compile Include="Infrastructure\Markup\MvcLabel.cs" />
     <Compile Include="Infrastructure\Routing\RouteConfig.cs" />
     <Compile Include="Models\Content\ArticleViewModel.cs" />
+    <Compile Include="Models\Content\LoginViewModel.cs" />
     <Compile Include="Models\Content\RegistrationViewModel.cs" />
     <Compile Include="Models\Content\ErrorViewModel.cs" />
+    <Compile Include="Models\Forms\LoginForm.cs" />
     <Compile Include="Models\Forms\RegistrationForm.cs" />
     <Compile Include="Models\Interfaces\IBodyText.cs" />
     <Compile Include="Models\Forms\ContactForm.cs" />

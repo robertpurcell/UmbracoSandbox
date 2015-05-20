@@ -58,7 +58,7 @@
         /// </summary>
         /// <param name="url">The URL of the page</param>
         /// <param name="filename">The name of the destination file</param>
-        /// <returns></returns>
+        /// <returns>True if successful</returns>
         private async Task<bool> PublishPage(string url, string filename)
         {
             var fullUrl = string.Format("http://{0}{1}", _errorPagePublishingHostName, url);

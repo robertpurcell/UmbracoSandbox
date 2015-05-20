@@ -1,0 +1,32 @@
+﻿@model LoginForm
+
+@if (TempData["status"] != null)
+{
+    <p>@TempData["status"]</p>
+}
+<div id="result"></div>
+@using (Html.BeginUmbracoForm<LoginController>("LoginMember", new { id = "contact-form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-sm-6 ">
+            @Html.ValidationSummary()
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            @Html.RequiredLabelFor(m => m.Email, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            @Html.RequiredLabelFor(m => m.Password, new {@class = "control-label"})
+            @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.ReturnUrl)
+    <input type="submit" class="btn btn-primary" value="Login" />
+}

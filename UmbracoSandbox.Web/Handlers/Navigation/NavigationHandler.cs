@@ -28,8 +28,13 @@
 
         #endregion
 
-        #region Action methods
+        #region Methods
 
+        /// <summary>
+        /// Method to get the model for the main navigation
+        /// </summary>
+        /// <param name="currentPage">Current page</param>
+        /// <returns>Navigation model</returns>
         public NavigationModel GetMainNavigation(IPublishedContent currentPage)
         {
             _currentPage = currentPage;
@@ -41,6 +46,11 @@
             };
         }
 
+        /// <summary>
+        /// Method to get the model for the footer navigation
+        /// </summary>
+        /// <param name="currentPage">Current page</param>
+        /// <returns>Navigation model</returns>
         public NavigationModel GetFooterNavigation(IPublishedContent currentPage)
         {
             return new NavigationModel
@@ -52,29 +62,6 @@
         #endregion
 
         #region Helpers
-
-        /// <summary>
-        /// Get the menu items by parent node
-        /// </summary>
-        /// <param name="parent">Parent node</param>
-        /// <param name="currentLevel">Current level</param>
-        /// <param name="maxLevel">Max level</param>
-        /// <returns>List of menu items</returns>
-        private IEnumerable<MenuItemModel> GetMenuItems(IPublishedContent parent, int currentLevel, int maxLevel)
-        {
-            return parent.Children
-                .Where(x => !x.GetPropertyValue<bool>("umbracoNaviHide") && x.TemplateId != 0)
-                .Select(x =>
-                    {
-                        var item = MapItem(x);
-                        if (currentLevel < maxLevel && !x.GetPropertyValue<bool>("hideSubNavigation"))
-                        {
-                            item.Items = GetMenuItems(x, currentLevel + 1, maxLevel);
-                        }
-
-                        return item;
-                    });
-        }
 
         /// <summary>
         /// Get the menu items for a link picker property
@@ -99,6 +86,29 @@
                     Target = link.Target
                 };
             }
+        }
+
+        /// <summary>
+        /// Get the menu items by parent node
+        /// </summary>
+        /// <param name="parent">Parent node</param>
+        /// <param name="currentLevel">Current level</param>
+        /// <param name="maxLevel">Max level</param>
+        /// <returns>List of menu items</returns>
+        private IEnumerable<MenuItemModel> GetMenuItems(IPublishedContent parent, int currentLevel, int maxLevel)
+        {
+            return parent.Children
+                .Where(x => !x.GetPropertyValue<bool>("umbracoNaviHide") && x.TemplateId != 0)
+                .Select(x =>
+                    {
+                        var item = MapItem(x);
+                        if (currentLevel < maxLevel && !x.GetPropertyValue<bool>("hideSubNavigation"))
+                        {
+                            item.Items = GetMenuItems(x, currentLevel + 1, maxLevel);
+                        }
+
+                        return item;
+                    });
         }
 
         /// <summary>

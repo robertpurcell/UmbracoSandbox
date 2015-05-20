@@ -18,15 +18,15 @@
     </div>
     <div class="row">
         <div class="form-group col-sm-6">
-            @Html.RequiredLabelFor(m => m.Email, new {@class = "control-label"})
-            @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})
+            @Html.RequiredLabelFor(m => m.Email, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Email)
         </div>
     </div>
     <div class="row">
         <div class="form-group col-sm-6">
-            @Html.RequiredLabelFor(m => m.Password, new {@class = "control-label"})
-            @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
+            @Html.RequiredLabelFor(m => m.Password, new { @class = "control-label" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Password)
         </div>
     </div>
@@ -38,30 +38,34 @@
     </div>
     <div class="row">
         <div class="form-group col-sm-6">
-            @Html.LabelFor(m => m.SelectedMonth, new {@class = "control-label"})
-            @foreach (var month in Model.Months)
-            {
-                <div class="radio">
-                    <label>
-                        @Html.RadioButtonFor(m => m.SelectedMonth, month.Value, new {id = "month-" + month.Value})@month.Text
-                    </label>
-                </div>
-            }
+            <fieldset>
+                <legend>@Html.DisplayNameFor(m => m.SelectedMonth)</legend>
+                @foreach (var month in Model.Months)
+                {
+                    <div class="radio">
+                        <label>
+                            @Html.RadioButtonFor(m => m.SelectedMonth, month.Value, new {id = "month-" + month.Value})@month.Text
+                        </label>
+                    </div>
+                }
+            </fieldset>
         </div>
     </div>
-    @*<div class="row">
+    <div class="row">
         <div class="form-group col-sm-6">
-            @Html.LabelFor(m => m.SelectedMonth, new { @class = "control-label" })
-            @foreach (var year in Model.Years)
-            {
-                <div class="checkbox">
-                    <label>
-                        @Html.CheckBoxFor(m => m.SelectedMonth, month.Value, new { id = "month-" + month.Value })@month.Text
-                    </label>
-                </div>
-            }
+            <fieldset>
+                <legend>@Html.DisplayNameFor(m => m.Years)</legend>
+                @for (var i = 0; i < Model.Years.Count(); i++)
+                {
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(m => m.Years[i].Selected, new {id = "year-" + Model.Years[i].Value})@Model.Years[i].Text
+                        </label>
+                    </div>
+                }
+            </fieldset>
         </div>
-    </div>*@
+    </div>
     <div class="row">
         <div class="form-group col-sm-6">
             <div class="checkbox">

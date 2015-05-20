@@ -6,41 +6,41 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en">
- <!--<![endif]-->
-    <head>
-        @* METADATA *@
-        <title>@Model.MetaTitle@Model.MetaTitleSuffix</title>
-        @Html.Partial("_Metadata")
+<!--<![endif]-->
+<head>
+    @* METADATA *@
+    <title>@Model.MetaTitle@Model.MetaTitleSuffix</title>
+    @Html.Partial("_Metadata")
 
-        @* JAVASCRIPT *@
-        <script src="@Url.Content("~/Scripts/jquery-2.1.3.js")"></script>
-        <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
-        <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
-        <script src="@Url.Content("~/Scripts/validation.js")"></script>
-        <script src="@Url.Content("~/Scripts/ajax.js")"></script>
-        <script src="@Url.Content("~/Scripts/bootstrap.js")"></script>
+    @* JAVASCRIPT *@
+    <script src="@Url.Content("~/Scripts/jquery-2.1.3.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/validation.js")"></script>
+    <script src="@Url.Content("~/Scripts/ajax.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.js")"></script>
 
-        @* CSS - Colour hex: 246C60 *@
-        <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css">
-        <link href="http://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet" type="text/css">
+    @* CSS - Colour hex: 246C60 *@
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet" type="text/css">
 
-        @* HEAD *@
-        @RenderSection("head", false)
-    </head>
-    <body>
-        @* NAVIGATION *@
-        @Html.Partial("_MainNavigation", Model.MainNavigation)
+    @* HEAD *@
+    @RenderSection("head", false)
+</head>
+<body>
+    @* HEADER *@
+    @Html.Partial("_MainNavigation", Model.MainNavigation)
 
-        @* TITLE *@
-        @Html.Partial("_Title")
+    @* TITLE *@
+    @Html.Partial("_Title")
 
-        @* BODY TEXT *@
-        @Html.Partial("_BodyText")
+    @* BODY TEXT *@
+    @Html.Partial("_BodyText")
 
-        @* BODY *@
-        @RenderBody()
+    @* BODY *@
+    @RenderBody()
 
-        @* FOOTER *@
-        @Html.Partial("_FooterNavigation", Model.FooterNavigation)
-    </body>
+    @* FOOTER *@
+    @Html.Partial("_FooterNavigation", Model.FooterNavigation)
+</body>
 </html>
