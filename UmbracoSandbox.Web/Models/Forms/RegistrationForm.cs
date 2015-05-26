@@ -7,10 +7,10 @@
     [Serializable]
     public class RegistrationForm
     {
-        [Required(ErrorMessage = "Field is required.")]
-        [Display(Name = "Text box")]
-        [StringLength(254, ErrorMessage = "Must be fewer than 254 characters in length.")]
-        public string TextBox { get; set; }
+        [Required(ErrorMessage = "Please enter your name.")]
+        [Display(Name = "Name")]
+        [StringLength(254, ErrorMessage = "Your name must be fewer than 254 characters in length.")]
+        public string Name { get; set; }
 
         [Required(ErrorMessage = "Please enter your email address.")]
         [Display(Name = "Email")]

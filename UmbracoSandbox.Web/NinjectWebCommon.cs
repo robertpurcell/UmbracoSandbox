@@ -75,6 +75,7 @@ namespace UmbracoSandbox.Web
             kernel.Bind<IUmbracoMapper>().To<UmbracoMapper>();
             kernel.Bind<INavigationHandler>().To<NavigationHandler>();
             kernel.Bind<IListingPageHandler>().To<ListingPageHandler>();
+            kernel.Bind<IRegistrationPageHandler>().To<RegistrationPageHandler>();
             kernel.Bind<IEmailService>().To<EmailService>()
                 .WithConstructorArgument("emailAddress", ConfigHelper.GetSettingAsString("app.emailAddress"))
                 .WithConstructorArgument("displayName", ConfigHelper.GetSettingAsString("app.displayName"));

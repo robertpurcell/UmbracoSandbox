@@ -48,22 +48,22 @@
         [ValidateAntiForgeryToken]
         public ActionResult AjaxSendEmail(ContactForm vm)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var email = new EmailDetail
-                {
-                    From = vm.Email,
-                    DisplayName = vm.FullName,
-                    Subject = vm.Subject,
-                    Body = vm.Message,
-                    IsBodyHtml = false
-                };
-                _mailer.Send(email);
-
-                return Content("<div class=\"alert alert-success\" role=\"alert\"><strong>Thanks!</strong> I'll aim to reply to your message within 24 hours.</div>", "text/html");
+                return PartialView("_ContactForm", vm);
             }
 
-            return PartialView("_ContactForm", vm);
+            var email = new EmailDetail
+            {
+                From = vm.Email,
+                DisplayName = vm.FullName,
+                Subject = vm.Subject,
+                Body = vm.Message,
+                IsBodyHtml = false
+            };
+            _mailer.Send(email);
+
+            return Content("<div class=\"alert alert-success\" role=\"alert\"><strong>Thanks!</strong> I'll aim to reply to your message within 24 hours.</div>", "text/html");
         }
 
         #endregion
