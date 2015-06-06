@@ -33,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Archetype, Version=1.7.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Archetype.1.7.5\lib\net40\Archetype.dll</HintPath>
+    <Reference Include="Archetype, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Archetype.1.8\lib\net40\Archetype.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="AutoMapper">
@@ -261,9 +261,9 @@
       <HintPath>..\packages\WebActivatorEx.2.0.5\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Zone.UmbracoMapper, Version=1.4.17.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\UmbracoMapper.1.4.17\lib\Zone.UmbracoMapper.dll</HintPath>
+    <Reference Include="Zone.UmbracoMapper, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UmbracoMapper.1.5.0\lib\Zone.UmbracoMapper.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Zone.UmbracoPersonalisationGroups">
       <HintPath>..\lib\Personalisation Groups\Zone.UmbracoPersonalisationGroups.dll</HintPath>
@@ -312,6 +312,7 @@
     <Compile Include="Models\Forms\RegistrationForm.cs" />
     <Compile Include="Models\Interfaces\IBodyText.cs" />
     <Compile Include="Models\Forms\ContactForm.cs" />
+    <Compile Include="Models\Interfaces\IMainNavigation.cs" />
     <Compile Include="Models\Modules\BlogPostModuleModel.cs" />
     <Compile Include="Models\Modules\ModuleModel.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
@@ -340,6 +341,7 @@
     <Compile Include="Models\Media\ImageModel.cs" />
     <Compile Include="Models\Media\FileModel.cs" />
     <Compile Include="Models\Navigation\MenuItemModel.cs" />
+    <Compile Include="Models\Navigation\MainNavigationModel.cs" />
     <Compile Include="Models\Navigation\NavigationModel.cs" />
     <Compile Include="NinjectWebCommon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

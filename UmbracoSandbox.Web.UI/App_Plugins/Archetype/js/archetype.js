@@ -1,4 +1,4 @@
-angular.module("umbraco").controller("Imulus.ArchetypeController", function ($scope, $http, assetsService, angularHelper, notificationsService, $timeout, entityResource) {
+angular.module("umbraco").controller("Imulus.ArchetypeController", function ($scope, $http, assetsService, angularHelper, notificationsService, $timeout, entityResource, archetypeService, archetypeLabelService, archetypeCacheService, archetypePropertyEditorResource) {
 
     //$scope.model.value = "";
     $scope.model.hideLabel = $scope.model.config.hideLabel == 1;
@@ -17,77 +17,26 @@ angular.module("umbraco").controller("Imulus.ArchetypeController", function ($sc
 
     init();
 
-    //hold references to helper resources
+    //hold references to helper resources 
     $scope.resources = {
-        entityResource: entityResource
+        entityResource: entityResource,
+        archetypePropertyEditorResource: archetypePropertyEditorResource
+    }
+
+    //hold references to helper services 
+    $scope.services = {
+        archetypeService: archetypeService,
+        archetypeLabelService: archetypeLabelService,
+        archetypeCacheService: archetypeCacheService
     }
 
     //helper to get $eval the labelTemplate
-    $scope.getFieldsetTitle = function(fieldsetConfigModel, fieldsetIndex) {
-        if(!fieldsetConfigModel)
-            return "";
-        var fieldset = $scope.model.value.fieldsets[fieldsetIndex];
-        var fieldsetConfig = $scope.getConfigFieldsetByAlias(fieldset.alias);
-        var template = fieldsetConfigModel.labelTemplate;
-
-        if (template.length < 1)
-            return fieldsetConfig.label;
-
-        var rgx = /{{(.*?)}}*/g;
-        var results;
-        var parsedTemplate = template;
-
-        while ((results = rgx.exec(template)) !== null) {
-            // split the template in case it consists of multiple property aliases and/or functions
-            var parts = results[1].split("|");
-            var templateLabelValue = "";
-            for(var i = 0; i < parts.length; i++) {
-                // stop looking for a template label value if a previous template part already yielded a value
-                if(templateLabelValue != "") {
-                    break;
-                }
-                
-                var part = parts[i];
-                
-                //test for function
-                var beginIndexOf = part.indexOf("(");
-                var endIndexOf = part.indexOf(")");
-
-                if(beginIndexOf != -1 && endIndexOf != -1)
-                {
-                    var functionName = part.substring(0, beginIndexOf);
-                    var propertyAlias = part.substring(beginIndexOf + 1, endIndexOf);
-                    templateLabelValue = executeFunctionByName(functionName, window, $scope.getPropertyValueByAlias(fieldset, propertyAlias), $scope);
-                }
-                else {
-                    propertyAlias = part;
-                    templateLabelValue = $scope.getPropertyValueByAlias(fieldset, propertyAlias);
-                }                
-            }
-            parsedTemplate = parsedTemplate.replace(results[0], templateLabelValue);
-        }
-
-        return parsedTemplate;
-    };
-
-    function executeFunctionByName(functionName, context) {
-        var args = Array.prototype.slice.call(arguments).splice(2);
-
-        var namespaces = functionName.split(".");
-        var func = namespaces.pop();
-
-        for(var i = 0; i < namespaces.length; i++) {
-            context = context[namespaces[i]];
-        }
-
-        if(context && context[func]) {
-            return context[func].apply(this, args);
-        }
-
-        return "";
+    $scope.getFieldsetTitle = function (fieldsetConfigModel, fieldsetIndex) {
+        return archetypeLabelService.getFieldsetTitle($scope, fieldsetConfigModel, fieldsetIndex);
     }
 
     var draggedRteSettings;
+    var rteClass = ".mce-tinymce";
 
     //sort config
     $scope.sortableOptions = {
@@ -96,22 +45,30 @@ angular.module("umbraco").controller("Imulus.ArchetypeController", function ($sc
         handle: ".handle",
         start: function(ev, ui) {
             draggedRteSettings = {};
-            ui.item.parent().find('.mceNoEditor').each(function () {
+            ui.item.parent().find(rteClass).each(function () {
                 // remove all RTEs in the dragged row and save their settings
-                var id = $(this).attr('id');
-                draggedRteSettings[id] = _.findWhere(tinyMCE.editors, { id: id }).settings;
-                tinyMCE.execCommand('mceRemoveEditor', false, id);
+                var $element = $(this);
+                var wrapperId = $element.attr('id');
+                var $textarea = $element.siblings('textarea');
+                var textareaId = $textarea.attr('id');
+
+                draggedRteSettings[textareaId] = _.findWhere(tinyMCE.editors, { id: textareaId }).settings;
+                tinyMCE.execCommand('mceRemoveEditor', false, wrapperId);
             });
         },
         update: function (ev, ui) {
             $scope.setDirty();
         },
         stop: function (ev, ui) {
-            ui.item.parent().find('.mceNoEditor').each(function () {
-                var id = $(this).attr('id');
-                draggedRteSettings[id] = draggedRteSettings[id] || _.findWhere(tinyMCE.editors, { id: id }).settings;
-                tinyMCE.execCommand('mceRemoveEditor', false, id);
-                tinyMCE.init(draggedRteSettings[id]);
+            ui.item.parent().find(rteClass).each(function () {
+                var $element = $(this);
+                var wrapperId = $element.attr('id');
+                var $textarea = $element.siblings('textarea');
+                var textareaId = $textarea.attr('id');
+
+                draggedRteSettings[textareaId] = draggedRteSettings[textareaId] || _.findWhere(tinyMCE.editors, { id: textareaId }).settings;
+                tinyMCE.execCommand('mceRemoveEditor', false, wrapperId);
+                tinyMCE.init(draggedRteSettings[textareaId]);
             });
         }
     };
@@ -143,6 +100,7 @@ angular.module("umbraco").controller("Imulus.ArchetypeController", function ($sc
             if (confirm('Are you sure you want to remove this?')) {
                 $scope.setDirty();
                 $scope.model.value.fieldsets.splice($index, 1);
+                $scope.$broadcast("archetypeRemoveFieldset", {index: $index});
             }
         }
     }
@@ -719,77 +677,35 @@ angular.module("umbraco").controller("Imulus.ArchetypeConfigController", functio
     assetsService.loadCss("/App_Plugins/Archetype/css/archetype.css");
 });
 
-angular.module("umbraco.directives").directive('archetypeProperty', function ($compile, $http, archetypePropertyEditorResource, umbPropEditorHelper, $timeout, $rootScope, $q, editorState) {
-
-    function getFieldsetByAlias(fieldsets, alias)
-    {
-        return _.find(fieldsets, function(fieldset){
-            return fieldset.alias == alias;
-        });
-    }
-
-    function getPropertyIndexByAlias(properties, alias){
-        for (var i in properties)
-        {
-            if (properties[i].alias == alias) {
-                return i;
-            }
-        }
-    }
-
-    function getPropertyByAlias(fieldset, alias){
-        return _.find(fieldset.properties, function(property){
-            return property.alias == alias; 
-        });
-    }
-
-    //helper that returns a JS ojbect from 'value' string or the original string
-    function jsonOrString(value, developerMode, debugLabel){
-        if(value && typeof value == 'string'){
-            try{
-                if(developerMode == '1'){
-                    console.log("Trying to parse " + debugLabel + ": " + value); 
-                }
-                value = JSON.parse(value);
-            }
-            catch(exception)
-            {
-                if(developerMode == '1'){
-                    console.log("Failed to parse " + debugLabel + "."); 
-                }
-            }
-        }
-
-        if(value && developerMode == '1'){
-            console.log(debugLabel + " post-parsing: ");
-            console.log(value); 
-        }
-
-        return value;
-    }
+angular.module("umbraco.directives").directive('archetypeProperty', function ($compile, $http, archetypePropertyEditorResource, umbPropEditorHelper, $timeout, $rootScope, $q, editorState, archetypeService, archetypeCacheService) {
 
     var linker = function (scope, element, attrs, ngModelCtrl) {
-        var configFieldsetModel = getFieldsetByAlias(scope.archetypeConfig.fieldsets, scope.fieldset.alias);
+        var configFieldsetModel = archetypeService.getFieldsetByAlias(scope.archetypeConfig.fieldsets, scope.fieldset.alias);
         var view = "";
         var label = configFieldsetModel.properties[scope.propertyConfigIndex].label;
         var dataTypeGuid = configFieldsetModel.properties[scope.propertyConfigIndex].dataTypeGuid;
         var config = null;
         var alias = configFieldsetModel.properties[scope.propertyConfigIndex].alias;
         var defaultValue = configFieldsetModel.properties[scope.propertyConfigIndex].value;
-        var propertyAlias = getUniquePropertyAlias(scope);
-        propertyAliasParts = [];
-
+        var propertyAliasParts = [];
+        var propertyAlias = archetypeService.getUniquePropertyAlias(scope, propertyAliasParts);
+        
         //try to convert the defaultValue to a JS object
-        defaultValue = jsonOrString(defaultValue, scope.archetypeConfig.developerMode, "defaultValue");
+        defaultValue = archetypeService.jsonOrString(defaultValue, scope.archetypeConfig.developerMode, "defaultValue");
 
         //grab info for the selected datatype, prepare for view
         archetypePropertyEditorResource.getDataType(dataTypeGuid, scope.archetypeConfig.enableDeepDatatypeRequests, editorState.current.contentTypeAlias, scope.propertyEditorAlias, alias, editorState.current.id).then(function (data) {
             //transform preValues array into object expected by propertyeditor views
             var configObj = {};
+
             _.each(data.preValues, function(p) {
                 configObj[p.key] = p.value;
             });
+            
             config = configObj;
+
+            //caching for use by label templates later
+            archetypeCacheService.addDatatypeToCache(data, dataTypeGuid);
 
             //determine the view to use [...] and load it
             archetypePropertyEditorResource.getPropertyEditorMapping(data.selectedEditor).then(function(propertyEditor) {
@@ -813,14 +729,13 @@ angular.module("umbraco.directives").directive('archetypeProperty', function ($c
                 validateProperty(scope.fieldset, property);
             });
 
-            // set invalid state if the fieldset contains invalid properties
-            // we need an unique validation key per fieldset in this ngModelCtrl scope, which leaves us with a potential problem: 
-            // if the user invalidates the last fieldset, attempts (and fails) to save and and subsequently deletes the invalid fieldset, 
-            // the validation key will persist on ngModelCtrl and thus the form will not submit.
-            // to fix this problem, the controller probably needs to raise an event (in removeRow) that can be intercepted here to
-            // clear the validation key.
             var validationKey = "validation-f" + scope.fieldsetIndex;
             ngModelCtrl.$setValidity(validationKey, scope.fieldset.isValid);
+        });
+
+        scope.$on("archetypeRemoveFieldset", function (ev, args) {
+            var validationKey = "validation-f" + args.index;
+            ngModelCtrl.$setValidity(validationKey, true);
         });
 
 
@@ -833,7 +748,7 @@ angular.module("umbraco.directives").directive('archetypeProperty', function ($c
 
         // validate a property in a fieldset
         function validateProperty(fieldset, property) {
-            var propertyConfig = getPropertyByAlias(configFieldsetModel, property.alias);
+            var propertyConfig = archetypeService.getPropertyByAlias(configFieldsetModel, property.alias);
             if (propertyConfig) {
                 // use property.value !== property.value to check for NaN values on numeric inputs
                 if (propertyConfig.required && (property.value == null || property.value === "" || property.value !== property.value)) {
@@ -861,33 +776,6 @@ angular.module("umbraco.directives").directive('archetypeProperty', function ($c
         }
     }
 
-    var propertyAliasParts = [];
-    var getUniquePropertyAlias = function (currentScope) {
-        if (currentScope.hasOwnProperty('fieldsetIndex') && currentScope.hasOwnProperty('property') && currentScope.hasOwnProperty('propertyConfigIndex'))
-        {
-            var currentPropertyAlias = "f" + currentScope.fieldsetIndex + "-" + currentScope.property.alias + "-p" + currentScope.propertyConfigIndex;
-            propertyAliasParts.push(currentPropertyAlias);
-        }
-        else if (currentScope.hasOwnProperty('isPreValue')) // Crappy way to identify this is the umbraco property scope
-        {
-            var umbracoPropertyAlias = currentScope.$parent.$parent.property.alias; // Crappy way to get the umbraco host alias once we identify its scope
-            propertyAliasParts.push(umbracoPropertyAlias);
-        }
-
-        if (currentScope.$parent)
-            getUniquePropertyAlias(currentScope.$parent);
-
-        return _.unique(propertyAliasParts).reverse().join("-");
-    };
-
-    var getFieldset = function(scope) {
-        return scope.archetypeRenderModel.fieldsets[scope.fieldsetIndex];
-    }
-
-    var getFieldsetProperty = function (scope) {
-        return getFieldset(scope).properties[scope.renderModelPropertyIndex];
-    }
-
     function loadView(view, config, defaultValue, alias, propertyAlias, scope, element, ngModelCtrl, propertyValueChanged) {
         if (view)
         {
@@ -904,15 +792,15 @@ angular.module("umbraco.directives").directive('archetypeProperty', function ($c
                     scope.model.config = {};
 
                     //ini the property value after test to make sure a prop exists in the renderModel
-                    scope.renderModelPropertyIndex = getPropertyIndexByAlias(getFieldset(scope).properties, alias);
+                    scope.renderModelPropertyIndex = archetypeService.getPropertyIndexByAlias(archetypeService.getFieldset(scope).properties, alias);
 
                     if (!scope.renderModelPropertyIndex)
                     {
-                        getFieldset(scope).properties.push(JSON.parse('{"alias": "' + alias + '", "value": "' + defaultValue + '"}'));
-                        scope.renderModelPropertyIndex = getPropertyIndexByAlias(getFieldset(scope).properties, alias);
+                        archetypeService.getFieldset(scope).properties.push(JSON.parse('{"alias": "' + alias + '", "value": "' + defaultValue + '"}'));
+                        scope.renderModelPropertyIndex = archetypeService.getPropertyIndexByAlias(archetypeService.getFieldset(scope).properties, alias);
                     }
                     scope.renderModel = {};
-                    scope.model.value = getFieldsetProperty(scope).value;
+                    scope.model.value = archetypeService.getFieldsetProperty(scope).value;
 
                     //set the config from the prevalues
                     scope.model.config = config;
@@ -932,30 +820,28 @@ angular.module("umbraco.directives").directive('archetypeProperty', function ($c
                         }
                     }
 
-                    //console.log(scope.model.config);
-
                     //some items need an alias
                     scope.model.alias = "archetype-property-" + propertyAlias;
 
                     //watch for changes since there is no two-way binding with the local model.value
                     scope.$watch('model.value', function (newValue, oldValue) {
-                        getFieldsetProperty(scope).value = newValue;
+                        archetypeService.getFieldsetProperty(scope).value = newValue;
 
                         // notify the linker that the property value changed
-                        propertyValueChanged(getFieldset(scope), getFieldsetProperty(scope));
+                        propertyValueChanged(archetypeService.getFieldset(scope), archetypeService.getFieldsetProperty(scope));
                     });
 
                     scope.$on('archetypeFormSubmitting', function (ev, args) {
                         // did the value change (if it did, it most likely did so during the "formSubmitting" event)
-                        var property = getFieldsetProperty(scope);
+                        var property = archetypeService.getFieldsetProperty(scope);
 
                         var currentValue = property.value;
 
                         if (currentValue != scope.model.value) {
-                            getFieldsetProperty(scope).value = scope.model.value;
+                            archetypeService.getFieldsetProperty(scope).value = scope.model.value;
 
                             // notify the linker that the property value changed
-                            propertyValueChanged(getFieldset(scope), getFieldsetProperty(scope));
+                            propertyValueChanged(archetypeService.getFieldset(scope), archetypeService.getFieldsetProperty(scope));
                         }
                     });
 
@@ -1101,44 +987,73 @@ angular.module('umbraco.services').factory('archetypeLocalizationService', funct
 
     return service;
 });
-var ArchetypeLabels = (function() {
+var ArchetypeSampleLabelTemplates = (function() {
 
-    var isEntityLookupLoading = false;
-    var entityNameLookupCache = [];
-
-    function getEntityById(scope, id, type) {
-
-        for (var i in entityNameLookupCache) {
-            if (entityNameLookupCache[i].id == id) {
-                return entityNameLookupCache[i].value;
-            }
-        }
-
-        if (!isEntityLookupLoading) {
-            isEntityLookupLoading = true;
-
-            scope.resources.entityResource.getById(id, type).then(function(entity) {
-                entityNameLookupCache.push({id: id, value: entity.name});
-
-                isEntityLookupLoading = false;
-                return entity.name;
-            });
-        }
-
-        return "";
-    }
-
+    //public functions
     return {
-        GetFirstDocumentEntityName: function ($scope, value) {
+        Entity: function (value, scope, args) {
+
+           if(!args.entityType) {
+                args = {entityType: "Document", propertyName: "name"}
+            }
+
             if (value) {
+                //if handed a csv list, take the first only
                 var id = value.split(",")[0];
 
                 if (id) {
-                    return getEntityById($scope, id, "Document");
+                    var entity = scope.services.archetypeLabelService.getEntityById(scope, id, args.entityType);
+
+                    if(entity) {
+                        return entity[args.propertyName];
+                    }
                 }
             }
 
             return "";
+        },
+        UrlPicker: function(value, scope, args) {
+
+            if(!args.propertyName) {
+                args = {propertyName: "name"}
+            }
+
+            var entity;
+
+            switch (value.type) {
+                case "content":
+                    if(value.typeData.contentId) {
+                        entity = scope.services.archetypeLabelService.getEntityById(scope, value.typeData.contentId, "Document");
+                    }
+                    break;
+
+                case "media":
+                    if(value.typeData.mediaId) {
+                        entity = scope.services.archetypeLabelService.getEntityById(scope, value.typeData.mediaId, "Media");
+                    }
+                    break;
+
+                case "url":
+                    return value.typeData.url;
+                    
+                default:
+                    break;
+
+            }
+
+            if(entity) {
+                return entity[args.propertyName];
+            }
+
+            return "";
+        },
+        Rte: function (value, scope, args) {
+
+            if(!args.contentLength) {
+                args = {contentLength: 50}
+            }
+
+            return $(value).text().substring(0, args.contentLength);
         }
     }
 })();
@@ -1178,3 +1093,391 @@ angular.module('umbraco.resources').factory('archetypePropertyEditorResource', f
         }
     }
 }); 
+
+angular.module('umbraco.services').factory('archetypeService', function () {
+
+    //public
+    return {
+        //helper that returns a JS ojbect from 'value' string or the original string
+        jsonOrString: function (value, developerMode, debugLabel){
+            if(value && typeof value == 'string'){
+                try{
+                    if(developerMode == '1'){
+                        console.log("Trying to parse " + debugLabel + ": " + value); 
+                    }
+                    value = JSON.parse(value);
+                }
+                catch(exception)
+                {
+                    if(developerMode == '1'){
+                        console.log("Failed to parse " + debugLabel + "."); 
+                    }
+                }
+            }
+
+            if(value && developerMode == '1'){
+                console.log(debugLabel + " post-parsing: ");
+                console.log(value); 
+            }
+
+            return value;
+        },
+        getFieldsetByAlias: function (fieldsets, alias)
+        {
+            return _.find(fieldsets, function(fieldset){
+                return fieldset.alias == alias;
+            });
+        },
+        getPropertyIndexByAlias: function(properties, alias){
+            for (var i in properties)
+            {
+                if (properties[i].alias == alias) {
+                    return i;
+                }
+            }
+        },
+        getPropertyByAlias: function (fieldset, alias){
+            return _.find(fieldset.properties, function(property){
+                return property.alias == alias; 
+            });
+        },
+        getUniquePropertyAlias: function (currentScope, propertyAliasParts) {
+            if (currentScope.hasOwnProperty('fieldsetIndex') && currentScope.hasOwnProperty('property') && currentScope.hasOwnProperty('propertyConfigIndex'))
+            {
+                var currentPropertyAlias = "f" + currentScope.fieldsetIndex + "-" + currentScope.property.alias + "-p" + currentScope.propertyConfigIndex;
+                propertyAliasParts.push(currentPropertyAlias);
+            }
+            else if (currentScope.hasOwnProperty('isPreValue')) // Crappy way to identify this is the umbraco property scope
+            {
+                var umbracoPropertyAlias = currentScope.$parent.$parent.property.alias; // Crappy way to get the umbraco host alias once we identify its scope
+                propertyAliasParts.push(umbracoPropertyAlias);
+            }
+
+            if (currentScope.$parent)
+                this.getUniquePropertyAlias(currentScope.$parent, propertyAliasParts);
+
+            return _.unique(propertyAliasParts).reverse().join("-");
+        },
+        getFieldset: function(scope) {
+            return scope.archetypeRenderModel.fieldsets[scope.fieldsetIndex];
+        },
+        getFieldsetProperty: function (scope) {
+            return this.getFieldset(scope).properties[scope.renderModelPropertyIndex];
+        }
+    }
+});
+angular.module('umbraco.services').factory('archetypeLabelService', function (archetypeCacheService) {
+    //private
+
+    var isEntityLookupLoading = false;
+    var entityCache = [];
+    var isDatatypeLookupLoading = false;
+    var datatypeCache = [];
+
+    function executeFunctionByName(functionName, context) {
+        var args = Array.prototype.slice.call(arguments).splice(2);
+
+        var namespaces = functionName.split(".");
+        var func = namespaces.pop();
+
+        for(var i = 0; i < namespaces.length; i++) {
+            context = context[namespaces[i]];
+        }
+
+        if(context && context[func]) {
+            return context[func].apply(this, args);
+        }
+
+        return "";
+    }
+
+    function getNativeLabel(datatype, value, scope) {
+    	switch (datatype.selectedEditor) {
+    		case "Imulus.UrlPicker":
+    			return imulusUrlPicker(value, scope, {});
+    		case "Umbraco.TinyMCEv3":
+    			return coreTinyMce(value, scope, {});
+            case "Umbraco.MultiNodeTreePicker":
+                return coreMntp(value, scope, datatype);
+            case "Umbraco.MediaPicker":
+                return coreMediaPicker(value, scope, datatype);
+    		default:
+    			return "";
+    	}
+    }
+
+    function coreMntp(value, scope, args) {
+        var ids = value.split(',');
+        var type = "Document";
+
+        switch(args.preValues[0].value.type) {
+            case 'content':
+                type = 'Document';
+                break;
+            case 'media':
+                type = 'media';
+                break;
+            case 'member':
+                type = 'member';
+                break;
+
+            default:
+                break;
+        }
+
+        var entityArray = [];
+
+        _.each(ids, function(id){
+            if(id) {
+
+                var entity = archetypeCacheService.getEntityById(scope, id, type);
+                
+                if(entity) {
+                    entityArray.push(entity.name);
+                }
+            }
+        });
+
+        return entityArray.join(', ');
+    }
+
+    function coreMediaPicker(value, scope, args) {
+        if(value) {
+             var entity = archetypeCacheService.getEntityById(scope, value, "media");     
+             
+            if(entity) {
+                return entity.name; 
+            }
+        }
+
+        return "";
+    }
+
+    function imulusUrlPicker(value, scope, args) {
+
+        if(!args.propertyName) {
+            args = {propertyName: "name"}
+        }
+
+        var entity;
+
+        switch (value.type) {
+            case "content":
+                if(value.typeData.contentId) {
+                    entity = archetypeCacheService.getEntityById(scope, value.typeData.contentId, "Document");
+                }
+                break;
+
+            case "media":
+                if(value.typeData.mediaId) {
+                    entity = archetypeCacheService.getEntityById(scope, value.typeData.mediaId, "Media");
+                }
+                break;
+
+            case "url":
+                return value.typeData.url;
+                
+            default:
+                break;
+
+        }
+
+        if(entity) {
+            return entity[args.propertyName];
+        }
+
+        return "";
+    }
+
+    function coreTinyMce(value, scope, args) {
+
+        if(!args.contentLength) {
+            args = {contentLength: 50}
+        }
+
+        var suffix = "";
+        var strippedText = $(value).text();
+
+        if(strippedText.length > args.contentLength) {
+        	suffix = "…";
+        }
+
+        return strippedText.substring(0, args.contentLength) + suffix;
+    }
+
+	return {
+		getFieldsetTitle: function(scope, fieldsetConfigModel, fieldsetIndex) {
+
+            //console.log(scope.model.config);
+
+            if(!fieldsetConfigModel)
+                return "";
+
+            var fieldset = scope.model.value.fieldsets[fieldsetIndex];
+            var fieldsetConfig = scope.getConfigFieldsetByAlias(fieldset.alias);
+            var template = fieldsetConfigModel.labelTemplate;
+
+            if (template.length < 1)
+                return fieldsetConfig.label;
+
+            var rgx = /{{([^)].*)}}/g;
+            var results;
+            var parsedTemplate = template;
+
+            while ((results = rgx.exec(template)) !== null) {
+
+                // split the template in case it consists of multiple property aliases and/or functions
+                var templates = results[0].replace("{{", '').replace("}}", '').split("|");
+                var templateLabelValue = "";
+
+                for(var i = 0; i < templates.length; i++) {
+                    // stop looking for a template label value if a previous template part already yielded a value
+                    if(templateLabelValue != "") {
+                        break;
+                    }
+                    
+                    var template = templates[i];
+                    
+                    //test for function
+                    var beginParamsIndexOf = template.indexOf("(");
+                    var endParamsIndexOf = template.indexOf(")");
+
+                    //if passed a function
+                    if(beginParamsIndexOf != -1 && endParamsIndexOf != -1)
+                    {
+                        var functionName = template.substring(0, beginParamsIndexOf);
+                        var propertyAlias = template.substring(beginParamsIndexOf + 1, endParamsIndexOf).split(',')[0];
+
+                        var args = {};
+
+                        var beginArgsIndexOf = template.indexOf(',');
+
+                        if(beginArgsIndexOf != -1) {
+
+                            var argsString = template.substring(beginArgsIndexOf + 1, endParamsIndexOf).trim();
+
+                            var normalizedJsonString = argsString.replace(/(\w+)\s*:/g, '"$1":');
+
+                            args = JSON.parse(normalizedJsonString);
+                        }
+
+                        templateLabelValue = executeFunctionByName(functionName, window, scope.getPropertyValueByAlias(fieldset, propertyAlias), scope, args);
+                    }
+                    //normal {{foo}} syntax
+                    else {
+                        propertyAlias = template;
+                        var rawValue = scope.getPropertyValueByAlias(fieldset, propertyAlias);
+
+                        templateLabelValue = rawValue;
+
+                        //determine the type of editor
+                        var propertyConfig = _.find(fieldsetConfigModel.properties, function(property){
+                            return property.alias == propertyAlias;
+                        });
+
+                        if(propertyConfig) {
+                        	var datatype = archetypeCacheService.getDatatypeByGuid(propertyConfig.dataTypeGuid);
+                        	
+                        	if(datatype) {
+
+                            	//try to get built-in label
+                            	var label = getNativeLabel(datatype, templateLabelValue, scope);
+
+                            	if(label) {
+                        			templateLabelValue = label;
+                        		}
+                        		else {
+                        			templateLabelValue = templateLabelValue;
+                        		}
+                        	}
+                        }
+                        else {
+                        	return templateLabelValue;
+                        }
+
+                    }                
+                }
+                parsedTemplate = parsedTemplate.replace(results[0], templateLabelValue);
+            }
+
+            return parsedTemplate;
+        }
+	}
+});
+angular.module('umbraco.services').factory('archetypeCacheService', function (archetypePropertyEditorResource) {
+    //private
+
+    var isEntityLookupLoading = false;
+    var entityCache = [];
+    var isDatatypeLookupLoading = false;
+    var datatypeCache = [];
+
+    return {
+    	getDataTypeFromCache: function(guid) {
+        	return _.find(datatypeCache, function (dt){
+	            return dt.dataTypeGuid == guid;
+	        });
+    	},
+
+    	addDatatypeToCache: function(datatype, dataTypeGuid) {
+            var cachedDatatype = this.getDataTypeFromCache(dataTypeGuid);
+
+            if(!cachedDatatype) {
+            	datatype.dataTypeGuid = dataTypeGuid;
+            	datatypeCache.push(datatype);
+            }
+    	},
+ 
+		getDatatypeByGuid: function(guid) {
+			var cachedDatatype = this.getDataTypeFromCache(guid);
+
+	        if(cachedDatatype) {
+	            return cachedDatatype;
+	        }
+
+	        //go get it from server, but this should already be pre-populated from the directive, but I suppose I'll leave this in in case used ad-hoc
+	        if (!isDatatypeLookupLoading) {
+	            isDatatypeLookupLoading = true;
+
+	            archetypePropertyEditorResource.getDataType(guid).then(function(datatype) {
+
+	            	datatype.dataTypeGuid = guid;
+
+	                datatypeCache.push(datatype);
+
+	                isDatatypeLookupLoading = false;
+
+	                return datatype;
+	            });
+	        }
+
+	        return null;
+        },
+
+     	getEntityById: function(scope, id, type) {
+	        var cachedEntity = _.find(entityCache, function (e){
+	            return e.id == id;
+	        });
+
+	        if(cachedEntity) {
+	            return cachedEntity;
+	        }
+
+	        //go get it from server
+	        if (!isEntityLookupLoading) {
+	            isEntityLookupLoading = true;
+
+	            scope.resources.entityResource.getById(id, type).then(function(entity) {
+
+	                entityCache.push(entity);
+
+	                isEntityLookupLoading = false;
+
+	                return entity;
+	            });
+	        }
+
+	        return null;
+	    }
+    }
+});

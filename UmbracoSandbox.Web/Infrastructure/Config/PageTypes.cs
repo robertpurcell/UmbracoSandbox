@@ -9,5 +9,9 @@
         public const string Home = "Home";
 
         public const string Listing = "Listing";
+
+        public const string Login = "Login";
+
+        public const string Registration = "Registration";
     }
 }

@@ -15,7 +15,7 @@ namespace UmbracoSandbox.Web
     using UmbracoSandbox.Web.Helpers;
     using Zone.UmbracoMapper;
 
-    public static class NinjectWebCommon 
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
 

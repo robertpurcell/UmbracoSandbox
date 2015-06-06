@@ -20,6 +20,10 @@
 .archetypeEditor .icon {
   color: #333;
 }
+.archetypeEditor .fieldsetIcon {
+  float: left;
+  padding-right: 4px;
+}
 .archetypeEditor fieldset {
   border: 1px solid #dddddd;
   padding: 0;
@@ -46,9 +50,10 @@
 .archetypeEditor fieldset .archetypeFieldsetLabel {
   position: relative;
   width: 100%;
+  min-height: 42px;
 }
 .archetypeEditor fieldset .archetypeFieldsetLabel .label-sub {
-  padding: 8px 0;
+  padding: 8px 0 4px 0;
   display: inline-block;
 }
 .archetypeEditor fieldset .archetypeFieldsetLabel .label-sub.module-label {
@@ -81,6 +86,7 @@
 }
 .archetypeEditor fieldset .archetypeFieldsetLabel .caret {
   margin: 8px 1px 0 15px;
+  position: absolute;
 }
 .archetypeEditor fieldset .archetypeFieldsetLabel .caret.caret-right {
   border-bottom: 4px solid transparent;
@@ -91,11 +97,16 @@
 }
 .archetypeEditor fieldset .archetypeFieldsetLabel label {
   margin-bottom: 0;
-  margin-left: 5px;
+  margin-left: 38px;
+  white-space: nowrap;
   padding: 0;
+  width: calc(100% - 132px);
+  position: absolute;
 }
 .archetypeEditor fieldset .archetypeFieldsetLabel label span {
-  display: inline-block;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .archetypeEditor fieldset .archetypeFieldsetLabel label.dimmed {
   color: #d9d9d9;
