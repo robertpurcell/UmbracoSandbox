@@ -2,6 +2,7 @@
 {
     using System.Web.Mvc;
     using System.Web.Security;
+    using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Web.Controllers.Base;
     using UmbracoSandbox.Web.Handlers.Content;
     using UmbracoSandbox.Web.Models.Content;
@@ -17,7 +18,8 @@
 
         #region Constructor
 
-        public LoginController(IPageHandler handler)
+        public LoginController(ILoggingService logger, IPageHandler handler)
+            : base(logger)
         {
             _handler = handler;
         }

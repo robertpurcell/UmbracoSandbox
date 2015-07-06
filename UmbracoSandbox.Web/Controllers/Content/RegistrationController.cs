@@ -4,6 +4,7 @@
     using System.Web.Mvc;
     using System.Web.Security;
     using UmbracoSandbox.Service.Email;
+    using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Web.Controllers.Base;
     using UmbracoSandbox.Web.Handlers.Content;
     using UmbracoSandbox.Web.Models.Forms;
@@ -19,7 +20,8 @@
 
         #region Constructor
 
-        public RegistrationController(IRegistrationPageHandler handler, IEmailService mailer)
+        public RegistrationController(ILoggingService logger, IRegistrationPageHandler handler, IEmailService mailer)
+            : base(logger)
         {
             _handler = handler;
             _mailer = mailer;

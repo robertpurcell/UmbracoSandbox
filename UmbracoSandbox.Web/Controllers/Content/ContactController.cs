@@ -2,6 +2,7 @@
 {
     using System.Web.Mvc;
     using UmbracoSandbox.Service.Email;
+    using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Web.Controllers.Base;
     using UmbracoSandbox.Web.Handlers.Content;
     using UmbracoSandbox.Web.Models.Content;
@@ -18,7 +19,8 @@
 
         #region Constructor
 
-        public ContactController(IPageHandler handler, IEmailService mailer)
+        public ContactController(ILoggingService logger, IPageHandler handler, IEmailService mailer)
+            : base(logger)
         {
             _handler = handler;
             _mailer = mailer;

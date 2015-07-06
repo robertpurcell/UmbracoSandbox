@@ -26,7 +26,7 @@
 
         #endregion
 
-        #region Methods
+        #region Interface methods
 
         /// <summary>
         /// Request the error page for the appropriate error code and save the raw html to disk.

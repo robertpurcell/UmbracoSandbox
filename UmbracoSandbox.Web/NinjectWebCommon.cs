@@ -9,6 +9,7 @@ namespace UmbracoSandbox.Web
     using Ninject;
     using Ninject.Web.Common;
     using UmbracoSandbox.Service.Email;
+    using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Service.Publishing;
     using UmbracoSandbox.Web.Handlers.Content;
     using UmbracoSandbox.Web.Handlers.Navigation;
@@ -71,6 +72,7 @@ namespace UmbracoSandbox.Web
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<ILoggingService>().To<LoggingService>().InSingletonScope();
             kernel.Bind<IPageHandler>().To<PageHandler>();
             kernel.Bind<IUmbracoMapper>().To<UmbracoMapper>();
             kernel.Bind<INavigationHandler>().To<NavigationHandler>();

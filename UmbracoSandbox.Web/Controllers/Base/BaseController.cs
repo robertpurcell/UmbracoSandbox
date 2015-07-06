@@ -1,18 +1,17 @@
 ﻿namespace UmbracoSandbox.Web.Controllers.Base
 {
-    using System.Reflection;
     using System.Web.Mvc;
-    using log4net;
     using Umbraco.Web.Models;
     using Umbraco.Web.Mvc;
+    using UmbracoSandbox.Service.Logging;
 
     public abstract class BaseController : SurfaceController, IRenderMvcController
     {
         #region Constructor
 
-        protected BaseController()
+        protected BaseController(ILoggingService logger)
         {
-            Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            Logger = logger;
             IsLoggedIn = Members.IsLoggedIn();
         }
 
@@ -20,7 +19,7 @@
 
         #region Properties
 
-        public static ILog Log { get; private set; }
+        public ILoggingService Logger { get; private set; }
 
         public bool IsLoggedIn { get; private set; }
 

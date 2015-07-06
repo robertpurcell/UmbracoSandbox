@@ -40,6 +40,10 @@
       <HintPath>..\packages\justgiving-sdk.1.6.11\lib\Net35\JustGiving.Api.Sdk.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.1.2.11\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Http, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\justgiving-sdk.1.6.11\lib\Net35\Microsoft.Http.dll</HintPath>
       <Private>True</Private>
@@ -61,6 +65,8 @@
     <Compile Include="Email\EmailDetail.cs" />
     <Compile Include="Email\IEmailService.cs" />
     <Compile Include="Email\EmailService.cs" />
+    <Compile Include="Logging\ILoggingService.cs" />
+    <Compile Include="Logging\LoggingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Matlab\IMatlabService.cs" />
     <Compile Include="Matlab\MatlabService.cs" />

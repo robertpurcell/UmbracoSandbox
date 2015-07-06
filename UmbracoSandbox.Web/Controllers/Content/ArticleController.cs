@@ -1,6 +1,7 @@
 ﻿namespace UmbracoSandbox.Web.Controllers.Content
 {
     using System.Web.Mvc;
+    using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Web.Controllers.Base;
     using UmbracoSandbox.Web.Handlers.Content;
     using UmbracoSandbox.Web.Models.Content;
@@ -15,7 +16,8 @@
 
         #region Constructor
 
-        public ArticleController(IPageHandler handler)
+        public ArticleController(ILoggingService logger, IPageHandler handler)
+            : base(logger)
         {
             _handler = handler;
         }

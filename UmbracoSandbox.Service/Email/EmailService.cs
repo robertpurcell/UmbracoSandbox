@@ -1,6 +1,7 @@
 ﻿namespace UmbracoSandbox.Service.Email
 {
     using System;
+    using System.Linq;
     using System.Net.Mail;
     using System.Text.RegularExpressions;
     using System.Web;
@@ -25,7 +26,7 @@
 
         #endregion
 
-        #region Methods
+        #region Interface methods
 
         /// <summary>
         /// Sends an email for the given details
@@ -46,7 +47,7 @@
                 Body = body,
                 IsBodyHtml = emailDetail.IsBodyHtml
             };
-            if (emailDetail.To != null && emailDetail.To.Count != 0)
+            if (emailDetail.To != null && emailDetail.To.Any())
             {
                 foreach (var to in emailDetail.To)
                 {
@@ -58,7 +59,7 @@
                 mail.To.Add(new MailAddress(_emailAddress));
             }
 
-            if (emailDetail.Bcc != null && emailDetail.Bcc.Count != 0)
+            if (emailDetail.Bcc != null && emailDetail.Bcc.Any())
             {
                 foreach (var to in emailDetail.Bcc)
                 {
@@ -66,14 +67,11 @@
                 }
             }
 
-            if (emailDetail.Attachments != null && emailDetail.Attachments.Count != 0)
+            if (emailDetail.Attachments != null && emailDetail.Attachments.Any())
             {
-                foreach (var file in emailDetail.Attachments)
+                foreach (var file in emailDetail.Attachments.Where(x => !string.IsNullOrEmpty(x)))
                 {
-                    if (!string.IsNullOrEmpty(file))
-                    {
-                        mail.Attachments.Add(new Attachment(AppDomain.CurrentDomain.BaseDirectory + file));
-                    }
+                    mail.Attachments.Add(new Attachment(string.Concat(AppDomain.CurrentDomain.BaseDirectory, file)));
                 }
             }
             
@@ -90,7 +88,7 @@
                 {
                     case SmtpStatusCode.GeneralFailure | SmtpStatusCode.ServiceNotAvailable | SmtpStatusCode.SyntaxError |
                         SmtpStatusCode.CommandUnrecognized | SmtpStatusCode.TransactionFailed | SmtpStatusCode.BadCommandSequence:
-                        throw new Exception("ERROR sending mail with code:" + ex.StatusCode + ": " + ex.Message, ex);
+                        throw new Exception(string.Format("Error sending mail with code: {0}: {1}", ex.StatusCode, ex.Message), ex);
                 }
             }
         }
@@ -99,12 +97,12 @@
         /// Validates an email address using the class that will eventually send to it
         /// </summary>
         /// <param name="emailAddress">Email address</param>
-        /// <returns>Whether it's valid or not</returns>
+        /// <returns>Whether or not the email address is valid</returns>
         public bool EmailAddressIsValid(string emailAddress)
         {
             try
             {
-                var addr = new MailAddress(emailAddress);
+                var address = new MailAddress(emailAddress);
 
                 return true;
             }
@@ -143,6 +141,7 @@
                     }
 
                     var name = match.Groups["name"].Value;
+
                     return string.Format("{0}=\"{1}\"", name, uri.AbsoluteUri);
                 });
             var adjustedHtml = Regex.Replace(text, UrlPattern, matchEvaluator);
