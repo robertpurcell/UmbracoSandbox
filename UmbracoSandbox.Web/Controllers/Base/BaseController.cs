@@ -13,6 +13,7 @@
         protected BaseController()
         {
             Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            IsLoggedIn = Members.IsLoggedIn();
         }
 
         #endregion
@@ -20,6 +21,8 @@
         #region Properties
 
         public static ILog Log { get; private set; }
+
+        public bool IsLoggedIn { get; private set; }
 
         #endregion
 

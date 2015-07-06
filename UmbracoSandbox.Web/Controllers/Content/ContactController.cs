@@ -34,7 +34,7 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult Contact()
         {
-            var vm = _handler.GetPageModel<ContactViewModel>(CurrentPage);
+            var vm = _handler.GetPageModel<ContactViewModel>(CurrentPage, IsLoggedIn);
 
             return CurrentTemplate(vm);
         }

@@ -133,7 +133,7 @@
 
         public IHtmlString BodyText { get; set; }
 
-        public NavigationModel MainNavigation { get; set; }
+        public MainNavigationModel MainNavigation { get; set; }
 
         public NavigationModel FooterNavigation { get; set; }
 

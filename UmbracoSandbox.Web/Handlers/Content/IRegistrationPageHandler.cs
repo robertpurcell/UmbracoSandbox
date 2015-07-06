@@ -5,6 +5,6 @@
 
     public interface IRegistrationPageHandler
     {
-        RegistrationViewModel GetRegistrationPageModel(IPublishedContent currentPage);
+        RegistrationViewModel GetRegistrationPageModel(IPublishedContent currentPage, bool isLoggedIn);
     }
 }

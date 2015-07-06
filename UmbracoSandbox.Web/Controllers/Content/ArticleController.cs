@@ -30,7 +30,7 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult Article()
         {
-            var vm = _handler.GetPageModel<ArticleViewModel>(CurrentPage);
+            var vm = _handler.GetPageModel<ArticleViewModel>(CurrentPage, IsLoggedIn);
 
             return CurrentTemplate(vm);
         }

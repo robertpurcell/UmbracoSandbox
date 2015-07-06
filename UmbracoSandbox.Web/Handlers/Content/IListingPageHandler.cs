@@ -6,6 +6,6 @@
 
     public interface IListingPageHandler
     {
-        ListingViewModel GetListingPageModel<T>(IPublishedContent currentPage) where T : BaseModuleModel, new();
+        ListingViewModel GetListingPageModel<T>(IPublishedContent currentPage, bool isLoggedIn) where T : BaseModuleModel, new();
     }
 }

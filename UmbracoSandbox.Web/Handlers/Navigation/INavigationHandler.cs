@@ -5,7 +5,7 @@
 
     public interface INavigationHandler
     {
-        NavigationModel GetMainNavigation(IPublishedContent currentPage);
+        MainNavigationModel GetMainNavigation(IPublishedContent currentPage, bool isLoggedIn);
 
         NavigationModel GetFooterNavigation(IPublishedContent currentPage);
     }

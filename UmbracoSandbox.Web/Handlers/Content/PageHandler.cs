@@ -32,13 +32,14 @@
         /// </summary>
         /// <typeparam name="T">The page type</typeparam>
         /// <param name="currentPage">The current page</param>
+        /// <param name="isLoggedIn">Whether or not the user is logged in</param>
         /// <returns>The page model</returns>
-        public virtual T GetPageModel<T>(IPublishedContent currentPage) where T : BasePageViewModel, new()
+        public virtual T GetPageModel<T>(IPublishedContent currentPage, bool isLoggedIn) where T : BasePageViewModel, new()
         {
             var model = new T
             {
                 AbsoluteUrl = currentPage.UrlAbsolute(),
-                MainNavigation = _navigationHandler.GetMainNavigation(currentPage),
+                MainNavigation = _navigationHandler.GetMainNavigation(currentPage, isLoggedIn),
                 FooterNavigation = _navigationHandler.GetFooterNavigation(currentPage)
             };
             Mapper.Map(currentPage, model);

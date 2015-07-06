@@ -7,6 +7,7 @@
     using Umbraco.Web;
     using UmbracoSandbox.Web.Handlers.Base;
     using UmbracoSandbox.Web.Helpers;
+    using UmbracoSandbox.Web.Infrastructure.Config;
     using UmbracoSandbox.Web.Models.Navigation;
     using Zone.UmbracoMapper;
 
@@ -14,7 +15,6 @@
     {
         #region Fields
 
-        private IPublishedContent _currentPage;
         private IPublishedContent _root;
 
         #endregion
@@ -34,15 +34,18 @@
         /// Method to get the model for the main navigation
         /// </summary>
         /// <param name="currentPage">Current page</param>
+        /// <param name="isLoggedIn">Whether or not the user is logged in</param>
         /// <returns>Navigation model</returns>
-        public NavigationModel GetMainNavigation(IPublishedContent currentPage)
+        public MainNavigationModel GetMainNavigation(IPublishedContent currentPage, bool isLoggedIn)
         {
-            _currentPage = currentPage;
             _root = currentPage.AncestorOrSelf(1);
+            var login = _root.Descendant(PageTypes.Login);
 
-            return new NavigationModel
+            return new MainNavigationModel
             {
-                Items = GetMenuItems(_root, 0, 3)
+                Items = GetMenuItems(currentPage, _root, 0, 3),
+                Login = MapItem(currentPage, login),
+                IsLoggedIn = isLoggedIn
             };
         }
 
@@ -91,20 +94,21 @@
         /// <summary>
         /// Get the menu items by parent node
         /// </summary>
+        /// <param name="currentPage">Current page</param>
         /// <param name="parent">Parent node</param>
         /// <param name="currentLevel">Current level</param>
         /// <param name="maxLevel">Max level</param>
         /// <returns>List of menu items</returns>
-        private IEnumerable<MenuItemModel> GetMenuItems(IPublishedContent parent, int currentLevel, int maxLevel)
+        private IEnumerable<MenuItemModel> GetMenuItems(IPublishedContent currentPage, IPublishedContent parent, int currentLevel, int maxLevel)
         {
             return parent.Children
                 .Where(x => !x.GetPropertyValue<bool>("umbracoNaviHide") && x.TemplateId != 0)
                 .Select(x =>
                     {
-                        var item = MapItem(x);
+                        var item = MapItem(currentPage, x);
                         if (currentLevel < maxLevel && !x.GetPropertyValue<bool>("hideSubNavigation"))
                         {
-                            item.Items = GetMenuItems(x, currentLevel + 1, maxLevel);
+                            item.Items = GetMenuItems(currentPage, x, currentLevel + 1, maxLevel);
                         }
 
                         return item;
@@ -114,15 +118,16 @@
         /// <summary>
         /// Map navigation item
         /// </summary>
+        /// <param name="currentPage">Current page</param>
         /// <param name="page">Page to map from</param>
         /// <returns>Menu item</returns>
-        private MenuItemModel MapItem(IPublishedContent page)
+        private MenuItemModel MapItem(IPublishedContent currentPage, IPublishedContent page)
         {
             var item = new MenuItemModel
             {
-                IsCurrentPage = _currentPage.Id.Equals(page.Id),
-                IsCurrentPageOrAncestor = _currentPage.Id.Equals(page.Id)
-                    || _currentPage.Path.Split(',').Where(i => !i.Equals(_root.Id.ToString())).Contains(page.Id.ToString())
+                IsCurrentPage = currentPage.Id.Equals(page.Id),
+                IsCurrentPageOrAncestor = currentPage.Id.Equals(page.Id)
+                    || currentPage.Path.Split(',').Where(i => !i.Equals(_root.Id.ToString())).Contains(page.Id.ToString())
             };
             Mapper.Map(page, item);
 

@@ -1,4 +1,4 @@
-﻿@model INavigation
+﻿@inherits UmbracoViewPage<IMainNavigation>
 
 @if (Model.Items.IsAndAny())
 {
@@ -21,6 +21,25 @@
                             <li @Html.Attribute("class", item.IsCurrentPageOrAncestor ? "active" : null)>
                                 <a href="@item.Url" @Html.Attribute("target", item.Target)>@item.Name</a>
                             </li>
+                        }
+                        @if (Model.IsLoggedIn)
+                        {
+                            <li>
+                                @using (Html.BeginUmbracoForm<LogoutController>("Logout", null, new { @class = "navbar-form" }, FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn">Logout</button>
+                                }
+                            </li>
+                        }
+                        else
+                        {
+                            if (Model.Login != null)
+                            {
+                                <li @Html.Attribute("class", Model.Login.IsCurrentPageOrAncestor ? "active" : null)>
+                                    <a href="@Model.Login.Url">@Model.Login.Name</a>
+                                </li>
+                            }
                         }
                     </ul>
                 </div>

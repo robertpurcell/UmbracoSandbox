@@ -5,6 +5,6 @@
 
     public interface IPageHandler
     {
-        T GetPageModel<T>(IPublishedContent currentPage) where T : BasePageViewModel, new();
+        T GetPageModel<T>(IPublishedContent currentPage, bool isLoggedIn) where T : BasePageViewModel, new();
     }
 }

@@ -5,5 +5,5 @@
     var s = Model.MacroParameters["FormGuid"].ToString();
     var g = new Guid(s);
     
-	Html.RenderAction("Render", "UmbracoForms", new {formId = g});
+	Html.RenderAction("Render", "UmbracoForms", new { formId = g });
 }
