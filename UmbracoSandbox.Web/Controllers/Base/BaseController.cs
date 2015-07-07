@@ -19,9 +19,9 @@
 
         #region Properties
 
-        public ILoggingService Logger { get; private set; }
+        protected ILoggingService Logger { get; private set; }
 
-        public bool IsLoggedIn { get; private set; }
+        protected bool IsLoggedIn { get; private set; }
 
         #endregion
 

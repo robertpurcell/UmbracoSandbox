@@ -86,8 +86,12 @@
             {
                 switch (ex.StatusCode)
                 {
-                    case SmtpStatusCode.GeneralFailure | SmtpStatusCode.ServiceNotAvailable | SmtpStatusCode.SyntaxError |
-                        SmtpStatusCode.CommandUnrecognized | SmtpStatusCode.TransactionFailed | SmtpStatusCode.BadCommandSequence:
+                    case SmtpStatusCode.GeneralFailure:
+                    case SmtpStatusCode.ServiceNotAvailable:
+                    case SmtpStatusCode.SyntaxError:
+                    case SmtpStatusCode.CommandUnrecognized:
+                    case SmtpStatusCode.TransactionFailed:
+                    case SmtpStatusCode.BadCommandSequence:
                         throw new Exception(string.Format("Error sending mail with code: {0}: {1}", ex.StatusCode, ex.Message), ex);
                 }
             }
@@ -96,15 +100,13 @@
         /// <summary>
         /// Validates an email address using the class that will eventually send to it
         /// </summary>
-        /// <param name="emailAddress">Email address</param>
+        /// <param name="address">Email address</param>
         /// <returns>Whether or not the email address is valid</returns>
-        public bool EmailAddressIsValid(string emailAddress)
+        public bool EmailAddressIsValid(string address)
         {
             try
             {
-                var address = new MailAddress(emailAddress);
-
-                return true;
+                return string.Equals(new MailAddress(address).Address, address);
             }
             catch
             {

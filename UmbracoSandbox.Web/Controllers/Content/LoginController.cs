@@ -39,6 +39,11 @@
             return CurrentTemplate(vm);
         }
 
+        /// <summary>
+        /// Logs in the member
+        /// </summary>
+        /// <param name="vm">Login form view model</param>
+        /// <returns>Redirect or return to current page</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LoginMember(LoginForm vm)
