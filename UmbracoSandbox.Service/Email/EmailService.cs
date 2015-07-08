@@ -37,14 +37,12 @@
             var context = HttpContext.Current;
             var from = string.IsNullOrEmpty(emailDetail.From) ? _emailAddress : emailDetail.From;
             var displayName = string.IsNullOrEmpty(emailDetail.From) ? _displayName : emailDetail.DisplayName;
-            var body = context != null
-                ? RelativeToAbsoluteUrls(emailDetail.Body, "http://" + context.Request.ServerVariables["HTTP_HOST"])
-                : emailDetail.Body;
+            var url = context != null ? string.Format("{0}://{1}", context.Request.Url.Scheme, context.Request.ServerVariables["HTTP_HOST"]) : string.Empty;
             var mail = new MailMessage
             {
                 From = new MailAddress(from, displayName),
                 Subject = emailDetail.Subject,
-                Body = body,
+                Body = string.IsNullOrEmpty(url) ? emailDetail.Body : RelativeToAbsoluteUrls(emailDetail.Body, url),
                 IsBodyHtml = emailDetail.IsBodyHtml
             };
             if (emailDetail.To != null && emailDetail.To.Any())
@@ -122,16 +120,16 @@
         /// Method to replace relative URLs with absolute URLs
         /// </summary>
         /// <param name="text">Input text</param>
-        /// <param name="absoluteUrl">Base absolute URLs</param>
+        /// <param name="absoluteUri">Base absolute URI</param>
         /// <returns>Amended string</returns>
-        private static string RelativeToAbsoluteUrls(string text = "", string absoluteUrl = "")
+        private static string RelativeToAbsoluteUrls(string text = "", string absoluteUri = "")
         {
             if (string.IsNullOrEmpty(text))
             {
                 return string.Empty;
             }
 
-            var baseUri = new Uri(absoluteUrl);
+            var baseUri = new Uri(absoluteUri);
             var matchEvaluator = new MatchEvaluator(
                 match =>
                 {
