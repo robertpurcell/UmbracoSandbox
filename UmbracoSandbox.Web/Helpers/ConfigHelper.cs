@@ -40,16 +40,18 @@
         {
             object obj = ConfigurationManager.AppSettings[settingName];
             var value = default(T);
-            if (obj != null)
+            if (obj == null)
             {
-                try
-                {
-                    value = callerConverter(obj);
-                }
-                catch
-                {
-                    value = default(T);
-                }
+                return value;
+            }
+
+            try
+            {
+                value = callerConverter(obj);
+            }
+            catch
+            {
+                value = default(T);
             }
 
             return value;

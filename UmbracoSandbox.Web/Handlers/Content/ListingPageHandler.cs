@@ -27,11 +27,11 @@
         /// </summary>
         /// <typeparam name="T">The child page type</typeparam>
         /// <param name="currentPage">The current page</param>
-        /// <param name="isLoggedIn">Whether or not the user is logged in</param>
+        /// <param name="currentMember">The current member</param>
         /// <returns>The page model</returns>
-        public ListingViewModel GetListingPageModel<T>(IPublishedContent currentPage, bool isLoggedIn) where T : BaseModuleModel, new()
+        public ListingViewModel GetListingPageModel<T>(IPublishedContent currentPage, IPublishedContent currentMember) where T : BaseModuleModel, new()
         {
-            var model = GetPageModel<ListingViewModel>(currentPage, isLoggedIn);
+            var model = GetPageModel<ListingViewModel>(currentPage, currentMember);
             Mapper.MapCollection<T>(currentPage.Children.Where(x => x.ShowToVisitor()), model.Items as IList<T>);
 
             return model;

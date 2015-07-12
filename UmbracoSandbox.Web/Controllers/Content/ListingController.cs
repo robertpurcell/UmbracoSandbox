@@ -32,7 +32,7 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult Listing()
         {
-            var vm = _handler.GetListingPageModel<BlogPostModuleModel>(CurrentPage, IsLoggedIn);
+            var vm = _handler.GetListingPageModel<BlogPostModuleModel>(CurrentPage, CurrentMember);
 
             return CurrentTemplate(vm);
         }

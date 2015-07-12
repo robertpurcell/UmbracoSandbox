@@ -34,7 +34,7 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult Login()
         {
-            var vm = _handler.GetPageModel<LoginViewModel>(CurrentPage, IsLoggedIn);
+            var vm = _handler.GetPageModel<LoginViewModel>(CurrentPage, CurrentMember);
 
             return CurrentTemplate(vm);
         }
@@ -55,7 +55,7 @@
 
             if (Members.Login(vm.Email, vm.Password))
             {
-                FormsAuthentication.SetAuthCookie(vm.Email, false);
+                FormsAuthentication.SetAuthCookie(vm.Email, vm.RememberMe);
 
                 return RedirectToCurrentUmbracoUrl();
             }

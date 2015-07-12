@@ -5,5 +5,7 @@
         IMenuItem Login { get; }
 
         bool IsLoggedIn { get; }
+
+        string Name { get; }
     }
 }

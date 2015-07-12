@@ -26,11 +26,11 @@
         /// Gets the model for the registration page
         /// </summary>
         /// <param name="currentPage">The current page</param>
-        /// <param name="isLoggedIn">Whether or not the user is logged in</param>
+        /// <param name="currentMember">The current member</param>
         /// <returns>The page model</returns>
-        public RegistrationViewModel GetRegistrationPageModel(IPublishedContent currentPage, bool isLoggedIn)
+        public RegistrationViewModel GetRegistrationPageModel(IPublishedContent currentPage, IPublishedContent currentMember)
         {
-            var model = GetPageModel<RegistrationViewModel>(currentPage, isLoggedIn);
+            var model = GetPageModel<RegistrationViewModel>(currentPage, currentMember);
             model.Form.Days = DateTimeFormatInfo.InvariantInfo.DayNames.Select((name, i) => new SelectListItem
             {
                 Value = i.ToString(),

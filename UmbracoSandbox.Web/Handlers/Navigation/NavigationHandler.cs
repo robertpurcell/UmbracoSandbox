@@ -33,10 +33,10 @@
         /// <summary>
         /// Method to get the model for the main navigation
         /// </summary>
-        /// <param name="currentPage">Current page</param>
-        /// <param name="isLoggedIn">Whether or not the user is logged in</param>
+        /// <param name="currentPage">The current page</param>
+        /// <param name="currentMember">The current member</param>
         /// <returns>Navigation model</returns>
-        public MainNavigationModel GetMainNavigation(IPublishedContent currentPage, bool isLoggedIn)
+        public MainNavigationModel GetMainNavigation(IPublishedContent currentPage, IPublishedContent currentMember)
         {
             _root = currentPage.AncestorOrSelf(1);
             var login = _root.Descendant(PageTypes.Login);
@@ -45,7 +45,8 @@
             {
                 Items = GetMenuItems(currentPage, _root, 0, 3),
                 Login = MapItem(currentPage, login),
-                IsLoggedIn = isLoggedIn
+                IsLoggedIn = currentMember != null,
+                Name = currentMember != null ? currentMember.Name : string.Empty
             };
         }
 

@@ -32,7 +32,7 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult Error()
         {
-            var vm = _handler.GetPageModel<ErrorViewModel>(CurrentPage, IsLoggedIn);
+            var vm = _handler.GetPageModel<ErrorViewModel>(CurrentPage, CurrentMember);
 
             return CurrentTemplate(vm);
         }

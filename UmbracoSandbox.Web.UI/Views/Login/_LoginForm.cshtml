@@ -22,9 +22,18 @@
     </div>
     <div class="row">
         <div class="form-group col-sm-6">
-            @Html.RequiredLabelFor(m => m.Password, new {@class = "control-label"})
-            @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
+            @Html.RequiredLabelFor(m => m.Password, new { @class = "control-label" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Password)
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            <div class="checkbox">
+                <label>
+                    @Html.CheckBoxFor(m => m.RememberMe)@Html.DisplayNameFor(m => m.RememberMe)
+                </label>
+            </div>
         </div>
     </div>
     @Html.HiddenFor(m => m.ReturnUrl)

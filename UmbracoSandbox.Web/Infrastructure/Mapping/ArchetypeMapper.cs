@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Web;
     using Archetype.Models;
@@ -38,9 +39,10 @@
 
             var dictionary = GetDictionary(mapper, archetypeModel);
             var result = new T();
-            if (dictionary.IsAndAny())
+            var enumerable = dictionary as Dictionary<string, object>[] ?? dictionary.ToArray();
+            if (enumerable.IsAndAny())
             {
-                result = GetModel<T>(mapper, dictionary.SingleOrDefault());
+                result = GetModel<T>(mapper, enumerable.SingleOrDefault());
             }
 
             return result;
@@ -129,7 +131,7 @@
         private static IEnumerable<Dictionary<string, object>> GetDictionary(IUmbracoMapper mapper, ArchetypeModel archetypeModel)
         {
             var propertyDictionary = archetypeModel
-                .Select(item => item.Properties.ToDictionary(m => m.Alias, m => GetTypedValue(mapper, m, item.Alias)));
+                .Select(item => item.Properties.ToDictionary(m => m.Alias, m => GetTypedValue(mapper, m)));
             var dictionary = propertyDictionary
                 .Zip(archetypeModel
                     .Select(item => new Dictionary<string, object> { { "alias", item.Alias } }),
@@ -145,9 +147,8 @@
         /// </summary>
         /// <param name="mapper">Umbraco mapper</param>
         /// <param name="archetypeProperty">Archetype property</param>
-        /// <param name="modelAlias">Model alias</param>
         /// <returns>Object of the required type</returns>
-        private static object GetTypedValue(IUmbracoMapper mapper, ArchetypePropertyModel archetypeProperty, string modelAlias)
+        private static object GetTypedValue(IUmbracoMapper mapper, ArchetypePropertyModel archetypeProperty)
         {
             switch (archetypeProperty.PropertyEditorAlias)
             {
@@ -219,12 +220,9 @@
             }
 
             var type = typeof(T).FullName;
-            foreach (var item in collection.ToList())
+            foreach (var item in collection.ToList().Where(item => item.GetType().FullName == type))
             {
-                if (item.GetType().FullName == type)
-                {
-                    yield return (T)item;
-                }
+                yield return (T)item;
             }
         }
 
@@ -253,7 +251,7 @@
 
                 var contentResult = new T();
                 mapper.Map(contentToMapFrom.SingleOrDefault(), contentResult);
-                result = CopyValues<T>(result, contentResult);
+                result = CopyValues(result, contentResult);
 
                 return result;
             }
@@ -283,7 +281,7 @@
                 var value = prop.GetValue(source, null);
                 var targetValue = prop.GetValue(target, null);
                 if (value != null && (targetValue == null || string.IsNullOrEmpty(targetValue.ToString()) ||
-                    targetValue.ToString() == "0" || targetValue.ToString() == DateTime.MinValue.ToString()))
+                    targetValue.ToString() == "0" || targetValue.ToString() == DateTime.MinValue.ToString(CultureInfo.InvariantCulture)))
                 {
                     prop.SetValue(result, value, null);
                 }

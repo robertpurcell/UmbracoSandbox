@@ -1,6 +1,7 @@
 ﻿namespace UmbracoSandbox.Web.Controllers.Base
 {
     using System.Web.Mvc;
+    using Umbraco.Core.Models;
     using Umbraco.Web.Models;
     using Umbraco.Web.Mvc;
     using UmbracoSandbox.Service.Logging;
@@ -12,6 +13,7 @@
         protected BaseController(ILoggingService logger)
         {
             Logger = logger;
+            CurrentMember = Members.GetCurrentMember();
             IsLoggedIn = Members.IsLoggedIn();
         }
 
@@ -20,6 +22,8 @@
         #region Properties
 
         protected ILoggingService Logger { get; private set; }
+
+        protected IPublishedContent CurrentMember { get; private set; }
 
         protected bool IsLoggedIn { get; private set; }
 

@@ -32,7 +32,7 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult Home()
         {
-            var vm = _handler.GetPageModel<HomeViewModel>(CurrentPage, IsLoggedIn);
+            var vm = _handler.GetPageModel<HomeViewModel>(CurrentPage, CurrentMember);
 
             return CurrentTemplate(vm);
         }

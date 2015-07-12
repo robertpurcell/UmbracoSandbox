@@ -37,7 +37,7 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult Registration()
         {
-            var vm = _handler.GetRegistrationPageModel(CurrentPage, IsLoggedIn);
+            var vm = _handler.GetRegistrationPageModel(CurrentPage, CurrentMember);
 
             return CurrentTemplate(vm);
         }

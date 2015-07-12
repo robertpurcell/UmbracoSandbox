@@ -33,7 +33,7 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult BlogPost()
         {
-            var vm = _handler.GetPageModel<BlogPostViewModel>(CurrentPage, IsLoggedIn);
+            var vm = _handler.GetPageModel<BlogPostViewModel>(CurrentPage, CurrentMember);
             vm.ImageUrl = GravatarHelper.CreateGravatarUrl("rpurcell@thisiszone.com", 200, string.Empty, null, null, null);
 
             return CurrentTemplate(vm);

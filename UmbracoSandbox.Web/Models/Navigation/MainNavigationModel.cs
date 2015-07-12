@@ -7,5 +7,7 @@
         public IMenuItem Login { get; set; }
 
         public bool IsLoggedIn { get; set; }
+
+        public string Name { get; set; }
     }
 }

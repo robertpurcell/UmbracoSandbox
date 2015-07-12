@@ -32,7 +32,9 @@
     @Html.Partial("_MainNavigation", Model.MainNavigation)
 
     @* TITLE *@
-    @Html.Partial("_Title")
+    <div class="jumbotron">
+        @Html.Partial("_Title")
+    </div>
 
     @* BODY TEXT *@
     @Html.Partial("_BodyText")

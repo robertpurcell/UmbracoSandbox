@@ -15,7 +15,7 @@
         /// <returns>True if correct</returns>
         public override bool IsConverter(PublishedPropertyType propertyType)
         {
-            return "Zone.GoogleMaps".Equals(propertyType.PropertyEditorAlias);
+            return propertyType.PropertyEditorAlias.Equals("Zone.GoogleMaps");
         }
 
         /// <summary>
