@@ -27,7 +27,9 @@
                     using (Html.BeginUmbracoForm<LogoutController>("Logout", null, new { @class = "navbar-form navbar-right" }, FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
-                        <button type="submit" class="btn btn-default">Logout</button>
+                        <button type="submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout
+                        </button>
                     }
                     if (!string.IsNullOrEmpty(Model.Name))
                     {
@@ -38,7 +40,9 @@
                 {
                     if (Model.Login != null)
                     {
-                        <a href="@Model.Login.Url" class="btn btn-default navbar-btn navbar-right">@Model.Login.Name</a>
+                        <a href="@Model.Login.Url" class="btn btn-default navbar-btn navbar-right">
+                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> @Model.Login.Name
+                        </a>
                     }
                 }
             </div>
