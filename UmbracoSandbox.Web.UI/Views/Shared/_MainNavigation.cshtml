@@ -24,24 +24,37 @@
                 </ul>
                 @if (Model.IsLoggedIn)
                 {
-                    using (Html.BeginUmbracoForm<LogoutController>("Logout", null, new { @class = "navbar-form navbar-right" }, FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        <button type="submit" class="btn btn-default">
-                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout
-                        </button>
-                    }
-                    if (!string.IsNullOrEmpty(Model.Name))
-                    {
-                        <p class="navbar-text navbar-right">Signed in as @Model.Name</p>
-                    }
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                                {
+                                    <div class="circle-image-small img-responsive pull-left" @Html.DisplayBackgroundImage(Model.ImageUrl)></div>
+                                }
+                                  @Model.Name <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Edit profile</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    @using (Html.BeginUmbracoForm<LogoutController>("Logout", null, new { @class = "navbar-form" }, FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-default navbar-btn">
+                                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Sign out
+                                        </button>
+                                    }
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 }
                 else
                 {
                     if (Model.Login != null)
                     {
                         <a href="@Model.Login.Url" class="btn btn-default navbar-btn navbar-right">
-                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> @Model.Login.Name
+                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Log in
                         </a>
                     }
                 }

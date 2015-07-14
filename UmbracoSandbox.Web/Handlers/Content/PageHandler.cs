@@ -34,7 +34,7 @@
         /// <param name="currentPage">The current page</param>
         /// <param name="currentMember">The current member</param>
         /// <returns>The page model</returns>
-        public virtual T GetPageModel<T>(IPublishedContent currentPage, IPublishedContent currentMember) where T : BasePageViewModel, new()
+        public virtual T GetPageModel<T>(IPublishedContent currentPage, IMember currentMember) where T : BasePageViewModel, new()
         {
             var model = new T
             {

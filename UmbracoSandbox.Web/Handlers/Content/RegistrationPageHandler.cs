@@ -28,7 +28,7 @@
         /// <param name="currentPage">The current page</param>
         /// <param name="currentMember">The current member</param>
         /// <returns>The page model</returns>
-        public RegistrationViewModel GetRegistrationPageModel(IPublishedContent currentPage, IPublishedContent currentMember)
+        public RegistrationViewModel GetRegistrationPageModel(IPublishedContent currentPage, IMember currentMember)
         {
             var model = GetPageModel<RegistrationViewModel>(currentPage, currentMember);
             model.Form.Days = DateTimeFormatInfo.InvariantInfo.DayNames.Select((name, i) => new SelectListItem

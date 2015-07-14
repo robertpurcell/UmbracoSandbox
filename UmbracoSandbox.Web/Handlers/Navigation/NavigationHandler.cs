@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using GravatarHelper;
     using RJP.MultiUrlPicker.Models;
     using Umbraco.Core.Models;
     using Umbraco.Web;
@@ -36,7 +37,7 @@
         /// <param name="currentPage">The current page</param>
         /// <param name="currentMember">The current member</param>
         /// <returns>Navigation model</returns>
-        public MainNavigationModel GetMainNavigation(IPublishedContent currentPage, IPublishedContent currentMember)
+        public MainNavigationModel GetMainNavigation(IPublishedContent currentPage, IMember currentMember)
         {
             _root = currentPage.AncestorOrSelf(1);
             var login = _root.Descendant(PageTypes.Login);
@@ -46,7 +47,10 @@
                 Items = GetMenuItems(currentPage, _root, 0, 3),
                 Login = MapItem(currentPage, login),
                 IsLoggedIn = currentMember != null,
-                Name = currentMember != null ? currentMember.Name : string.Empty
+                Name = currentMember != null ? currentMember.Name : string.Empty,
+                ImageUrl = currentMember != null
+                    ? GravatarHelper.CreateGravatarUrl(currentMember.Email, 30, string.Empty, null, null, null)
+                    : string.Empty
             };
         }
 

@@ -13,7 +13,7 @@
         protected BaseController(ILoggingService logger)
         {
             Logger = logger;
-            CurrentMember = Members.GetCurrentMember();
+            CurrentMember = Services.MemberService.GetById(Members.GetCurrentMemberId());
             IsLoggedIn = Members.IsLoggedIn();
         }
 
@@ -23,7 +23,7 @@
 
         protected ILoggingService Logger { get; private set; }
 
-        protected IPublishedContent CurrentMember { get; private set; }
+        protected IMember CurrentMember { get; private set; }
 
         protected bool IsLoggedIn { get; private set; }
 

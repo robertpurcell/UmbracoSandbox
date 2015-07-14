@@ -5,6 +5,6 @@
 
     public interface IRegistrationPageHandler
     {
-        RegistrationViewModel GetRegistrationPageModel(IPublishedContent currentPage, IPublishedContent currentMember);
+        RegistrationViewModel GetRegistrationPageModel(IPublishedContent currentPage, IMember currentMember);
     }
 }

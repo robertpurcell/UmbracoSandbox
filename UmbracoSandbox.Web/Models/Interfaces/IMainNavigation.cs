@@ -7,5 +7,7 @@
         bool IsLoggedIn { get; }
 
         string Name { get; }
+
+        string ImageUrl { get; }
     }
 }
