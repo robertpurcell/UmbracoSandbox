@@ -45,7 +45,7 @@
             return new MainNavigationModel
             {
                 Items = GetMenuItems(currentPage, _root, 0, 3),
-                Login = MapItem(currentPage, login),
+                Login = login != null ? MapItem(currentPage, login) : null,
                 IsLoggedIn = currentMember != null,
                 Name = currentMember != null ? currentMember.Name : string.Empty,
                 ImageUrl = currentMember != null

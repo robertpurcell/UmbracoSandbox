@@ -68,17 +68,19 @@
         /// <param name="image">Image model</param>
         private static void MapImageCrops(IPublishedContent media, ImageModel image)
         {
-            if (media != null)
+            if (media == null)
             {
-                try
-                {
-                    var imageCrops = JsonConvert.DeserializeObject<ImageCropperModel>(media.GetPropertyValue<string>("umbracoFile"));
-                    image.Crops = imageCrops.Crops.ToDictionary(x => x.Alias, x => media.GetCropUrl(x.Alias));
-                }
-                catch (Exception ex)
-                {
-                    LogHelper.Error<MediaMapper>("Error getting image crops: " + ex.InnerException, ex);
-                }
+                return;
+            }
+
+            try
+            {
+                var imageCrops = JsonConvert.DeserializeObject<ImageCropperModel>(media.GetPropertyValue<string>("umbracoFile"));
+                image.Crops = imageCrops.Crops.ToDictionary(x => x.Alias, x => media.GetCropUrl(x.Alias));
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error<MediaMapper>("Error getting image crops: " + ex.InnerException, ex);
             }
         }
 
