@@ -263,7 +263,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Zone.UmbracoMapper, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoMapper.1.5.1\lib\Zone.UmbracoMapper.dll</HintPath>
+      <HintPath>..\packages\UmbracoMapper.1.5.2\lib\Zone.UmbracoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Zone.UmbracoPersonalisationGroups">
