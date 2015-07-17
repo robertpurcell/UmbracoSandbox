@@ -479,7 +479,7 @@
     <Content Include="App_Plugins\RJP.MultiUrlPicker\package.manifest" />
     <Content Include="Global.asax" />
     <Content Include="Icon.png" />
-    <Content Include="Scripts\ajax.js" />
+    <Content Include="Scripts\forms.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Plugins\Zone.TimePicker\package.manifest" />

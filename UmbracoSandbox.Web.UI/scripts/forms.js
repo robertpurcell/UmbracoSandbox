@@ -15,3 +15,9 @@
         return false;
     });
 });
+
+$(document).ready(function () {
+    $("a.submit").click(function () {
+        $("#logout-form").submit();
+    });
+});
