@@ -1,4 +1,4 @@
-angular.module("umbraco").controller("Imulus.ArchetypeController", function ($scope, $http, assetsService, angularHelper, notificationsService, $timeout, entityResource, archetypeService, archetypeLabelService, archetypeCacheService, archetypePropertyEditorResource) {
+angular.module("umbraco").controller("Imulus.ArchetypeController", function ($scope, $http, assetsService, angularHelper, notificationsService, $timeout, fileManager, entityResource, archetypeService, archetypeLabelService, archetypeCacheService, archetypePropertyEditorResource) {
 
     //$scope.model.value = "";
     $scope.model.hideLabel = $scope.model.config.hideLabel == 1;
@@ -252,9 +252,34 @@ angular.module("umbraco").controller("Imulus.ArchetypeController", function ($sc
     //developerMode helpers
     $scope.model.value.toString = stringify;
 
+    // issue 114: register handler for file selection
+    $scope.model.value.setFiles = setFiles;
+
     //encapsulate stringify (should be built into browsers, not sure of IE support)
     function stringify() {
         return JSON.stringify(this);
+    }
+
+    // issue 114: handler for file selection
+    function setFiles(files) {
+        // get all currently selected files from file manager
+        var currentFiles = fileManager.getFiles();
+        
+        // get the files already selected for this archetype (by alias)
+        var archetypeFiles = [];
+        _.each(currentFiles, function (item) {
+            if (item.alias === $scope.model.alias) {
+                archetypeFiles.push(item.file);
+            }
+        });
+
+        // add the newly selected files
+        _.each(files, function (file) {
+            archetypeFiles.push(file);
+        });
+
+        // update the selected files for this archetype (by alias)
+        fileManager.setFiles($scope.model.alias, archetypeFiles);
     }
 
     //watch for changes
@@ -266,6 +291,11 @@ angular.module("umbraco").controller("Imulus.ArchetypeController", function ($sc
                 $scope.model.value.toString = stringify;
             }
         }
+
+        // issue 114: re-register handler for files selection and reset the currently selected files on the file manager
+        $scope.model.value.setFiles = setFiles;
+        fileManager.setFiles($scope.model.alias, []);
+
         // reset submit watcher counter on save
         $scope.activeSubmitWatcher = 0;
     });
@@ -677,7 +707,7 @@ angular.module("umbraco").controller("Imulus.ArchetypeConfigController", functio
     assetsService.loadCss("/App_Plugins/Archetype/css/archetype.css");
 });
 
-angular.module("umbraco.directives").directive('archetypeProperty', function ($compile, $http, archetypePropertyEditorResource, umbPropEditorHelper, $timeout, $rootScope, $q, editorState, archetypeService, archetypeCacheService) {
+angular.module("umbraco.directives").directive('archetypeProperty', function ($compile, $http, archetypePropertyEditorResource, umbPropEditorHelper, $timeout, $rootScope, $q, fileManager, editorState, archetypeService, archetypeCacheService) {
 
     var linker = function (scope, element, attrs, ngModelCtrl) {
         var configFieldsetModel = archetypeService.getFieldsetByAlias(scope.archetypeConfig.fieldsets, scope.fieldset.alias);
@@ -802,6 +832,9 @@ angular.module("umbraco.directives").directive('archetypeProperty', function ($c
                     scope.renderModel = {};
                     scope.model.value = archetypeService.getFieldsetProperty(scope).value;
 
+                    //init the property editor state
+                    archetypeService.getFieldsetProperty(scope).editorState = {};
+
                     //set the config from the prevalues
                     scope.model.config = config;
 
@@ -820,8 +853,17 @@ angular.module("umbraco.directives").directive('archetypeProperty', function ($c
                         }
                     }
 
+                    //upload datatype hack
+                    if(view.indexOf('fileupload.html') != -1) {
+                        scope.propertyForm = scope.form;
+                        scope.model.validation = {};
+                        scope.model.validation.mandatory = 0;
+                    }
+
                     //some items need an alias
                     scope.model.alias = "archetype-property-" + propertyAlias;
+                    //some items also need an id (file upload for example)
+                    scope.model.id = propertyAlias;
 
                     //watch for changes since there is no two-way binding with the local model.value
                     scope.$watch('model.value', function (newValue, oldValue) {
@@ -843,6 +885,23 @@ angular.module("umbraco.directives").directive('archetypeProperty', function ($c
                             // notify the linker that the property value changed
                             propertyValueChanged(archetypeService.getFieldset(scope), archetypeService.getFieldsetProperty(scope));
                         }
+                    });
+
+                    // issue 114: handle file selection on property editors
+                    scope.$on("filesSelected", function (event, args) {
+                        // populate the fileNames collection on the property editor state
+                        var property = archetypeService.getFieldsetProperty(scope);
+                        property.editorState.fileNames = [];
+                        _.each(args.files, function (item) {
+                            property.editorState.fileNames.push(item.name);
+                        });
+
+                        // remove the files set for this property
+                        // NOTE: we can't use property.alias because the file manager registers the selected files on the assigned Archetype property alias (e.g. "archetype-property-archetype-property-archetype-property-content-0-2-0-1-0-0")
+                        fileManager.setFiles(scope.model.alias, []);
+
+                        // now tell the containing Archetype to pick up the selected files
+                        scope.archetypeRenderModel.setFiles(args.files);
                     });
 
                     element.html(data).show();
@@ -1169,11 +1228,6 @@ angular.module('umbraco.services').factory('archetypeService', function () {
 angular.module('umbraco.services').factory('archetypeLabelService', function (archetypeCacheService) {
     //private
 
-    var isEntityLookupLoading = false;
-    var entityCache = [];
-    var isDatatypeLookupLoading = false;
-    var datatypeCache = [];
-
     function executeFunctionByName(functionName, context) {
         var args = Array.prototype.slice.call(arguments).splice(2);
 
@@ -1192,6 +1246,7 @@ angular.module('umbraco.services').factory('archetypeLabelService', function (ar
     }
 
     function getNativeLabel(datatype, value, scope) {
+
     	switch (datatype.selectedEditor) {
     		case "Imulus.UrlPicker":
     			return imulusUrlPicker(value, scope, {});
@@ -1201,9 +1256,25 @@ angular.module('umbraco.services').factory('archetypeLabelService', function (ar
                 return coreMntp(value, scope, datatype);
             case "Umbraco.MediaPicker":
                 return coreMediaPicker(value, scope, datatype);
+            case "Umbraco.DropDown":
+                return coreDropdown(value, scope, datatype);
     		default:
     			return "";
     	}
+    }
+
+    function coreDropdown(value, scope, args) {
+
+        if(!value)
+            return "";
+
+        var prevalue = args.preValues[0].value[value];
+
+        if(prevalue) {
+            return prevalue.value;
+        }
+
+        return "";
     }
 
     function coreMntp(value, scope, args) {
@@ -1320,14 +1391,24 @@ angular.module('umbraco.services').factory('archetypeLabelService', function (ar
             if (template.length < 1)
                 return fieldsetConfig.label;
 
-            var rgx = /{{([^)].*)}}/g;
+            var rgx = /({{(.*?)}})*/g;
             var results;
             var parsedTemplate = template;
 
-            while ((results = rgx.exec(template)) !== null) {
+            var rawMatches = template.match(rgx);
+            
+            var matches = [];
+
+            _.each(rawMatches, function(match){
+                if(match) {
+                    matches.push(match);
+                }
+            });
+
+            _.each(matches, function (match) {
 
                 // split the template in case it consists of multiple property aliases and/or functions
-                var templates = results[0].replace("{{", '').replace("}}", '').split("|");
+                var templates = match.replace("{{", '').replace("}}", '').split("|");
                 var templateLabelValue = "";
 
                 for(var i = 0; i < templates.length; i++) {
@@ -1377,7 +1458,7 @@ angular.module('umbraco.services').factory('archetypeLabelService', function (ar
 
                         if(propertyConfig) {
                         	var datatype = archetypeCacheService.getDatatypeByGuid(propertyConfig.dataTypeGuid);
-                        	
+
                         	if(datatype) {
 
                             	//try to get built-in label
@@ -1397,8 +1478,13 @@ angular.module('umbraco.services').factory('archetypeLabelService', function (ar
 
                     }                
                 }
-                parsedTemplate = parsedTemplate.replace(results[0], templateLabelValue);
-            }
+
+                if(!templateLabelValue) {
+                    templateLabelValue = "";
+                }
+                
+                parsedTemplate = parsedTemplate.replace(match, templateLabelValue);
+            });
 
             return parsedTemplate;
         }
@@ -1409,6 +1495,7 @@ angular.module('umbraco.services').factory('archetypeCacheService', function (ar
 
     var isEntityLookupLoading = false;
     var entityCache = [];
+
     var isDatatypeLookupLoading = false;
     var datatypeCache = [];
 
