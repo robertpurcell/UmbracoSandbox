@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmbracoSandbox.Web", "UmbracoSandbox.Web\UmbracoSandbox.Web.csproj", "{00B3AD26-4F16-4F81-8247-022CAC038F0A}"
 EndProject
@@ -23,6 +23,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{129CB7DA-832F-4BEA-8124-D5C8BBE88E49}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmbracoSandbox.Web.Tests", "UmbracoSandbox.Web.Tests\UmbracoSandbox.Web.Tests.csproj", "{6AB7D68C-B451-4418-902D-F732E034F09D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Zone", "Zone", "{D19959FF-340B-4E72-963E-DAC5030BC482}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +103,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{96C21E0F-D438-4A15-9265-EE32662E4159} = {D19959FF-340B-4E72-963E-DAC5030BC482}
 		{6AB7D68C-B451-4418-902D-F732E034F09D} = {129CB7DA-832F-4BEA-8124-D5C8BBE88E49}
 	EndGlobalSection
 EndGlobal
