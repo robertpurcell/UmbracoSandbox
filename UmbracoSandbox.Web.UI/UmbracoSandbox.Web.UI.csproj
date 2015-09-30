@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\UmbracoCms.7.2.8\build\UmbracoCms.props" Condition="Exists('..\packages\UmbracoCms.7.2.8\build\UmbracoCms.props')" />
+  <Import Project="..\packages\UmbracoCms.7.3.0\build\UmbracoCms.props" Condition="Exists('..\packages\UmbracoCms.7.3.0\build\UmbracoCms.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -21,7 +21,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <NuGetPackageImportStamp>fc44beaf</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>787f9287</NuGetPackageImportStamp>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -55,8 +55,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
-    <Reference Include="businesslogic, Version=1.0.5675.23468, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\businesslogic.dll</HintPath>
+    <Reference Include="businesslogic, Version=1.0.5750.18160, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\businesslogic.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ClientDependency.Core, Version=1.8.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -64,51 +64,51 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ClientDependency.Core.Mvc, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ClientDependency-Mvc.1.8.0.0\lib\net45\ClientDependency.Core.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="cms, Version=1.0.5675.23468, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\cms.dll</HintPath>
+      <HintPath>..\packages\ClientDependency-Mvc5.1.8.0.0\lib\net45\ClientDependency.Core.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="controls, Version=1.0.5675.23470, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\controls.dll</HintPath>
+    <Reference Include="cms, Version=1.0.5750.18161, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\cms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="controls, Version=1.0.5750.18163, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\controls.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CookComputing.XmlRpcV2, Version=2.5.0.0, Culture=neutral, PublicKeyToken=a7d6e17aa302004d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\xmlrpcnet.2.5.0\lib\net20\CookComputing.XmlRpcV2.dll</HintPath>
     </Reference>
-    <Reference Include="Examine, Version=0.1.65.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Examine.0.1.65.0\lib\Examine.dll</HintPath>
+    <Reference Include="Examine, Version=0.1.68.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Examine.0.1.68.0\lib\Examine.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="GravatarHelper, Version=3.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GravatarHelper.3.3.1\lib\Net40\GravatarHelper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="ImageProcessor, Version=1.9.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ImageProcessor.1.9.5.0\lib\ImageProcessor.dll</HintPath>
+    <Reference Include="ImageProcessor, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageProcessor.2.3.0.0\lib\net45\ImageProcessor.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="ImageProcessor.Web, Version=3.3.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ImageProcessor.Web.3.3.1.0\lib\net45\ImageProcessor.Web.dll</HintPath>
+    <Reference Include="ImageProcessor.Web, Version=4.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageProcessor.Web.4.4.0.0\lib\net45\ImageProcessor.Web.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="interfaces, Version=1.0.5675.23466, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\interfaces.dll</HintPath>
+    <Reference Include="interfaces, Version=1.0.5750.18155, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\log4net.dll</HintPath>
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Lucene.Net, Version=2.9.4.1, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
@@ -122,10 +122,42 @@
       <HintPath>..\lib\Personalisation Groups\MaxMind.GeoIP2.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ApplicationBlocks.Data, Version=1.0.1559.20655, Culture=neutral">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebHelpers.3.2.3\lib\net45\Microsoft.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -139,8 +171,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
@@ -158,22 +190,30 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Our.Umbraco.CoreValueConverters.2.1.5\lib\net45\Our.Umbraco.PropertyEditorConverters.dll</HintPath>
     </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="RJP.MultiUrlPicker, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RJP.UmbracoMultiUrlPicker.1.3.1\lib\net45\RJP.MultiUrlPicker.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SQLCE4Umbraco, Version=1.0.5675.23469, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\SQLCE4Umbraco.dll</HintPath>
+    <Reference Include="Semver, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\semver.1.1.2\lib\net45\Semver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLCE4Umbraco, Version=1.0.5750.18162, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\SQLCE4Umbraco.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\System.Data.SqlServerCe.dll</HintPath>
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\System.Data.SqlServerCe.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.SqlServerCe.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\System.Data.SqlServerCe.Entity.dll</HintPath>
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\System.Data.SqlServerCe.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing" />
@@ -241,23 +281,23 @@
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
     <Reference Include="TidyNet, Version=1.0.0.0, Culture=neutral">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\TidyNet.dll</HintPath>
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\TidyNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="umbraco, Version=1.0.5675.23471, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\umbraco.dll</HintPath>
+    <Reference Include="umbraco, Version=1.0.5750.18164, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\umbraco.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Umbraco.Core, Version=1.0.5675.23466, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\Umbraco.Core.dll</HintPath>
+    <Reference Include="Umbraco.Core, Version=1.0.5750.18157, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\Umbraco.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="umbraco.DataLayer, Version=1.0.5675.23468, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\umbraco.DataLayer.dll</HintPath>
+    <Reference Include="umbraco.DataLayer, Version=1.0.5750.18159, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\umbraco.DataLayer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="umbraco.editorControls, Version=1.0.5675.23472, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\umbraco.editorControls.dll</HintPath>
+    <Reference Include="umbraco.editorControls, Version=1.0.5750.18166, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\umbraco.editorControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Umbraco.Forms.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -280,28 +320,36 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Umbraco.Licensing.dll</HintPath>
     </Reference>
-    <Reference Include="umbraco.MacroEngines, Version=1.0.5675.23472, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\umbraco.MacroEngines.dll</HintPath>
+    <Reference Include="umbraco.MacroEngines, Version=1.0.5750.18166, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\umbraco.MacroEngines.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="umbraco.providers, Version=1.0.5675.23470, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\umbraco.providers.dll</HintPath>
+    <Reference Include="umbraco.providers, Version=1.0.5750.18163, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\umbraco.providers.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Umbraco.Web.UI, Version=1.0.5675.23473, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\Umbraco.Web.UI.dll</HintPath>
+    <Reference Include="Umbraco.Web.UI, Version=1.0.5750.18167, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\Umbraco.Web.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="UmbracoExamine, Version=0.7.0.23469, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\UmbracoExamine.dll</HintPath>
+    <Reference Include="UmbracoExamine, Version=0.7.0.18162, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\UmbracoExamine.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="UrlRewritingNet.UrlRewriter, Version=2.0.60829.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.8\lib\UrlRewritingNet.UrlRewriter.dll</HintPath>
+      <HintPath>..\packages\UmbracoCms.Core.7.3.0\lib\UrlRewritingNet.UrlRewriter.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.0.5\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.3\lib\net45\WebMatrix.WebData.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Zone.UmbracoMapper, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -462,6 +510,24 @@
     <Content Include="App_Plugins\Zone.TimePicker\timepicker.controller.js" />
     <Content Include="App_Plugins\Zone.TimePicker\timepicker.html" />
     <Content Include="config\grid.editors.config.js" />
+    <Content Include="config\Lang\cs-CZ.user.xml" />
+    <Content Include="config\Lang\da-DK.user.xml" />
+    <Content Include="config\Lang\de-DE.user.xml" />
+    <Content Include="config\Lang\en-GB.user.xml" />
+    <Content Include="config\Lang\en-US.user.xml" />
+    <Content Include="config\Lang\es-ES.user.xml" />
+    <Content Include="config\Lang\fr-FR.user.xml" />
+    <Content Include="config\Lang\he-IL.user.xml" />
+    <Content Include="config\Lang\it-IT.user.xml" />
+    <Content Include="config\Lang\ja-JP.user.xml" />
+    <Content Include="config\Lang\ko-KR.user.xml" />
+    <Content Include="config\Lang\nb-NO.user.xml" />
+    <Content Include="config\Lang\nl-NL.user.xml" />
+    <Content Include="config\Lang\pl-PL.user.xml" />
+    <Content Include="config\Lang\pt-BR.user.xml" />
+    <Content Include="config\Lang\ru-RU.user.xml" />
+    <Content Include="config\Lang\sv-SE.user.xml" />
+    <Content Include="config\Lang\zh-CN.user.xml" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -1046,6 +1112,7 @@
     <Content Include="umbraco\Js\xmlRequest.js" />
     <Content Include="umbraco\lib\angular-bootstrap\ui-bootstrap-tpls-0.10.0.min.js" />
     <Content Include="umbraco\lib\angular-dynamic-locale\tmhDynamicLocale.min.js" />
+    <Content Include="umbraco\lib\angular-dynamic-locale\tmhDynamicLocale.min.js.map" />
     <Content Include="umbraco\lib\angular\1.1.5\angular-cookies.js" />
     <Content Include="umbraco\lib\angular\1.1.5\angular-cookies.min.js" />
     <Content Include="umbraco\lib\angular\1.1.5\angular-loader.js" />
@@ -1350,6 +1417,9 @@
     <Content Include="umbraco\lib\angular\angular-ui-sortable.js" />
     <Content Include="umbraco\lib\angular\tmhDynamicLocale.js" />
     <Content Include="umbraco\lib\blueimp-load-image\load-image.all.min.js" />
+    <Content Include="umbraco\lib\bootstrap-social\bootstrap-social.css" />
+    <Content Include="umbraco\lib\bootstrap-tabdrop\bootstrap-tabdrop.js" />
+    <Content Include="umbraco\lib\bootstrap-tabdrop\bootstrap-tabdrop.min.js" />
     <Content Include="umbraco\lib\bootstrap\css\bootstrap-responsive.css" />
     <Content Include="umbraco\lib\bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="umbraco\lib\bootstrap\css\bootstrap.cosmo.min.css" />
@@ -1410,11 +1480,37 @@
     <Content Include="umbraco\lib\bootstrap\less\utilities.less" />
     <Content Include="umbraco\lib\bootstrap\less\variables.less" />
     <Content Include="umbraco\lib\bootstrap\less\wells.less" />
+    <Content Include="umbraco\lib\codemirror\addon\dialog\dialog.css" />
+    <Content Include="umbraco\lib\codemirror\addon\dialog\dialog.js" />
+    <Content Include="umbraco\lib\codemirror\addon\edit\closebrackets.js" />
+    <Content Include="umbraco\lib\codemirror\addon\edit\closetag.js" />
+    <Content Include="umbraco\lib\codemirror\addon\edit\continuelist.js" />
+    <Content Include="umbraco\lib\codemirror\addon\edit\matchbrackets.js" />
+    <Content Include="umbraco\lib\codemirror\addon\edit\matchtags.js" />
+    <Content Include="umbraco\lib\codemirror\addon\edit\trailingspace.js" />
+    <Content Include="umbraco\lib\codemirror\addon\search\match-highlighter.js" />
+    <Content Include="umbraco\lib\codemirror\addon\search\matchesonscrollbar.css" />
+    <Content Include="umbraco\lib\codemirror\addon\search\matchesonscrollbar.js" />
+    <Content Include="umbraco\lib\codemirror\addon\search\search.js" />
+    <Content Include="umbraco\lib\codemirror\addon\search\searchcursor.js" />
+    <Content Include="umbraco\lib\codemirror\addon\selection\active-line.js" />
+    <Content Include="umbraco\lib\codemirror\addon\selection\mark-selection.js" />
+    <Content Include="umbraco\lib\codemirror\addon\selection\selection-pointer.js" />
+    <Content Include="umbraco\lib\codemirror\lib\codemirror.css" />
+    <Content Include="umbraco\lib\codemirror\lib\codemirror.js" />
+    <Content Include="umbraco\lib\codemirror\mode\css\css.js" />
+    <Content Include="umbraco\lib\codemirror\mode\htmlmixed\htmlmixed.js" />
+    <Content Include="umbraco\lib\codemirror\mode\javascript\javascript.js" />
+    <Content Include="umbraco\lib\codemirror\mode\razor\index.html" />
+    <Content Include="umbraco\lib\codemirror\mode\razor\razor.js" />
+    <Content Include="umbraco\lib\codemirror\mode\xml\xml.js" />
     <Content Include="umbraco\lib\cssparser\cssparser.js" />
     <Content Include="umbraco\lib\datetimepicker\bootstrap-datetimepicker.js" />
     <Content Include="umbraco\lib\datetimepicker\bootstrap-datetimepicker.min.css" />
     <Content Include="umbraco\lib\datetimepicker\bootstrap-datetimepicker.min.js" />
     <Content Include="umbraco\lib\datetimepicker\langs\datetimepicker.pt-BR.js" />
+    <Content Include="umbraco\lib\font-awesome\css\font-awesome.min.css" />
+    <Content Include="umbraco\lib\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="umbraco\lib\jquery-file-upload\jquery.fileupload-angular.js" />
     <Content Include="umbraco\lib\jquery-file-upload\jquery.fileupload-image.js" />
     <Content Include="umbraco\lib\jquery-file-upload\jquery.fileupload-process.js" />
@@ -1426,6 +1522,7 @@
     <Content Include="umbraco\lib\jquery\jquery-ui-1.10.4.custom.min.css" />
     <Content Include="umbraco\lib\jquery\jquery-ui-1.10.4.custom.min.js" />
     <Content Include="umbraco\lib\jquery\jquery.min.js" />
+    <Content Include="umbraco\lib\jquery\jquery.min.map" />
     <Content Include="umbraco\lib\jquery\jquery.sortable\jquery.sortable.min.js" />
     <Content Include="umbraco\lib\jquery\jquery.ui.core.min.js" />
     <Content Include="umbraco\lib\jquery\jquery.ui.draggable.js" />
@@ -1472,23 +1569,35 @@
     <Content Include="umbraco\lib\spectrum\spectrum.js" />
     <Content Include="umbraco\lib\tinymce\langs\readme.md" />
     <Content Include="umbraco\lib\tinymce\license.txt" />
+    <Content Include="umbraco\lib\tinymce\plugins\advlist\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\anchor\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\autolink\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\autoresize\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\autosave\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\bbcode\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\charmap\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\charmap\plugin.min.js" />
     <Content Include="umbraco\lib\tinymce\plugins\codemirror\langs\en.js" />
     <Content Include="umbraco\lib\tinymce\plugins\codemirror\plugin.min.js" />
     <Content Include="umbraco\lib\tinymce\plugins\codemirror\source.html" />
+    <Content Include="umbraco\lib\tinymce\plugins\code\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\colorpicker\plugin.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\colorpicker\plugin.min.js" />
     <Content Include="umbraco\lib\tinymce\plugins\compat3x\editable_selects.js" />
     <Content Include="umbraco\lib\tinymce\plugins\compat3x\form_utils.js" />
     <Content Include="umbraco\lib\tinymce\plugins\compat3x\mctabs.js" />
     <Content Include="umbraco\lib\tinymce\plugins\compat3x\tiny_mce_popup.js" />
     <Content Include="umbraco\lib\tinymce\plugins\compat3x\validate.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\contextmenu\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\directionality\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\directionality\plugin.min.js" />
     <Content Include="umbraco\lib\tinymce\plugins\emoticons\img\smiley-cool.gif" />
     <Content Include="umbraco\lib\tinymce\plugins\emoticons\img\smiley-cry.gif" />
@@ -1506,34 +1615,61 @@
     <Content Include="umbraco\lib\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
     <Content Include="umbraco\lib\tinymce\plugins\emoticons\img\smiley-wink.gif" />
     <Content Include="umbraco\lib\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="umbraco\lib\tinymce\plugins\emoticons\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\emoticons\plugin.min.js" />
     <Content Include="umbraco\lib\tinymce\plugins\example\plugin.min.js" />
     <Content Include="umbraco\lib\tinymce\plugins\example_dependency\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\fullpage\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\fullscreen\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\hr\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\image\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\importcss\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\insertdatetime\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\layer\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\layer\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\legacyoutput\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\link\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\lists\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\lists\plugin.min.js" />
     <Content Include="umbraco\lib\tinymce\plugins\media\moxieplayer.swf" />
+    <Content Include="umbraco\lib\tinymce\plugins\media\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\nonbreaking\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\noneditable\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\pagebreak\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\paste\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\preview\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\print\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\save\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\searchreplace\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\spellchecker\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\tabfocus\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\table\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\template\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\textcolor\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\textpattern\plugin.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\textpattern\plugin.min.js" />
     <Content Include="umbraco\lib\tinymce\plugins\umbracocontextmenu\editor_plugin_src.js" />
     <Content Include="umbraco\lib\tinymce\plugins\umbracocontextmenu\plugin.min.js" />
     <Content Include="umbraco\lib\tinymce\plugins\umbracocss\img\example.gif" />
@@ -1610,8 +1746,11 @@
     <Content Include="umbraco\lib\tinymce\plugins\umbracopaste\editor_plugin_src.js" />
     <Content Include="umbraco\lib\tinymce\plugins\umbracoshortcut\editor_plugin_src.js" />
     <Content Include="umbraco\lib\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="umbraco\lib\tinymce\plugins\visualblocks\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\visualchars\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="umbraco\lib\tinymce\plugins\wordcount\plugin.js" />
     <Content Include="umbraco\lib\tinymce\plugins\wordcount\plugin.min.js" />
     <Content Include="umbraco\lib\tinymce\skins\lightgray\content.inline.min.css" />
     <Content Include="umbraco\lib\tinymce\skins\lightgray\content.min.css" />
@@ -1654,10 +1793,12 @@
     <Content Include="umbraco\lib\tinymce\skins\umbraco\skin.classic.min.css" />
     <Content Include="umbraco\lib\tinymce\skins\umbraco\skin.ie7.min.css" />
     <Content Include="umbraco\lib\tinymce\skins\umbraco\skin.min.css" />
+    <Content Include="umbraco\lib\tinymce\themes\modern\theme.js" />
     <Content Include="umbraco\lib\tinymce\themes\modern\theme.min.js" />
     <Content Include="umbraco\lib\tinymce\themes\umbraco\theme.min.js" />
     <Content Include="umbraco\lib\tinymce\tinymce.min.js" />
     <Content Include="umbraco\lib\typeahead-js\typeahead.bundle.min.js" />
+    <Content Include="umbraco\lib\typeahead.js\typeahead.bundle.min.js" />
     <Content Include="umbraco\lib\typeahead\typeahead.bundle.min.js" />
     <Content Include="umbraco\lib\umbraco\compat.js" />
     <Content Include="umbraco\lib\umbraco\Extensions.js" />
@@ -1665,6 +1806,7 @@
     <Content Include="umbraco\lib\umbraco\LegacyUmbClientMgr.js" />
     <Content Include="umbraco\lib\umbraco\NamespaceManager.js" />
     <Content Include="umbraco\lib\underscore\underscore-min.js" />
+    <Content Include="umbraco\lib\underscore\underscore-min.map" />
     <Content Include="umbraco\lib\underscore\underscore.js" />
     <Content Include="umbraco\Logout.aspx" />
     <Content Include="umbraco\macroResultWrapper.aspx" />
@@ -1748,6 +1890,7 @@
     <Content Include="umbraco\Translation\default.aspx" />
     <Content Include="umbraco\Translation\details.aspx" />
     <Content Include="umbraco\Translation\preview.aspx" />
+    <Content Include="umbraco\Translation\translationTasks.dtd" />
     <Content Include="umbraco\Translation\xml.aspx" />
     <Content Include="umbraco\tree.aspx" />
     <Content Include="umbraco\treeInit.aspx" />
@@ -1790,6 +1933,7 @@
     <Content Include="umbraco\Views\content\emptyrecyclebin.html" />
     <Content Include="umbraco\Views\content\move.html" />
     <Content Include="umbraco\Views\content\recyclebin.html" />
+    <Content Include="umbraco\Views\content\restore.html" />
     <Content Include="umbraco\Views\content\umbpreview.html" />
     <Content Include="umbraco\Views\dashboard\ChangePassword.html" />
     <Content Include="umbraco\Views\dashboard\default\ourumbraco.png" />
@@ -3194,10 +3338,6 @@
     <Content Include="Views\Error.cshtml" />
     <Content Include="Views\Registration.cshtml" />
     <Content Include="Views\Registration\_RegistrationForm.cshtml" />
-    <Content Include="umbraco\lib\angular-dynamic-locale\tmhDynamicLocale.min.js.map" />
-    <Content Include="umbraco\lib\jquery\jquery.min.map" />
-    <Content Include="umbraco\lib\underscore\underscore-min.map" />
-    <Content Include="umbraco\Translation\translationTasks.dtd" />
     <Content Include="Views\Login.cshtml" />
     <Content Include="Views\Login\_LoginForm.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
@@ -3207,6 +3347,12 @@
     <Content Include="Views\Partials\Grid\Editors\Base.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap3.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap2.cshtml" />
+    <Content Include="umbraco\lib\bootstrap-tabdrop\README.md" />
+    <Content Include="umbraco\lib\codemirror\mode\razor\LICENSE" />
+    <Content Include="umbraco\lib\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="umbraco\lib\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="umbraco\lib\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="umbraco\lib\font-awesome\fonts\FontAwesome.otf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Plugins\UmbracoForms\Data\prevaluesources\" />
@@ -3353,12 +3499,12 @@
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
-    <Error Condition="!Exists('..\packages\UmbracoCms.7.2.8\build\UmbracoCms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\UmbracoCms.7.2.8\build\UmbracoCms.props'))" />
-    <Error Condition="!Exists('..\packages\UmbracoCms.7.2.8\build\UmbracoCms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\UmbracoCms.7.2.8\build\UmbracoCms.targets'))" />
+    <Error Condition="!Exists('..\packages\UmbracoCms.7.3.0\build\UmbracoCms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\UmbracoCms.7.3.0\build\UmbracoCms.props'))" />
+    <Error Condition="!Exists('..\packages\UmbracoCms.7.3.0\build\UmbracoCms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\UmbracoCms.7.3.0\build\UmbracoCms.targets'))" />
   </Target>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Import Project="..\packages\UmbracoCms.7.2.8\build\UmbracoCms.targets" Condition="Exists('..\packages\UmbracoCms.7.2.8\build\UmbracoCms.targets')" />
+  <Import Project="..\packages\UmbracoCms.7.3.0\build\UmbracoCms.targets" Condition="Exists('..\packages\UmbracoCms.7.3.0\build\UmbracoCms.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

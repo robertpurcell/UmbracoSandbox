@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using Umbraco.Core.Logging;
     using Umbraco.Web.Models.ContentEditing;
+    using Umbraco.Web.UI;
 
     public class NotificationHandler : DelegatingHandler
     {
@@ -20,14 +21,13 @@
                         var response = task.Result;
                         try
                         {
-                            var data = response.Content;
-                            var content = ((ObjectContent)data).Value as ContentItemDisplay;
+                            var content = ((ObjectContent)response.Content).Value as ContentItemDisplay;
                             if (content != null && content.Notifications.Any())
                             {
                                 foreach (var notification in content.Notifications.Where(x => string.Equals(x.Header, "Content published")))
                                 {
                                     notification.Message = "Thanks for publishing!";
-                                    notification.NotificationType = Umbraco.Web.UI.SpeechBubbleIcon.Error;
+                                    notification.NotificationType = SpeechBubbleIcon.Info;
                                 }
                             }
                         }
