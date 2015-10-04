@@ -8,6 +8,6 @@
 
         public const string TempData = "TempData";
 
-        #endregion
+        #endregion Session variables
     }
 }

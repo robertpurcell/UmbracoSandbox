@@ -2,32 +2,57 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+
     using GravatarHelper;
+
     using RJP.MultiUrlPicker.Models;
+
     using Umbraco.Core.Models;
     using Umbraco.Web;
+
     using UmbracoSandbox.Web.Handlers.Base;
     using UmbracoSandbox.Web.Helpers;
     using UmbracoSandbox.Web.Infrastructure.Config;
+    using UmbracoSandbox.Web.Infrastructure.ContentLocators;
     using UmbracoSandbox.Web.Models.Navigation;
+
     using Zone.UmbracoMapper;
 
     public class NavigationHandler : BaseHandler, INavigationHandler
     {
         #region Fields
 
+        private readonly IRootContentLocator _rootContentLocator;
         private IPublishedContent _root;
 
-        #endregion
+        #endregion Fields
 
         #region Constructor
 
-        public NavigationHandler(IUmbracoMapper mapper)
+        public NavigationHandler(IUmbracoMapper mapper, IRootContentLocator rootContentLocator)
             : base(mapper)
         {
+            _rootContentLocator = rootContentLocator;
         }
 
-        #endregion
+        #endregion Constructor
+
+        #region Properties
+
+        protected IPublishedContent Root
+        {
+            get
+            {
+                return _root ?? _rootContentLocator.Find(); ;
+            }
+
+            set
+            {
+                _root = value;
+            }
+        }
+
+        #endregion Properties
 
         #region Methods
 
@@ -39,19 +64,22 @@
         /// <returns>Navigation model</returns>
         public MainNavigationModel GetMainNavigation(IPublishedContent currentPage, IMember currentMember)
         {
-            _root = currentPage.AncestorOrSelf(1);
-            var login = _root.Descendant(PageTypes.Login);
-
-            return new MainNavigationModel
+            var login = Root.Descendant(DocumentTypeAliases.Login);
+            var model = new MainNavigationModel
             {
-                Items = GetMenuItems(currentPage, _root, 0, 3),
-                Login = login != null ? MapItem(currentPage, login) : null,
-                IsLoggedIn = currentMember != null,
-                Name = currentMember != null ? currentMember.Name : string.Empty,
-                ImageUrl = currentMember != null
-                    ? GravatarHelper.CreateGravatarUrl(currentMember.Email, 30, string.Empty, null, null, null)
-                    : string.Empty
+                Items = GetMenuItems(currentPage, Root, 0, 3),
+                Login = login != null ? MapItem(currentPage, login) : null
             };
+
+            if (currentMember == null)
+            {
+                return model;
+            }
+
+            model.IsLoggedIn = true;
+            model.Name = currentMember.Name;
+            model.ImageUrl = GravatarHelper.CreateGravatarUrl(currentMember.Email, 30, string.Empty, null, null, null);
+            return model;
         }
 
         /// <summary>
@@ -63,11 +91,11 @@
         {
             return new NavigationModel
             {
-                Items = GetMenuItems(currentPage, "footerNavigation")
+                Items = GetMenuItems(currentPage, PropertyAliases.FooterNavigation)
             };
         }
 
-        #endregion
+        #endregion Methods
 
         #region Helpers
 
@@ -107,11 +135,11 @@
         private IEnumerable<MenuItemModel> GetMenuItems(IPublishedContent currentPage, IPublishedContent parent, int currentLevel, int maxLevel)
         {
             return parent.Children
-                .Where(x => !x.GetPropertyValue<bool>("umbracoNaviHide") && x.TemplateId != 0)
+                .Where(x => !x.GetPropertyValue<bool>(PropertyAliases.UmbracoNaviHide) && x.TemplateId != 0)
                 .Select(x =>
                     {
                         var item = MapItem(currentPage, x);
-                        if (currentLevel < maxLevel && !x.GetPropertyValue<bool>("hideSubNavigation"))
+                        if (currentLevel < maxLevel && !x.GetPropertyValue<bool>(PropertyAliases.HideSubNavigation))
                         {
                             item.Items = GetMenuItems(currentPage, x, currentLevel + 1, maxLevel);
                         }
@@ -132,13 +160,13 @@
             {
                 IsCurrentPage = currentPage.Id.Equals(page.Id),
                 IsCurrentPageOrAncestor = currentPage.Id.Equals(page.Id)
-                    || currentPage.Path.Split(',').Where(i => !i.Equals(_root.Id.ToString())).Contains(page.Id.ToString())
+                    || currentPage.Path.Split(',').Where(i => !i.Equals(Root.Id.ToString())).Contains(page.Id.ToString())
             };
             Mapper.Map(page, item);
 
             return item;
         }
 
-        #endregion
+        #endregion Helpers
     }
 }

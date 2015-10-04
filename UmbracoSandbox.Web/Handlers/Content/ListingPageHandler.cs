@@ -2,11 +2,14 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+
     using Umbraco.Core.Models;
     using Umbraco.Web;
+
     using UmbracoSandbox.Web.Handlers.Navigation;
     using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Content;
+
     using Zone.UmbracoMapper;
 
     public class ListingPageHandler : PageHandler, IListingPageHandler
@@ -18,7 +21,7 @@
         {
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Methods
 
@@ -32,11 +35,11 @@
         public ListingViewModel GetListingPageModel<T>(IPublishedContent currentPage, IMember currentMember) where T : BaseModuleModel, new()
         {
             var model = GetPageModel<ListingViewModel>(currentPage, currentMember);
-            Mapper.MapCollection<T>(currentPage.Children.Where(x => x.ShowToVisitor()), model.Items as IList<T>);
+            Mapper.MapCollection(currentPage.Children.Where(x => x.ShowToVisitor()), model.Items as IList<T>);
 
             return model;
         }
 
-        #endregion
+        #endregion Methods
     }
 }

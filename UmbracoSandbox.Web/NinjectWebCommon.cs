@@ -5,16 +5,21 @@ namespace UmbracoSandbox.Web
 {
     using System;
     using System.Web;
+
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+
     using Ninject;
     using Ninject.Syntax;
     using Ninject.Web.Common;
+
     using UmbracoSandbox.Service.Email;
     using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Service.Publishing;
+    using UmbracoSandbox.Web.Infrastructure.ContentLocators;
     using UmbracoSandbox.Web.Handlers.Content;
     using UmbracoSandbox.Web.Handlers.Navigation;
     using UmbracoSandbox.Web.Helpers;
+
     using Zone.UmbracoMapper;
 
     public static class NinjectWebCommon
@@ -86,6 +91,14 @@ namespace UmbracoSandbox.Web
                 .WithConstructorArgument("pageNotFoundFileName", ConfigHelper.GetSettingAsString("app.pageNotFoundFileName"))
                 .WithConstructorArgument("serverErrorFileName", ConfigHelper.GetSettingAsString("app.serverErrorFileName"))
                 .WithConstructorArgument("errorPagePublishingHostName", ConfigHelper.GetSettingAsString("app.errorPagePublishingHostName"));
+
+            // Register in request scope so that the UmbracoHelper created in constructor is only created once per request context
+            kernel.Bind<IRootContentLocator>().To<RootContentLocator>().WhenInjectedExactlyInto<RootContentLocatorCachingProxy>().InRequestScope();
+            kernel.Bind<IRootContentLocator>().To<RootContentLocatorCachingProxy>();
+
+            // Register in request scope so that the UmbracoHelper created in constructor is only created once per request context
+            kernel.Bind<IContentLocator>().To<ContentLocator>().WhenInjectedExactlyInto<ContentLocatorCachingProxy>().InRequestScope();
+            kernel.Bind<IContentLocator>().To<ContentLocatorCachingProxy>();
         }        
     }
 }

@@ -1,7 +1,9 @@
 ﻿namespace UmbracoSandbox.Web.Infrastructure.Config
 {
-    public static class PageTypes
+    public static class DocumentTypeAliases
     {
+        #region Document type aliases
+
         public const string Article = "Article";
 
         public const string Error = "Error";
@@ -13,5 +15,7 @@
         public const string Login = "Login";
 
         public const string Registration = "Registration";
+
+        #endregion Document type aliases
     }
 }

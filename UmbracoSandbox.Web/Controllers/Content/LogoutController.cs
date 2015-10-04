@@ -1,6 +1,7 @@
 ﻿namespace UmbracoSandbox.Web.Controllers.Content
 {
     using System.Web.Mvc;
+
     using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Web.Controllers.Base;
 
@@ -13,7 +14,7 @@
         {
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Action methods
 
@@ -32,6 +33,6 @@
             return Redirect("/");
         }
 
-        #endregion
+        #endregion Action methods
     }
 }

@@ -1,7 +1,9 @@
 ﻿namespace Zone.GoogleMaps
 {
     using System;
+
     using Newtonsoft.Json;
+
     using Umbraco.Core.Logging;
     using Umbraco.Core.Models.PublishedContent;
     using Umbraco.Core.PropertyEditors;
@@ -41,7 +43,7 @@
             }
             catch (Exception ex)
             {
-                LogHelper.Error<GoogleMapPropertyValueConverter>("Error converting GoogleMap property value: " + ex.StackTrace, ex);
+                LogHelper.Error<GoogleMapPropertyValueConverter>(string.Format("Error converting GoogleMap property value: {0}", ex.StackTrace), ex);
 
                 return null;
             }

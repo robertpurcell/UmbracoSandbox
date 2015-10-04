@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
     using Umbraco.Web.Editors;
     using Umbraco.Web.Mvc;
     using UmbracoSandbox.Web.Models.BackOffice;
@@ -20,7 +21,7 @@
             "Tina Turner", "John Fashanu", "Madonna", "Chris Eubank"
         };
 
-        #endregion
+        #endregion Fields
 
         #region Methods
 
@@ -43,6 +44,6 @@
             return allData.OrderByDescending(x => x.Date);
         }
 
-        #endregion
+        #endregion Methods
     }
 }

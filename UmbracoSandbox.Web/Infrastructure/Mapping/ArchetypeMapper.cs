@@ -257,7 +257,7 @@
             }
             catch (Exception ex)
             {
-                LogHelper.Error<ArchetypeMapper>("Error getting data for model: " + ex.InnerException, ex);
+                LogHelper.Error<ArchetypeMapper>(string.Format("Error getting data for model: {0}", ex.InnerException), ex);
             }
 
             return null;
@@ -281,7 +281,7 @@
                 var value = prop.GetValue(source, null);
                 var targetValue = prop.GetValue(target, null);
                 if (value != null && (targetValue == null || string.IsNullOrEmpty(targetValue.ToString()) ||
-                    targetValue.ToString() == "0" || targetValue.ToString() == DateTime.MinValue.ToString(CultureInfo.InvariantCulture)))
+                    string.Equals(targetValue.ToString(), "0") || string.Equals(targetValue.ToString(), DateTime.MinValue.ToString(CultureInfo.InvariantCulture))))
                 {
                     prop.SetValue(result, value, null);
                 }

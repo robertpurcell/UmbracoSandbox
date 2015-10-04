@@ -5,6 +5,7 @@
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
+
     using Umbraco.Core.Logging;
     using Umbraco.Web.Models.ContentEditing;
     using Umbraco.Web.UI;
@@ -33,7 +34,7 @@
                         }
                         catch (Exception ex)
                         {
-                            LogHelper.Error<NotificationHandler>("Error changing custom publishing cancelled message: " + ex.Message, ex);
+                            LogHelper.Error<NotificationHandler>(string.Format("Error changing custom publishing cancelled message: {0}", ex.Message), ex);
                         }
 
                         return response;

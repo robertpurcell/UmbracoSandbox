@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Web;
+
     using Umbraco.Forms.Core;
     using Umbraco.Forms.Core.Attributes;
     using Umbraco.Forms.Data;
@@ -50,7 +51,7 @@
             }
             catch (Exception ex)
             {
-                LogHelper.Error<GetIdsAndValuesFromTextFile>("Get Ids and values from textfile provider: " + ex, ex);
+                LogHelper.Error<GetIdsAndValuesFromTextFile>(string.Format("Get Ids and values from textfile provider: {0}", ex), ex);
             }
 
             return result;

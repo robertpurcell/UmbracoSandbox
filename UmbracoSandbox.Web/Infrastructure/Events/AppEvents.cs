@@ -2,8 +2,10 @@
 {
     using System.Web.Http;
     using System.Web.Routing;
+
     using Umbraco.Core;
     using Umbraco.Core.Services;
+
     using UmbracoSandbox.Web.Infrastructure.Routing;
 
     public class AppEvents : IApplicationEventHandler

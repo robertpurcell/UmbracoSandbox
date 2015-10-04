@@ -6,6 +6,6 @@
 
         public const string Module = "module";
 
-        #endregion
+        #endregion Model aliases
     }
 }

@@ -1,7 +1,9 @@
 ﻿namespace UmbracoSandbox.Web.Controllers.Content
 {
     using System.Web.Mvc;
+
     using GravatarHelper;
+
     using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Web.Controllers.Base;
     using UmbracoSandbox.Web.Handlers.Content;
@@ -13,7 +15,7 @@
 
         private readonly IPageHandler _handler;
 
-        #endregion
+        #endregion Fields
 
         #region Constructor
 
@@ -23,7 +25,7 @@
             _handler = handler;
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Action methods
 
@@ -39,6 +41,6 @@
             return CurrentTemplate(vm);
         }
 
-        #endregion
+        #endregion Action methods
     }
 }

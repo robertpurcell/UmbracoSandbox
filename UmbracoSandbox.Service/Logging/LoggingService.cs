@@ -12,7 +12,7 @@
 
         private readonly ILog _log;
 
-        #endregion
+        #endregion Fields
 
         #region Constructor
 
@@ -22,7 +22,7 @@
             _log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Interface methods
 
@@ -50,6 +50,6 @@
             }
         }
 
-        #endregion
+        #endregion Interface methods
     }
 }

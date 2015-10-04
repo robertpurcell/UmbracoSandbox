@@ -1,9 +1,11 @@
 ﻿namespace UmbracoSandbox.Web.Models.Base
 {
     using System.Web;
+
     using UmbracoSandbox.Web.Models.Interfaces;
     using UmbracoSandbox.Web.Models.Media;
     using UmbracoSandbox.Web.Models.Navigation;
+
     using Zone.UmbracoMapper;
 
     public abstract class BasePageViewModel : BaseNodeViewModel, IBodyText, IMetadata, ITitle
@@ -16,7 +18,7 @@
         private string _socialTitle;
         private string _socialDescription;
 
-        #endregion
+        #endregion Fields
 
         #region Properties
 
@@ -137,6 +139,6 @@
 
         public NavigationModel FooterNavigation { get; set; }
 
-        #endregion
+        #endregion Properties
     }
 }

@@ -32,7 +32,7 @@
             return GetSettingAsType(settingName, Convert.ToDecimal);
         }
 
-        #endregion
+        #endregion Config helpers
 
         #region Helper methods
 
@@ -57,6 +57,6 @@
             return value;
         }
 
-        #endregion
+        #endregion Helper methods
     }
 }

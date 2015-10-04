@@ -2,10 +2,13 @@
 {
     using System.Collections.Generic;
     using System.Reflection;
+
     using log4net;
+
     using UmbracoSandbox.Web.Infrastructure.Mapping;
     using UmbracoSandbox.Web.Models.Media;
     using UmbracoSandbox.Web.Models.Modules;
+
     using Zone.GoogleMaps;
     using Zone.UmbracoMapper;
 
@@ -20,7 +23,7 @@
             AddCustomMappings();
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Properties
 
@@ -28,7 +31,7 @@
 
         public static ILog Log { get; private set; }
 
-        #endregion
+        #endregion Properties
 
         #region Mapping helpers
 
@@ -45,6 +48,6 @@
                 .AddCustomMapping(typeof(IEnumerable<BlogPostModuleModel>).FullName, ModuleMapper.GetCollection<BlogPostModuleModel>);
         }
 
-        #endregion
+        #endregion Mapping helpers
     }
 }
