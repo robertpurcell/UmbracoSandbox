@@ -4,6 +4,7 @@
     using Umbraco.Core.Models;
     using Umbraco.Core.Publishing;
     using Umbraco.Web;
+
     using UmbracoSandbox.Service.Publishing;
     using UmbracoSandbox.Web.Helpers;
     using UmbracoSandbox.Web.Infrastructure.Config;
@@ -16,14 +17,14 @@
             {
                 switch (content.ContentType.Alias)
                 {
-                    case PageTypes.Error:
+                    case DocumentTypeAliases.Error:
                         if (content.Published)
                         {
                             var helper = new UmbracoHelper(UmbracoContext.Current);
                             var published = helper.TypedContent(content.Id);
                             if (published != null)
                             {
-                                var errorCode = published.GetPropertyValue<int>("errorCode");
+                                var errorCode = published.GetPropertyValue<int>(PropertyAliases.ErrorCode);
                                 var publisher = NinjectWebCommon.Kernel.GetService<IPublishingService>();
                                 publisher.PublishErrorPage(published.Url, errorCode);
                             }

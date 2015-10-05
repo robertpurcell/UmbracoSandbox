@@ -4,9 +4,12 @@
     using System.Globalization;
     using System.Linq;
     using System.Web.Mvc;
+
     using Umbraco.Core.Models;
+
     using UmbracoSandbox.Web.Handlers.Navigation;
     using UmbracoSandbox.Web.Models.Content;
+
     using Zone.UmbracoMapper;
 
     public class RegistrationPageHandler : PageHandler, IRegistrationPageHandler
@@ -18,7 +21,7 @@
         {
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Methods
 
@@ -50,6 +53,6 @@
             return model;
         }
 
-        #endregion
+        #endregion Methods
     }
 }

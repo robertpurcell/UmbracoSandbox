@@ -2,11 +2,16 @@
 {
     using System;
     using System.Linq;
+
     using Newtonsoft.Json;
+
     using Umbraco.Core.Logging;
     using Umbraco.Core.Models;
     using Umbraco.Web;
+
+    using UmbracoSandbox.Web.Infrastructure.Config;
     using UmbracoSandbox.Web.Models.Media;
+
     using Zone.UmbracoMapper;
 
     public class MediaMapper : BaseMapper
@@ -75,12 +80,12 @@
 
             try
             {
-                var imageCrops = JsonConvert.DeserializeObject<ImageCropperModel>(media.GetPropertyValue<string>("umbracoFile"));
+                var imageCrops = JsonConvert.DeserializeObject<ImageCropperModel>(media.GetPropertyValue<string>(PropertyAliases.UmbracoFile));
                 image.Crops = imageCrops.Crops.ToDictionary(x => x.Alias, x => media.GetCropUrl(x.Alias));
             }
             catch (Exception ex)
             {
-                LogHelper.Error<MediaMapper>("Error getting image crops: " + ex.InnerException, ex);
+                LogHelper.Error<MediaMapper>(string.Format("Error getting image crops: {0}", ex.InnerException), ex);
             }
         }
 

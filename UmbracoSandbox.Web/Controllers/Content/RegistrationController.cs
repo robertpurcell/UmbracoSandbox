@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Web.Mvc;
     using System.Web.Security;
+
     using UmbracoSandbox.Service.Email;
     using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Web.Controllers.Base;
@@ -16,7 +17,7 @@
         private readonly IRegistrationPageHandler _handler;
         private readonly IEmailService _mailer;
 
-        #endregion
+        #endregion Fields
 
         #region Constructor
 
@@ -27,7 +28,7 @@
             _mailer = mailer;
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Action methods
 
@@ -79,6 +80,6 @@
             return RedirectToCurrentUmbracoPage();
         }
 
-        #endregion
+        #endregion Action methods
     }
 }

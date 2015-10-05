@@ -12,12 +12,12 @@
             Form = new ContactForm();
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Properties
 
         public ContactForm Form { get; set; }
 
-        #endregion
+        #endregion Properties
     }
 }

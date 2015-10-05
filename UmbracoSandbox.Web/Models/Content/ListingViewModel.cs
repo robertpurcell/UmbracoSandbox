@@ -1,6 +1,7 @@
 ﻿namespace UmbracoSandbox.Web.Models.Content
 {
     using System.Collections.Generic;
+
     using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Modules;
 

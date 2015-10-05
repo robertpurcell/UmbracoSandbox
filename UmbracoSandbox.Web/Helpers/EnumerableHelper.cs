@@ -18,6 +18,6 @@
             return source != null && source.Any();
         }
 
-        #endregion
+        #endregion Enumerable helpers
     }
 }

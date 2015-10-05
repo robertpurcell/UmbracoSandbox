@@ -2,9 +2,11 @@
 {
     using Umbraco.Core.Models;
     using Umbraco.Web;
+
     using UmbracoSandbox.Web.Handlers.Base;
     using UmbracoSandbox.Web.Handlers.Navigation;
     using UmbracoSandbox.Web.Models.Base;
+
     using Zone.UmbracoMapper;
 
     public class PageHandler : BaseHandler, IPageHandler
@@ -13,7 +15,7 @@
 
         private readonly INavigationHandler _navigationHandler;
 
-        #endregion
+        #endregion Fields
 
         #region Constructor
 
@@ -23,7 +25,7 @@
             _navigationHandler = navigationHandler;
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Methods
 
@@ -47,6 +49,6 @@
             return model;
         }
 
-        #endregion
+        #endregion Methods
     }
 }

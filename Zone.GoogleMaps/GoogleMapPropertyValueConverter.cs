@@ -1,7 +1,9 @@
 ﻿namespace Zone.GoogleMaps
 {
     using System;
+
     using Newtonsoft.Json;
+
     using Umbraco.Core.Logging;
     using Umbraco.Core.Models.PublishedContent;
     using Umbraco.Core.PropertyEditors;

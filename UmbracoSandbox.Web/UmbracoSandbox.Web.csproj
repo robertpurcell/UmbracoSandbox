@@ -345,8 +345,16 @@
     <Compile Include="Helpers\NinjectHelper.cs" />
     <Compile Include="Infrastructure\ActionFilters\ExportModelStateToSessionAttribute.cs" />
     <Compile Include="Infrastructure\ActionFilters\ImportModelStateFromSessionAttribute.cs" />
-    <Compile Include="Infrastructure\Config\PageTypes.cs" />
+    <Compile Include="Infrastructure\Config\CacheKeys.cs" />
+    <Compile Include="Infrastructure\Config\DocumentTypeAliases.cs" />
+    <Compile Include="Infrastructure\Config\PropertyAliases.cs" />
     <Compile Include="Infrastructure\Config\SessionVariables.cs" />
+    <Compile Include="Infrastructure\ContentLocators\ContentLocatorCachingProxy.cs" />
+    <Compile Include="Infrastructure\ContentLocators\IContentLocator.cs" />
+    <Compile Include="Infrastructure\ContentLocators\ContentLocator.cs" />
+    <Compile Include="Infrastructure\ContentLocators\IRootContentLocator.cs" />
+    <Compile Include="Infrastructure\ContentLocators\RootContentLocator.cs" />
+    <Compile Include="Infrastructure\ContentLocators\RootContentLocatorCachingProxy.cs" />
     <Compile Include="Infrastructure\Events\AppEvents.cs" />
     <Compile Include="Infrastructure\Events\NotificationHandler.cs" />
     <Compile Include="Infrastructure\Events\UmbracoEvents.cs" />

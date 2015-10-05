@@ -1,6 +1,7 @@
 ﻿namespace UmbracoSandbox.Web.Infrastructure.Mapping
 {
     using Umbraco.Core.Models;
+
     using Zone.UmbracoMapper;
 
     public abstract class BaseMapper

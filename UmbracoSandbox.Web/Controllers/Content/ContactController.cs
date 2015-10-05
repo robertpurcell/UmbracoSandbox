@@ -1,6 +1,7 @@
 ﻿namespace UmbracoSandbox.Web.Controllers.Content
 {
     using System.Web.Mvc;
+
     using UmbracoSandbox.Service.Email;
     using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Web.Controllers.Base;
@@ -15,7 +16,7 @@
         private readonly IPageHandler _handler;
         private readonly IEmailService _mailer;
 
-        #endregion
+        #endregion Fields
 
         #region Constructor
 
@@ -26,7 +27,7 @@
             _mailer = mailer;
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Action methods
 
@@ -68,6 +69,6 @@
             return Content("<div class=\"alert alert-success\" role=\"alert\"><strong>Thanks!</strong> I'll aim to reply to your message within 24 hours.</div>", "text/html");
         }
 
-        #endregion
+        #endregion Action methods
     }
 }

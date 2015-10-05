@@ -13,7 +13,7 @@
         private readonly string _serverErrorFileName;
         private readonly string _errorPagePublishingHostName;
 
-        #endregion
+        #endregion Fields
 
         #region Constructor
 
@@ -24,7 +24,7 @@
             _errorPagePublishingHostName = errorPagePublishingHostName;
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Interface methods
 
@@ -49,7 +49,7 @@
             }
         }
 
-        #endregion
+        #endregion Interface methods
 
         #region Helpers
 
@@ -89,6 +89,6 @@
             }
         }
 
-        #endregion
+        #endregion Helpers
     }
 }
