@@ -32,16 +32,15 @@
                 return null;
             }
 
-            var sourceString = source.ToString();
             try
             {
-                var obj = JsonConvert.DeserializeObject<GoogleMap>(sourceString);
+                var obj = JsonConvert.DeserializeObject<GoogleMap>(source.ToString());
 
                 return obj;
             }
             catch (Exception ex)
             {
-                LogHelper.Error<GoogleMapPropertyValueConverter>("Error converting GoogleMap property value: " + ex.StackTrace, ex);
+                LogHelper.Error<GoogleMapPropertyValueConverter>(string.Format("Error converting GoogleMap property value: {0}", ex.StackTrace), ex);
 
                 return null;
             }

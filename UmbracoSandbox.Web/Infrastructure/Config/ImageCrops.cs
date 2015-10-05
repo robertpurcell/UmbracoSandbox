@@ -8,6 +8,6 @@
 
         public const string Teaser = "Teaser";
 
-        #endregion
+        #endregion Crop names
     }
 }

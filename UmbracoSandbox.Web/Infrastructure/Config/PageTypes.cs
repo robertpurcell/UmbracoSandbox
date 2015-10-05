@@ -2,6 +2,8 @@
 {
     public static class PageTypes
     {
+        #region Page types
+
         public const string Article = "Article";
 
         public const string Error = "Error";
@@ -13,5 +15,7 @@
         public const string Login = "Login";
 
         public const string Registration = "Registration";
+
+        #endregion Page types
     }
 }
