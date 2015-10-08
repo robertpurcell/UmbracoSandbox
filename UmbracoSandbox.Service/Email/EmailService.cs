@@ -11,8 +11,8 @@
         #region Fields
 
         private const string UrlPattern = @"(?<name>src|href)=""(?<value>/[^""]*)""";
-        private readonly string _emailAddress;
-        private readonly string _displayName;
+        private static string _emailAddress;
+        private static string _displayName;
 
         #endregion
 
@@ -34,45 +34,16 @@
         /// <param name="emailDetail">Email details</param>
         public void Send(EmailDetail emailDetail)
         {
-            var context = HttpContext.Current;
-            var from = string.IsNullOrEmpty(emailDetail.From) ? _emailAddress : emailDetail.From;
-            var displayName = string.IsNullOrEmpty(emailDetail.From) ? _displayName : emailDetail.DisplayName;
-            var url = context != null ? string.Format("{0}://{1}", context.Request.Url.Scheme, context.Request.ServerVariables["HTTP_HOST"]) : string.Empty;
             var mail = new MailMessage
             {
-                From = new MailAddress(from, displayName),
                 Subject = emailDetail.Subject,
-                Body = string.IsNullOrEmpty(url) ? emailDetail.Body : RelativeToAbsoluteUrls(emailDetail.Body, url),
+                Body = RelativeToAbsoluteUrls(emailDetail.Body),
                 IsBodyHtml = emailDetail.IsBodyHtml
             };
-            if (emailDetail.To != null && emailDetail.To.Any())
-            {
-                foreach (var to in emailDetail.To)
-                {
-                    mail.To.Add(new MailAddress(to));
-                }
-            }
-            else
-            {
-                mail.To.Add(new MailAddress(_emailAddress));
-            }
-
-            if (emailDetail.Bcc != null && emailDetail.Bcc.Any())
-            {
-                foreach (var to in emailDetail.Bcc)
-                {
-                    mail.Bcc.Add(new MailAddress(to));
-                }
-            }
-
-            if (emailDetail.Attachments != null && emailDetail.Attachments.Any())
-            {
-                foreach (var file in emailDetail.Attachments.Where(x => !string.IsNullOrEmpty(x)))
-                {
-                    mail.Attachments.Add(new Attachment(string.Concat(AppDomain.CurrentDomain.BaseDirectory, file)));
-                }
-            }
-            
+            AddSender(mail, emailDetail);
+            AddRecipients(mail, emailDetail);
+            AddBlindCopyRecipients(mail, emailDetail);
+            AddAttachments(mail, emailDetail);
             try
             {
                 using (var client = new SmtpClient())
@@ -90,7 +61,7 @@
                     case SmtpStatusCode.CommandUnrecognized:
                     case SmtpStatusCode.TransactionFailed:
                     case SmtpStatusCode.BadCommandSequence:
-                        throw new Exception(string.Format("Error sending mail with code: {0}: {1}", ex.StatusCode, ex.Message), ex);
+                        throw new Exception(string.Format("Error sending mail with code: {0}, {1}", ex.StatusCode, ex.Message), ex);
                 }
             }
         }
@@ -116,20 +87,72 @@
 
         #region Helpers
 
+        private static void AddSender(MailMessage mail, EmailDetail emailDetail)
+        {
+            mail.From = string.IsNullOrEmpty(emailDetail.From)
+                ? new MailAddress(_emailAddress, _displayName)
+                : new MailAddress(emailDetail.From, emailDetail.DisplayName);
+        }
+
+        private static void AddRecipients(MailMessage mail, EmailDetail emailDetail)
+        {
+            if (emailDetail.To == null || !emailDetail.To.Any())
+            {
+                mail.To.Add(new MailAddress(_emailAddress));
+                return;
+            }
+
+            foreach (var to in emailDetail.To)
+            {
+                mail.To.Add(new MailAddress(to));
+            }
+        }
+
+        private static void AddBlindCopyRecipients(MailMessage mail, EmailDetail emailDetail)
+        {
+            if (emailDetail.Bcc == null || !emailDetail.Bcc.Any())
+            {
+                return;
+            }
+
+            foreach (var to in emailDetail.Bcc)
+            {
+                mail.Bcc.Add(new MailAddress(to));
+            }
+        }
+
+        private static void AddAttachments(MailMessage mail, EmailDetail emailDetail)
+        {
+            if (emailDetail.Attachments == null || !emailDetail.Attachments.Any())
+            {
+                return;
+            }
+
+            foreach (var file in emailDetail.Attachments.Where(x => !string.IsNullOrEmpty(x)))
+            {
+                mail.Attachments.Add(new Attachment(string.Concat(AppDomain.CurrentDomain.BaseDirectory, file)));
+            }
+        }
+
         /// <summary>
         /// Method to replace relative URLs with absolute URLs
         /// </summary>
         /// <param name="text">Input text</param>
-        /// <param name="absoluteUri">Base absolute URI</param>
         /// <returns>Amended string</returns>
-        private static string RelativeToAbsoluteUrls(string text = "", string absoluteUri = "")
+        private static string RelativeToAbsoluteUrls(string text = "")
         {
             if (string.IsNullOrEmpty(text))
             {
                 return string.Empty;
             }
 
-            var baseUri = new Uri(absoluteUri);
+            var context = HttpContext.Current;
+            if (context == null)
+            {
+                return text;
+            }
+
+            var baseUri = new Uri(string.Format("{0}://{1}", context.Request.Url.Scheme, context.Request.ServerVariables["HTTP_HOST"]));
             var matchEvaluator = new MatchEvaluator(
                 match =>
                 {

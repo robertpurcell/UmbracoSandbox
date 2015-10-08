@@ -5,14 +5,18 @@
     using System.Globalization;
     using System.Linq;
     using System.Web;
+
     using Archetype.Models;
+
     using Umbraco.Core.Logging;
     using Umbraco.Core.Models;
     using Umbraco.Web;
+
     using UmbracoSandbox.Web.Helpers;
     using UmbracoSandbox.Web.Infrastructure.Config;
     using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Modules;
+
     using Zone.UmbracoMapper;
 
     public class ArchetypeMapper
@@ -182,23 +186,12 @@
             var dictionary = GetDictionary(mapper, archetypeModel);
             foreach (var item in dictionary)
             {
-                BaseModuleModel model;
-                var alias = item.ContainsKey("alias")
-                    ? item["alias"] as string
-                    : string.Empty;
-                switch (alias)
+                switch (item["alias"].ToString())
                 {
                     case ModelAliases.Module:
-                        model = GetModel<ModuleModel>(mapper, item);
+                        var model = GetModel<ModuleModel>(mapper, item);
+                        result.Add(model);
                         break;
-                    default:
-                        model = null;
-                        break;
-                }
-
-                if (model != null)
-                {
-                    result.Add(model);
                 }
             }
 
@@ -240,10 +233,10 @@
             try
             {
                 var result = new T();
+                mapper.Map(dictionary, result);
                 var contentToMapFrom = dictionary.ContainsKey(contentAlias)
                     ? dictionary[contentAlias] as IEnumerable<IPublishedContent>
                     : null;
-                mapper.Map(dictionary, result);
                 if (contentToMapFrom == null)
                 {
                     return result;
@@ -280,18 +273,18 @@
             {
                 var value = prop.GetValue(source, null);
                 var targetValue = prop.GetValue(target, null);
-                if (value != null && (targetValue == null || string.IsNullOrEmpty(targetValue.ToString()) ||
-                    string.Equals(targetValue.ToString(), "0") || string.Equals(targetValue.ToString(), DateTime.MinValue.ToString(CultureInfo.InvariantCulture))))
-                {
-                    prop.SetValue(result, value, null);
-                }
-                else
-                {
-                    prop.SetValue(result, targetValue, null);
-                }
+                prop.SetValue(result, ValidateArgs(value, targetValue) ? value : targetValue, null);
             }
 
             return result;
+        }
+
+        private static bool ValidateArgs(object value, object targetValue)
+        {
+            return value != null && (targetValue == null || string.IsNullOrEmpty(targetValue.ToString()) ||
+                                     string.Equals(targetValue.ToString(), 0.ToString()) ||
+                                     string.Equals(targetValue.ToString(),
+                                         DateTime.MinValue.ToString(CultureInfo.InvariantCulture)));
         }
 
         #endregion

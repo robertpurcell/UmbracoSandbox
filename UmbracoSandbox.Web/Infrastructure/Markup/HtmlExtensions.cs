@@ -80,7 +80,11 @@
                 return MvcHtmlString.Empty;
             }
 
-            labelText += metadata.IsRequired ? " *" : string.Empty;
+            if (metadata.IsRequired)
+            {
+                labelText = string.Format("{0} *", labelText);
+            }
+
             var tag = new TagBuilder("label");
             tag.MergeAttributes(htmlAttributes);
             tag.Attributes.Add("for", helper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(htmlFieldName));

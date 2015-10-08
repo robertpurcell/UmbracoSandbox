@@ -18,7 +18,7 @@
         /// <returns>Picture tag as Html string</returns>
         public static IHtmlString DisplayImage(this HtmlHelper helper, ImageModel image, string cropAlias)
         {
-            if (image == null || image.Crops == null || cropAlias == null || !image.Crops.ContainsKey(cropAlias))
+            if (!ValidateArgs(image, cropAlias))
             {
                 return null;
             }
@@ -43,12 +43,7 @@
         /// <returns>Style attribute</returns>
         public static IHtmlString DisplayBackgroundImage(this HtmlHelper helper, ImageModel image, string cropAlias)
         {
-            if (image == null || image.Crops == null || cropAlias == null || !image.Crops.ContainsKey(cropAlias))
-            {
-                return null;
-            }
-
-            return helper.DisplayBackgroundImage(image.Crops[cropAlias]);
+            return ValidateArgs(image, cropAlias) ? helper.DisplayBackgroundImage(image.Crops[cropAlias]) : null;
         }
 
         /// <summary>
@@ -65,5 +60,14 @@
         }
 
         #endregion
+
+        #region Helpers
+
+        private static bool ValidateArgs(ImageModel image, string cropAlias)
+        {
+            return image != null && image.Crops != null && cropAlias != null && image.Crops.ContainsKey(cropAlias);
+        }
+
+        #endregion Helpers
     }
 }

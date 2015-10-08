@@ -130,7 +130,7 @@
             var resolvedLabelText = labelText ?? metadata.DisplayName ?? metadata.PropertyName ?? htmlFieldName.Split('.').Last();
             var tag = new TagBuilder("label");
             tag.Attributes.Add("for", TagBuilder.CreateSanitizedId(html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(htmlFieldName)));
-            tag.MergeAttributes(htmlAttributes, replaceExisting: true);
+            tag.MergeAttributes(htmlAttributes, true);
             html.ViewContext.Writer.Write(tag.ToString(TagRenderMode.StartTag));
             var theLabel = new MvcLabel(html.ViewContext, resolvedLabelText);
 
