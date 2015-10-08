@@ -34,10 +34,9 @@
                 return null;
             }
 
-            var sourceString = source.ToString();
             try
             {
-                var obj = JsonConvert.DeserializeObject<GoogleMap>(sourceString);
+                var obj = JsonConvert.DeserializeObject<GoogleMap>(source.ToString());
 
                 return obj;
             }
