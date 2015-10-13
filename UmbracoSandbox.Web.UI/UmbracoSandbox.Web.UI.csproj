@@ -550,6 +550,8 @@
     <Content Include="App_Plugins\RJP.MultiUrlPicker\package.manifest" />
     <Content Include="Global.asax" />
     <Content Include="Icon.png" />
+    <Content Include="robots.live.txt" />
+    <Content Include="robots.txt" />
     <Content Include="Scripts\forms.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
