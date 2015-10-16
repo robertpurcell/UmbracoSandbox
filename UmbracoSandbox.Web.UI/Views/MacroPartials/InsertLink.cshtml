@@ -16,5 +16,5 @@
     }
 
     <a href="@url" @Html.Attribute("class", string.IsNullOrEmpty(cssClass) ? null : cssClass)
-       @Html.Attribute("target", link.Target ?? null)>@link.Name</a>
+       @Html.Attribute("target", link.Target)>@link.Name</a>
 }

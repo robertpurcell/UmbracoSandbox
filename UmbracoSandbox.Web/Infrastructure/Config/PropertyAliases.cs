@@ -16,7 +16,11 @@
 
         public const string UmbracoFile = "umbracoFile";
 
+        public const string UmbracoHeight = "umbracoHeight";
+
         public const string UmbracoNaviHide = "umbracoNaviHide";
+
+        public const string UmbracoWidth = "umbracoWidth";
 
         #endregion Property aliases
     }

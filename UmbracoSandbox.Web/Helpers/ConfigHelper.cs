@@ -38,7 +38,7 @@
 
         private static T GetSettingAsType<T>(string settingName, Func<object, T> callerConverter)
         {
-            object obj = ConfigurationManager.AppSettings[settingName];
+            var obj = ConfigurationManager.AppSettings[settingName];
             var value = default(T);
             if (obj == null)
             {

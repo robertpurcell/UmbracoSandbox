@@ -4,12 +4,13 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web;
 
+    using UmbracoSandbox.Web.Infrastructure.Config;
     using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Interfaces;
 
     public class BlogPostViewModel : BasePageViewModel, IBlogTitle
     {
-        [DisplayFormat(DataFormatString = "{0:d MMMM yyyy}")]
+        [DisplayFormat(DataFormatString = DisplayFormats.ShortDate)]
         public DateTime Date { get; set; }
 
         public string Author { get; set; }

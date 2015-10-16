@@ -12,12 +12,12 @@
             Form = new RegistrationForm();
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Properties
 
         public RegistrationForm Form { get; set; }
 
-        #endregion
+        #endregion Properties
     }
 }

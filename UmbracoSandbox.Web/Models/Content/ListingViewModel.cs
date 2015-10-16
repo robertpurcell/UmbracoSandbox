@@ -14,12 +14,12 @@
             Items = new List<BlogPostModuleModel>();
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Properties
 
         public IList<BlogPostModuleModel> Items { get; set; }
 
-        #endregion
+        #endregion Properties
     }
 }

@@ -346,6 +346,7 @@
     <Compile Include="Infrastructure\ActionFilters\ExportModelStateToSessionAttribute.cs" />
     <Compile Include="Infrastructure\ActionFilters\ImportModelStateFromSessionAttribute.cs" />
     <Compile Include="Infrastructure\Config\CacheKeys.cs" />
+    <Compile Include="Infrastructure\Config\DisplayFormats.cs" />
     <Compile Include="Infrastructure\Config\DocumentTypeAliases.cs" />
     <Compile Include="Infrastructure\Config\PropertyAliases.cs" />
     <Compile Include="Infrastructure\Config\SessionVariables.cs" />

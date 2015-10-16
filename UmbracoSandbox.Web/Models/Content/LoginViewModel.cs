@@ -12,12 +12,12 @@
             Form = new LoginForm();
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Properties
 
         public LoginForm Form { get; set; }
 
-        #endregion
+        #endregion Properties
     }
 }

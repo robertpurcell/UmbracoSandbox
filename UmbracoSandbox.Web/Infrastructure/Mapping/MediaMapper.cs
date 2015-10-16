@@ -62,6 +62,20 @@
             return GetImage(mapper, media);
         }
 
+        public static object GetImageFromValue(IUmbracoMapper mapper, object value)
+        {
+            if (value == null || string.IsNullOrEmpty(value.ToString()))
+            {
+                return null;
+            }
+
+            var media = new UmbracoHelper(UmbracoContext.Current).TypedMedia(value.ToString());
+            var image = GetModel<ImageModel>(mapper, media);
+            MapImageCrops(media, image);
+
+            return image;
+        }
+
         #endregion
 
         #region Helpers

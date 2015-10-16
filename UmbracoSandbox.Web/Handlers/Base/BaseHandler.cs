@@ -43,6 +43,7 @@
             Mapper
                 .AddCustomMapping(typeof(FileModel).FullName, MediaMapper.GetFile)
                 .AddCustomMapping(typeof(ImageModel).FullName, MediaMapper.GetImage)
+                .AddCustomMapping(typeof(ImageModel).FullName, MediaMapper.GetImageFromValue)
                 .AddCustomMapping(typeof(GoogleMap).FullName, GoogleMapMapper.GetGoogleMap)
                 .AddCustomMapping(typeof(IEnumerable<ModuleModel>).FullName, ArchetypeMapper.GetCollection<ModuleModel>)
                 .AddCustomMapping(typeof(IEnumerable<BlogPostModuleModel>).FullName, ModuleMapper.GetCollection<BlogPostModuleModel>);

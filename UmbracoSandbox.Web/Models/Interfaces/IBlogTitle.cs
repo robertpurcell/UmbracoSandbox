@@ -4,9 +4,11 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web;
 
+    using UmbracoSandbox.Web.Infrastructure.Config;
+
     public interface IBlogTitle : ITitle
     {
-        [DisplayFormat(DataFormatString = "{0:d MMMM yyyy}")]
+        [DisplayFormat(DataFormatString = DisplayFormats.ShortDate)]
         DateTime Date { get; }
 
         string Author { get; }

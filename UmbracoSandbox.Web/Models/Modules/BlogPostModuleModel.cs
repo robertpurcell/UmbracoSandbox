@@ -3,9 +3,11 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
+    using UmbracoSandbox.Web.Infrastructure.Config;
+
     public class BlogPostModuleModel : ModuleModel
     {
-        [DisplayFormat(DataFormatString = "{0:d MMMM yyyy}")]
+        [DisplayFormat(DataFormatString = DisplayFormats.ShortDate)]
         public DateTime Date { get; set; }
 
         public string Url { get; set; }

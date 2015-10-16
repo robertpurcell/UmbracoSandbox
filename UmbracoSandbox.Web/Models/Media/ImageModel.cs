@@ -1,6 +1,9 @@
 ﻿namespace UmbracoSandbox.Web.Models.Media
 {
     using System.Collections.Generic;
+
+    using UmbracoSandbox.Web.Infrastructure.Config;
+
     using Zone.UmbracoMapper;
 
     public class ImageModel : FileModel
@@ -28,10 +31,10 @@
             }
         }
 
-        [PropertyMapping(SourceProperty = "umbracoWidth")]
+        [PropertyMapping(SourceProperty = PropertyAliases.UmbracoWidth)]
         public int Width { get; set; }
 
-        [PropertyMapping(SourceProperty = "umbracoHeight")]
+        [PropertyMapping(SourceProperty = PropertyAliases.UmbracoHeight)]
         public int Height { get; set; }
 
         public IDictionary<string, string> Crops { get; set; }
