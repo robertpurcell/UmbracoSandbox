@@ -3,16 +3,15 @@
     using Umbraco.Core.Models;
 
     using UmbracoSandbox.Web.Handlers.Navigation;
-    using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Content;
 
     using Zone.UmbracoMapper;
 
-    public class ListingPageHandler : PageHandler, IListingPageHandler
+    public class ContactPageHandler : PageHandler, IContactPageHandler
     {
         #region Constructor
 
-        public ListingPageHandler(IUmbracoMapper mapper, INavigationHandler navigationHandler)
+        public ContactPageHandler(IUmbracoMapper mapper, INavigationHandler navigationHandler)
             : base(mapper, navigationHandler)
         {
         }
@@ -22,16 +21,15 @@
         #region Methods
 
         /// <summary>
-        /// Gets the model for the page
+        /// Gets the model for the contact page
         /// </summary>
-        /// <typeparam name="T">The child page type</typeparam>
         /// <param name="currentPage">The current page</param>
         /// <param name="currentMember">The current member</param>
         /// <returns>The page model</returns>
-        public ListingViewModel GetListingPageModel<T>(IPublishedContent currentPage, IMember currentMember) where T : BaseModuleModel, new()
+        public ContactViewModel GetContactPageModel(IPublishedContent currentPage, IMember currentMember)
         {
-            var model = GetPageModel<ListingViewModel>(currentPage, currentMember);
-            Mapper.MapCollection(currentPage.Children, model.Items);
+            var model = GetPageModel<ContactViewModel>(currentPage, currentMember);
+            Mapper.Map(currentPage, model.Form);
 
             return model;
         }

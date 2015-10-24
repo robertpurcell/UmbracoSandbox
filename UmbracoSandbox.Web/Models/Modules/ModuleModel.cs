@@ -1,5 +1,7 @@
 ﻿namespace UmbracoSandbox.Web.Models.Modules
 {
+    using RJP.MultiUrlPicker.Models;
+
     using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Media;
 
@@ -10,5 +12,7 @@
         public string Summary { get; set; }
 
         public ImageModel Image { get; set; }
+
+        public Link Link { get; set; }
     }
 }

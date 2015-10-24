@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     [Serializable]
     public class ContactForm
@@ -24,5 +25,8 @@
         [Display(Name = "Enter your message here:")]
         [StringLength(1000, ErrorMessage = "Your message must be fewer than 1000 characters in length.")]
         public string Message { get; set; }
+
+        [AllowHtml]
+        public string ThankYouText { get; set; }
     }
 }

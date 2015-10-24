@@ -11,14 +11,15 @@ namespace UmbracoSandbox.Web
     using Ninject;
     using Ninject.Syntax;
     using Ninject.Web.Common;
+    using Ninject.WebApi.DependencyResolver;
 
     using UmbracoSandbox.Service.Email;
     using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Service.Publishing;
-    using UmbracoSandbox.Web.Infrastructure.ContentLocators;
     using UmbracoSandbox.Web.Handlers.Content;
     using UmbracoSandbox.Web.Handlers.Navigation;
     using UmbracoSandbox.Web.Helpers;
+    using UmbracoSandbox.Web.Infrastructure.ContentLocators;
 
     using Zone.UmbracoMapper;
 
@@ -62,7 +63,7 @@ namespace UmbracoSandbox.Web
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
-                System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver = new Ninject.WebApi.DependencyResolver.NinjectDependencyResolver(kernel);
+                System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
                 return kernel;
             }
             catch
@@ -82,6 +83,7 @@ namespace UmbracoSandbox.Web
             kernel.Bind<IPageHandler>().To<PageHandler>();
             kernel.Bind<IUmbracoMapper>().To<UmbracoMapper>();
             kernel.Bind<INavigationHandler>().To<NavigationHandler>();
+            kernel.Bind<IContactPageHandler>().To<ContactPageHandler>();
             kernel.Bind<IListingPageHandler>().To<ListingPageHandler>();
             kernel.Bind<IRegistrationPageHandler>().To<RegistrationPageHandler>();
             kernel.Bind<IEmailService>().To<EmailService>()

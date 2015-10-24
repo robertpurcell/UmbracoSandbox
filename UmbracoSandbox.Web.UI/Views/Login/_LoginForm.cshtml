@@ -1,9 +1,5 @@
 ﻿@model LoginForm
 
-@if (TempData["status"] != null)
-{
-    <p>@TempData["status"]</p>
-}
 <div id="result"></div>
 @using (Html.BeginUmbracoForm<LoginController>("LoginMember", new { id = "contact-form" }))
 {

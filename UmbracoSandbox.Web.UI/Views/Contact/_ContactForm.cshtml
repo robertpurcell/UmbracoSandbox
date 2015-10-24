@@ -37,6 +37,7 @@
             @Html.ValidationMessageFor(m => m.Message)
         </div>
     </div>
+    @Html.HiddenFor(m => m.ThankYouText)
     <button type="submit" class="btn btn-primary">
         <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Send email
     </button>

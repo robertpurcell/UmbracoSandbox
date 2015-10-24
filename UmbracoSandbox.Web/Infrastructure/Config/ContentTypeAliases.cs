@@ -1,6 +1,6 @@
 ﻿namespace UmbracoSandbox.Web.Infrastructure.Config
 {
-    public static class DocumentTypeAliases
+    public static class ContentTypeAliases
     {
         #region Document type aliases
 

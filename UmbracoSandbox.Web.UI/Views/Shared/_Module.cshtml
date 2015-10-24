@@ -6,8 +6,10 @@
         <div class="caption">
             <h3>@Model.Title</h3>
             <p>@Model.Summary</p>
-            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a>
-            </p>
+            @if (Model.Link != null)
+            {
+                <a href="@Model.Link.Url" @Html.Attribute("target", Model.Link.Target) class="btn btn-primary" role="button">@Model.Link.Name</a>
+            }
         </div>
     </div>
 </div>

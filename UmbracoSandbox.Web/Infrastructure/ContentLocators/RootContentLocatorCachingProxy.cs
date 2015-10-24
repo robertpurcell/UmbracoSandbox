@@ -2,10 +2,10 @@
 {
     using System;
 
-    using UmbracoSandbox.Web.Infrastructure.Config;
-
     using Umbraco.Core.Models;
     using Umbraco.Web;
+
+    using UmbracoSandbox.Web.Infrastructure.Config;
 
     public class RootContentLocatorCachingProxy : IRootContentLocator
     {

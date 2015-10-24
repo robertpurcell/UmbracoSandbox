@@ -334,6 +334,8 @@
     <Compile Include="Controllers\Content\ListingController.cs" />
     <Compile Include="Controllers\Content\ErrorController.cs" />
     <Compile Include="Handlers\Base\BaseHandler.cs" />
+    <Compile Include="Handlers\Content\ContactPageHandler.cs" />
+    <Compile Include="Handlers\Content\IContactPageHandler.cs" />
     <Compile Include="Handlers\Content\IRegistrationPageHandler.cs" />
     <Compile Include="Handlers\Content\IPageHandler.cs" />
     <Compile Include="Handlers\Content\IListingPageHandler.cs" />
@@ -347,7 +349,7 @@
     <Compile Include="Infrastructure\ActionFilters\ImportModelStateFromSessionAttribute.cs" />
     <Compile Include="Infrastructure\Config\CacheKeys.cs" />
     <Compile Include="Infrastructure\Config\DisplayFormats.cs" />
-    <Compile Include="Infrastructure\Config\DocumentTypeAliases.cs" />
+    <Compile Include="Infrastructure\Config\ContentTypeAliases.cs" />
     <Compile Include="Infrastructure\Config\PropertyAliases.cs" />
     <Compile Include="Infrastructure\Config\SessionVariables.cs" />
     <Compile Include="Infrastructure\ContentLocators\ContentLocatorCachingProxy.cs" />
@@ -357,9 +359,10 @@
     <Compile Include="Infrastructure\ContentLocators\RootContentLocator.cs" />
     <Compile Include="Infrastructure\ContentLocators\RootContentLocatorCachingProxy.cs" />
     <Compile Include="Infrastructure\Events\AppEvents.cs" />
-    <Compile Include="Infrastructure\Events\NotificationHandler.cs" />
     <Compile Include="Infrastructure\Events\UmbracoEvents.cs" />
+    <Compile Include="Infrastructure\Mapping\Attributes\MapFromCurrentPageAttribute.cs" />
     <Compile Include="Infrastructure\Mapping\BaseMapper.cs" />
+    <Compile Include="Infrastructure\Mapping\LinkMapper.cs" />
     <Compile Include="Infrastructure\Mapping\ModuleMapper.cs" />
     <Compile Include="Infrastructure\Markup\HtmlLabelExtensions.cs" />
     <Compile Include="Infrastructure\Markup\MvcLabel.cs" />

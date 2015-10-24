@@ -17,7 +17,7 @@
             {
                 switch (content.ContentType.Alias)
                 {
-                    case DocumentTypeAliases.Error:
+                    case ContentTypeAliases.Error:
                         if (content.Published)
                         {
                             var helper = new UmbracoHelper(UmbracoContext.Current);
@@ -27,6 +27,7 @@
                                 var errorCode = published.GetPropertyValue<int>(PropertyAliases.ErrorCode);
                                 var publisher = NinjectWebCommon.Kernel.GetService<IPublishingService>();
                                 publisher.PublishErrorPage(published.Url, errorCode);
+                                e.Messages.Add(new EventMessage("Error page updated", errorCode.ToString(), EventMessageType.Info));
                             }
                         }
 

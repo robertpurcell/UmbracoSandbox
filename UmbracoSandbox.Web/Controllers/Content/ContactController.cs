@@ -6,21 +6,20 @@
     using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Web.Controllers.Base;
     using UmbracoSandbox.Web.Handlers.Content;
-    using UmbracoSandbox.Web.Models.Content;
     using UmbracoSandbox.Web.Models.Forms;
 
     public class ContactController : BaseController
     {
         #region Fields
 
-        private readonly IPageHandler _handler;
+        private readonly IContactPageHandler _handler;
         private readonly IEmailService _mailer;
 
         #endregion Fields
 
         #region Constructor
 
-        public ContactController(ILoggingService logger, IPageHandler handler, IEmailService mailer)
+        public ContactController(ILoggingService logger, IContactPageHandler handler, IEmailService mailer)
             : base(logger)
         {
             _handler = handler;
@@ -37,7 +36,7 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult Contact()
         {
-            var vm = _handler.GetPageModel<ContactViewModel>(CurrentPage, CurrentMember);
+            var vm = _handler.GetContactPageModel(CurrentPage, CurrentMember);
 
             return CurrentTemplate(vm);
         }
@@ -66,7 +65,7 @@
             };
             _mailer.Send(email);
 
-            return Content("<div class=\"alert alert-success\" role=\"alert\"><strong>Thanks!</strong> I'll aim to reply to your message within 24 hours.</div>", "text/html");
+            return Content(string.Format("<div class=\"alert alert-success\" role=\"alert\">{0}</div>", vm.ThankYouText), "text/html");
         }
 
         #endregion Action methods

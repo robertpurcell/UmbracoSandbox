@@ -5,6 +5,8 @@
 
     using log4net;
 
+    using RJP.MultiUrlPicker.Models;
+
     using UmbracoSandbox.Web.Infrastructure.Mapping;
     using UmbracoSandbox.Web.Models.Media;
     using UmbracoSandbox.Web.Models.Modules;
@@ -45,6 +47,10 @@
                 .AddCustomMapping(typeof(ImageModel).FullName, MediaMapper.GetImage)
                 .AddCustomMapping(typeof(ImageModel).FullName, MediaMapper.GetImageFromValue)
                 .AddCustomMapping(typeof(GoogleMap).FullName, GoogleMapMapper.GetGoogleMap)
+                .AddCustomMapping(typeof(Link).FullName, LinkMapper.GetLink)
+                .AddCustomMapping(typeof(Link).FullName, LinkMapper.GetLinkFromValue)
+                .AddCustomMapping(typeof(IEnumerable<Link>).FullName, LinkMapper.GetLinks)
+                .AddCustomMapping(typeof(IEnumerable<Link>).FullName, LinkMapper.GetLinksFromValue)
                 .AddCustomMapping(typeof(IEnumerable<ModuleModel>).FullName, ArchetypeMapper.GetCollection<ModuleModel>)
                 .AddCustomMapping(typeof(IEnumerable<BlogPostModuleModel>).FullName, ModuleMapper.GetCollection<BlogPostModuleModel>);
         }

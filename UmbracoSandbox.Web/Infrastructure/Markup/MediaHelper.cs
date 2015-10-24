@@ -25,6 +25,7 @@
 
             var imgTag = new TagBuilder("img");
             imgTag.Attributes.Add("alt", image.AltText);
+            imgTag.Attributes.Add("class", "img-responsive");
             imgTag.Attributes.Add("src", image.Crops[cropAlias]);
             var pictureTag = new TagBuilder("picture")
             {

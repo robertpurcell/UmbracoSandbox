@@ -43,7 +43,7 @@
         {
             get
             {
-                return _root ?? _rootContentLocator.Find(); ;
+                return _root ?? _rootContentLocator.Find();
             }
 
             set
@@ -64,7 +64,7 @@
         /// <returns>Navigation model</returns>
         public MainNavigationModel GetMainNavigation(IPublishedContent currentPage, IMember currentMember)
         {
-            var login = Root.Descendant(DocumentTypeAliases.Login);
+            var login = Root.Descendant(ContentTypeAliases.Login);
             var model = new MainNavigationModel
             {
                 Items = GetMenuItems(currentPage, Root, 0, 3),

@@ -1,6 +1,5 @@
 ﻿namespace UmbracoSandbox.Web.Infrastructure.Events
 {
-    using System.Web.Http;
     using System.Web.Routing;
 
     using Umbraco.Core;
@@ -16,7 +15,6 @@
 
         public void OnApplicationStarting(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
-            GlobalConfiguration.Configuration.MessageHandlers.Add(new NotificationHandler());
         }
 
         public void OnApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)

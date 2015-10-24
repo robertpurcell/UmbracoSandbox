@@ -61,7 +61,8 @@
                     case SmtpStatusCode.CommandUnrecognized:
                     case SmtpStatusCode.TransactionFailed:
                     case SmtpStatusCode.BadCommandSequence:
-                        throw new Exception(string.Format("Error sending mail with code: {0}, {1}", ex.StatusCode, ex.Message), ex);
+                        throw new Exception(string.Format("Error sending mail with code: {0}, {1}",
+                            ex.StatusCode, ex.Message), ex);
                 }
             }
         }
@@ -102,7 +103,7 @@
                 return;
             }
 
-            foreach (var to in emailDetail.To)
+            foreach (var to in emailDetail.To.Distinct())
             {
                 mail.To.Add(new MailAddress(to));
             }
@@ -115,7 +116,7 @@
                 return;
             }
 
-            foreach (var to in emailDetail.Bcc)
+            foreach (var to in emailDetail.Bcc.Distinct())
             {
                 mail.Bcc.Add(new MailAddress(to));
             }
