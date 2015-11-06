@@ -3,26 +3,22 @@
     using System.Web;
 
     using UmbracoSandbox.Web.Models.Interfaces;
-    using UmbracoSandbox.Web.Models.Media;
+    using UmbracoSandbox.Web.Models.Modules;
     using UmbracoSandbox.Web.Models.Navigation;
 
     using Zone.UmbracoMapper;
 
-    public abstract class BasePageViewModel : BaseNodeViewModel, IBodyText, IMetadata, ITitle
+    public abstract class BasePageViewModel : BaseNodeViewModel, IBodyText, ITitle
     {
         #region Fields
 
-        private string _title;
         private string _metaTitle;
         private string _metaTitleSuffix;
-        private string _socialTitle;
-        private string _socialDescription;
+        private string _title;
 
         #endregion Fields
 
         #region Properties
-
-        #region Metadata
 
         public string MetaTitle
         {
@@ -55,69 +51,6 @@
             }
         }
 
-        public string MetaDescription { get; set; }
-
-        public string MetaKeywords { get; set; }
-
-        public string CanonicalUrl { get; set; }
-
-        public string AbsoluteUrl { get; set; }
-
-        public string SocialUrl
-        {
-            get
-            {
-                return CanonicalUrl ?? AbsoluteUrl;
-            }
-        }
-
-        [PropertyMapping(MapRecursively = true)]
-        public string SocialSiteName { get; set; }
-
-        public string SocialTitle
-        {
-            get
-            {
-                return string.IsNullOrEmpty(_socialTitle)
-                    ? MetaTitle
-                    : _socialTitle;
-            }
-
-            set
-            {
-                _socialTitle = value;
-            }
-        }
-
-        public string SocialDescription
-        {
-            get
-            {
-                return string.IsNullOrEmpty(_socialDescription)
-                    ? MetaDescription
-                    : _socialDescription;
-            }
-
-            set
-            {
-                _socialDescription = value;
-            }
-        }
-
-        public ImageModel SocialImage { get; set; }
-
-        public string SocialImageUrl
-        {
-            get
-            {
-                return SocialImage != null
-                    ? SocialImage.Url
-                    : string.Empty;
-            }
-        }
-
-        #endregion
-
         public string Title
         {
             get
@@ -134,6 +67,8 @@
         }
 
         public IHtmlString BodyText { get; set; }
+
+        public MetadataViewModel Metadata { get; set; }
 
         public MainNavigationModel MainNavigation { get; set; }
 

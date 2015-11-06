@@ -7,6 +7,7 @@
 
     using Umbraco.Core.Models;
 
+    using UmbracoSandbox.Web.Handlers.Modules;
     using UmbracoSandbox.Web.Handlers.Navigation;
     using UmbracoSandbox.Web.Models.Content;
 
@@ -16,8 +17,8 @@
     {
         #region Constructor
 
-        public RegistrationPageHandler(IUmbracoMapper mapper, INavigationHandler navigationHandler)
-            : base(mapper, navigationHandler)
+        public RegistrationPageHandler(IUmbracoMapper mapper, IMetadataHandler metadataHandler, INavigationHandler navigationHandler)
+            : base(mapper, metadataHandler, navigationHandler)
         {
         }
 

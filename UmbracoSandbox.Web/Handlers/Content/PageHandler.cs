@@ -4,6 +4,7 @@
     using Umbraco.Web;
 
     using UmbracoSandbox.Web.Handlers.Base;
+    using UmbracoSandbox.Web.Handlers.Modules;
     using UmbracoSandbox.Web.Handlers.Navigation;
     using UmbracoSandbox.Web.Models.Base;
 
@@ -13,15 +14,17 @@
     {
         #region Fields
 
+        private readonly IMetadataHandler _metadataHandler;
         private readonly INavigationHandler _navigationHandler;
 
         #endregion Fields
 
         #region Constructor
 
-        public PageHandler(IUmbracoMapper mapper, INavigationHandler navigationHandler)
+        public PageHandler(IUmbracoMapper mapper, IMetadataHandler metadataHandler, INavigationHandler navigationHandler)
             : base(mapper)
         {
+            _metadataHandler = metadataHandler;
             _navigationHandler = navigationHandler;
         }
 
@@ -40,7 +43,7 @@
         {
             var model = new T
             {
-                AbsoluteUrl = currentPage.UrlAbsolute(),
+                Metadata = _metadataHandler.GetMetadata(currentPage),
                 MainNavigation = _navigationHandler.GetMainNavigation(currentPage, currentMember),
                 FooterNavigation = _navigationHandler.GetFooterNavigation(currentPage)
             };

@@ -17,6 +17,7 @@ namespace UmbracoSandbox.Web
     using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Service.Publishing;
     using UmbracoSandbox.Web.Handlers.Content;
+    using UmbracoSandbox.Web.Handlers.Modules;
     using UmbracoSandbox.Web.Handlers.Navigation;
     using UmbracoSandbox.Web.Helpers;
     using UmbracoSandbox.Web.Infrastructure.ContentLocators;
@@ -82,6 +83,7 @@ namespace UmbracoSandbox.Web
             kernel.Bind<ILoggingService>().To<LoggingService>().InSingletonScope();
             kernel.Bind<IPageHandler>().To<PageHandler>();
             kernel.Bind<IUmbracoMapper>().To<UmbracoMapper>();
+            kernel.Bind<IMetadataHandler>().To<MetadataHandler>();
             kernel.Bind<INavigationHandler>().To<NavigationHandler>();
             kernel.Bind<IContactPageHandler>().To<ContactPageHandler>();
             kernel.Bind<IListingPageHandler>().To<ListingPageHandler>();

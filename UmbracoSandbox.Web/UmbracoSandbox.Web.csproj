@@ -341,6 +341,8 @@
     <Compile Include="Handlers\Content\IListingPageHandler.cs" />
     <Compile Include="Handlers\Content\RegistrationPageHandler.cs" />
     <Compile Include="Handlers\Content\PageHandler.cs" />
+    <Compile Include="Handlers\Modules\IMetadataHandler.cs" />
+    <Compile Include="Handlers\Modules\MetadataHandler.cs" />
     <Compile Include="Handlers\Navigation\INavigationHandler.cs" />
     <Compile Include="Handlers\Navigation\NavigationHandler.cs" />
     <Compile Include="Handlers\Content\ListingPageHandler.cs" />
@@ -367,7 +369,6 @@
     <Compile Include="Infrastructure\Markup\HtmlLabelExtensions.cs" />
     <Compile Include="Infrastructure\Markup\MvcLabel.cs" />
     <Compile Include="Infrastructure\Routing\RouteConfig.cs" />
-    <Compile Include="Models\Base\MetadataViewModel.cs" />
     <Compile Include="Models\Content\ArticleViewModel.cs" />
     <Compile Include="Models\Content\LoginViewModel.cs" />
     <Compile Include="Models\Content\RegistrationViewModel.cs" />
@@ -378,6 +379,7 @@
     <Compile Include="Models\Forms\ContactForm.cs" />
     <Compile Include="Models\Interfaces\IMainNavigation.cs" />
     <Compile Include="Models\Modules\BlogPostModuleModel.cs" />
+    <Compile Include="Models\Modules\MetadataViewModel.cs" />
     <Compile Include="Models\Modules\ModuleModel.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Helpers\EnumerableHelper.cs" />
@@ -397,7 +399,6 @@
     <Compile Include="Models\Content\ListingViewModel.cs" />
     <Compile Include="Models\Interfaces\IBlogTitle.cs" />
     <Compile Include="Models\Interfaces\IHomeTitle.cs" />
-    <Compile Include="Models\Interfaces\IMetadata.cs" />
     <Compile Include="Models\Interfaces\INavigation.cs" />
     <Compile Include="Models\Interfaces\IMenuItem.cs" />
     <Compile Include="Models\Interfaces\ITitle.cs" />

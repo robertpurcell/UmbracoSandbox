@@ -2,6 +2,7 @@
 {
     using Umbraco.Core.Models;
 
+    using UmbracoSandbox.Web.Handlers.Modules;
     using UmbracoSandbox.Web.Handlers.Navigation;
     using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Content;
@@ -12,8 +13,8 @@
     {
         #region Constructor
 
-        public ListingPageHandler(IUmbracoMapper mapper, INavigationHandler navigationHandler)
-            : base(mapper, navigationHandler)
+        public ListingPageHandler(IUmbracoMapper mapper, IMetadataHandler metadataHandler, INavigationHandler navigationHandler)
+            : base(mapper, metadataHandler, navigationHandler)
         {
         }
 
