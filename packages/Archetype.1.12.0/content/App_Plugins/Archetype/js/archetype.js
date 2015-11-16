@@ -1,4 +1,4 @@
-/* Version 1.11.1 */
+/* Version 1.12.0 */
 angular.module("umbraco").controller("Imulus.ArchetypeController", function ($scope, $http, $filter, assetsService, angularHelper, notificationsService, $timeout, fileManager, entityResource, archetypeService, archetypeLabelService, archetypeCacheService, archetypePropertyEditorResource) {
 
     //$scope.model.value = "";

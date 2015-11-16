@@ -43,8 +43,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Archetype, Version=1.11.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Archetype.1.11.1\lib\net40\Archetype.dll</HintPath>
+    <Reference Include="Archetype, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Archetype.1.12.0\lib\net40\Archetype.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="AutoMapper, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -3486,7 +3486,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>38562</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
