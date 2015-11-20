@@ -1,7 +1,6 @@
 ﻿namespace UmbracoSandbox.Web.Handlers.Content
 {
     using Umbraco.Core.Models;
-    using Umbraco.Web;
 
     using UmbracoSandbox.Web.Handlers.Base;
     using UmbracoSandbox.Web.Handlers.Modules;

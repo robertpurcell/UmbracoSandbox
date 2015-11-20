@@ -1,0 +1,15 @@
+﻿{
+	propertyEditors: [
+		{
+  			alias: "Zone.UrlList",
+ 			name: "Url List",
+  			editor:	{
+          			view: "~/App_Plugins/Zone.UrlList/urllist.html",
+					valueType: "JSON"
+         	},
+		}
+	],
+    javascript: [
+        "~/App_Plugins/Zone.UrlList/urllist.controller.js"
+    ]
+}

@@ -508,6 +508,8 @@
     <Content Include="App_Plugins\Zone.GoogleMaps\googlemaps.controller.js" />
     <Content Include="App_Plugins\Zone.GoogleMaps\googlemaps.css" />
     <Content Include="App_Plugins\Zone.GoogleMaps\googlemaps.html" />
+    <Content Include="App_Plugins\Zone.UrlList\urllist.controller.js" />
+    <Content Include="App_Plugins\Zone.UrlList\urllist.html" />
     <Content Include="App_Plugins\Zone.LinkPicker\linkpicker.controller.js" />
     <Content Include="App_Plugins\Zone.LinkPicker\linkpicker.html" />
     <Content Include="App_Plugins\Zone.StyleDropdown\styledropdown.controller.js" />
@@ -568,6 +570,7 @@
     <Content Include="config\EmbeddedMedia.config" />
     <Content Include="config\BaseRestExtensions.config" />
     <Content Include="config\404handlers.config" />
+    <Content Include="App_Plugins\Zone.UrlList\package.manifest" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />

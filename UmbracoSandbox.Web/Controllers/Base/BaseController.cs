@@ -19,7 +19,7 @@
             IsLoggedIn = Members.IsLoggedIn();
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Properties
 
@@ -29,9 +29,9 @@
 
         protected bool IsLoggedIn { get; private set; }
 
-        #endregion
+        #endregion Properties
 
-        #region Render MVC
+        #region Methods
 
         /// <summary>
         /// Locates the template for the given route
@@ -54,6 +54,6 @@
             return CurrentTemplate(model);
         }
 
-        #endregion
+        #endregion Methods
     }
 }

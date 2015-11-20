@@ -6,7 +6,7 @@
 
         private string _alias;
 
-        #endregion
+        #endregion Fields
 
         #region Properties
 
@@ -33,6 +33,6 @@
             }
         }
 
-        #endregion
+        #endregion Properties
     }
 }
