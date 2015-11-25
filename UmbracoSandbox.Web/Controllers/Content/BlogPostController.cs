@@ -2,24 +2,21 @@
 {
     using System.Web.Mvc;
 
-    using GravatarHelper;
-
     using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Web.Controllers.Base;
     using UmbracoSandbox.Web.Handlers.Content;
-    using UmbracoSandbox.Web.Models.Content;
 
     public class BlogPostController : BaseController
     {
         #region Fields
 
-        private readonly IPageHandler _handler;
+        private readonly IBlogPostPageHandler _handler;
 
         #endregion Fields
 
         #region Constructor
 
-        public BlogPostController(ILoggingService logger, IPageHandler handler)
+        public BlogPostController(ILoggingService logger, IBlogPostPageHandler handler)
             : base(logger)
         {
             _handler = handler;
@@ -35,8 +32,7 @@
         /// <returns>ViewResult containing populated view model</returns>
         public ActionResult BlogPost()
         {
-            var vm = _handler.GetPageModel<BlogPostViewModel>(CurrentPage, CurrentMember);
-            vm.ImageUrl = GravatarHelper.CreateGravatarUrl("rpurcell@thisiszone.com", 200, string.Empty, null, null, null);
+            var vm = _handler.GetBlogPostPageModel(CurrentPage, CurrentMember);
 
             return CurrentTemplate(vm);
         }

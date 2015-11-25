@@ -5,7 +5,7 @@
 
     using UmbracoSandbox.Web.Infrastructure.Config;
 
-    public class BlogPostModuleModel : ModuleModel
+    public class BlogPostModuleViewModel : ModuleViewModel
     {
         [DisplayFormat(DataFormatString = DisplayFormats.ShortDate)]
         public DateTime Date { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace UmbracoSandbox.Web.Models.Base
 {
-    public abstract class BaseModuleModel
+    public abstract class BaseModuleViewModel
     {
         #region Fields
 
@@ -15,7 +15,7 @@
             get
             {
                 return string.IsNullOrEmpty(_alias)
-                    ? GetType().Name
+                    ? string.Format("{0}Module", DocumentTypeAlias)
                     : _alias;
             }
 
@@ -24,6 +24,8 @@
                 _alias = value;
             }
         }
+
+        public string DocumentTypeAlias { get; set; }
 
         public string PartialName
         {

@@ -11,14 +11,14 @@
 
         public ListingViewModel()
         {
-            Items = new List<BlogPostModuleModel>();
+            Items = new List<BlogPostModuleViewModel>();
         }
 
         #endregion Constructor
 
         #region Properties
 
-        public IList<BlogPostModuleModel> Items { get; set; }
+        public IList<BlogPostModuleViewModel> Items { get; set; }
 
         #endregion Properties
     }

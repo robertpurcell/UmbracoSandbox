@@ -1,7 +1,7 @@
-﻿@model RegistrationForm
+﻿@model RegistrationFormViewModel
 
 <div id="result"></div>
-@using (Html.BeginUmbracoForm<RegistrationController>("Register", new { id = "contact-form" }))
+@using (Html.BeginUmbracoForm<RegistrationController>("Register", new { id = "registration-form" }))
 {
     @Html.AntiForgeryToken()
     <div class="row">
@@ -44,7 +44,8 @@
                 {
                     <div class="radio">
                         <label>
-                            @Html.RadioButtonFor(m => m.SelectedMonth, month.Value, new {id = "month-" + month.Value})@month.Text
+                            @Html.RadioButtonFor(m => m.SelectedMonth, month.Value,
+                            new { id = string.Format("month-{0}", month.Value) })@month.Text
                         </label>
                     </div>
                 }
@@ -59,7 +60,8 @@
                 {
                     <div class="checkbox">
                         <label>
-                            @Html.CheckBoxFor(m => m.Years[i].Selected, new {id = "year-" + Model.Years[i].Value})@Model.Years[i].Text
+                            @Html.CheckBoxFor(m => m.Years[i].Selected,
+                            new { id = string.Format("year-{0}", Model.Years[i].Value) })@Model.Years[i].Text
                         </label>
                     </div>
                 }

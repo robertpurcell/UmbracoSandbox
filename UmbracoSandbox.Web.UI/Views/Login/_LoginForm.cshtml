@@ -1,11 +1,11 @@
-﻿@model LoginForm
+﻿@model LoginFormViewModel
 
 <div id="result"></div>
-@using (Html.BeginUmbracoForm<LoginController>("LoginMember", new { id = "contact-form" }))
+@using (Html.BeginUmbracoForm<LoginController>("LoginMember", new { id = "login-form" }))
 {
     @Html.AntiForgeryToken()
     <div class="row">
-        <div class="col-sm-6 ">
+        <div class="col-sm-6">
             @Html.ValidationSummary()
         </div>
     </div>

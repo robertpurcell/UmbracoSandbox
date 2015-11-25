@@ -5,7 +5,7 @@
     using System.Web.Mvc;
 
     [Serializable]
-    public class RegistrationForm
+    public class RegistrationFormViewModel
     {
         [Required(ErrorMessage = "Please enter your name.")]
         [Display(Name = "Name")]

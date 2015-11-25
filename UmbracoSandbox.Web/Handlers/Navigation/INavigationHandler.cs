@@ -6,8 +6,8 @@
 
     public interface INavigationHandler
     {
-        MainNavigationModel GetMainNavigation(IPublishedContent currentPage, IMember currentMember);
+        MainNavigationViewModel GetMainNavigation(IPublishedContent currentPage, IMember currentMember);
 
-        NavigationModel GetFooterNavigation(IPublishedContent currentPage);
+        NavigationViewModel GetFooterNavigation(IPublishedContent currentPage);
     }
 }

@@ -7,6 +7,6 @@
 
     public interface IListingPageHandler
     {
-        ListingViewModel GetListingPageModel<T>(IPublishedContent currentPage, IMember currentMember) where T : BaseModuleModel, new();
+        ListingViewModel GetListingPageModel<T>(IPublishedContent currentPage, IMember currentMember) where T : BaseModuleViewModel, new();
     }
 }

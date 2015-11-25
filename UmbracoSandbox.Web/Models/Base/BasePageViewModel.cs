@@ -66,13 +66,16 @@
             }
         }
 
+        [PropertyMapping(MapRecursively = true)]
+        public IHtmlString CookiePolicy { get; set; }
+
         public IHtmlString BodyText { get; set; }
 
         public MetadataViewModel Metadata { get; set; }
 
-        public MainNavigationModel MainNavigation { get; set; }
+        public MainNavigationViewModel MainNavigation { get; set; }
 
-        public NavigationModel FooterNavigation { get; set; }
+        public NavigationViewModel FooterNavigation { get; set; }
 
         #endregion Properties
     }

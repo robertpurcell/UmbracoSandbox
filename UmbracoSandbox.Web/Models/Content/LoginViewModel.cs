@@ -9,14 +9,14 @@
 
         public LoginViewModel()
         {
-            Form = new LoginForm();
+            Form = new LoginFormViewModel();
         }
 
         #endregion Constructor
 
         #region Properties
 
-        public LoginForm Form { get; set; }
+        public LoginFormViewModel Form { get; set; }
 
         #endregion Properties
     }

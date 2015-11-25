@@ -2,7 +2,7 @@
 {
     using UmbracoSandbox.Web.Models.Interfaces;
 
-    public class MainNavigationModel : NavigationModel, IMainNavigation
+    public class MainNavigationViewModel : NavigationViewModel, ILoginStatus
     {
         public IMenuItem Login { get; set; }
 

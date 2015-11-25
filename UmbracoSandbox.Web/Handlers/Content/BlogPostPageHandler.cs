@@ -1,19 +1,20 @@
 ﻿namespace UmbracoSandbox.Web.Handlers.Content
 {
+    using GravatarHelper;
+
     using Umbraco.Core.Models;
 
     using UmbracoSandbox.Web.Handlers.Modules;
     using UmbracoSandbox.Web.Handlers.Navigation;
-    using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Content;
 
     using Zone.UmbracoMapper;
 
-    public class ListingPageHandler : PageHandler, IListingPageHandler
+    public class BlogPostPageHandler : PageHandler, IBlogPostPageHandler
     {
         #region Constructor
 
-        public ListingPageHandler(IUmbracoMapper mapper, IMetadataHandler metadataHandler, INavigationHandler navigationHandler)
+        public BlogPostPageHandler(IUmbracoMapper mapper, IMetadataHandler metadataHandler, INavigationHandler navigationHandler)
             : base(mapper, metadataHandler, navigationHandler)
         {
         }
@@ -23,16 +24,15 @@
         #region Methods
 
         /// <summary>
-        /// Gets the model for the page
+        /// Gets the model for the blog post page
         /// </summary>
-        /// <typeparam name="T">The child page type</typeparam>
         /// <param name="currentPage">The current page</param>
         /// <param name="currentMember">The current member</param>
         /// <returns>The page model</returns>
-        public ListingViewModel GetListingPageModel<T>(IPublishedContent currentPage, IMember currentMember) where T : BaseModuleViewModel, new()
+        public BlogPostViewModel GetBlogPostPageModel(IPublishedContent currentPage, IMember currentMember)
         {
-            var model = GetPageModel<ListingViewModel>(currentPage, currentMember);
-            Mapper.MapCollection(currentPage.Children, model.Items);
+            var model = GetPageModel<BlogPostViewModel>(currentPage, currentMember);
+            model.ImageUrl = GravatarHelper.CreateGravatarUrl(model.Author.Email, 200, string.Empty, null, null, null);
 
             return model;
         }

@@ -9,14 +9,14 @@
 
         public RegistrationViewModel()
         {
-            Form = new RegistrationForm();
+            Form = new RegistrationFormViewModel();
         }
 
         #endregion Constructor
 
         #region Properties
 
-        public RegistrationForm Form { get; set; }
+        public RegistrationFormViewModel Form { get; set; }
 
         #endregion Properties
     }

@@ -5,7 +5,7 @@
     using System.Web.Mvc;
 
     [Serializable]
-    public class ContactForm
+    public class ContactFormViewModel
     {
         [Required(ErrorMessage = "Please enter your name.")]
         [Display(Name = "Name")]

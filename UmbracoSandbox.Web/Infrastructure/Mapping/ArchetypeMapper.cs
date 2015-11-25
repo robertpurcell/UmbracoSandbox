@@ -33,7 +33,7 @@
         /// <param name="recursive">Recursive</param>
         /// <returns>The model</returns>
         public static T GetModel<T>(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyAlias, bool recursive)
-            where T : BaseModuleModel, new()
+            where T : BaseModuleViewModel, new()
         {
             var archetypeModel = contentToMapFrom.GetPropertyValue<ArchetypeModel>(propertyAlias, recursive);
             if (archetypeModel == null)
@@ -62,7 +62,7 @@
         /// <param name="recursive">Recursive</param>
         /// <returns>Collection of models</returns>
         public static IEnumerable<T> GetCollection<T>(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyAlias, bool recursive)
-            where T : BaseModuleModel, new()
+            where T : BaseModuleViewModel, new()
         {
             var archetypeModel = contentToMapFrom.GetPropertyValue<ArchetypeModel>(propertyAlias, recursive);
             var collection = GetArchetypeCollection(mapper, archetypeModel);
@@ -79,14 +79,14 @@
         /// <param name="value">Object value</param>
         /// <returns>Collection of models</returns>
         public static IEnumerable<T> GetCollectionFromValue<T>(IUmbracoMapper mapper, object value)
-            where T : BaseModuleModel, new()
+            where T : BaseModuleViewModel, new()
         {
             if (value == null)
             {
                 return null;
             }
 
-            var collection = (IEnumerable<BaseModuleModel>)value;
+            var collection = (IEnumerable<BaseModuleViewModel>)value;
             return TryConvert<T>(collection);
         }
 
@@ -98,7 +98,7 @@
         /// <param name="propertyAlias">Property alias</param>
         /// <param name="recursive">Recursive</param>
         /// <returns>Collection of Archetype models</returns>
-        public static IEnumerable<BaseModuleModel> GetArchetypeCollection(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyAlias, bool recursive)
+        public static IEnumerable<BaseModuleViewModel> GetArchetypeCollection(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyAlias, bool recursive)
         {
             var archetypeModel = contentToMapFrom.GetPropertyValue<ArchetypeModel>(propertyAlias, recursive);
 
@@ -111,12 +111,12 @@
         /// <param name="mapper">Umbraco mapper</param>
         /// <param name="value">Object value</param>
         /// <returns>Collection of Archetype models</returns>
-        public static IEnumerable<BaseModuleModel> GetArchetypeCollectionFromValue(IUmbracoMapper mapper, object value)
+        public static IEnumerable<BaseModuleViewModel> GetArchetypeCollectionFromValue(IUmbracoMapper mapper, object value)
         {
-            var result = new List<BaseModuleModel>();
+            var result = new List<BaseModuleViewModel>();
             if (value != null)
             {
-                result = (List<BaseModuleModel>)value;
+                result = (List<BaseModuleViewModel>)value;
             }
 
             return result;
@@ -175,21 +175,21 @@
         /// <param name="mapper">Umbraco mapper</param>
         /// <param name="archetypeModel">Archetype model</param>
         /// <returns>Collection of Archetype models</returns>
-        private static IEnumerable<BaseModuleModel> GetArchetypeCollection(IUmbracoMapper mapper, ArchetypeModel archetypeModel)
+        private static IEnumerable<BaseModuleViewModel> GetArchetypeCollection(IUmbracoMapper mapper, ArchetypeModel archetypeModel)
         {
             if (archetypeModel == null)
             {
                 return null;
             }
 
-            var result = new List<BaseModuleModel>();
+            var result = new List<BaseModuleViewModel>();
             var dictionary = GetDictionary(mapper, archetypeModel);
             foreach (var item in dictionary)
             {
                 switch (item["alias"].ToString())
                 {
                     case ModelAliases.Module:
-                        var model = GetModel<ModuleModel>(mapper, item);
+                        var model = GetModel<ModuleViewModel>(mapper, item);
                         result.Add(model);
                         break;
                 }
@@ -204,8 +204,8 @@
         /// <typeparam name="T">The type</typeparam>
         /// <param name="collection">The base model collection</param>
         /// <returns>The more specific model collection</returns>
-        private static IEnumerable<T> TryConvert<T>(IEnumerable<BaseModuleModel> collection)
-            where T : BaseModuleModel, new()
+        private static IEnumerable<T> TryConvert<T>(IEnumerable<BaseModuleViewModel> collection)
+            where T : BaseModuleViewModel, new()
         {
             if (collection == null)
             {
@@ -228,7 +228,7 @@
         /// <param name="contentAlias">The alias of the property containing the content to map from</param>
         /// <returns>The model</returns>
         private static T GetModel<T>(IUmbracoMapper mapper, Dictionary<string, object> dictionary, string contentAlias = "content")
-            where T : BaseModuleModel, new()
+            where T : BaseModuleViewModel, new()
         {
             try
             {
@@ -264,7 +264,7 @@
         /// <param name="source">The source object</param>
         /// <returns>The combined object</returns>
         private static T CopyValues<T>(T target, T source)
-            where T : BaseModuleModel, new()
+            where T : BaseModuleViewModel, new()
         {
             var t = typeof(T);
             var result = new T();

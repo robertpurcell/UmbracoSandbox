@@ -62,10 +62,10 @@
         /// <param name="currentPage">The current page</param>
         /// <param name="currentMember">The current member</param>
         /// <returns>Navigation model</returns>
-        public MainNavigationModel GetMainNavigation(IPublishedContent currentPage, IMember currentMember)
+        public MainNavigationViewModel GetMainNavigation(IPublishedContent currentPage, IMember currentMember)
         {
             var login = Root.Descendant(ContentTypeAliases.Login);
-            var model = new MainNavigationModel
+            var model = new MainNavigationViewModel
             {
                 Items = GetMenuItems(currentPage, Root, 0, 3),
                 Login = login != null ? MapItem(currentPage, login) : null
@@ -87,9 +87,9 @@
         /// </summary>
         /// <param name="currentPage">Current page</param>
         /// <returns>Navigation model</returns>
-        public NavigationModel GetFooterNavigation(IPublishedContent currentPage)
+        public NavigationViewModel GetFooterNavigation(IPublishedContent currentPage)
         {
-            return new NavigationModel
+            return new NavigationViewModel
             {
                 Items = GetMenuItems(currentPage, PropertyAliases.FooterNavigation)
             };

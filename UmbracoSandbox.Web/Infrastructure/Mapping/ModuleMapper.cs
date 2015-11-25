@@ -14,7 +14,7 @@
     public class ModuleMapper
     {
         public static IEnumerable<T> GetCollection<T>(IUmbracoMapper mapper, IPublishedContent contentToMapFrom, string propertyAlias, bool recursive)
-            where T : BaseModuleModel, new()
+            where T : BaseModuleViewModel, new()
         {
             var contentList = contentToMapFrom.GetPropertyValue<IEnumerable<IPublishedContent>>(propertyAlias, recursive);
             var publishedContents = contentList as IPublishedContent[] ?? contentList.ToArray();

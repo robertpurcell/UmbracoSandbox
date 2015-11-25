@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     [Serializable]
-    public class LoginForm
+    public class LoginFormViewModel
     {
         [Required(ErrorMessage = "Please enter your email address.")]
         [Display(Name = "Email")]

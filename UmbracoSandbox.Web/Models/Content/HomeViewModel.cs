@@ -11,6 +11,6 @@
     {
         public ImageModel HeroImage { get; set; }
 
-        public IEnumerable<ModuleModel> Modules { get; set; }
+        public IEnumerable<ModuleViewModel> Modules { get; set; }
     }
 }

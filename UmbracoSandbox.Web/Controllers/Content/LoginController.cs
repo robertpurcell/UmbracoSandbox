@@ -47,7 +47,7 @@
         /// <returns>Redirect or return to current page</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LoginMember(LoginForm vm)
+        public ActionResult LoginMember(LoginFormViewModel vm)
         {
             if (!ModelState.IsValid)
             {

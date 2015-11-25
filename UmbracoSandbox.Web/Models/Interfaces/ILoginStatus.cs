@@ -1,6 +1,6 @@
 ﻿namespace UmbracoSandbox.Web.Models.Interfaces
 {
-    public interface IMainNavigation : INavigation
+    public interface ILoginStatus
     {
         IMenuItem Login { get; }
 

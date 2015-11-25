@@ -5,7 +5,7 @@
     using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Media;
 
-    public class ModuleModel : BaseModuleModel
+    public class ModuleViewModel : BaseModuleViewModel
     {
         public string Title { get; set; }
 

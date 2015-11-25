@@ -9,14 +9,14 @@
 
         public ContactViewModel()
         {
-            Form = new ContactForm();
+            Form = new ContactFormViewModel();
         }
 
         #endregion Constructor
 
         #region Properties
 
-        public ContactForm Form { get; set; }
+        public ContactFormViewModel Form { get; set; }
 
         #endregion Properties
     }

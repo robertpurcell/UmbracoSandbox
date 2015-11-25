@@ -1,16 +1,16 @@
-﻿@model ContactForm
+﻿@model ContactFormViewModel
 
 <div id="result"></div>
 @using (Ajax.BeginForm("AjaxSendEmail", "Contact", new AjaxOptions { UpdateTargetId = "form-container" }, new { id = "contact-form" }))
 {
     @Html.AntiForgeryToken()
     <div class="row">
-        <div class="col-sm-6 ">
+        <div class="col-sm-6">
             @Html.ValidationSummary()
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-sm-6 ">
+        <div class="form-group col-sm-6">
             @Html.RequiredLabelFor(m => m.FullName, new { @class = "control-label" })
             @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.FullName)

@@ -50,7 +50,7 @@
         /// <returns>Action result</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegistrationForm vm)
+        public ActionResult Register(RegistrationFormViewModel vm)
         {
             if (!ModelState.IsValid)
             {

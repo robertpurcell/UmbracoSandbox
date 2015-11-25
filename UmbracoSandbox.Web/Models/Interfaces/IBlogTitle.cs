@@ -4,6 +4,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web;
 
+    using Umbraco.Core.Models.Membership;
+
     using UmbracoSandbox.Web.Infrastructure.Config;
 
     public interface IBlogTitle : ITitle
@@ -11,7 +13,7 @@
         [DisplayFormat(DataFormatString = DisplayFormats.ShortDate)]
         DateTime Date { get; }
 
-        string Author { get; }
+        IUser Author { get; }
 
         string ImageUrl { get; }
 

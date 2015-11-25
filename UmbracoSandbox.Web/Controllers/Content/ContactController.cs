@@ -48,7 +48,7 @@
         /// <returns>Success message</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AjaxSendEmail(ContactForm vm)
+        public ActionResult AjaxSendEmail(ContactFormViewModel vm)
         {
             if (!ModelState.IsValid)
             {
