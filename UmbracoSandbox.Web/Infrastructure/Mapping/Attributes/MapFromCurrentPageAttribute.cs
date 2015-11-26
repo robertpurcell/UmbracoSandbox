@@ -9,7 +9,7 @@
     using Zone.UmbracoMapper;
 
     [AttributeUsage(AttributeTargets.Property)]
-    public class MapFromCurrentPageAttribute : Attribute, IMapFromAttribute
+    public class MapFromArchetypeAttribute : Attribute, IMapFromAttribute
     {
         public void SetPropertyValue<T>(object fromObject, PropertyInfo property, T model, IUmbracoMapper mapper)
         {
@@ -43,7 +43,6 @@
                     instance = Activator.CreateInstance<T>();
                     mapper.Map(content, instance);
                 }
-
             }
 
             return instance;

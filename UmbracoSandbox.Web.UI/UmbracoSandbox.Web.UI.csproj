@@ -3363,7 +3363,6 @@
     <Content Include="Views\Partials\Grid\Editors\Base.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap3.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap2.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_LoginStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>

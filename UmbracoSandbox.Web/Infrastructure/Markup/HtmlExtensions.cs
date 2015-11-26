@@ -74,7 +74,17 @@
         {
             var metadata = ModelMetadata.FromLambdaExpression(expression, helper.ViewData);
             var htmlFieldName = ExpressionHelper.GetExpressionText(expression);
-            var labelText = metadata.DisplayName ?? metadata.PropertyName ?? htmlFieldName.Split('.').Last();
+            var labelText = metadata.DisplayName;
+            if (string.IsNullOrEmpty(labelText))
+            {
+                labelText = metadata.PropertyName;
+            }
+
+            if (string.IsNullOrEmpty(labelText))
+            {
+                labelText = htmlFieldName.Split('.').Last();
+            }
+
             if (string.IsNullOrEmpty(labelText))
             {
                 return MvcHtmlString.Empty;

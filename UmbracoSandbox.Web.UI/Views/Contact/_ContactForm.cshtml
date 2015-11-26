@@ -6,7 +6,7 @@
     @Html.AntiForgeryToken()
     <div class="row">
         <div class="col-sm-6">
-            @Html.ValidationSummary()
+            @Html.ValidationSummary(false, "Errors:")
         </div>
     </div>
     <div class="row">

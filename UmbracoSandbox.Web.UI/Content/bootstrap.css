@@ -6855,3 +6855,7 @@ button.close {
 .dropdown-menu > li > .navbar-form {
   padding: 0;
 }
+.validation-summary-valid
+{
+  display:none;
+}
