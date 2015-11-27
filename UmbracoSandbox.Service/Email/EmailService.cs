@@ -6,25 +6,29 @@
     using System.Text.RegularExpressions;
     using System.Web;
 
+    using UmbracoSandbox.Service.Logging;
+
     public class EmailService : IEmailService
     {
         #region Fields
 
+        private readonly ILoggingService _loggingService;
         private const string UrlPattern = @"(?<name>src|href)=""(?<value>/[^""]*)""";
         private static string _emailAddress;
         private static string _displayName;
 
-        #endregion
+        #endregion Fields
 
         #region Constructor
 
-        public EmailService(string emailAddress, string displayName)
+        public EmailService(ILoggingService loggingService, string emailAddress, string displayName)
         {
+            _loggingService = loggingService;
             _emailAddress = emailAddress;
             _displayName = displayName;
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Interface methods
 
@@ -53,17 +57,7 @@
             }
             catch (SmtpException ex)
             {
-                switch (ex.StatusCode)
-                {
-                    case SmtpStatusCode.GeneralFailure:
-                    case SmtpStatusCode.ServiceNotAvailable:
-                    case SmtpStatusCode.SyntaxError:
-                    case SmtpStatusCode.CommandUnrecognized:
-                    case SmtpStatusCode.TransactionFailed:
-                    case SmtpStatusCode.BadCommandSequence:
-                        throw new Exception(string.Format("Error sending mail with code: {0}, {1}",
-                            ex.StatusCode, ex.Message), ex);
-                }
+                _loggingService.Log(string.Format("Error sending mail with code: {0}, {1}", ex.StatusCode, ex.Message), LogLevel.Error);
             }
         }
 
@@ -78,13 +72,14 @@
             {
                 return string.Equals(new MailAddress(address).Address, address);
             }
-            catch
+            catch (Exception ex)
             {
+                _loggingService.Log(string.Format("Email address is invalid: {0}", ex.Message), LogLevel.Error);
                 return false;
             }
         }
 
-        #endregion
+        #endregion Interface methods
 
         #region Helpers
 
@@ -173,6 +168,6 @@
             return adjustedHtml;
         }
 
-        #endregion
+        #endregion Helpers
     }
 }

@@ -20,19 +20,29 @@
                     case ContentTypeAliases.Error:
                         if (content.Published)
                         {
-                            var helper = new UmbracoHelper(UmbracoContext.Current);
-                            var published = helper.TypedContent(content.Id);
-                            if (published != null)
-                            {
-                                var errorCode = published.GetPropertyValue<int>(PropertyAliases.ErrorCode);
-                                var publisher = NinjectWebCommon.Kernel.GetService<IPublishingService>();
-                                publisher.PublishErrorPage(published.Url, errorCode);
-                                e.Messages.Add(new EventMessage("Error page updated", errorCode.ToString(), EventMessageType.Info));
-                            }
+                            PublishErrorPage(e, content);
                         }
 
                         break;
                 }
+            }
+        }
+
+        private static void PublishErrorPage(PublishEventArgs<IContent> e, IContent content)
+        {
+            var helper = new UmbracoHelper(UmbracoContext.Current);
+            var published = helper.TypedContent(content.Id);
+            if (published != null)
+            {
+                var errorCode = published.GetPropertyValue<int>(PropertyAliases.ErrorCode);
+                var publisher = NinjectWebCommon.Kernel.GetService<IPublishingService>();
+                e.Messages.Add(publisher.PublishErrorPage(published.UrlWithDomain(), errorCode)
+                    ? new EventMessage("Static error page updated", errorCode.ToString(), EventMessageType.Info)
+                    : new EventMessage("Failure updating static error page", errorCode.ToString(), EventMessageType.Error));
+            }
+            else
+            {
+                e.Messages.Add(new EventMessage("Warning", "Publish again to update static error page", EventMessageType.Warning));
             }
         }
     }

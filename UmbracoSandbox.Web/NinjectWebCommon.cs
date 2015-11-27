@@ -85,6 +85,7 @@ namespace UmbracoSandbox.Web
             kernel.Bind<IUmbracoMapper>().To<UmbracoMapper>();
             kernel.Bind<IMetadataHandler>().To<MetadataHandler>();
             kernel.Bind<INavigationHandler>().To<NavigationHandler>();
+            kernel.Bind<IPublishingService>().To<PublishingService>();
             kernel.Bind<IContactPageHandler>().To<ContactPageHandler>();
             kernel.Bind<IListingPageHandler>().To<ListingPageHandler>();
             kernel.Bind<IBlogPostPageHandler>().To<BlogPostPageHandler>();
@@ -92,10 +93,6 @@ namespace UmbracoSandbox.Web
             kernel.Bind<IEmailService>().To<EmailService>()
                 .WithConstructorArgument("emailAddress", ConfigHelper.GetSettingAsString("app.emailAddress"))
                 .WithConstructorArgument("displayName", ConfigHelper.GetSettingAsString("app.displayName"));
-            kernel.Bind<IPublishingService>().To<PublishingService>()
-                .WithConstructorArgument("pageNotFoundFileName", ConfigHelper.GetSettingAsString("app.pageNotFoundFileName"))
-                .WithConstructorArgument("serverErrorFileName", ConfigHelper.GetSettingAsString("app.serverErrorFileName"))
-                .WithConstructorArgument("errorPagePublishingHostName", ConfigHelper.GetSettingAsString("app.errorPagePublishingHostName"));
 
             // Register in request scope so that the UmbracoHelper created in constructor is only created once per request context
             kernel.Bind<IRootContentLocator>().To<RootContentLocator>().WhenInjectedExactlyInto<RootContentLocatorCachingProxy>().InRequestScope();

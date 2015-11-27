@@ -1,27 +1,26 @@
 ﻿namespace UmbracoSandbox.Service.Publishing
 {
+    using System;
     using System.IO;
     using System.Net;
     using System.Threading.Tasks;
     using System.Web;
 
+    using UmbracoSandbox.Service.Logging;
+
     public class PublishingService : IPublishingService
     {
         #region Fields
 
-        private readonly string _pageNotFoundFileName;
-        private readonly string _serverErrorFileName;
-        private readonly string _errorPagePublishingHostName;
+        private readonly ILoggingService _loggingService;
 
         #endregion Fields
 
         #region Constructor
 
-        public PublishingService(string pageNotFoundFileName, string serverErrorFileName, string errorPagePublishingHostName)
+        public PublishingService(ILoggingService loggingService)
         {
-            _pageNotFoundFileName = pageNotFoundFileName;
-            _serverErrorFileName = serverErrorFileName;
-            _errorPagePublishingHostName = errorPagePublishingHostName;
+            _loggingService = loggingService;
         }
 
         #endregion Constructor
@@ -36,17 +35,13 @@
         /// <returns>Whether successful</returns>
         public bool PublishErrorPage(string url, int errorCode)
         {
-            switch (errorCode)
+            if (errorCode != 0)
             {
-                case 404:
-                    return Task.Factory.StartNew(() => PublishPage(url, _pageNotFoundFileName).Result,
+                    return Task.Factory.StartNew(() => PublishPage(url, string.Format("{0}.html", errorCode)).Result,
                         TaskCreationOptions.LongRunning).Result;
-                case 500:
-                    return Task.Factory.StartNew(() => PublishPage(url, _serverErrorFileName).Result,
-                        TaskCreationOptions.LongRunning).Result;
-                default:
-                    return false;
             }
+
+            return false;
         }
 
         #endregion Interface methods
@@ -61,8 +56,7 @@
         /// <returns>True if successful</returns>
         private async Task<bool> PublishPage(string url, string filename)
         {
-            var fullUrl = string.Format("http://{0}{1}", _errorPagePublishingHostName, url);
-            var request = (HttpWebRequest)WebRequest.Create(fullUrl);
+            var request = (HttpWebRequest)WebRequest.Create(url);
             try
             {
                 using (var response = await request.GetResponseAsync())
@@ -83,8 +77,9 @@
 
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                _loggingService.Log(string.Format("Error publishing static error page: {0}", ex.Message), LogLevel.Error);
                 return false;
             }
         }
