@@ -14,6 +14,7 @@ namespace UmbracoSandbox.Web
     using Ninject.WebApi.DependencyResolver;
 
     using UmbracoSandbox.Service.Email;
+    using UmbracoSandbox.Service.JustGiving;
     using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Service.Publishing;
     using UmbracoSandbox.Web.Handlers.Content;
@@ -93,6 +94,12 @@ namespace UmbracoSandbox.Web
             kernel.Bind<IEmailService>().To<EmailService>()
                 .WithConstructorArgument("emailAddress", ConfigHelper.GetSettingAsString("app.emailAddress"))
                 .WithConstructorArgument("displayName", ConfigHelper.GetSettingAsString("app.displayName"));
+            kernel.Bind<IJustGivingService>().To<JustGivingService>()
+                .WithConstructorArgument("apiKey", ConfigHelper.GetSettingAsString("app.justGivingAPIKey"))
+                .WithConstructorArgument("charityId", ConfigHelper.GetSettingAsInteger("app.justGivingCharityId"))
+                .WithConstructorArgument("endPoint", ConfigHelper.GetSettingAsBoolean("app.justGivingTestMode")
+                    ? ConfigHelper.GetSettingAsString("app.justGivingAPISandboxEndpoint")
+                    : ConfigHelper.GetSettingAsString("app.justGivingAPIEndpoint"));
 
             // Register in request scope so that the UmbracoHelper created in constructor is only created once per request context
             kernel.Bind<IRootContentLocator>().To<RootContentLocator>().WhenInjectedExactlyInto<RootContentLocatorCachingProxy>().InRequestScope();
