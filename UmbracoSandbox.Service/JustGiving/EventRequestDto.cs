@@ -19,6 +19,5 @@
         public int CharityId { get; set; }
 
         public bool CharityOptIn { get; set; }
-
     }
 }

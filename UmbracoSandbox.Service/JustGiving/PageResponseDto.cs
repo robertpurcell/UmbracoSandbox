@@ -11,21 +11,5 @@
         public string SignOnUrl { get; set; }
 
         public string[] Warnings { get; set; }
-
-        public class ErrorDto
-        {
-            public string Id { get; set; }
-
-            public string Desc { get; set; }
-        }
-
-        public class NextDto
-        {
-            public string Rel { get; set; }
-
-            public string Uri { get; set; }
-
-            public string Type { get; set; }
-        }
     }
 }

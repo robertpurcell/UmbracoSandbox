@@ -9,7 +9,7 @@
     public interface IHttpClient
     {
         /// <summary>
-        /// Sent a GET request to the specified URI as an asynchronous operation
+        /// Sends a GET request to the specified URI as an asynchronous operation
         /// </summary>
         /// <param name="url">Url to request</param>
         /// <returns>Task of HttpResponseMessage</returns>

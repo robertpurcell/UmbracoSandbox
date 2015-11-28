@@ -298,12 +298,14 @@
     <Compile Include="HttpClient\IHttpClient.cs" />
     <Compile Include="JustGiving\AccountDetailsDto.cs" />
     <Compile Include="JustGiving\ActivityType.cs" />
+    <Compile Include="JustGiving\ErrorDto.cs" />
     <Compile Include="JustGiving\EventDetailsDto.cs" />
     <Compile Include="JustGiving\EventRequestDto.cs" />
     <Compile Include="JustGiving\EventResponseDto.cs" />
     <Compile Include="JustGiving\EventsDto.cs" />
     <Compile Include="JustGiving\IJustGivingService.cs" />
     <Compile Include="JustGiving\JustGivingService.cs" />
+    <Compile Include="JustGiving\NextDto.cs" />
     <Compile Include="JustGiving\PageRequestDto.cs" />
     <Compile Include="JustGiving\PageResponseDto.cs" />
     <Compile Include="JustGiving\SuggestPageNameDto.cs" />

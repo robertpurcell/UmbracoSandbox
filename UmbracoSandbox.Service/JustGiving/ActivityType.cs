@@ -18,6 +18,6 @@
         Parachuting_Skydives = 13,
         OtherSportingEvents = 14,
         NewYearsResolutions = 15,
-        Christmas = 16,
+        Christmas = 16
     }
 }

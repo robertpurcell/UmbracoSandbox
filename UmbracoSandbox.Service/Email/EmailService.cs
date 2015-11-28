@@ -12,10 +12,10 @@
     {
         #region Fields
 
-        private readonly ILoggingService _loggingService;
         private const string UrlPattern = @"(?<name>src|href)=""(?<value>/[^""]*)""";
         private static string _emailAddress;
         private static string _displayName;
+        private readonly ILoggingService _loggingService;
 
         #endregion Fields
 
