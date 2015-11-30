@@ -10,8 +10,8 @@
     using Umbraco.Core.Models;
     using Umbraco.Web;
 
+    using UmbracoSandbox.Utilities;
     using UmbracoSandbox.Web.Handlers.Base;
-    using UmbracoSandbox.Web.Helpers;
     using UmbracoSandbox.Web.Infrastructure.Config;
     using UmbracoSandbox.Web.Infrastructure.ContentLocators;
     using UmbracoSandbox.Web.Models.Navigation;

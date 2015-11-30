@@ -76,9 +76,7 @@
   "cssClass": null,
   "disableDefaultStylesheet": false,
   "useClientDependency": false,
-  "workflows": [
-    "d965af09-3404-4c82-8ea8-ffe46a746315"
-  ],
+  "workflows": [],
   "datasource": null,
   "submitLabel": "Submit",
   "nextLabel": "Next",

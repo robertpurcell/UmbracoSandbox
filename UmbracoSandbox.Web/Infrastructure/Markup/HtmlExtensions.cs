@@ -131,6 +131,6 @@
             return MvcHtmlString.Create(sb.ToString());
         }
 
-        #endregion
+        #endregion Html extensions
     }
 }

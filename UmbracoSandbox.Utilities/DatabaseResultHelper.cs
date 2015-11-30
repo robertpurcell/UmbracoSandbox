@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Service.Helpers
+﻿namespace UmbracoSandbox.Utilities
 {
     using System.Collections.Generic;
 

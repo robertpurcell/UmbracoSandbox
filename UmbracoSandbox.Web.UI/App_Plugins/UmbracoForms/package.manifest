@@ -16,6 +16,8 @@
   "javascript": [
     "~/App_Plugins/UmbracoForms/js/umbraco.forms.js",
     "~/App_Plugins/UmbracoForms/Assets/daterangepicker/daterangepicker.js",
-    "~/App_Plugins/UmbracoForms/Assets/moment/moment.min.js"
+    "~/App_Plugins/UmbracoForms/Assets/moment/moment.min.js",
+    "~/App_Plugins/UmbracoForms/Backoffice/Common/SettingTypes/prevaluefieldmapper.controller.js",
+    "~/App_Plugins/UmbracoForms/Backoffice/Common/SettingTypes/file.controller.js"
   ]
 }

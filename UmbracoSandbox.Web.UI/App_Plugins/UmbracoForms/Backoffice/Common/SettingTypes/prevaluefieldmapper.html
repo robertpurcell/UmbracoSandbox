@@ -1,0 +1,32 @@
+﻿<div ng-controller="UmbracoForms.SettingTypes.PrevalueFieldMapperController">
+    <h5>Prevalue source</h5>
+    <select ng-options="source.id as source.name for source in prevaluesources" ng-model="prevalueSourceId" ng-change="getPrevalues(prevalueSourceId)">
+        <option value="">Select...</option>
+    </select>
+
+    <div ng-if="prevalueSourceId != null && prevalueSourceId != ''">
+        <h5>Mappings</h5>
+        <table>
+            <thead>
+                <tr>
+                    <th>Form field</th>
+                    <th>Mapping field</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="field in fields">
+                    <td>
+                        {{field.value}}
+                        <input type="hidden" ng-model="field.id" />
+                    </td>
+                    <td>
+                        <select ng-options="prevalue.value as prevalue.value for prevalue in prevalues" ng-model="field.alias" ng-change="updateMappings()">
+                            <option value="">Select...</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

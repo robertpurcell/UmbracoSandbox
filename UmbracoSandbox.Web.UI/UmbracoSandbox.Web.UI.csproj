@@ -430,6 +430,8 @@
     <Content Include="App_Plugins\UmbracoForms\Backoffice\Common\SettingTypes\documentmapper.controller.js" />
     <Content Include="App_Plugins\UmbracoForms\Backoffice\Common\SettingTypes\documentmapper.html" />
     <Content Include="App_Plugins\UmbracoForms\Backoffice\Common\SettingTypes\dropdownlist.html" />
+    <Content Include="App_Plugins\UmbracoForms\Backoffice\Common\SettingTypes\prevaluefieldmapper.controller.js" />
+    <Content Include="App_Plugins\UmbracoForms\Backoffice\Common\SettingTypes\prevaluefieldmapper.html" />
     <Content Include="App_Plugins\UmbracoForms\Backoffice\Common\SettingTypes\fieldmapper.controller.js" />
     <Content Include="App_Plugins\UmbracoForms\Backoffice\Common\SettingTypes\fieldmapper.html" />
     <Content Include="App_Plugins\UmbracoForms\Backoffice\Common\SettingTypes\file.controller.js" />
@@ -3392,6 +3394,10 @@
       <Project>{0a004da3-898f-4b8f-81f6-a37856f8c24c}</Project>
       <Name>UmbracoSandbox.Service</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UmbracoSandbox.Utilities\UmbracoSandbox.Utilities.csproj">
+      <Project>{2204eccf-8e6b-43d8-bf92-bb71cd191521}</Project>
+      <Name>UmbracoSandbox.Utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UmbracoSandbox.Web\UmbracoSandbox.Web.csproj">
       <Project>{00b3ad26-4f16-4f81-8247-022cac038f0a}</Project>
       <Name>UmbracoSandbox.Web</Name>
@@ -3434,7 +3440,6 @@
     <Content Include="App_Plugins\UmbracoForms\Data\Templates\contactform.json" />
     <Content Include="App_Plugins\UmbracoForms\Data\Workflows\065b5cad-b43d-4390-aecb-166bdc677139.json" />
     <Content Include="App_Plugins\UmbracoForms\Data\Workflows\87895f0c-656a-4232-b41e-00fddb4840a0.json" />
-    <Content Include="App_Plugins\UmbracoForms\Data\Workflows\99a8c424-6dc3-436b-9123-85a0c151f46b.json" />
     <Content Include="App_Plugins\UmbracoForms\Fonts\icomoon.eot" />
     <Content Include="App_Plugins\UmbracoForms\Fonts\icomoon.ttf" />
     <Content Include="App_Plugins\UmbracoForms\Fonts\icomoon.woff" />

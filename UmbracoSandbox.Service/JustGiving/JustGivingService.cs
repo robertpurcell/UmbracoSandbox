@@ -6,9 +6,9 @@
     using System.Net;
     using System.Threading.Tasks;
 
-    using UmbracoSandbox.Service.Helpers;
     using UmbracoSandbox.Service.HttpClient;
     using UmbracoSandbox.Service.Logging;
+    using UmbracoSandbox.Utilities;
 
     public class JustGivingService : IJustGivingService
     {

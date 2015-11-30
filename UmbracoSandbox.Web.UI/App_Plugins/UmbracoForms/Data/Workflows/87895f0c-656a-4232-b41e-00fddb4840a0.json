@@ -7,8 +7,8 @@
   "executesOn": 3,
   "settings": {
     "Email": "pph@umbraco.dk",
-    "Subject": "the form asdasdasdasasasd was submitted",
-    "Message": "the form asdasdasdasasasd was submitted, this is the list of values it contained, you can turn this email off under workflows in Umbraco Contour"
+    "Subject": "The form asdasdasdasasasd was submitted",
+    "Message": "The form asdasdasdasasasd was submitted, this is the list of values it contained, you can turn this email off under workflows in Umbraco Contour"
   },
   "sortOrder": 0
 }

@@ -12,7 +12,7 @@
     using Umbraco.Core.Models;
     using Umbraco.Web;
 
-    using UmbracoSandbox.Web.Helpers;
+    using UmbracoSandbox.Utilities;
     using UmbracoSandbox.Web.Infrastructure.Config;
     using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Modules;

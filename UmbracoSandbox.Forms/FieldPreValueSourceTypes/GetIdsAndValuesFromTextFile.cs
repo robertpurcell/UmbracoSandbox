@@ -30,7 +30,7 @@
             {
                 var sort = 0;
                 var tr = new StreamReader(HttpContext.Current.Server.MapPath(TextFile));
-                var values = tr.ReadToEnd().Split('\n');
+                var values = tr.ReadToEnd().Split(new[] { "\r\n" }, StringSplitOptions.None);
                 foreach (var value in values)
                 {
                     if (string.IsNullOrEmpty(value.Trim()))
@@ -39,6 +39,11 @@
                     }
 
                     var parts = value.Split('\t');
+                    if (parts.Length != 2)
+                    {
+                        continue;
+                    }
+
                     var pv = new PreValue
                     {
                         Id = parts[0],

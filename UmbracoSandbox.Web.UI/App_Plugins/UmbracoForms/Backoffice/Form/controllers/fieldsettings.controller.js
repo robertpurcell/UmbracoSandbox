@@ -10,9 +10,7 @@
 	    };
 
 	    $scope.getPrevalues = function (field) {
-	        
 	        formService.loadFieldTypePrevalues(field);
-
 	    };
 
         $scope.close = function() {

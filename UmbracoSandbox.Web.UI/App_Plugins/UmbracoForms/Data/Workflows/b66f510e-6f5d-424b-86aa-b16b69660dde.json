@@ -1,0 +1,12 @@
+{
+  "id": "b66f510e-6f5d-424b-86aa-b16b69660dde",
+  "name": "Send to Just Giving",
+  "form": "7f38a298-2ff6-4936-9aca-59e9850fa92b",
+  "active": true,
+  "workflowTypeId": "b63f089f-6a6c-4f0b-9a7a-cd3249175595",
+  "executesOn": "Submitted",
+  "settings": {
+    "Mappings": "{\"prevalueSourceId\":\"e7fbba09-4370-441a-b8da-e5a6289ae17e\",\"mappings\":[{\"id\":\"a901a2b5-b4c3-45b2-91d2-6759e3694d38\",\"alias\":\"EventName\"},{\"id\":\"f76af7c9-c75d-48a6-bf13-e97263b99f10\",\"alias\":\"EventType\"},{\"id\":\"4a629413-4107-40b3-98e7-f7fedeca4596\",\"alias\":\"Username\"},{\"id\":\"292c5fb7-f6ef-49c0-8ce3-59f0c9df71e8\",\"alias\":\"Password\"}]}"
+  },
+  "sortOrder": 0
+}

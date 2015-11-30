@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmbracoSandbox.Web.Tests", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Zone", "Zone", "{D19959FF-340B-4E72-963E-DAC5030BC482}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmbracoSandbox.Utilities", "UmbracoSandbox.Utilities\UmbracoSandbox.Utilities.csproj", "{2204ECCF-8E6B-43D8-BF92-BB71CD191521}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,16 @@ Global
 		{6AB7D68C-B451-4418-902D-F732E034F09D}.Release|ARM.ActiveCfg = Release|Any CPU
 		{6AB7D68C-B451-4418-902D-F732E034F09D}.Release|x64.ActiveCfg = Release|Any CPU
 		{6AB7D68C-B451-4418-902D-F732E034F09D}.Release|x86.ActiveCfg = Release|Any CPU
+		{2204ECCF-8E6B-43D8-BF92-BB71CD191521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2204ECCF-8E6B-43D8-BF92-BB71CD191521}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2204ECCF-8E6B-43D8-BF92-BB71CD191521}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{2204ECCF-8E6B-43D8-BF92-BB71CD191521}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2204ECCF-8E6B-43D8-BF92-BB71CD191521}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2204ECCF-8E6B-43D8-BF92-BB71CD191521}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2204ECCF-8E6B-43D8-BF92-BB71CD191521}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2204ECCF-8E6B-43D8-BF92-BB71CD191521}.Release|ARM.ActiveCfg = Release|Any CPU
+		{2204ECCF-8E6B-43D8-BF92-BB71CD191521}.Release|x64.ActiveCfg = Release|Any CPU
+		{2204ECCF-8E6B-43D8-BF92-BB71CD191521}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Web.Helpers
+﻿namespace UmbracoSandbox.Utilities
 {
     using System;
     using System.Configuration;

@@ -14,13 +14,14 @@ namespace UmbracoSandbox.Web
     using Ninject.WebApi.DependencyResolver;
 
     using UmbracoSandbox.Service.Email;
+    using UmbracoSandbox.Service.HttpClient;
     using UmbracoSandbox.Service.JustGiving;
     using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Service.Publishing;
+    using UmbracoSandbox.Utilities;
     using UmbracoSandbox.Web.Handlers.Content;
     using UmbracoSandbox.Web.Handlers.Modules;
     using UmbracoSandbox.Web.Handlers.Navigation;
-    using UmbracoSandbox.Web.Helpers;
     using UmbracoSandbox.Web.Infrastructure.ContentLocators;
 
     using Zone.UmbracoMapper;
@@ -82,6 +83,8 @@ namespace UmbracoSandbox.Web
         private static void RegisterServices(IBindingRoot kernel)
         {
             kernel.Bind<ILoggingService>().To<LoggingService>().InSingletonScope();
+            kernel.Bind<IHttpClient>().To<HttpClientWrapper>()
+                .WithConstructorArgument("timeoutInSeconds", 30);
             kernel.Bind<IPageHandler>().To<PageHandler>();
             kernel.Bind<IUmbracoMapper>().To<UmbracoMapper>();
             kernel.Bind<IMetadataHandler>().To<MetadataHandler>();
