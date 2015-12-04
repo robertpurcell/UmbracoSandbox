@@ -82,7 +82,7 @@
             }
         }
 
-        public ImageModel SocialImage { get; set; }
+        public ImageViewModel SocialImage { get; set; }
 
         public string SocialImageUrl
         {

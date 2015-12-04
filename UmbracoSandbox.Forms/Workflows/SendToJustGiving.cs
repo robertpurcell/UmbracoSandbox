@@ -2,15 +2,16 @@
 {
     using System;
     using System.Collections.Generic;
-
+    using Ninject;
     using Umbraco.Forms.Core;
     using Umbraco.Forms.Core.Attributes;
     using Umbraco.Forms.Core.Enums;
 
+    using UmbracoSandbox.Common.Helpers;
+    using UmbracoSandbox.Forms.Config;
     using UmbracoSandbox.Forms.Models;
     using UmbracoSandbox.Service.JustGiving;
     using UmbracoSandbox.Service.Logging;
-    using UmbracoSandbox.Utilities;
     using UmbracoSandbox.Web;
     using UmbracoSandbox.Web.Helpers;
 
@@ -18,7 +19,6 @@
     {
         #region Fields
 
-        private readonly IJustGivingService _justGivingService;
         private readonly ILoggingService _loggingService;
 
         #endregion Fields
@@ -30,7 +30,6 @@
             Id = new Guid("b63f089f-6a6c-4f0b-9a7a-cd3249175595");
             Name = "Send to Just Giving";
             Description = "This workflow will post the user form data to Just Giving.";
-            _justGivingService = NinjectWebCommon.Kernel.GetService<IJustGivingService>();
             _loggingService = NinjectWebCommon.Kernel.GetService<ILoggingService>();
         }
 
@@ -42,6 +41,9 @@
             description = "Enter the Just Giving field mappings to be used",
             view = "~/App_Plugins/UmbracoForms/Backoffice/Common/SettingTypes/prevaluefieldmapper.html")]
         public string Mappings { get; set; }
+
+        [Inject]
+        public IJustGivingService JustGivingService { get; set; }
 
         #endregion Properties
 
@@ -57,12 +59,48 @@
         public override WorkflowExecutionStatus Execute(Record record, RecordEventArgs e)
         {
             var values = JsonHelper.Deserialize<MappingDto>(Mappings);
+            foreach (var mapping in values.Mappings)
+            {
+                switch (mapping.Alias)
+                {
+                    case MappingAliases.JustGiving.EventId:
+                        break;
+                }
+            }
 
-            var test = _justGivingService.ValidateCredentials("rpurcell@thisiszone.com", "Zonepa55");
-      
-            return WorkflowExecutionStatus.Completed;
+            const string username = "rpurcell@thisiszone.com";
+            const string password = "Zonepa55";
+            var page = new PageRequestDto();
+            if (!JustGivingService.ValidateCredentials(username, password))
+            {
+                return WorkflowExecutionStatus.Failed;
+            }
+
+            var pageUrl = CreatePage(username, password, page);
+            return string.IsNullOrEmpty(pageUrl) ? WorkflowExecutionStatus.Failed : WorkflowExecutionStatus.Completed;
         }
 
         #endregion Methods
+
+        #region Helpers
+
+        private string CreatePage(string username, string password, PageRequestDto page)
+        {
+            try
+            {
+                if (JustGivingService.ValidateCredentials(username, password))
+                {
+                    return JustGivingService.CreatePage(page);
+                }
+            }
+            catch (Exception ex)
+            {
+                _loggingService.Log(string.Format("Failure creating JustGiving fundraising page: {0}", ex.Message), LogLevel.Error);
+            }
+
+            return string.Empty;
+        }
+
+        #endregion Helpers
     }
 }

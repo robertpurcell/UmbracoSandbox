@@ -6,7 +6,7 @@
 
     using Zone.UmbracoMapper;
 
-    public class ImageModel : FileModel
+    public class ImageViewModel : FileViewModel
     {
         #region Fields
 

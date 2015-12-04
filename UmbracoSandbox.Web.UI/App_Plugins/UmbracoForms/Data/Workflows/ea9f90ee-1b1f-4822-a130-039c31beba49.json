@@ -1,0 +1,14 @@
+{
+  "id": "ea9f90ee-1b1f-4822-a130-039c31beba49",
+  "name": "Send email",
+  "form": "54867ecf-b823-4fab-ad8b-2b2ec455d27c",
+  "active": true,
+  "workflowTypeId": "e96badd7-05be-4978-b8d9-b3d733de70a5",
+  "executesOn": "Submitted",
+  "settings": {
+    "Email": "{emailaddress}",
+    "Subject": "Thank you for your feedback",
+    "Message": "Please see your message below."
+  },
+  "sortOrder": 0
+}

@@ -9,7 +9,7 @@
 
     public class HomeViewModel : BasePageViewModel, IHeroTitle
     {
-        public ImageModel HeroImage { get; set; }
+        public ImageViewModel HeroImage { get; set; }
 
         public IEnumerable<ModuleViewModel> Modules { get; set; }
     }

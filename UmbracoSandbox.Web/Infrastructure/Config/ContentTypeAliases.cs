@@ -2,7 +2,7 @@
 {
     public static class ContentTypeAliases
     {
-        #region Document type aliases
+        #region Content type aliases
 
         public const string Article = "Article";
 
@@ -16,6 +16,6 @@
 
         public const string Registration = "Registration";
 
-        #endregion Document type aliases
+        #endregion Content type aliases
     }
 }

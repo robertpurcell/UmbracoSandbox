@@ -1,14 +1,11 @@
 ﻿namespace UmbracoSandbox.Web.Infrastructure.Mapping
 {
-    using System;
     using System.Linq;
 
-    using Newtonsoft.Json;
-
-    using Umbraco.Core.Logging;
     using Umbraco.Core.Models;
     using Umbraco.Web;
 
+    using UmbracoSandbox.Common.Helpers;
     using UmbracoSandbox.Web.Infrastructure.Config;
     using UmbracoSandbox.Web.Models.Media;
 
@@ -30,7 +27,7 @@
         {
             var media = contentToMapFrom.GetPropertyValue<IPublishedContent>(propertyAlias, recursive);
 
-            return GetModel<FileModel>(mapper, media);
+            return GetModel<FileViewModel>(mapper, media);
         }
 
         /// <summary>
@@ -41,7 +38,7 @@
         /// <returns>Image model</returns>
         public static object GetImage(IUmbracoMapper mapper, IPublishedContent media)
         {
-            var image = GetModel<ImageModel>(mapper, media);
+            var image = GetModel<ImageViewModel>(mapper, media);
             MapImageCrops(media, image);
 
             return image;
@@ -70,7 +67,7 @@
             }
 
             var media = new UmbracoHelper(UmbracoContext.Current).TypedMedia(value.ToString());
-            var image = GetModel<ImageModel>(mapper, media);
+            var image = GetModel<ImageViewModel>(mapper, media);
             MapImageCrops(media, image);
 
             return image;
@@ -85,22 +82,16 @@
         /// </summary>
         /// <param name="media">Media node</param>
         /// <param name="image">Image model</param>
-        private static void MapImageCrops(IPublishedContent media, ImageModel image)
+        private static void MapImageCrops(IPublishedContent media, ImageViewModel image)
         {
             if (media == null)
             {
                 return;
             }
 
-            try
-            {
-                var imageCrops = JsonConvert.DeserializeObject<ImageCropperModel>(media.GetPropertyValue<string>(PropertyAliases.UmbracoFile));
-                image.Crops = imageCrops.Crops.ToDictionary(x => x.Alias, x => media.GetCropUrl(x.Alias));
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error<MediaMapper>(string.Format("Error getting image crops: {0}", ex.InnerException), ex);
-            }
+            var imageString = media.GetPropertyValue<string>(PropertyAliases.UmbracoFile);
+            var imageCrops = JsonHelper.Deserialize<ImageCropperModel>(imageString);
+            image.Crops = imageCrops.Crops.ToDictionary(x => x.Alias, x => media.GetCropUrl(x.Alias));
         }
 
         #endregion

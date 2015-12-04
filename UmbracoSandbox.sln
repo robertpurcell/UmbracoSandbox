@@ -26,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmbracoSandbox.Web.Tests", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Zone", "Zone", "{D19959FF-340B-4E72-963E-DAC5030BC482}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmbracoSandbox.Utilities", "UmbracoSandbox.Utilities\UmbracoSandbox.Utilities.csproj", "{2204ECCF-8E6B-43D8-BF92-BB71CD191521}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmbracoSandbox.Common", "UmbracoSandbox.Utilities\UmbracoSandbox.Common.csproj", "{2204ECCF-8E6B-43D8-BF92-BB71CD191521}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

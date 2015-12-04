@@ -6,7 +6,7 @@
     using Umbraco.Core.Models;
     using Umbraco.Web;
 
-    using UmbracoSandbox.Utilities;
+    using UmbracoSandbox.Common.Helpers;
     using UmbracoSandbox.Web.Models.Base;
 
     using Zone.UmbracoMapper;

@@ -1,0 +1,9 @@
+{
+  "id": "85caeb6a-7dc8-419e-a810-c4faec6c10e6",
+  "name": "Email Templates",
+  "settings": {
+    "RootNode": "4143",
+    "DocType": "EmailTemplate"
+  },
+  "fieldPreValueSourceTypeId": "de996870-c45a-11de-8a39-0800200c9a66"
+}

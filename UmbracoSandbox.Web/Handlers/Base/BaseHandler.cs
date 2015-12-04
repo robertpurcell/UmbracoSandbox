@@ -1,14 +1,10 @@
 ﻿namespace UmbracoSandbox.Web.Handlers.Base
 {
     using System.Collections.Generic;
-    using System.Reflection;
-
-    using log4net;
 
     using RJP.MultiUrlPicker.Models;
 
     using Umbraco.Core.Models.Membership;
-
     using UmbracoSandbox.Web.Infrastructure.Mapping;
     using UmbracoSandbox.Web.Models.Media;
     using UmbracoSandbox.Web.Models.Modules;
@@ -23,7 +19,6 @@
         protected BaseHandler(IUmbracoMapper mapper)
         {
             Mapper = mapper;
-            Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
             AddCustomMappings();
         }
 
@@ -32,8 +27,6 @@
         #region Properties
 
         protected IUmbracoMapper Mapper { get; private set; }
-
-        public static ILog Log { get; private set; }
 
         #endregion Properties
 
@@ -45,13 +38,13 @@
         private void AddCustomMappings()
         {
             Mapper
-                .AddCustomMapping(typeof(FileModel).FullName, MediaMapper.GetFile)
-                .AddCustomMapping(typeof(ImageModel).FullName, MediaMapper.GetImage)
-                .AddCustomMapping(typeof(ImageModel).FullName, MediaMapper.GetImageFromValue)
-                .AddCustomMapping(typeof(GoogleMap).FullName, GoogleMapMapper.GetGoogleMap)
-                .AddCustomMapping(typeof(IUser).FullName, UserMapper.GetUser)
                 .AddCustomMapping(typeof(Link).FullName, LinkMapper.GetLink)
                 .AddCustomMapping(typeof(Link).FullName, LinkMapper.GetLinkFromValue)
+                .AddCustomMapping(typeof(FileViewModel).FullName, MediaMapper.GetFile)
+                .AddCustomMapping(typeof(ImageViewModel).FullName, MediaMapper.GetImage)
+                .AddCustomMapping(typeof(ImageViewModel).FullName, MediaMapper.GetImageFromValue)
+                .AddCustomMapping(typeof(GoogleMap).FullName, GoogleMapMapper.GetGoogleMap)
+                .AddCustomMapping(typeof(IUser).FullName, UserMapper.GetUser)
                 .AddCustomMapping(typeof(IEnumerable<Link>).FullName, LinkMapper.GetLinks)
                 .AddCustomMapping(typeof(IEnumerable<Link>).FullName, LinkMapper.GetLinksFromValue)
                 .AddCustomMapping(typeof(IEnumerable<ModuleViewModel>).FullName, ArchetypeMapper.GetCollection<ModuleViewModel>)

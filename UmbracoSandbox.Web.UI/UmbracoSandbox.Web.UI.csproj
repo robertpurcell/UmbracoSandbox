@@ -3394,9 +3394,9 @@
       <Project>{0a004da3-898f-4b8f-81f6-a37856f8c24c}</Project>
       <Name>UmbracoSandbox.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UmbracoSandbox.Utilities\UmbracoSandbox.Utilities.csproj">
+    <ProjectReference Include="..\UmbracoSandbox.Utilities\UmbracoSandbox.Common.csproj">
       <Project>{2204eccf-8e6b-43d8-bf92-bb71cd191521}</Project>
-      <Name>UmbracoSandbox.Utilities</Name>
+      <Name>UmbracoSandbox.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\UmbracoSandbox.Web\UmbracoSandbox.Web.csproj">
       <Project>{00b3ad26-4f16-4f81-8247-022cac038f0a}</Project>

@@ -13,12 +13,12 @@ namespace UmbracoSandbox.Web
     using Ninject.Web.Common;
     using Ninject.WebApi.DependencyResolver;
 
+    using UmbracoSandbox.Common.Helpers;
     using UmbracoSandbox.Service.Email;
     using UmbracoSandbox.Service.HttpClient;
     using UmbracoSandbox.Service.JustGiving;
     using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Service.Publishing;
-    using UmbracoSandbox.Utilities;
     using UmbracoSandbox.Web.Handlers.Content;
     using UmbracoSandbox.Web.Handlers.Modules;
     using UmbracoSandbox.Web.Handlers.Navigation;

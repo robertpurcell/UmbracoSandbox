@@ -4,7 +4,7 @@
 
     using Zone.UmbracoMapper;
 
-    public class FileModel : BaseNodeViewModel
+    public class FileViewModel : BaseNodeViewModel
     {
         [PropertyMapping(SourceProperty = PropertyAliases.UmbracoBytes)]
         public int Size { get; set; }

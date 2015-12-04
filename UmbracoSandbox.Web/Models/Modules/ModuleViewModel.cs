@@ -11,7 +11,7 @@
 
         public string Summary { get; set; }
 
-        public ImageModel Image { get; set; }
+        public ImageViewModel Image { get; set; }
 
         public Link Link { get; set; }
     }

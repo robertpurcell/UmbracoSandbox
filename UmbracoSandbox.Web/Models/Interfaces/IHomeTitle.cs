@@ -4,6 +4,6 @@
 
     public interface IHeroTitle : ITitle
     {
-        ImageModel HeroImage { get; }
+        ImageViewModel HeroImage { get; }
     }
 }

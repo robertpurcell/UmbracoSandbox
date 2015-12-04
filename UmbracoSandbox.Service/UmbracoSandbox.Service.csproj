@@ -306,9 +306,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UmbracoSandbox.Utilities\UmbracoSandbox.Utilities.csproj">
+    <ProjectReference Include="..\UmbracoSandbox.Utilities\UmbracoSandbox.Common.csproj">
       <Project>{2204eccf-8e6b-43d8-bf92-bb71cd191521}</Project>
-      <Name>UmbracoSandbox.Utilities</Name>
+      <Name>UmbracoSandbox.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -403,8 +403,8 @@
     <Compile Include="Models\Interfaces\IMenuItem.cs" />
     <Compile Include="Models\Interfaces\ITitle.cs" />
     <Compile Include="Models\Media\ImageCropperModel.cs" />
-    <Compile Include="Models\Media\ImageModel.cs" />
-    <Compile Include="Models\Media\FileModel.cs" />
+    <Compile Include="Models\Media\ImageViewModel.cs" />
+    <Compile Include="Models\Media\FileViewModel.cs" />
     <Compile Include="Models\Navigation\MenuItemModel.cs" />
     <Compile Include="Models\Navigation\MainNavigationViewModel.cs" />
     <Compile Include="Models\Navigation\NavigationViewModel.cs" />
@@ -420,9 +420,9 @@
       <Project>{0a004da3-898f-4b8f-81f6-a37856f8c24c}</Project>
       <Name>UmbracoSandbox.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UmbracoSandbox.Utilities\UmbracoSandbox.Utilities.csproj">
+    <ProjectReference Include="..\UmbracoSandbox.Utilities\UmbracoSandbox.Common.csproj">
       <Project>{2204eccf-8e6b-43d8-bf92-bb71cd191521}</Project>
-      <Name>UmbracoSandbox.Utilities</Name>
+      <Name>UmbracoSandbox.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Zone.GoogleMaps\Zone.GoogleMaps.csproj">
       <Project>{96c21e0f-d438-4a15-9265-ee32662e4159}</Project>
