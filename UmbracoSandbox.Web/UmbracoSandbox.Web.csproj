@@ -328,7 +328,6 @@
     <Compile Include="Controllers\Errors\PageNotFoundController.cs" />
     <Compile Include="Controllers\Pages\ArticleController.cs" />
     <Compile Include="Controllers\Pages\BlogPostController.cs" />
-    <Compile Include="Controllers\Pages\TImelineController.cs" />
     <Compile Include="Controllers\Pages\LoginController.cs" />
     <Compile Include="Controllers\Pages\LogoutController.cs" />
     <Compile Include="Controllers\Pages\RegistrationController.cs" />
