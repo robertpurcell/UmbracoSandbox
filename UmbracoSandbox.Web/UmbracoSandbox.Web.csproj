@@ -335,6 +335,7 @@
     <Compile Include="Controllers\Pages\HomeController.cs" />
     <Compile Include="Controllers\Pages\ListingController.cs" />
     <Compile Include="Controllers\Errors\ThrowExceptionController.cs" />
+    <Compile Include="Controllers\Pages\TimelineController.cs" />
     <Compile Include="Handlers\Base\BaseHandler.cs" />
     <Compile Include="Handlers\Errors\ErrorHandler.cs" />
     <Compile Include="Handlers\Errors\IErrorHandler.cs" />
