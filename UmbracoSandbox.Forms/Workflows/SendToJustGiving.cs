@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+
     using Ninject;
+
     using Umbraco.Forms.Core;
     using Umbraco.Forms.Core.Attributes;
     using Umbraco.Forms.Core.Enums;

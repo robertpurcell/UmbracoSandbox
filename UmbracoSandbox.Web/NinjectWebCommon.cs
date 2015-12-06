@@ -19,7 +19,8 @@ namespace UmbracoSandbox.Web
     using UmbracoSandbox.Service.JustGiving;
     using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Service.Publishing;
-    using UmbracoSandbox.Web.Handlers.Content;
+    using UmbracoSandbox.Web.Handlers.Errors;
+    using UmbracoSandbox.Web.Handlers.Pages;
     using UmbracoSandbox.Web.Handlers.Modules;
     using UmbracoSandbox.Web.Handlers.Navigation;
     using UmbracoSandbox.Web.Infrastructure.ContentLocators;
@@ -82,18 +83,19 @@ namespace UmbracoSandbox.Web
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IBindingRoot kernel)
         {
-            kernel.Bind<ILoggingService>().To<LoggingService>().InSingletonScope();
             kernel.Bind<IHttpClient>().To<HttpClientWrapper>()
                 .WithConstructorArgument("timeoutInSeconds", 30);
             kernel.Bind<IPageHandler>().To<PageHandler>();
             kernel.Bind<IUmbracoMapper>().To<UmbracoMapper>();
             kernel.Bind<IMetadataHandler>().To<MetadataHandler>();
             kernel.Bind<INavigationHandler>().To<NavigationHandler>();
-            kernel.Bind<IPublishingService>().To<PublishingService>();
             kernel.Bind<IContactPageHandler>().To<ContactPageHandler>();
-            kernel.Bind<IListingPageHandler>().To<ListingPageHandler>();
             kernel.Bind<IBlogPostPageHandler>().To<BlogPostPageHandler>();
+            kernel.Bind<IListingPageHandler>().To<ListingPageHandler>();
+            kernel.Bind<IErrorHandler>().To<ErrorHandler>();
             kernel.Bind<IRegistrationPageHandler>().To<RegistrationPageHandler>();
+            kernel.Bind<ILoggingService>().To<LoggingService>().InSingletonScope();
+            kernel.Bind<IPublishingService>().To<PublishingService>();
             kernel.Bind<IEmailService>().To<EmailService>()
                 .WithConstructorArgument("emailAddress", ConfigHelper.GetSettingAsString("app.emailAddress"))
                 .WithConstructorArgument("displayName", ConfigHelper.GetSettingAsString("app.displayName"));

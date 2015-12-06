@@ -17,7 +17,7 @@
             {
                 switch (content.ContentType.Alias)
                 {
-                    case ContentTypeAliases.Error:
+                    case ContentTypeAliases.ServerError:
                         if (content.Published)
                         {
                             PublishErrorPage(e, content);
@@ -28,17 +28,22 @@
             }
         }
 
-        private static void PublishErrorPage(PublishEventArgs<IContent> e, IContent content)
+        private static void PublishErrorPage(CancellableEventArgs e, IContent content)
         {
             var helper = new UmbracoHelper(UmbracoContext.Current);
             var published = helper.TypedContent(content.Id);
             if (published != null)
             {
-                var errorCode = published.GetPropertyValue<int>(PropertyAliases.ErrorCode);
                 var publisher = NinjectWebCommon.Kernel.GetService<IPublishingService>();
-                e.Messages.Add(publisher.PublishErrorPage(published.UrlWithDomain(), errorCode)
-                    ? new EventMessage("Static error page updated", errorCode.ToString(), EventMessageType.Info)
-                    : new EventMessage("Failure updating static error page", errorCode.ToString(), EventMessageType.Error));
+                if (publisher.PublishWebFormsPage(published.UrlWithDomain(), content.ContentType.Alias))
+                {
+                    e.Messages.Add(new EventMessage("Success", "Static error page updated", EventMessageType.Info));
+                    content.SetValue(PropertyAliases.StaticPage, string.Format("/{0}.aspx", content.ContentType.Alias));
+                }
+                else
+                {
+                    e.Messages.Add(new EventMessage("Error", "Failure updating static error page", EventMessageType.Error));
+                }
             }
             else
             {

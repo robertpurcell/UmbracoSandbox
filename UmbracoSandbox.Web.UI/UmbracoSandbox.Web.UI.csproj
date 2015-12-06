@@ -363,6 +363,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerError.aspx.cs">
+      <DependentUpon>ServerError.aspx</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServerError.aspx.designer.cs">
+      <DependentUpon>ServerError.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Plugins\Archetype\assets\logo_50.png" />
@@ -583,6 +590,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\validation.js" />
+    <Content Include="ServerError.aspx" />
     <Content Include="umbraco\Actions\delete.aspx" />
     <Content Include="umbraco\Actions\editContent.aspx" />
     <Content Include="umbraco\Actions\preview.aspx" />
@@ -3354,7 +3362,7 @@
     <Content Include="Views\Shared\_BodyText.cshtml" />
     <Content Include="Views\Shared\_Module.cshtml" />
     <Content Include="Views\Contact\_ContactForm.cshtml" />
-    <Content Include="Views\Error.cshtml" />
+    <Content Include="Views\PageNotFound.cshtml" />
     <Content Include="Views\Registration.cshtml" />
     <Content Include="Views\Registration\_RegistrationForm.cshtml" />
     <Content Include="Views\Login.cshtml" />
@@ -3368,6 +3376,7 @@
     <Content Include="Views\Partials\Grid\Editors\Base.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap3.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap2.cshtml" />
+    <Content Include="Views\ServerError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Plugins\UmbracoForms\Data\prevaluesources\" />
@@ -3393,10 +3402,6 @@
     <ProjectReference Include="..\UmbracoSandbox.Service\UmbracoSandbox.Service.csproj">
       <Project>{0a004da3-898f-4b8f-81f6-a37856f8c24c}</Project>
       <Name>UmbracoSandbox.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UmbracoSandbox.Utilities\UmbracoSandbox.Common.csproj">
-      <Project>{2204eccf-8e6b-43d8-bf92-bb71cd191521}</Project>
-      <Name>UmbracoSandbox.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\UmbracoSandbox.Web\UmbracoSandbox.Web.csproj">
       <Project>{00b3ad26-4f16-4f81-8247-022cac038f0a}</Project>

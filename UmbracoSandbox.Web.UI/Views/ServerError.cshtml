@@ -1,0 +1,35 @@
+﻿@model ServerErrorViewModel
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+    <title>Server error | Umbraco Sandbox</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/Content/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+    </nav>
+    <div class="jumbotron">
+        @Html.Partial("_Title")
+    </div>
+    <div class="container">
+        <div style="
+            font-family: 'Roboto Slab', serif;
+            font-weight: 500;
+            line-height: 1.1;
+            font-size: 300px;
+            margin-top: -85px;
+            color: #eee;
+            z-index: -1;
+        ">500</div>
+        @Model.BodyText
+    </div>
+</body>
+</html>

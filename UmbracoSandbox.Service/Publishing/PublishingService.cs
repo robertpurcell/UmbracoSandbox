@@ -12,6 +12,7 @@
     {
         #region Fields
 
+        private const string PageTemplate = @"<%@ Page Language=""C#"" AutoEventWireup=""true"" CodeBehind=""{0}.aspx.cs"" Inherits=""UmbracoSandbox.Web.UI.{0}"" %>{1}";
         private readonly ILoggingService _loggingService;
 
         #endregion Fields
@@ -28,16 +29,16 @@
         #region Interface methods
 
         /// <summary>
-        /// Request the error page for the appropriate error code and save the raw html to disk.
+        /// Request the page and save the raw HTML to disk.
         /// </summary>
         /// <param name="url">Error page URL</param>
-        /// <param name="errorCode">Error code</param>
-        /// <returns>Whether successful</returns>
-        public bool PublishErrorPage(string url, int errorCode)
+        /// <param name="filename">The name of the destination file</param>
+        /// <returns>Pubishing result</returns>
+        public bool PublishWebFormsPage(string url, string filename)
         {
-            if (errorCode != 0)
+            if (!string.IsNullOrEmpty(filename))
             {
-                    return Task.Factory.StartNew(() => PublishPage(url, string.Format("{0}.html", errorCode)).Result,
+                return Task.Factory.StartNew(() => PublishWebFormsPageTask(url, filename).Result,
                         TaskCreationOptions.LongRunning).Result;
             }
 
@@ -49,12 +50,12 @@
         #region Helpers
 
         /// <summary>
-        /// Read the HTML from the page at the given URL and save it to an HTML file
+        /// Read the HTML from the page at the given URL and save it to an HTML file.
         /// </summary>
         /// <param name="url">The URL of the page</param>
         /// <param name="filename">The name of the destination file</param>
         /// <returns>True if successful</returns>
-        private async Task<bool> PublishPage(string url, string filename)
+        private async Task<bool> PublishWebFormsPageTask(string url, string filename)
         {
             var request = (HttpWebRequest)WebRequest.Create(url);
             try
@@ -69,8 +70,9 @@
 
                     using (var reader = new StreamReader(stream))
                     {
-                        var content = reader.ReadToEnd();
-                        var path = Path.Combine(HttpRuntime.AppDomainAppPath, filename);
+                        var content = string.Format(PageTemplate, filename, Environment.NewLine);
+                        content += reader.ReadToEnd();
+                        var path = Path.Combine(HttpRuntime.AppDomainAppPath, string.Format("{0}.aspx", filename));
                         File.WriteAllText(path, content);
                     }
                 }
@@ -79,7 +81,7 @@
             }
             catch (Exception ex)
             {
-                _loggingService.Log(string.Format("Error publishing static error page: {0}", ex.Message), LogLevel.Error);
+                _loggingService.Log(string.Format("Error publishing page: {0}", ex.Message), LogLevel.Error);
                 return false;
             }
         }

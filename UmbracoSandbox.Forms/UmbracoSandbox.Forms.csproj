@@ -85,13 +85,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\UmbracoSandbox.Common\UmbracoSandbox.Common.csproj">
+      <Project>{2204eccf-8e6b-43d8-bf92-bb71cd191521}</Project>
+      <Name>UmbracoSandbox.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UmbracoSandbox.Service\UmbracoSandbox.Service.csproj">
       <Project>{0A004DA3-898F-4B8F-81F6-A37856F8C24C}</Project>
       <Name>UmbracoSandbox.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UmbracoSandbox.Utilities\UmbracoSandbox.Common.csproj">
-      <Project>{2204eccf-8e6b-43d8-bf92-bb71cd191521}</Project>
-      <Name>UmbracoSandbox.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\UmbracoSandbox.Web\UmbracoSandbox.Web.csproj">
       <Project>{00b3ad26-4f16-4f81-8247-022cac038f0a}</Project>

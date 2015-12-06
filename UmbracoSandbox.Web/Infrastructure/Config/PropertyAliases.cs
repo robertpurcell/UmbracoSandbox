@@ -10,6 +10,8 @@
 
         public const string HideSubNavigation = "hideSubNavigation";
 
+        public const string StaticPage = "staticPage";
+
         public const string UmbracoBytes = "umbracoBytes";
 
         public const string UmbracoExtension = "umbracoExtension";

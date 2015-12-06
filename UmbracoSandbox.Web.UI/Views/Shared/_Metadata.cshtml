@@ -1,18 +1,26 @@
 ﻿@model MetadataViewModel
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="@Model.SocialTitle" />
-<meta property="og:url" content="@Model.SocialUrl" />
-<meta property="og:site_name" content="@Model.SocialSiteName" />
 <meta property="twitter:card" content="summary" />
-<meta property="twitter:title" content="@Model.SocialTitle" />
-<meta property="twitter:url" content="@Model.SocialUrl" />
-<meta property="twitter:site" content="@Model.SocialSiteName" />
 @if (!string.IsNullOrEmpty(Model.MetaDescription))
 {
     <meta name="description" content="@Model.MetaDescription" />
+}
+@if (!string.IsNullOrEmpty(Model.SocialUrl))
+{
+    <meta property="og:url" content="@Model.SocialUrl" />
+    <meta property="twitter:url" content="@Model.SocialUrl" />
+}
+@if (!string.IsNullOrEmpty(Model.SocialSiteName))
+{
+    <meta property="og:site_name" content="@Model.SocialSiteName" />
+    <meta property="twitter:site" content="@Model.SocialSiteName" />
+}
+@if (!string.IsNullOrEmpty(Model.SocialTitle))
+{
+    <meta property="og:title" content="@Model.SocialTitle" />
+    <meta property="twitter:title" content="@Model.SocialTitle" />
 }
 @if (!string.IsNullOrEmpty(Model.SocialDescription))
 {

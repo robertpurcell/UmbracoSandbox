@@ -324,30 +324,34 @@
     <Compile Include="Controllers\BackOffice\DataApplication.cs" />
     <Compile Include="Controllers\BackOffice\DataTreeController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
-    <Compile Include="Controllers\Content\ArticleController.cs" />
-    <Compile Include="Controllers\Content\BlogPostController.cs" />
-    <Compile Include="Controllers\Content\LoginController.cs" />
-    <Compile Include="Controllers\Content\LogoutController.cs" />
-    <Compile Include="Controllers\Content\RegistrationController.cs" />
-    <Compile Include="Controllers\Content\ContactController.cs" />
-    <Compile Include="Controllers\Content\HomeController.cs" />
-    <Compile Include="Controllers\Content\ListingController.cs" />
-    <Compile Include="Controllers\Content\ErrorController.cs" />
+    <Compile Include="Controllers\Errors\ServerErrorController.cs" />
+    <Compile Include="Controllers\Errors\PageNotFoundController.cs" />
+    <Compile Include="Controllers\Pages\ArticleController.cs" />
+    <Compile Include="Controllers\Pages\BlogPostController.cs" />
+    <Compile Include="Controllers\Pages\LoginController.cs" />
+    <Compile Include="Controllers\Pages\LogoutController.cs" />
+    <Compile Include="Controllers\Pages\RegistrationController.cs" />
+    <Compile Include="Controllers\Pages\ContactController.cs" />
+    <Compile Include="Controllers\Pages\HomeController.cs" />
+    <Compile Include="Controllers\Pages\ListingController.cs" />
+    <Compile Include="Controllers\Errors\ThrowExceptionController.cs" />
     <Compile Include="Handlers\Base\BaseHandler.cs" />
-    <Compile Include="Handlers\Content\BlogPostPageHandler.cs" />
-    <Compile Include="Handlers\Content\ContactPageHandler.cs" />
-    <Compile Include="Handlers\Content\IBlogPostPageHandler.cs" />
-    <Compile Include="Handlers\Content\IContactPageHandler.cs" />
-    <Compile Include="Handlers\Content\IRegistrationPageHandler.cs" />
-    <Compile Include="Handlers\Content\IPageHandler.cs" />
-    <Compile Include="Handlers\Content\IListingPageHandler.cs" />
-    <Compile Include="Handlers\Content\RegistrationPageHandler.cs" />
-    <Compile Include="Handlers\Content\PageHandler.cs" />
+    <Compile Include="Handlers\Errors\ErrorHandler.cs" />
+    <Compile Include="Handlers\Errors\IErrorHandler.cs" />
+    <Compile Include="Handlers\Pages\BlogPostPageHandler.cs" />
+    <Compile Include="Handlers\Pages\ContactPageHandler.cs" />
+    <Compile Include="Handlers\Pages\IBlogPostPageHandler.cs" />
+    <Compile Include="Handlers\Pages\IContactPageHandler.cs" />
+    <Compile Include="Handlers\Pages\IRegistrationPageHandler.cs" />
+    <Compile Include="Handlers\Pages\IPageHandler.cs" />
+    <Compile Include="Handlers\Pages\IListingPageHandler.cs" />
+    <Compile Include="Handlers\Pages\RegistrationPageHandler.cs" />
+    <Compile Include="Handlers\Pages\PageHandler.cs" />
     <Compile Include="Handlers\Modules\IMetadataHandler.cs" />
     <Compile Include="Handlers\Modules\MetadataHandler.cs" />
     <Compile Include="Handlers\Navigation\INavigationHandler.cs" />
     <Compile Include="Handlers\Navigation\NavigationHandler.cs" />
-    <Compile Include="Handlers\Content\ListingPageHandler.cs" />
+    <Compile Include="Handlers\Pages\ListingPageHandler.cs" />
     <Compile Include="Helpers\NinjectHelper.cs" />
     <Compile Include="Infrastructure\ActionFilters\ExportModelStateToSessionAttribute.cs" />
     <Compile Include="Infrastructure\ActionFilters\ImportModelStateFromSessionAttribute.cs" />
@@ -372,10 +376,11 @@
     <Compile Include="Infrastructure\Markup\HtmlLabelExtensions.cs" />
     <Compile Include="Infrastructure\Markup\MvcLabel.cs" />
     <Compile Include="Infrastructure\Routing\RouteConfig.cs" />
-    <Compile Include="Models\Content\ArticleViewModel.cs" />
-    <Compile Include="Models\Content\LoginViewModel.cs" />
-    <Compile Include="Models\Content\RegistrationViewModel.cs" />
-    <Compile Include="Models\Content\ErrorViewModel.cs" />
+    <Compile Include="Models\Errors\ServerErrorViewModel.cs" />
+    <Compile Include="Models\Pages\ArticleViewModel.cs" />
+    <Compile Include="Models\Pages\LoginViewModel.cs" />
+    <Compile Include="Models\Pages\RegistrationViewModel.cs" />
+    <Compile Include="Models\Errors\PageNotFoundViewModel.cs" />
     <Compile Include="Models\Forms\LoginFormViewModel.cs" />
     <Compile Include="Models\Forms\RegistrationFormViewModel.cs" />
     <Compile Include="Models\Interfaces\IBodyText.cs" />
@@ -394,10 +399,10 @@
     <Compile Include="Models\BackOffice\OnlineDonation.cs" />
     <Compile Include="Models\Base\BaseModuleViewModel.cs" />
     <Compile Include="Models\Base\BasePageViewModel.cs" />
-    <Compile Include="Models\Content\ContactViewModel.cs" />
-    <Compile Include="Models\Content\BlogPostViewModel.cs" />
-    <Compile Include="Models\Content\HomeViewModel.cs" />
-    <Compile Include="Models\Content\ListingViewModel.cs" />
+    <Compile Include="Models\Pages\ContactViewModel.cs" />
+    <Compile Include="Models\Pages\BlogPostViewModel.cs" />
+    <Compile Include="Models\Pages\HomeViewModel.cs" />
+    <Compile Include="Models\Pages\ListingViewModel.cs" />
     <Compile Include="Models\Interfaces\IBlogTitle.cs" />
     <Compile Include="Models\Interfaces\IHomeTitle.cs" />
     <Compile Include="Models\Interfaces\IMenuItem.cs" />
@@ -416,13 +421,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UmbracoSandbox.Common\UmbracoSandbox.Common.csproj">
+      <Project>{2204eccf-8e6b-43d8-bf92-bb71cd191521}</Project>
+      <Name>UmbracoSandbox.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UmbracoSandbox.Service\UmbracoSandbox.Service.csproj">
       <Project>{0a004da3-898f-4b8f-81f6-a37856f8c24c}</Project>
       <Name>UmbracoSandbox.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UmbracoSandbox.Utilities\UmbracoSandbox.Common.csproj">
-      <Project>{2204eccf-8e6b-43d8-bf92-bb71cd191521}</Project>
-      <Name>UmbracoSandbox.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Zone.GoogleMaps\Zone.GoogleMaps.csproj">
       <Project>{96c21e0f-d438-4a15-9265-ee32662e4159}</Project>
