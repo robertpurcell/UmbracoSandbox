@@ -328,6 +328,7 @@
     <Compile Include="Controllers\Errors\PageNotFoundController.cs" />
     <Compile Include="Controllers\Pages\ArticleController.cs" />
     <Compile Include="Controllers\Pages\BlogPostController.cs" />
+    <Compile Include="Controllers\Pages\TImelineController.cs" />
     <Compile Include="Controllers\Pages\LoginController.cs" />
     <Compile Include="Controllers\Pages\LogoutController.cs" />
     <Compile Include="Controllers\Pages\RegistrationController.cs" />
@@ -378,6 +379,7 @@
     <Compile Include="Infrastructure\Routing\RouteConfig.cs" />
     <Compile Include="Models\Errors\ServerErrorViewModel.cs" />
     <Compile Include="Models\Pages\ArticleViewModel.cs" />
+    <Compile Include="Models\Pages\TimelineViewModel.cs" />
     <Compile Include="Models\Pages\LoginViewModel.cs" />
     <Compile Include="Models\Pages\RegistrationViewModel.cs" />
     <Compile Include="Models\Errors\PageNotFoundViewModel.cs" />

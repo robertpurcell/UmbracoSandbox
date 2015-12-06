@@ -1,0 +1,16 @@
+﻿@model TimelineViewModel
+@{
+    Layout = "Shared/_Layout.cshtml";
+}
+
+@if (Model.Grid.IsAndAny())
+{
+    <div class="container">
+        <div class="row">
+            @foreach (var module in Model.Grid)
+            {
+                @Html.Partial(module.PartialName, module)
+            }
+        </div>
+    </div>
+}

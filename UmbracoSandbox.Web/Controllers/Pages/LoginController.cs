@@ -6,8 +6,8 @@
     using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Web.Controllers.Base;
     using UmbracoSandbox.Web.Handlers.Pages;
-    using UmbracoSandbox.Web.Models.Pages;
     using UmbracoSandbox.Web.Models.Forms;
+    using UmbracoSandbox.Web.Models.Pages;
 
     public class LoginController : BaseController
     {

@@ -33,7 +33,7 @@
         /// </summary>
         /// <param name="url">Error page URL</param>
         /// <param name="filename">The name of the destination file</param>
-        /// <returns>Pubishing result</returns>
+        /// <returns>Publishing result</returns>
         public bool PublishWebFormsPage(string url, string filename)
         {
             if (!string.IsNullOrEmpty(filename))

@@ -20,9 +20,9 @@ namespace UmbracoSandbox.Web
     using UmbracoSandbox.Service.Logging;
     using UmbracoSandbox.Service.Publishing;
     using UmbracoSandbox.Web.Handlers.Errors;
-    using UmbracoSandbox.Web.Handlers.Pages;
     using UmbracoSandbox.Web.Handlers.Modules;
     using UmbracoSandbox.Web.Handlers.Navigation;
+    using UmbracoSandbox.Web.Handlers.Pages;
     using UmbracoSandbox.Web.Infrastructure.ContentLocators;
 
     using Zone.UmbracoMapper;

@@ -45,10 +45,6 @@
             {
                 ex.Add(new Exception("Please select and email template."));
             }
-            else
-            {
-                
-            }
 
             return ex;
         }
