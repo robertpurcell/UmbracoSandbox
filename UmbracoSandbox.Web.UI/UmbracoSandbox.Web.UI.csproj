@@ -514,6 +514,8 @@
     <Content Include="App_Plugins\UmbracoForms\Xslt\Templates\Schema2\UmbracoContourListComments.xslt" />
     <Content Include="App_Plugins\UmbracoForms\Xslt\Templates\UmbracoContourListComments.xslt" />
     <Content Include="App_Plugins\UmbracoForms\Xslt\xml.xslt" />
+    <Content Include="App_Plugins\Zone.CustomTextarea\customtextarea.controller.js" />
+    <Content Include="App_Plugins\Zone.CustomTextarea\customtextarea.html" />
     <Content Include="App_Plugins\Zone.GoogleMaps\googlemaps.controller.js" />
     <Content Include="App_Plugins\Zone.GoogleMaps\googlemaps.css" />
     <Content Include="App_Plugins\Zone.GoogleMaps\googlemaps.html" />
@@ -580,6 +582,7 @@
     <Content Include="config\EmbeddedMedia.config" />
     <Content Include="config\BaseRestExtensions.config" />
     <Content Include="config\404handlers.config" />
+    <Content Include="App_Plugins\Zone.CustomTextarea\package.manifest" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />

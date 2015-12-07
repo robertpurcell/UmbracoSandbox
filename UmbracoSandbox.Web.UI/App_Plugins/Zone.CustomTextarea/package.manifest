@@ -1,0 +1,24 @@
+﻿{
+	propertyEditors: [
+		{
+  			alias: "Zone.CustomTextarea",
+ 			name: "Custom Textarea",
+  			editor:	{
+          			view: "~/App_Plugins/Zone.CustomTextarea/customtextarea.html"
+         	},
+			prevalues: {
+				fields: [
+					{
+						label: "Number of Rows",
+						description: "Select the height of your textarea in rows.  The default value is 10.",
+						key: "rows",
+						view: "number"
+					}
+				]
+			}
+		}
+	],
+    javascript: [
+        "~/App_Plugins/Zone.CustomTextarea/customtextarea.controller.js"
+    ]
+}
