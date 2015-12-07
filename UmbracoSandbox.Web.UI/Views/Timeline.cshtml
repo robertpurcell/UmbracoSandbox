@@ -2,14 +2,22 @@
 @{
     Layout = "Shared/_Layout.cshtml";
 }
-
-@if (Model.Grid.IsAndAny())
+@if (Model.Grid != null && Model.Grid.Sections.IsAndAny())
 {
     <div class="container">
         <div class="row">
-            @foreach (var module in Model.Grid)
+            @foreach (var control in Model.Grid.Sections.SelectMany(x => x.Rows).SelectMany(x => x.Areas).SelectMany(x => x.Controls))
             {
-                @Html.Partial(module.PartialName, module)
+                <div class="@control.Editor.Alias">
+                    @switch (control.Editor.Alias)
+                    {
+                        case GridAliases.Headline:
+                        case GridAliases.Quote:
+                        case GridAliases.Rte:
+                            @control.TypedValue
+                            break;
+                    }
+                </div>
             }
         </div>
     </div>

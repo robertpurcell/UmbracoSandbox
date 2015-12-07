@@ -10,6 +10,7 @@
     using UmbracoSandbox.Web.Models.Modules;
 
     using Zone.GoogleMaps;
+    using Zone.Grid;
     using Zone.UmbracoMapper;
 
     public abstract class BaseHandler
@@ -43,6 +44,7 @@
                 .AddCustomMapping(typeof(FileViewModel).FullName, MediaMapper.GetFile)
                 .AddCustomMapping(typeof(ImageViewModel).FullName, MediaMapper.GetImage)
                 .AddCustomMapping(typeof(ImageViewModel).FullName, MediaMapper.GetImageFromValue)
+                .AddCustomMapping(typeof(Grid).FullName, GridMapper.GetGrid)
                 .AddCustomMapping(typeof(GoogleMap).FullName, GoogleMapMapper.GetGoogleMap)
                 .AddCustomMapping(typeof(IUser).FullName, UserMapper.GetUser)
                 .AddCustomMapping(typeof(IEnumerable<Link>).FullName, LinkMapper.GetLinks)

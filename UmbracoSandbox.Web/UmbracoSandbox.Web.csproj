@@ -371,6 +371,7 @@
     <Compile Include="Infrastructure\Events\UmbracoEvents.cs" />
     <Compile Include="Infrastructure\Mapping\Attributes\MapFromCurrentPageAttribute.cs" />
     <Compile Include="Infrastructure\Mapping\BaseMapper.cs" />
+    <Compile Include="Infrastructure\Mapping\GridMapper.cs" />
     <Compile Include="Infrastructure\Mapping\UserMapper.cs" />
     <Compile Include="Infrastructure\Mapping\LinkMapper.cs" />
     <Compile Include="Infrastructure\Mapping\ModuleMapper.cs" />
@@ -434,6 +435,10 @@
     <ProjectReference Include="..\Zone.GoogleMaps\Zone.GoogleMaps.csproj">
       <Project>{96c21e0f-d438-4a15-9265-ee32662e4159}</Project>
       <Name>Zone.GoogleMaps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zone.Grid\Zone.Grid.csproj">
+      <Project>{B4A7020A-3B48-4E48-A98B-8A38D1B068A9}</Project>
+      <Name>Zone.Grid</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
