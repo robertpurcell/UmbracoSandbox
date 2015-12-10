@@ -1,0 +1,24 @@
+﻿@model Grid
+@if (Model != null && Model.Sections.IsAndAny())
+{
+    <div class="container">
+        <div class="row">
+            @foreach (var control in Model.Sections.SelectMany(x => x.Rows).SelectMany(x => x.Areas).SelectMany(x => x.Controls))
+            {
+                <div class="@control.Editor.Alias">
+                    @switch (control.Editor.Alias)
+                    {
+                        case GridAliases.DocType:
+                            @Html.Partial("~/Views/Partials/TimelineEntry.cshtml")
+                            break;
+                        case GridAliases.Headline:
+                        case GridAliases.Quote:
+                        case GridAliases.Rte:
+                            @control.TypedValue
+                            break;
+                    }
+                </div>
+            }
+        </div>
+    </div>
+}

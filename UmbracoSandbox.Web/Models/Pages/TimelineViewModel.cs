@@ -1,10 +1,12 @@
 ﻿namespace UmbracoSandbox.Web.Models.Pages
 {
+    using System.Collections.Generic;
+
     using UmbracoSandbox.Web.Models.Base;
-    using Zone.Grid;
+    using UmbracoSandbox.Web.Models.Modules;
 
     public class TimelineViewModel : BasePageViewModel
     {
-        public Grid Grid { get; set; }
+        public IEnumerable<TimelineEntryViewModel> Timeline { get; set; }
     }
 }

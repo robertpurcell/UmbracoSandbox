@@ -2,6 +2,8 @@
 {
     public static class GridAliases
     {
+        public const string DocType = "docType";
+
         public const string Headline = "headline";
 
         public const string Quote = "quote";
