@@ -70,15 +70,15 @@
                 }
             }
 
-            const string username = "rpurcell@thisiszone.com";
-            const string password = "Zonepa55";
+            const string Username = "rpurcell@thisiszone.com";
+            const string Password = "Zonepa55";
             var page = new PageRequestDto();
-            if (!JustGivingService.ValidateCredentials(username, password))
+            if (!JustGivingService.ValidateCredentials(Username, Password))
             {
                 return WorkflowExecutionStatus.Failed;
             }
 
-            var pageUrl = CreatePage(username, password, page);
+            var pageUrl = CreatePage(Username, Password, page);
             return string.IsNullOrEmpty(pageUrl) ? WorkflowExecutionStatus.Failed : WorkflowExecutionStatus.Completed;
         }
 

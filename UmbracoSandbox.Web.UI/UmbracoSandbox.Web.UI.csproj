@@ -538,6 +538,9 @@
     <Content Include="App_Plugins\UmbracoForms\Xslt\xml.xslt" />
     <Content Include="App_Plugins\Zone.CustomTextarea\customtextarea.controller.js" />
     <Content Include="App_Plugins\Zone.CustomTextarea\customtextarea.html" />
+    <Content Include="App_Plugins\Zone.GoogleMapsAreaPicker\googlemapsareapicker.controller.js" />
+    <Content Include="App_Plugins\Zone.GoogleMapsAreaPicker\googlemapsareapicker.css" />
+    <Content Include="App_Plugins\Zone.GoogleMapsAreaPicker\googlemapsareapicker.html" />
     <Content Include="App_Plugins\Zone.GoogleMaps\googlemaps.controller.js" />
     <Content Include="App_Plugins\Zone.GoogleMaps\googlemaps.css" />
     <Content Include="App_Plugins\Zone.GoogleMaps\googlemaps.html" />
@@ -609,6 +612,7 @@
     <Content Include="App_Plugins\DocTypeGridEditor\Render\DocTypeGridEditor.cshtml" />
     <Content Include="App_Plugins\DocTypeGridEditor\Render\DocTypeGridEditorPreviewer.cshtml" />
     <Content Include="App_Plugins\NestedContent\package.manifest" />
+    <Content Include="App_Plugins\Zone.GoogleMapsAreaPicker\package.manifest" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
