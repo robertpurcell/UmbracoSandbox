@@ -54,11 +54,12 @@
                         {
                             if (control != null && control.editor != null && control.editor.view != null)
                             {
-                                <text>@Html.Partial("grid/editors/base", (object)control)</text>
+                                <text>@Html.Partial("grid/editors/base", (object) control)</text>
                             }
                         }
                     </div>
-                </div>}
+                </div>
+            }
         </div>
         @Umbraco.If(singleColumn, "</div>")
     </div>
