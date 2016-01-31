@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(UmbracoSandbox.Web.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(UmbracoSandbox.Web.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(UmbracoSandbox.Web.Infrastructure.IoC.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(UmbracoSandbox.Web.Infrastructure.IoC.NinjectWebCommon), "Stop")]
 
-namespace UmbracoSandbox.Web
+namespace UmbracoSandbox.Web.Infrastructure.IoC
 {
     using System;
     using System.Web;
@@ -24,6 +24,7 @@ namespace UmbracoSandbox.Web
     using UmbracoSandbox.Web.Handlers.Navigation;
     using UmbracoSandbox.Web.Handlers.Pages;
     using UmbracoSandbox.Web.Infrastructure.ContentLocators;
+    using UmbracoSandbox.Web.Infrastructure.Mapping;
 
     using Zone.UmbracoMapper;
 
@@ -86,7 +87,8 @@ namespace UmbracoSandbox.Web
             kernel.Bind<IHttpClient>().To<HttpClientWrapper>()
                 .WithConstructorArgument("timeoutInSeconds", 30);
             kernel.Bind<IPageHandler>().To<PageHandler>();
-            kernel.Bind<IUmbracoMapper>().To<UmbracoMapper>();
+            kernel.Bind<IUmbracoMapper>().To<CustomMapper>().InSingletonScope();
+            kernel.Bind<ILoggingService>().To<LoggingService>().InSingletonScope();
             kernel.Bind<IMetadataHandler>().To<MetadataHandler>();
             kernel.Bind<INavigationHandler>().To<NavigationHandler>();
             kernel.Bind<IContactPageHandler>().To<ContactPageHandler>();
@@ -94,7 +96,6 @@ namespace UmbracoSandbox.Web
             kernel.Bind<IListingPageHandler>().To<ListingPageHandler>();
             kernel.Bind<IErrorHandler>().To<ErrorHandler>();
             kernel.Bind<IRegistrationPageHandler>().To<RegistrationPageHandler>();
-            kernel.Bind<ILoggingService>().To<LoggingService>().InSingletonScope();
             kernel.Bind<IPublishingService>().To<PublishingService>();
             kernel.Bind<IEmailService>().To<EmailService>()
                 .WithConstructorArgument("emailAddress", ConfigHelper.GetSettingAsString("app.emailAddress"))

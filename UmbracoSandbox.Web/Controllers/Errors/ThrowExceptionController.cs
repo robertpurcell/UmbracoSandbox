@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Web.Controllers.Pages
+﻿namespace UmbracoSandbox.Web.Controllers.Errors
 {
     using System;
     using System.Web.Mvc;

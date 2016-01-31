@@ -186,10 +186,6 @@
       <HintPath>..\packages\Ninject.MVC3.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Our.Umbraco.DocTypeGridEditor, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\DocTypeGridEditor\Our.Umbraco.DocTypeGridEditor.dll</HintPath>
-    </Reference>
     <Reference Include="Our.Umbraco.NestedContent, Version=0.2.5681.29117, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Our.Umbraco.NestedContent.0.2.0\lib\net45\Our.Umbraco.NestedContent.dll</HintPath>
       <Private>True</Private>
@@ -3433,6 +3429,10 @@
     <Content Include="config\applications.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Umbraco Doc Type Grid Editor\src\Our.Umbraco.DocTypeGridEditor\Our.Umbraco.DocTypeGridEditor.csproj">
+      <Project>{4bd1db40-1b39-4966-8740-d6a39d658598}</Project>
+      <Name>Our.Umbraco.DocTypeGridEditor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UmbracoSandbox.Forms\UmbracoSandbox.Forms.csproj">
       <Project>{921a1f05-8991-4837-aece-9dcaa9da6b31}</Project>
       <Name>UmbracoSandbox.Forms</Name>

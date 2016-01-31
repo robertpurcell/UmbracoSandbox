@@ -14,8 +14,8 @@
     using UmbracoSandbox.Forms.Models;
     using UmbracoSandbox.Service.JustGiving;
     using UmbracoSandbox.Service.Logging;
-    using UmbracoSandbox.Web;
     using UmbracoSandbox.Web.Helpers;
+    using UmbracoSandbox.Web.Infrastructure.IoC;
 
     public class SendToJustGiving : WorkflowType
     {
@@ -52,7 +52,7 @@
         #region Methods
 
         public override List<Exception> ValidateSettings()
-        {   
+        {
             var l = new List<Exception>();
 
             return l;

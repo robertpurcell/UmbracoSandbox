@@ -8,6 +8,7 @@
     using UmbracoSandbox.Service.Publishing;
     using UmbracoSandbox.Web.Helpers;
     using UmbracoSandbox.Web.Infrastructure.Config;
+    using UmbracoSandbox.Web.Infrastructure.IoC;
 
     public static class UmbracoEvents
     {

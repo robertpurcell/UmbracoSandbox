@@ -174,9 +174,6 @@
       <HintPath>..\packages\Ninject.WebApi.DependencyResolver.0.1.4758.24814\lib\net45\Ninject.WebApi.DependencyResolver.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Our.Umbraco.DocTypeGridEditor">
-      <HintPath>..\lib\DocTypeGridEditor\Our.Umbraco.DocTypeGridEditor.dll</HintPath>
-    </Reference>
     <Reference Include="Our.Umbraco.PropertyEditorConverters, Version=2.1.5.35, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Our.Umbraco.CoreValueConverters.2.1.5\lib\net45\Our.Umbraco.PropertyEditorConverters.dll</HintPath>
@@ -374,6 +371,7 @@
     <Compile Include="Infrastructure\Events\AppEvents.cs" />
     <Compile Include="Infrastructure\Events\UmbracoEvents.cs" />
     <Compile Include="Infrastructure\Mapping\Attributes\MapFromCurrentPageAttribute.cs" />
+    <Compile Include="Infrastructure\Mapping\CustomMapper.cs" />
     <Compile Include="Infrastructure\Mapping\BaseMapper.cs" />
     <Compile Include="Infrastructure\Mapping\GridMapper.cs" />
     <Compile Include="Infrastructure\Mapping\UserMapper.cs" />
@@ -421,7 +419,7 @@
     <Compile Include="Models\Navigation\MenuItemModel.cs" />
     <Compile Include="Models\Navigation\MainNavigationViewModel.cs" />
     <Compile Include="Models\Navigation\NavigationViewModel.cs" />
-    <Compile Include="NinjectWebCommon.cs" />
+    <Compile Include="Infrastructure\IoC\NinjectWebCommon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -429,6 +427,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Umbraco Doc Type Grid Editor\src\Our.Umbraco.DocTypeGridEditor\Our.Umbraco.DocTypeGridEditor.csproj">
+      <Project>{4bd1db40-1b39-4966-8740-d6a39d658598}</Project>
+      <Name>Our.Umbraco.DocTypeGridEditor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UmbracoSandbox.Common\UmbracoSandbox.Common.csproj">
       <Project>{2204eccf-8e6b-43d8-bf92-bb71cd191521}</Project>
       <Name>UmbracoSandbox.Common</Name>
