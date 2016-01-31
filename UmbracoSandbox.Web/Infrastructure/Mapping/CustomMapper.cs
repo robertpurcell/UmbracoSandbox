@@ -16,7 +16,7 @@
     {
         #region Constructor
 
-        protected CustomMapper()
+        public CustomMapper()
         {
             AddCustomMappings();
         }

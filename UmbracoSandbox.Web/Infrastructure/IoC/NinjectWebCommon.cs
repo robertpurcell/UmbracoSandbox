@@ -86,8 +86,8 @@ namespace UmbracoSandbox.Web.Infrastructure.IoC
         {
             kernel.Bind<IHttpClient>().To<HttpClientWrapper>()
                 .WithConstructorArgument("timeoutInSeconds", 30);
-            kernel.Bind<IPageHandler>().To<PageHandler>();
             kernel.Bind<IUmbracoMapper>().To<CustomMapper>().InSingletonScope();
+            kernel.Bind<IPageHandler>().To<PageHandler>();
             kernel.Bind<ILoggingService>().To<LoggingService>().InSingletonScope();
             kernel.Bind<IMetadataHandler>().To<MetadataHandler>();
             kernel.Bind<INavigationHandler>().To<NavigationHandler>();
