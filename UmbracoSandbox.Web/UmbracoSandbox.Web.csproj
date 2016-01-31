@@ -427,10 +427,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Umbraco Doc Type Grid Editor\src\Our.Umbraco.DocTypeGridEditor\Our.Umbraco.DocTypeGridEditor.csproj">
-      <Project>{4bd1db40-1b39-4966-8740-d6a39d658598}</Project>
-      <Name>Our.Umbraco.DocTypeGridEditor</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UmbracoSandbox.Common\UmbracoSandbox.Common.csproj">
       <Project>{2204eccf-8e6b-43d8-bf92-bb71cd191521}</Project>
       <Name>UmbracoSandbox.Common</Name>

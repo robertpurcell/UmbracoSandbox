@@ -30,10 +30,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmbracoSandbox.Common", "Um
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zone.Grid", "Zone.Grid\Zone.Grid.csproj", "{B4A7020A-3B48-4E48-A98B-8A38D1B068A9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{BA695BF0-1D5F-479B-AE89-A367D86EDBA1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Our.Umbraco.DocTypeGridEditor", "..\Umbraco Doc Type Grid Editor\src\Our.Umbraco.DocTypeGridEditor\Our.Umbraco.DocTypeGridEditor.csproj", "{4BD1DB40-1B39-4966-8740-D6A39D658598}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,16 +122,6 @@ Global
 		{B4A7020A-3B48-4E48-A98B-8A38D1B068A9}.Release|ARM.ActiveCfg = Release|Any CPU
 		{B4A7020A-3B48-4E48-A98B-8A38D1B068A9}.Release|x64.ActiveCfg = Release|Any CPU
 		{B4A7020A-3B48-4E48-A98B-8A38D1B068A9}.Release|x86.ActiveCfg = Release|Any CPU
-		{4BD1DB40-1B39-4966-8740-D6A39D658598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4BD1DB40-1B39-4966-8740-D6A39D658598}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4BD1DB40-1B39-4966-8740-D6A39D658598}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{4BD1DB40-1B39-4966-8740-D6A39D658598}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{4BD1DB40-1B39-4966-8740-D6A39D658598}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{4BD1DB40-1B39-4966-8740-D6A39D658598}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4BD1DB40-1B39-4966-8740-D6A39D658598}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4BD1DB40-1B39-4966-8740-D6A39D658598}.Release|ARM.ActiveCfg = Release|Any CPU
-		{4BD1DB40-1B39-4966-8740-D6A39D658598}.Release|x64.ActiveCfg = Release|Any CPU
-		{4BD1DB40-1B39-4966-8740-D6A39D658598}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -144,6 +130,5 @@ Global
 		{96C21E0F-D438-4A15-9265-EE32662E4159} = {D19959FF-340B-4E72-963E-DAC5030BC482}
 		{6AB7D68C-B451-4418-902D-F732E034F09D} = {129CB7DA-832F-4BEA-8124-D5C8BBE88E49}
 		{B4A7020A-3B48-4E48-A98B-8A38D1B068A9} = {D19959FF-340B-4E72-963E-DAC5030BC482}
-		{4BD1DB40-1B39-4966-8740-D6A39D658598} = {BA695BF0-1D5F-479B-AE89-A367D86EDBA1}
 	EndGlobalSection
 EndGlobal
