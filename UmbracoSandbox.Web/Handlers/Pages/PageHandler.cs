@@ -5,7 +5,7 @@
     using UmbracoSandbox.Web.Handlers.Base;
     using UmbracoSandbox.Web.Handlers.Modules;
     using UmbracoSandbox.Web.Handlers.Navigation;
-    using UmbracoSandbox.Web.Models.Base;
+    using UmbracoSandbox.Web.Models.Pages;
 
     using Zone.UmbracoMapper;
 

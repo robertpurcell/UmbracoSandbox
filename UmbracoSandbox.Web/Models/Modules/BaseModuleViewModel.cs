@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Web.Models.Base
+﻿namespace UmbracoSandbox.Web.Models.Modules
 {
     public abstract class BaseModuleViewModel
     {

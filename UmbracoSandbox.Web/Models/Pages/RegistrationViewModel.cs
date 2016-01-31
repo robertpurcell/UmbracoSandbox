@@ -1,6 +1,5 @@
 ﻿namespace UmbracoSandbox.Web.Models.Pages
 {
-    using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Forms;
 
     public class RegistrationViewModel : BasePageViewModel

@@ -2,7 +2,7 @@
 {
     using Umbraco.Core.Models;
 
-    using UmbracoSandbox.Web.Models.Base;
+    using UmbracoSandbox.Web.Models.Pages;
 
     public interface IPageHandler
     {

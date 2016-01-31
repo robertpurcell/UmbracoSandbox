@@ -1,4 +1,4 @@
-﻿namespace UmbracoSandbox.Web.Models.Base
+﻿namespace UmbracoSandbox.Web.Models.Pages
 {
     using System.Web;
 

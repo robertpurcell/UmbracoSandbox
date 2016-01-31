@@ -403,8 +403,8 @@
     <Compile Include="Infrastructure\Mapping\MediaMapper.cs" />
     <Compile Include="Infrastructure\Markup\MediaHelper.cs" />
     <Compile Include="Models\BackOffice\OnlineDonation.cs" />
-    <Compile Include="Models\Base\BaseModuleViewModel.cs" />
-    <Compile Include="Models\Base\BasePageViewModel.cs" />
+    <Compile Include="Models\Modules\BaseModuleViewModel.cs" />
+    <Compile Include="Models\Pages\BasePageViewModel.cs" />
     <Compile Include="Models\Pages\ContactViewModel.cs" />
     <Compile Include="Models\Pages\BlogPostViewModel.cs" />
     <Compile Include="Models\Pages\HomeViewModel.cs" />

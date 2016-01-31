@@ -14,7 +14,6 @@
 
     using UmbracoSandbox.Common.Helpers;
     using UmbracoSandbox.Web.Infrastructure.Config;
-    using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Modules;
 
     using Zone.UmbracoMapper;

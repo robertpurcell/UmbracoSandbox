@@ -2,7 +2,6 @@
 {
     using RJP.MultiUrlPicker.Models;
 
-    using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Media;
 
     public class ModuleViewModel : BaseModuleViewModel

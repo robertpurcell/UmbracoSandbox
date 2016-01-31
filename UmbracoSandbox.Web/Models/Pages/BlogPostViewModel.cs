@@ -7,7 +7,6 @@
     using Umbraco.Core.Models.Membership;
 
     using UmbracoSandbox.Web.Infrastructure.Config;
-    using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Interfaces;
 
     public class BlogPostViewModel : BasePageViewModel, IBlogTitle

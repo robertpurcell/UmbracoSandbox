@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
 
-    using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Interfaces;
     using UmbracoSandbox.Web.Models.Media;
     using UmbracoSandbox.Web.Models.Modules;

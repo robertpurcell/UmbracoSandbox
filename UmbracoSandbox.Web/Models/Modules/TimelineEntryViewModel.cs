@@ -5,7 +5,6 @@
     using System.Web;
 
     using UmbracoSandbox.Web.Infrastructure.Config;
-    using UmbracoSandbox.Web.Models.Base;
     using UmbracoSandbox.Web.Models.Media;
 
     public class TimelineEntryViewModel : BaseModuleViewModel
