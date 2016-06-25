@@ -40,7 +40,6 @@
                 .AddCustomMapping(typeof(IUser).FullName, UserMapper.GetUser)
                 .AddCustomMapping(typeof(IEnumerable<Link>).FullName, LinkMapper.GetLinks)
                 .AddCustomMapping(typeof(IEnumerable<Link>).FullName, LinkMapper.GetLinksFromValue)
-                .AddCustomMapping(typeof(IEnumerable<ModuleViewModel>).FullName, ArchetypeMapper.GetCollection<ModuleViewModel>)
                 .AddCustomMapping(typeof(IEnumerable<TimelineEntryViewModel>).FullName, ModuleMapper.GetCollection<TimelineEntryViewModel>)
                 .AddCustomMapping(typeof(IEnumerable<BlogPostModuleViewModel>).FullName, ModuleMapper.GetCollection<BlogPostModuleViewModel>);
         }
