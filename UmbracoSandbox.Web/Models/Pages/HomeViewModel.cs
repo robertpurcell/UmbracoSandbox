@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
 
+    using UmbracoSandbox.Common.Helpers;
     using UmbracoSandbox.Web.Models.Interfaces;
     using UmbracoSandbox.Web.Models.Media;
     using UmbracoSandbox.Web.Models.Modules;
@@ -11,5 +12,7 @@
         public ImageViewModel HeroImage { get; set; }
 
         public IEnumerable<ModuleViewModel> Modules { get; set; }
+
+        public bool ShowModules => Modules.IsAndAny();
     }
 }

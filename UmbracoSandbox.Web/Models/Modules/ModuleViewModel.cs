@@ -13,5 +13,7 @@
         public ImageViewModel Image { get; set; }
 
         public Link Link { get; set; }
+
+        public bool ShowLink => Link != null;
     }
 }

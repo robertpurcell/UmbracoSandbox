@@ -2,7 +2,6 @@
 @{
     var script = Model.MacroParameters["script"].ToString();
 }
-
 @if (!script.IsNullOrWhiteSpace())
 {
     @Html.ValidateHtml(script)

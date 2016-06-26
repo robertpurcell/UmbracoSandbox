@@ -2,9 +2,8 @@
 @{
     Layout = "Shared/_Layout.cshtml";
 }
-
 <div class="container">
-    @if (Model.Timeline.IsAndAny())
+    @if (Model.ShowTimeline)
     {
         foreach (var entry in Model.Timeline)
         {

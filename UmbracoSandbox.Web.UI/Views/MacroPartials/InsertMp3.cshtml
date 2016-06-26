@@ -5,7 +5,6 @@
     var mp3Url = mp3 != null ? mp3.Url : string.Empty;
     var controlsTog = string.Equals(Model.MacroParameters["controls"].ToString(), "1") ? "controls" : string.Empty;
 }
-
 @if (!string.IsNullOrEmpty(mp3Url))
 {
     <audio @controlsTog>

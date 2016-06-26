@@ -17,6 +17,8 @@
 
         string ImageUrl { get; }
 
+        bool ShowImage { get; }
+
         IHtmlString Standfirst { get; }
     }
 }

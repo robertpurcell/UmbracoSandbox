@@ -1,5 +1,4 @@
 ﻿@model ContactFormViewModel
-
 <div id="result"></div>
 @using (Ajax.BeginForm("AjaxSendEmail", "Contact", new AjaxOptions { UpdateTargetId = "form-container" }, new { id = "contact-form" }))
 {

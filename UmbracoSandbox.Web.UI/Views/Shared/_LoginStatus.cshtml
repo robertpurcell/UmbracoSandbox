@@ -1,13 +1,12 @@
 ﻿@model ILoginStatus
-
-@if (Model.Login != null)
+@if (Model.ShowLoginStatus)
 {
     <ul class="nav navbar-nav navbar-right">
         @if (Model.IsLoggedIn)
         {
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                    @if (Model.ShowImage)
                     {
                         <div class="circle-image-small img-responsive pull-left" @Html.DisplayBackgroundImage(Model.ImageUrl)></div>
                     }

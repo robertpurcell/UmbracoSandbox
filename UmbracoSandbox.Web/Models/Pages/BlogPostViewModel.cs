@@ -18,6 +18,8 @@
 
         public string ImageUrl { get; set; }
 
+        public bool ShowImage => !string.IsNullOrEmpty(ImageUrl);
+
         public IHtmlString Standfirst { get; set; }
     }
 }
